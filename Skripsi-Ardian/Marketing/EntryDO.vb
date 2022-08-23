@@ -1,7 +1,54 @@
 ﻿Imports System.Data.Odbc
+Imports DevExpress.XtraEditors
 
 Public Class EntryDO
     Dim DataOrder As New DataOrder
+
+    Private Sub TampilKlien()
+        GGVM_conn()
+        Dim s As String
+        s = ""
+        s = s & " select y.* from ( select nama,id from klien"
+        s = s & " where status='1'"
+        s = s & " and nama like '%" & TKlien.Text & "%'"
+        s = s & " order by nama ) y "
+        da = New OdbcDataAdapter(s, conn)
+        ds = New DataSet
+        da.Fill(ds)
+        Dim Klien As New AutoCompleteStringCollection
+        For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
+            Klien.Add(ds.Tables(0).Rows(i)("nama").ToString())
+        Next
+        With TKlien
+            .AutoCompleteSource = AutoCompleteSource.CustomSource
+            .AutoCompleteCustomSource = Klien
+            .AutoCompleteMode = AutoCompleteMode.Suggest
+        End With
+        GGVM_conn_close()
+    End Sub
+    Private Sub TampilBrand()
+        GGVM_conn()
+        Dim s As String
+        s = ""
+        s = s & " select y.* from (select brand,idbrand from brand"
+        s = s & " where status='1'"
+        ' s = s & " and idklien ='" & TIDKlien.Text & "'"
+        s = s & " and brand like '%" & TBrand.Text & "%'"
+        s = s & " order by brand ) y"
+        da = New OdbcDataAdapter(s, conn)
+        ds = New DataSet
+        da.Fill(ds)
+        Dim Brand As New AutoCompleteStringCollection
+        For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
+            Brand.Add(ds.Tables(0).Rows(i)("brand").ToString())
+        Next
+        With TBrand
+            .AutoCompleteSource = AutoCompleteSource.CustomSource
+            .AutoCompleteCustomSource = Brand
+            .AutoCompleteMode = AutoCompleteMode.Suggest
+        End With
+        GGVM_conn_close()
+    End Sub
     Public Sub ClearInput()
         BtnSimpan.Enabled = True
         BtnSimpanToko.Enabled = True
@@ -184,9 +231,163 @@ Public Class EntryDO
 
     Private Sub EntryDO_Load(sender As Object, e As EventArgs) Handles Me.Load
         ClearInput()
+        TampilKlien()
+        TampilBrand()
+        DTDeadlineKI.Format = DateTimePickerFormat.Custom
+        DTDeadlineKI.CustomFormat = "dd/MM/yyyy"
+        DTDeadlineKI.Value = DateTime.Now
     End Sub
 
-    Private Sub EntryDO_ParentChanged(sender As Object, e As EventArgs) Handles Me.ParentChanged
+    Private Sub TKlien_TextChanged(sender As Object, e As EventArgs) Handles TKlien.TextChanged
+        Dim s As String
+        GGVM_conn()
+        s = "select id from klien where nama= '" & TKlien.Text & "'"
+        cmd = New OdbcCommand(s, conn)
+        dr = cmd.ExecuteReader
+        dr.Read()
+        If Not dr.HasRows Then
+            TIDKlien.Text = ""
+        Else
+            TIDKlien.Text = dr.Item("id")
+        End If
+        GGVM_conn_close()
+    End Sub
 
+    Private Sub TBrand_TextChanged(sender As Object, e As EventArgs) Handles TBrand.TextChanged
+        Dim s As String
+        GGVM_conn()
+        s = "select idbrand from brand where brand= '" & TBrand.Text & "'"
+        cmd = New OdbcCommand(s, conn)
+        dr = cmd.ExecuteReader
+        dr.Read()
+        If Not dr.HasRows Then
+            TIDBrand.Text = ""
+        Else
+            TIDBrand.Text = dr.Item("idbrand")
+        End If
+        GGVM_conn_close()
+    End Sub
+
+    Private Sub RadioGroup1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles RadioGroup1.SelectedIndexChanged
+        Dim radioGroup = TryCast(sender, RadioGroup)
+        If radioGroup.SelectedIndex = 0 Then
+            IDSurvei.Text = "1"
+        End If
+        If radioGroup.SelectedIndex = 1 Then
+            IDSurvei.Text = "5"
+        End If
+        If radioGroup.SelectedIndex = 2 Then
+            IDSurvei.Text = "V"
+        End If
+    End Sub
+
+    Private Sub SURVEI_CheckedChanged(sender As Object, e As EventArgs) Handles SURVEI.CheckedChanged
+        If SURVEI.Checked = True Then
+            RadioGroup1.Enabled = True
+        Else
+            RadioGroup1.Enabled = False
+            RadioGroup1.EditValue = ""
+            IDSurvei.Text = ""
+        End If
+    End Sub
+
+    Private Sub BtnSimpanToko_Click(sender As Object, e As EventArgs) Handles BtnSimpanToko.Click
+        Select Case Proses
+            Case "entry"
+                If TextBox1.Text = "" Then
+                    MsgBox(" Simpan dulu Data Ordernya !!..", MsgBoxStyle.Information, "Information")
+                    Exit Sub
+                End If
+                Try
+                    GGVM_conn()
+                    For Each item As ListViewItem In ListKota.Items
+                        Dim sql As String = " INSERT INTO prd_kirim_dataorder (iddtorder,iddist,idtoko) VALUES (?, ?, ?)"
+                        cmd = New OdbcCommand
+                        With cmd
+                            .CommandText = (sql)
+                            .Parameters.Add("@iddtorder", OdbcType.VarChar).Value = TextBox1.Text
+                            .Parameters.Add("@iddist", OdbcType.Double).Value = Convert.ToDouble(item.SubItems(2).Text)
+                            .Parameters.Add("@idtoko", OdbcType.VarChar).Value = Convert.ToInt32(item.SubItems(3).Text)
+                            .Connection = conn
+                        End With
+                        dr = cmd.ExecuteReader
+                        Console.WriteLine(cmd.CommandText.ToString)
+                        While dr.Read
+                            Console.WriteLine(dr(0))
+                            Console.WriteLine()
+                        End While
+                        Console.ReadLine()
+                        ' conn.Close()
+                        dr = Nothing
+                        cmd = Nothing
+                    Next
+                    MsgBox(" Data Toko Berhasil Disimpan!..", MsgBoxStyle.Information, "Information")
+                    BtnSimpanToko.Enabled = False
+                    BtnHapusPenerima.Enabled = False
+                    ListKota.Enabled = False
+                    TPenerima.Enabled = False
+                    CDist.Enabled = False
+                    CToko.Enabled = False
+                    'BtnEntryToko.Enabled = True
+                Catch ex As Exception
+                    MessageBox.Show(ex.ToString)
+                Finally
+                    GGVM_conn_close()
+                End Try
+                'ListKota.Items.Clear()
+                ClearInput()
+                GridPanel.DataSource = Nothing
+                BtnEntry.Enabled = True
+                'BtnEdit.Enabled = True
+                'BtnCetak.Enabled = True
+                'TampilDO()
+                BtnSimpan.Enabled = False
+
+
+                TNoDo.Text = ""
+                TidDtOrder.Text = ""
+                TIDKlien.Text = ""
+                TKlien.Text = ""
+                TIDBrand.Text = ""
+                TBrand.Text = ""
+                TPenerima.Text = ""
+                TProyek.Text = ""
+                DTDeadlineKI.Format = DateTimePickerFormat.Custom
+                DTDeadlineKI.CustomFormat = "dd/MM/yyyy"
+                DTTanggal.Format = DateTimePickerFormat.Custom
+                DTTanggal.CustomFormat = "dd/MM/yyyy"
+                SURVEI.Checked = False
+                TProyek.Enabled = False
+                SURVEI.Enabled = False
+            Case "edit"
+                'ListKota.Items.Clear()
+                ClearInput()
+                GridPanel.DataSource = Nothing
+                BtnEntry.Enabled = True
+                'BtnEdit.Enabled = True
+                'BtnCetak.Enabled = True
+                'TampilDO()
+                BtnSimpan.Enabled = False
+
+
+                TNoDo.Text = ""
+                TidDtOrder.Text = ""
+                TIDKlien.Text = ""
+                TKlien.Text = ""
+                TIDBrand.Text = ""
+                TBrand.Text = ""
+                TPenerima.Text = ""
+                TProyek.Text = ""
+                DTDeadlineKI.Format = DateTimePickerFormat.Custom
+                DTDeadlineKI.CustomFormat = "dd/MM/yyyy"
+                DTTanggal.Format = DateTimePickerFormat.Custom
+                DTTanggal.CustomFormat = "dd/MM/yyyy"
+                SURVEI.Checked = False
+                TProyek.Enabled = False
+                SURVEI.Enabled = False
+
+
+                MsgBox(" Data Toko Berhasil Disimpan!..", MsgBoxStyle.Information, "Information")
+        End Select
     End Sub
 End Class
