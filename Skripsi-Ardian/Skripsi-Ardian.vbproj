@@ -108,6 +108,12 @@
     <Compile Include="Marketing\DataOrder.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Marketing\DetailToko.Designer.vb">
+      <DependentUpon>DetailToko.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Marketing\DetailToko.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Marketing\EntryDO.Designer.vb">
       <DependentUpon>EntryDO.vb</DependentUpon>
     </Compile>
@@ -137,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Marketing\DataOrder.resx">
       <DependentUpon>DataOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Marketing\DetailToko.resx">
+      <DependentUpon>DetailToko.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Marketing\EntryDO.resx">
       <DependentUpon>EntryDO.vb</DependentUpon>

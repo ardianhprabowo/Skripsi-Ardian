@@ -35,6 +35,7 @@ Partial Public Class DataOrder
         Dim WindowsUIButtonImageOptions3 As DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions = New DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions()
         Dim WindowsUIButtonImageOptions4 As DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions = New DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions()
         Dim WindowsUIButtonImageOptions5 As DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions = New DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions()
+        Dim WindowsUIButtonImageOptions6 As DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions = New DevExpress.XtraBars.Docking2010.WindowsUIButtonImageOptions()
         Me.layoutControl = New DevExpress.XtraLayout.LayoutControl()
         Me.labelControl = New DevExpress.XtraEditors.LabelControl()
         Me.gridControl = New DevExpress.XtraGrid.GridControl()
@@ -44,11 +45,11 @@ Partial Public Class DataOrder
         Me.GridColumn29 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.DETAIL = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn31 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -74,64 +75,29 @@ Partial Public Class DataOrder
         Me.GridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridView2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.coliddtorder = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.coliddivisi = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.colnoorder = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.coltglorder = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.colidklien = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.colidbrand = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.colnamaorder = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.colsurvei = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.coliddivisi_survei = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.coldeadline_survei = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.colstatus_kirim = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.coldeadline_ki = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.colidstatus_proyek = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.coldeadline_design = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.colselesai_design = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.coldeadline_printing = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.colselesai_printing = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.coldeadline_produksi = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.colselesai_produksi = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.coluser_input = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.coltime_input = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.coluser_koreksi = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.coltime_koreksi = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.colrevisi = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.coluser_batal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.coltime_batal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.colalasan_batal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.coltime_closing = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.colnmklien = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.colbrand = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.coldivisi = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridView1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.layoutControlGroup = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.itemLabel = New DevExpress.XtraLayout.LayoutControlItem()
         Me.itemGrid = New DevExpress.XtraLayout.LayoutControlItem()
         Me.FlyoutPanel1 = New DevExpress.Utils.FlyoutPanel()
         Me.FlyoutPanelControl1 = New DevExpress.Utils.FlyoutPanelControl()
         Me.windowsUIButtonPanel = New DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel()
-        CType(Me.layoutControl,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.layoutControl.SuspendLayout
-        CType(Me.gridControl,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.AdvBandedGridView1,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.BandedGridView2,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.BandedGridView1,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.layoutControlGroup,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.itemLabel,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.itemGrid,System.ComponentModel.ISupportInitialize).BeginInit
-        CType(Me.FlyoutPanel1,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.FlyoutPanel1.SuspendLayout
-        CType(Me.FlyoutPanelControl1,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.SuspendLayout
+        Me.TidDtOrder = New System.Windows.Forms.TextBox()
+        CType(Me.layoutControl, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.layoutControl.SuspendLayout()
+        CType(Me.gridControl, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.AdvBandedGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.layoutControlGroup, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.itemLabel, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.itemGrid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.FlyoutPanel1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.FlyoutPanel1.SuspendLayout()
+        CType(Me.FlyoutPanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.windowsUIButtonPanel.SuspendLayout()
+        Me.SuspendLayout()
         '
         'layoutControl
         '
-        Me.layoutControl.AllowCustomization = false
+        Me.layoutControl.AllowCustomization = False
         Me.layoutControl.Controls.Add(Me.labelControl)
         Me.layoutControl.Controls.Add(Me.gridControl)
         Me.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill
@@ -145,12 +111,12 @@ Partial Public Class DataOrder
         '
         'labelControl
         '
-        Me.labelControl.AllowHtmlString = true
-        Me.labelControl.Appearance.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204,Byte))
-        Me.labelControl.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(140,Byte),Integer), CType(CType(140,Byte),Integer), CType(CType(140,Byte),Integer))
-        Me.labelControl.Appearance.Options.UseFont = true
-        Me.labelControl.Appearance.Options.UseForeColor = true
-        Me.labelControl.Appearance.Options.UseTextOptions = true
+        Me.labelControl.AllowHtmlString = True
+        Me.labelControl.Appearance.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.labelControl.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(140, Byte), Integer), CType(CType(140, Byte), Integer), CType(CType(140, Byte), Integer))
+        Me.labelControl.Appearance.Options.UseFont = True
+        Me.labelControl.Appearance.Options.UseForeColor = True
+        Me.labelControl.Appearance.Options.UseTextOptions = True
         Me.labelControl.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.labelControl.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical
         Me.labelControl.Location = New System.Drawing.Point(53, 0)
@@ -173,7 +139,7 @@ Partial Public Class DataOrder
         Me.gridControl.Name = "gridControl"
         Me.gridControl.Size = New System.Drawing.Size(1254, 785)
         Me.gridControl.TabIndex = 2
-        Me.gridControl.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.AdvBandedGridView1, Me.BandedGridView2, Me.BandedGridView1})
+        Me.gridControl.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.AdvBandedGridView1})
         '
         'SqlDataSource1
         '
@@ -195,7 +161,10 @@ Partial Public Class DataOrder
         Me.AdvBandedGridView1.DetailHeight = 538
         Me.AdvBandedGridView1.GridControl = Me.gridControl
         Me.AdvBandedGridView1.Name = "AdvBandedGridView1"
-        Me.AdvBandedGridView1.OptionsBehavior.Editable = false
+        Me.AdvBandedGridView1.OptionsBehavior.Editable = False
+        Me.AdvBandedGridView1.OptionsSelection.MultiSelect = True
+        Me.AdvBandedGridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect
+        Me.AdvBandedGridView1.OptionsSelection.ResetSelectionClickOutsideCheckboxSelector = True
         Me.AdvBandedGridView1.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never
         '
         'gridBand4
@@ -204,9 +173,10 @@ Partial Public Class DataOrder
         Me.gridBand4.Columns.Add(Me.GridColumn29)
         Me.gridBand4.Columns.Add(Me.GridColumn30)
         Me.gridBand4.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.gridBand4.MinWidth = 60
         Me.gridBand4.Name = "gridBand4"
         Me.gridBand4.VisibleIndex = 0
-        Me.gridBand4.Width = 137
+        Me.gridBand4.Width = 284
         '
         'GridColumn29
         '
@@ -214,8 +184,8 @@ Partial Public Class DataOrder
         Me.GridColumn29.FieldName = "nmklien"
         Me.GridColumn29.MinWidth = 25
         Me.GridColumn29.Name = "GridColumn29"
-        Me.GridColumn29.Visible = true
-        Me.GridColumn29.Width = 63
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.Width = 130
         '
         'GridColumn30
         '
@@ -223,17 +193,17 @@ Partial Public Class DataOrder
         Me.GridColumn30.FieldName = "brand"
         Me.GridColumn30.MinWidth = 25
         Me.GridColumn30.Name = "GridColumn30"
-        Me.GridColumn30.Visible = true
-        Me.GridColumn30.Width = 74
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.Width = 154
         '
         'DETAIL
         '
         Me.DETAIL.Caption = "DETAIL"
+        Me.DETAIL.Columns.Add(Me.GridColumn1)
         Me.DETAIL.Columns.Add(Me.GridColumn3)
         Me.DETAIL.Columns.Add(Me.GridColumn4)
         Me.DETAIL.Columns.Add(Me.GridColumn7)
         Me.DETAIL.Columns.Add(Me.GridColumn31)
-        Me.DETAIL.Columns.Add(Me.GridColumn1)
         Me.DETAIL.Columns.Add(Me.GridColumn2)
         Me.DETAIL.Columns.Add(Me.GridColumn5)
         Me.DETAIL.Columns.Add(Me.GridColumn6)
@@ -256,7 +226,14 @@ Partial Public Class DataOrder
         Me.DETAIL.Columns.Add(Me.GridColumn28)
         Me.DETAIL.Name = "DETAIL"
         Me.DETAIL.VisibleIndex = 1
-        Me.DETAIL.Width = 338
+        Me.DETAIL.Width = 435
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.FieldName = "iddtorder"
+        Me.GridColumn1.MinWidth = 25
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Width = 126
         '
         'GridColumn3
         '
@@ -265,8 +242,8 @@ Partial Public Class DataOrder
         Me.GridColumn3.MinWidth = 25
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsEditForm.Caption = "NO ORDER"
-        Me.GridColumn3.Visible = true
-        Me.GridColumn3.Width = 98
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.Width = 95
         '
         'GridColumn4
         '
@@ -274,8 +251,8 @@ Partial Public Class DataOrder
         Me.GridColumn4.FieldName = "tglorder"
         Me.GridColumn4.MinWidth = 25
         Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = true
-        Me.GridColumn4.Width = 104
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.Width = 132
         '
         'GridColumn7
         '
@@ -283,8 +260,8 @@ Partial Public Class DataOrder
         Me.GridColumn7.FieldName = "namaorder"
         Me.GridColumn7.MinWidth = 25
         Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = true
-        Me.GridColumn7.Width = 72
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.Width = 90
         '
         'GridColumn31
         '
@@ -292,23 +269,15 @@ Partial Public Class DataOrder
         Me.GridColumn31.FieldName = "divisi"
         Me.GridColumn31.MinWidth = 25
         Me.GridColumn31.Name = "GridColumn31"
-        Me.GridColumn31.Visible = true
-        Me.GridColumn31.Width = 64
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.FieldName = "idklien"
-        Me.GridColumn1.MinWidth = 25
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.RowIndex = 2
-        Me.GridColumn1.Width = 42
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.Width = 118
         '
         'GridColumn2
         '
         Me.GridColumn2.FieldName = "iddivisi"
         Me.GridColumn2.MinWidth = 25
         Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.RowIndex = 2
+        Me.GridColumn2.RowIndex = 1
         Me.GridColumn2.Width = 42
         '
         'GridColumn5
@@ -316,7 +285,7 @@ Partial Public Class DataOrder
         Me.GridColumn5.FieldName = "idklien"
         Me.GridColumn5.MinWidth = 25
         Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.RowIndex = 2
+        Me.GridColumn5.RowIndex = 1
         Me.GridColumn5.Width = 25
         '
         'GridColumn6
@@ -324,7 +293,7 @@ Partial Public Class DataOrder
         Me.GridColumn6.FieldName = "idbrand"
         Me.GridColumn6.MinWidth = 25
         Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.RowIndex = 2
+        Me.GridColumn6.RowIndex = 1
         Me.GridColumn6.Width = 32
         '
         'GridColumn8
@@ -332,7 +301,7 @@ Partial Public Class DataOrder
         Me.GridColumn8.FieldName = "survei"
         Me.GridColumn8.MinWidth = 25
         Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.RowIndex = 2
+        Me.GridColumn8.RowIndex = 1
         Me.GridColumn8.Width = 25
         '
         'GridColumn9
@@ -340,7 +309,7 @@ Partial Public Class DataOrder
         Me.GridColumn9.FieldName = "iddivisi_survei"
         Me.GridColumn9.MinWidth = 25
         Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.RowIndex = 2
+        Me.GridColumn9.RowIndex = 1
         Me.GridColumn9.Width = 25
         '
         'GridColumn10
@@ -348,7 +317,7 @@ Partial Public Class DataOrder
         Me.GridColumn10.FieldName = "deadline_survei"
         Me.GridColumn10.MinWidth = 25
         Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.RowIndex = 2
+        Me.GridColumn10.RowIndex = 1
         Me.GridColumn10.Width = 25
         '
         'GridColumn11
@@ -356,7 +325,7 @@ Partial Public Class DataOrder
         Me.GridColumn11.FieldName = "status_kirim"
         Me.GridColumn11.MinWidth = 25
         Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.RowIndex = 2
+        Me.GridColumn11.RowIndex = 1
         Me.GridColumn11.Width = 80
         '
         'GridColumn13
@@ -364,7 +333,7 @@ Partial Public Class DataOrder
         Me.GridColumn13.FieldName = "idstatus_proyek"
         Me.GridColumn13.MinWidth = 25
         Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.RowIndex = 2
+        Me.GridColumn13.RowIndex = 1
         Me.GridColumn13.Width = 25
         '
         'GridColumn15
@@ -372,7 +341,7 @@ Partial Public Class DataOrder
         Me.GridColumn15.FieldName = "selesai_design"
         Me.GridColumn15.MinWidth = 25
         Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.RowIndex = 2
+        Me.GridColumn15.RowIndex = 1
         Me.GridColumn15.Width = 25
         '
         'GridColumn17
@@ -380,7 +349,7 @@ Partial Public Class DataOrder
         Me.GridColumn17.FieldName = "selesai_printing"
         Me.GridColumn17.MinWidth = 25
         Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.RowIndex = 2
+        Me.GridColumn17.RowIndex = 1
         Me.GridColumn17.Width = 25
         '
         'GridColumn19
@@ -388,7 +357,7 @@ Partial Public Class DataOrder
         Me.GridColumn19.FieldName = "selesai_produksi"
         Me.GridColumn19.MinWidth = 25
         Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.RowIndex = 2
+        Me.GridColumn19.RowIndex = 1
         Me.GridColumn19.Width = 25
         '
         'GridColumn20
@@ -396,7 +365,7 @@ Partial Public Class DataOrder
         Me.GridColumn20.FieldName = "user_input"
         Me.GridColumn20.MinWidth = 25
         Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.RowIndex = 2
+        Me.GridColumn20.RowIndex = 1
         Me.GridColumn20.Width = 25
         '
         'GridColumn21
@@ -404,7 +373,7 @@ Partial Public Class DataOrder
         Me.GridColumn21.FieldName = "time_input"
         Me.GridColumn21.MinWidth = 25
         Me.GridColumn21.Name = "GridColumn21"
-        Me.GridColumn21.RowIndex = 2
+        Me.GridColumn21.RowIndex = 1
         Me.GridColumn21.Width = 25
         '
         'GridColumn22
@@ -412,7 +381,7 @@ Partial Public Class DataOrder
         Me.GridColumn22.FieldName = "user_koreksi"
         Me.GridColumn22.MinWidth = 25
         Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.RowIndex = 2
+        Me.GridColumn22.RowIndex = 1
         Me.GridColumn22.Width = 25
         '
         'GridColumn23
@@ -420,7 +389,7 @@ Partial Public Class DataOrder
         Me.GridColumn23.FieldName = "time_koreksi"
         Me.GridColumn23.MinWidth = 25
         Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.RowIndex = 2
+        Me.GridColumn23.RowIndex = 1
         Me.GridColumn23.Width = 25
         '
         'GridColumn24
@@ -428,7 +397,7 @@ Partial Public Class DataOrder
         Me.GridColumn24.FieldName = "revisi"
         Me.GridColumn24.MinWidth = 25
         Me.GridColumn24.Name = "GridColumn24"
-        Me.GridColumn24.RowIndex = 2
+        Me.GridColumn24.RowIndex = 1
         Me.GridColumn24.Width = 25
         '
         'GridColumn25
@@ -436,7 +405,7 @@ Partial Public Class DataOrder
         Me.GridColumn25.FieldName = "user_batal"
         Me.GridColumn25.MinWidth = 25
         Me.GridColumn25.Name = "GridColumn25"
-        Me.GridColumn25.RowIndex = 2
+        Me.GridColumn25.RowIndex = 1
         Me.GridColumn25.Width = 25
         '
         'GridColumn26
@@ -444,7 +413,7 @@ Partial Public Class DataOrder
         Me.GridColumn26.FieldName = "time_batal"
         Me.GridColumn26.MinWidth = 25
         Me.GridColumn26.Name = "GridColumn26"
-        Me.GridColumn26.RowIndex = 2
+        Me.GridColumn26.RowIndex = 1
         Me.GridColumn26.Width = 25
         '
         'GridColumn27
@@ -452,7 +421,7 @@ Partial Public Class DataOrder
         Me.GridColumn27.FieldName = "alasan_batal"
         Me.GridColumn27.MinWidth = 25
         Me.GridColumn27.Name = "GridColumn27"
-        Me.GridColumn27.RowIndex = 2
+        Me.GridColumn27.RowIndex = 1
         Me.GridColumn27.Width = 25
         '
         'GridColumn28
@@ -460,7 +429,7 @@ Partial Public Class DataOrder
         Me.GridColumn28.FieldName = "time_closing"
         Me.GridColumn28.MinWidth = 25
         Me.GridColumn28.Name = "GridColumn28"
-        Me.GridColumn28.RowIndex = 2
+        Me.GridColumn28.RowIndex = 1
         Me.GridColumn28.Width = 25
         '
         'gridBand5
@@ -472,7 +441,7 @@ Partial Public Class DataOrder
         Me.gridBand5.Columns.Add(Me.GridColumn18)
         Me.gridBand5.Name = "gridBand5"
         Me.gridBand5.VisibleIndex = 2
-        Me.gridBand5.Width = 544
+        Me.gridBand5.Width = 432
         '
         'GridColumn12
         '
@@ -480,8 +449,8 @@ Partial Public Class DataOrder
         Me.GridColumn12.FieldName = "deadline_ki"
         Me.GridColumn12.MinWidth = 25
         Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.Visible = true
-        Me.GridColumn12.Width = 137
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.Width = 108
         '
         'GridColumn16
         '
@@ -489,8 +458,8 @@ Partial Public Class DataOrder
         Me.GridColumn16.FieldName = "deadline_printing"
         Me.GridColumn16.MinWidth = 25
         Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = true
-        Me.GridColumn16.Width = 163
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.Width = 128
         '
         'GridColumn14
         '
@@ -498,8 +467,8 @@ Partial Public Class DataOrder
         Me.GridColumn14.FieldName = "deadline_design"
         Me.GridColumn14.MinWidth = 25
         Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = true
-        Me.GridColumn14.Width = 150
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.Width = 118
         '
         'GridColumn18
         '
@@ -507,335 +476,18 @@ Partial Public Class DataOrder
         Me.GridColumn18.FieldName = "deadline_produksi"
         Me.GridColumn18.MinWidth = 25
         Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.Visible = true
-        Me.GridColumn18.Width = 94
-        '
-        'BandedGridView2
-        '
-        Me.BandedGridView2.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand2})
-        Me.BandedGridView2.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.coliddtorder, Me.coliddivisi, Me.colnoorder, Me.coltglorder, Me.colidklien, Me.colidbrand, Me.colnamaorder, Me.colsurvei, Me.coliddivisi_survei, Me.coldeadline_survei, Me.colstatus_kirim, Me.coldeadline_ki, Me.colidstatus_proyek, Me.coldeadline_design, Me.colselesai_design, Me.coldeadline_printing, Me.colselesai_printing, Me.coldeadline_produksi, Me.colselesai_produksi, Me.coluser_input, Me.coltime_input, Me.coluser_koreksi, Me.coltime_koreksi, Me.colrevisi, Me.coluser_batal, Me.coltime_batal, Me.colalasan_batal, Me.coltime_closing, Me.colnmklien, Me.colbrand, Me.coldivisi})
-        Me.BandedGridView2.DetailHeight = 538
-        Me.BandedGridView2.GridControl = Me.gridControl
-        Me.BandedGridView2.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "brand", Nothing, "")})
-        Me.BandedGridView2.Name = "BandedGridView2"
-        Me.BandedGridView2.OptionsBehavior.Editable = false
-        Me.BandedGridView2.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never
-        '
-        'GridBand2
-        '
-        Me.GridBand2.Caption = "BRAND"
-        Me.GridBand2.Columns.Add(Me.coliddtorder)
-        Me.GridBand2.Columns.Add(Me.coliddivisi)
-        Me.GridBand2.Columns.Add(Me.colnoorder)
-        Me.GridBand2.Columns.Add(Me.coltglorder)
-        Me.GridBand2.Columns.Add(Me.colidklien)
-        Me.GridBand2.Columns.Add(Me.colidbrand)
-        Me.GridBand2.Columns.Add(Me.colnamaorder)
-        Me.GridBand2.Columns.Add(Me.colsurvei)
-        Me.GridBand2.Columns.Add(Me.coliddivisi_survei)
-        Me.GridBand2.Columns.Add(Me.coldeadline_survei)
-        Me.GridBand2.Columns.Add(Me.colstatus_kirim)
-        Me.GridBand2.Columns.Add(Me.coldeadline_ki)
-        Me.GridBand2.Columns.Add(Me.colidstatus_proyek)
-        Me.GridBand2.Columns.Add(Me.coldeadline_design)
-        Me.GridBand2.Columns.Add(Me.colselesai_design)
-        Me.GridBand2.Columns.Add(Me.coldeadline_printing)
-        Me.GridBand2.Columns.Add(Me.colselesai_printing)
-        Me.GridBand2.Columns.Add(Me.coldeadline_produksi)
-        Me.GridBand2.Columns.Add(Me.colselesai_produksi)
-        Me.GridBand2.Columns.Add(Me.coluser_input)
-        Me.GridBand2.Columns.Add(Me.coltime_input)
-        Me.GridBand2.Columns.Add(Me.coluser_koreksi)
-        Me.GridBand2.Columns.Add(Me.coltime_koreksi)
-        Me.GridBand2.Columns.Add(Me.colrevisi)
-        Me.GridBand2.Columns.Add(Me.coluser_batal)
-        Me.GridBand2.Columns.Add(Me.coltime_batal)
-        Me.GridBand2.Columns.Add(Me.colalasan_batal)
-        Me.GridBand2.Columns.Add(Me.coltime_closing)
-        Me.GridBand2.Columns.Add(Me.colnmklien)
-        Me.GridBand2.Columns.Add(Me.colbrand)
-        Me.GridBand2.Columns.Add(Me.coldivisi)
-        Me.GridBand2.Name = "GridBand2"
-        Me.GridBand2.VisibleIndex = 0
-        Me.GridBand2.Width = 1620
-        '
-        'coliddtorder
-        '
-        Me.coliddtorder.FieldName = "idklien"
-        Me.coliddtorder.MinWidth = 25
-        Me.coliddtorder.Name = "coliddtorder"
-        Me.coliddtorder.Visible = true
-        Me.coliddtorder.Width = 26
-        '
-        'coliddivisi
-        '
-        Me.coliddivisi.FieldName = "iddivisi"
-        Me.coliddivisi.MinWidth = 25
-        Me.coliddivisi.Name = "coliddivisi"
-        Me.coliddivisi.Visible = true
-        Me.coliddivisi.Width = 25
-        '
-        'colnoorder
-        '
-        Me.colnoorder.Caption = "NO ORDER"
-        Me.colnoorder.FieldName = "noorder"
-        Me.colnoorder.MinWidth = 25
-        Me.colnoorder.Name = "colnoorder"
-        Me.colnoorder.OptionsEditForm.Caption = "NO ORDER"
-        Me.colnoorder.Visible = true
-        Me.colnoorder.Width = 125
-        '
-        'coltglorder
-        '
-        Me.coltglorder.Caption = "TGL. ORDER"
-        Me.coltglorder.FieldName = "tglorder"
-        Me.coltglorder.MinWidth = 25
-        Me.coltglorder.Name = "coltglorder"
-        Me.coltglorder.Visible = true
-        Me.coltglorder.Width = 139
-        '
-        'colidklien
-        '
-        Me.colidklien.FieldName = "idklien"
-        Me.colidklien.MinWidth = 25
-        Me.colidklien.Name = "colidklien"
-        Me.colidklien.Visible = true
-        Me.colidklien.Width = 25
-        '
-        'colidbrand
-        '
-        Me.colidbrand.FieldName = "idbrand"
-        Me.colidbrand.MinWidth = 25
-        Me.colidbrand.Name = "colidbrand"
-        Me.colidbrand.Visible = true
-        Me.colidbrand.Width = 32
-        '
-        'colnamaorder
-        '
-        Me.colnamaorder.Caption = "ORDER"
-        Me.colnamaorder.FieldName = "namaorder"
-        Me.colnamaorder.MinWidth = 25
-        Me.colnamaorder.Name = "colnamaorder"
-        Me.colnamaorder.Visible = true
-        Me.colnamaorder.Width = 139
-        '
-        'colsurvei
-        '
-        Me.colsurvei.FieldName = "survei"
-        Me.colsurvei.MinWidth = 25
-        Me.colsurvei.Name = "colsurvei"
-        Me.colsurvei.Visible = true
-        Me.colsurvei.Width = 25
-        '
-        'coliddivisi_survei
-        '
-        Me.coliddivisi_survei.FieldName = "iddivisi_survei"
-        Me.coliddivisi_survei.MinWidth = 25
-        Me.coliddivisi_survei.Name = "coliddivisi_survei"
-        Me.coliddivisi_survei.Visible = true
-        Me.coliddivisi_survei.Width = 25
-        '
-        'coldeadline_survei
-        '
-        Me.coldeadline_survei.FieldName = "deadline_survei"
-        Me.coldeadline_survei.MinWidth = 25
-        Me.coldeadline_survei.Name = "coldeadline_survei"
-        Me.coldeadline_survei.Visible = true
-        Me.coldeadline_survei.Width = 25
-        '
-        'colstatus_kirim
-        '
-        Me.colstatus_kirim.FieldName = "status_kirim"
-        Me.colstatus_kirim.MinWidth = 25
-        Me.colstatus_kirim.Name = "colstatus_kirim"
-        Me.colstatus_kirim.Visible = true
-        Me.colstatus_kirim.Width = 80
-        '
-        'coldeadline_ki
-        '
-        Me.coldeadline_ki.Caption = "DEADLINE"
-        Me.coldeadline_ki.FieldName = "deadline_ki"
-        Me.coldeadline_ki.MinWidth = 25
-        Me.coldeadline_ki.Name = "coldeadline_ki"
-        Me.coldeadline_ki.Visible = true
-        Me.coldeadline_ki.Width = 95
-        '
-        'colidstatus_proyek
-        '
-        Me.colidstatus_proyek.FieldName = "idstatus_proyek"
-        Me.colidstatus_proyek.MinWidth = 25
-        Me.colidstatus_proyek.Name = "colidstatus_proyek"
-        Me.colidstatus_proyek.Visible = true
-        Me.colidstatus_proyek.Width = 25
-        '
-        'coldeadline_design
-        '
-        Me.coldeadline_design.FieldName = "deadline_design"
-        Me.coldeadline_design.MinWidth = 25
-        Me.coldeadline_design.Name = "coldeadline_design"
-        Me.coldeadline_design.Visible = true
-        Me.coldeadline_design.Width = 25
-        '
-        'colselesai_design
-        '
-        Me.colselesai_design.FieldName = "selesai_design"
-        Me.colselesai_design.MinWidth = 25
-        Me.colselesai_design.Name = "colselesai_design"
-        Me.colselesai_design.Visible = true
-        Me.colselesai_design.Width = 25
-        '
-        'coldeadline_printing
-        '
-        Me.coldeadline_printing.FieldName = "deadline_printing"
-        Me.coldeadline_printing.MinWidth = 25
-        Me.coldeadline_printing.Name = "coldeadline_printing"
-        Me.coldeadline_printing.Visible = true
-        Me.coldeadline_printing.Width = 25
-        '
-        'colselesai_printing
-        '
-        Me.colselesai_printing.FieldName = "selesai_printing"
-        Me.colselesai_printing.MinWidth = 25
-        Me.colselesai_printing.Name = "colselesai_printing"
-        Me.colselesai_printing.Visible = true
-        Me.colselesai_printing.Width = 25
-        '
-        'coldeadline_produksi
-        '
-        Me.coldeadline_produksi.FieldName = "deadline_produksi"
-        Me.coldeadline_produksi.MinWidth = 25
-        Me.coldeadline_produksi.Name = "coldeadline_produksi"
-        Me.coldeadline_produksi.Visible = true
-        Me.coldeadline_produksi.Width = 25
-        '
-        'colselesai_produksi
-        '
-        Me.colselesai_produksi.FieldName = "selesai_produksi"
-        Me.colselesai_produksi.MinWidth = 25
-        Me.colselesai_produksi.Name = "colselesai_produksi"
-        Me.colselesai_produksi.Visible = true
-        Me.colselesai_produksi.Width = 25
-        '
-        'coluser_input
-        '
-        Me.coluser_input.FieldName = "user_input"
-        Me.coluser_input.MinWidth = 25
-        Me.coluser_input.Name = "coluser_input"
-        Me.coluser_input.Visible = true
-        Me.coluser_input.Width = 25
-        '
-        'coltime_input
-        '
-        Me.coltime_input.FieldName = "time_input"
-        Me.coltime_input.MinWidth = 25
-        Me.coltime_input.Name = "coltime_input"
-        Me.coltime_input.Visible = true
-        Me.coltime_input.Width = 25
-        '
-        'coluser_koreksi
-        '
-        Me.coluser_koreksi.FieldName = "user_koreksi"
-        Me.coluser_koreksi.MinWidth = 25
-        Me.coluser_koreksi.Name = "coluser_koreksi"
-        Me.coluser_koreksi.Visible = true
-        Me.coluser_koreksi.Width = 25
-        '
-        'coltime_koreksi
-        '
-        Me.coltime_koreksi.FieldName = "time_koreksi"
-        Me.coltime_koreksi.MinWidth = 25
-        Me.coltime_koreksi.Name = "coltime_koreksi"
-        Me.coltime_koreksi.Visible = true
-        Me.coltime_koreksi.Width = 25
-        '
-        'colrevisi
-        '
-        Me.colrevisi.FieldName = "revisi"
-        Me.colrevisi.MinWidth = 25
-        Me.colrevisi.Name = "colrevisi"
-        Me.colrevisi.Visible = true
-        Me.colrevisi.Width = 25
-        '
-        'coluser_batal
-        '
-        Me.coluser_batal.FieldName = "user_batal"
-        Me.coluser_batal.MinWidth = 25
-        Me.coluser_batal.Name = "coluser_batal"
-        Me.coluser_batal.Visible = true
-        Me.coluser_batal.Width = 25
-        '
-        'coltime_batal
-        '
-        Me.coltime_batal.FieldName = "time_batal"
-        Me.coltime_batal.MinWidth = 25
-        Me.coltime_batal.Name = "coltime_batal"
-        Me.coltime_batal.Visible = true
-        Me.coltime_batal.Width = 25
-        '
-        'colalasan_batal
-        '
-        Me.colalasan_batal.FieldName = "alasan_batal"
-        Me.colalasan_batal.MinWidth = 25
-        Me.colalasan_batal.Name = "colalasan_batal"
-        Me.colalasan_batal.Visible = true
-        Me.colalasan_batal.Width = 25
-        '
-        'coltime_closing
-        '
-        Me.coltime_closing.FieldName = "time_closing"
-        Me.coltime_closing.MinWidth = 25
-        Me.coltime_closing.Name = "coltime_closing"
-        Me.coltime_closing.Visible = true
-        Me.coltime_closing.Width = 25
-        '
-        'colnmklien
-        '
-        Me.colnmklien.Caption = "KLIEN"
-        Me.colnmklien.FieldName = "nmklien"
-        Me.colnmklien.MinWidth = 25
-        Me.colnmklien.Name = "colnmklien"
-        Me.colnmklien.Visible = true
-        Me.colnmklien.Width = 170
-        '
-        'colbrand
-        '
-        Me.colbrand.Caption = "BRAND"
-        Me.colbrand.FieldName = "brand"
-        Me.colbrand.MinWidth = 25
-        Me.colbrand.Name = "colbrand"
-        Me.colbrand.Visible = true
-        Me.colbrand.Width = 155
-        '
-        'coldivisi
-        '
-        Me.coldivisi.Caption = "DIVISI"
-        Me.coldivisi.FieldName = "divisi"
-        Me.coldivisi.MinWidth = 25
-        Me.coldivisi.Name = "coldivisi"
-        Me.coldivisi.Visible = true
-        Me.coldivisi.Width = 134
-        '
-        'BandedGridView1
-        '
-        Me.BandedGridView1.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1})
-        Me.BandedGridView1.GridControl = Me.gridControl
-        Me.BandedGridView1.Name = "BandedGridView1"
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Caption = "GridBand1"
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.Width = 78
         '
         'layoutControlGroup
         '
         Me.layoutControlGroup.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
-        Me.layoutControlGroup.GroupBordersVisible = false
+        Me.layoutControlGroup.GroupBordersVisible = False
         Me.layoutControlGroup.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.itemLabel, Me.itemGrid})
         Me.layoutControlGroup.Name = "Root"
         Me.layoutControlGroup.Padding = New DevExpress.XtraLayout.Utils.Padding(53, 53, 0, 0)
         Me.layoutControlGroup.Size = New System.Drawing.Size(1360, 831)
-        Me.layoutControlGroup.TextVisible = false
+        Me.layoutControlGroup.TextVisible = False
         '
         'itemLabel
         '
@@ -845,7 +497,7 @@ Partial Public Class DataOrder
         Me.itemLabel.Padding = New DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0)
         Me.itemLabel.Size = New System.Drawing.Size(1254, 46)
         Me.itemLabel.TextSize = New System.Drawing.Size(0, 0)
-        Me.itemLabel.TextVisible = false
+        Me.itemLabel.TextVisible = False
         '
         'itemGrid
         '
@@ -855,11 +507,11 @@ Partial Public Class DataOrder
         Me.itemGrid.Padding = New DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0)
         Me.itemGrid.Size = New System.Drawing.Size(1254, 785)
         Me.itemGrid.TextSize = New System.Drawing.Size(0, 0)
-        Me.itemGrid.TextVisible = false
+        Me.itemGrid.TextVisible = False
         '
         'FlyoutPanel1
         '
-        Me.FlyoutPanel1.AutoSize = true
+        Me.FlyoutPanel1.AutoSize = True
         Me.FlyoutPanel1.Controls.Add(Me.FlyoutPanelControl1)
         Me.FlyoutPanel1.Location = New System.Drawing.Point(113, 204)
         Me.FlyoutPanel1.Name = "FlyoutPanel1"
@@ -875,6 +527,8 @@ Partial Public Class DataOrder
         '
         'FlyoutPanelControl1
         '
+        Me.FlyoutPanelControl1.AutoSize = True
+        Me.FlyoutPanelControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.FlyoutPanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlyoutPanelControl1.FlyoutPanel = Me.FlyoutPanel1
         Me.FlyoutPanelControl1.Location = New System.Drawing.Point(0, 0)
@@ -884,29 +538,32 @@ Partial Public Class DataOrder
         '
         'windowsUIButtonPanel
         '
-        Me.windowsUIButtonPanel.AppearanceButton.Hovered.BackColor = System.Drawing.Color.FromArgb(CType(CType(130,Byte),Integer), CType(CType(130,Byte),Integer), CType(CType(130,Byte),Integer))
+        Me.windowsUIButtonPanel.AppearanceButton.Hovered.BackColor = System.Drawing.Color.FromArgb(CType(CType(130, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(130, Byte), Integer))
         Me.windowsUIButtonPanel.AppearanceButton.Hovered.FontSizeDelta = -1
-        Me.windowsUIButtonPanel.AppearanceButton.Hovered.ForeColor = System.Drawing.Color.FromArgb(CType(CType(130,Byte),Integer), CType(CType(130,Byte),Integer), CType(CType(130,Byte),Integer))
-        Me.windowsUIButtonPanel.AppearanceButton.Hovered.Options.UseBackColor = true
-        Me.windowsUIButtonPanel.AppearanceButton.Hovered.Options.UseFont = true
-        Me.windowsUIButtonPanel.AppearanceButton.Hovered.Options.UseForeColor = true
+        Me.windowsUIButtonPanel.AppearanceButton.Hovered.ForeColor = System.Drawing.Color.FromArgb(CType(CType(130, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(130, Byte), Integer))
+        Me.windowsUIButtonPanel.AppearanceButton.Hovered.Options.UseBackColor = True
+        Me.windowsUIButtonPanel.AppearanceButton.Hovered.Options.UseFont = True
+        Me.windowsUIButtonPanel.AppearanceButton.Hovered.Options.UseForeColor = True
         Me.windowsUIButtonPanel.AppearanceButton.Normal.FontSizeDelta = -1
-        Me.windowsUIButtonPanel.AppearanceButton.Normal.Options.UseFont = true
-        Me.windowsUIButtonPanel.AppearanceButton.Pressed.BackColor = System.Drawing.Color.FromArgb(CType(CType(159,Byte),Integer), CType(CType(159,Byte),Integer), CType(CType(159,Byte),Integer))
+        Me.windowsUIButtonPanel.AppearanceButton.Normal.Options.UseFont = True
+        Me.windowsUIButtonPanel.AppearanceButton.Pressed.BackColor = System.Drawing.Color.FromArgb(CType(CType(159, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(159, Byte), Integer))
         Me.windowsUIButtonPanel.AppearanceButton.Pressed.FontSizeDelta = -1
-        Me.windowsUIButtonPanel.AppearanceButton.Pressed.ForeColor = System.Drawing.Color.FromArgb(CType(CType(159,Byte),Integer), CType(CType(159,Byte),Integer), CType(CType(159,Byte),Integer))
-        Me.windowsUIButtonPanel.AppearanceButton.Pressed.Options.UseBackColor = true
-        Me.windowsUIButtonPanel.AppearanceButton.Pressed.Options.UseFont = true
-        Me.windowsUIButtonPanel.AppearanceButton.Pressed.Options.UseForeColor = true
-        Me.windowsUIButtonPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(63,Byte),Integer), CType(CType(63,Byte),Integer), CType(CType(63,Byte),Integer))
+        Me.windowsUIButtonPanel.AppearanceButton.Pressed.ForeColor = System.Drawing.Color.FromArgb(CType(CType(159, Byte), Integer), CType(CType(159, Byte), Integer), CType(CType(159, Byte), Integer))
+        Me.windowsUIButtonPanel.AppearanceButton.Pressed.Options.UseBackColor = True
+        Me.windowsUIButtonPanel.AppearanceButton.Pressed.Options.UseFont = True
+        Me.windowsUIButtonPanel.AppearanceButton.Pressed.Options.UseForeColor = True
+        Me.windowsUIButtonPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(63, Byte), Integer), CType(CType(63, Byte), Integer), CType(CType(63, Byte), Integer))
         WindowsUIButtonImageOptions1.ImageUri.Uri = "New;Size32x32;GrayScaled"
         WindowsUIButtonImageOptions2.ImageUri.Uri = "Edit;Size32x32;GrayScaled"
         WindowsUIButtonImageOptions3.ImageUri.Uri = "Edit/Delete;Size32x32;GrayScaled"
         WindowsUIButtonImageOptions4.ImageUri.Uri = "Refresh;Size32x32;GrayScaled"
         WindowsUIButtonImageOptions5.ImageUri.Uri = "Preview;Size32x32;GrayScaled"
-        Me.windowsUIButtonPanel.Buttons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraBars.Docking2010.WindowsUIButton("New", true, WindowsUIButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, Nothing, true, false, true, Nothing, -1, false), New DevExpress.XtraBars.Docking2010.WindowsUIButton("Edit", true, WindowsUIButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, Nothing, true, false, true, Nothing, -1, false), New DevExpress.XtraBars.Docking2010.WindowsUIButton("Delete", true, WindowsUIButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, Nothing, true, false, true, Nothing, -1, false), New DevExpress.XtraBars.Docking2010.WindowsUIButton("Refresh", true, WindowsUIButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, Nothing, true, false, true, Nothing, -1, false), New DevExpress.XtraBars.Docking2010.WindowsUISeparator(), New DevExpress.XtraBars.Docking2010.WindowsUIButton("Print", true, WindowsUIButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, true, Nothing, true, false, true, Nothing, -1, false)})
+        WindowsUIButtonImageOptions6.SvgImage = CType(resources.GetObject("WindowsUIButtonImageOptions6.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        WindowsUIButtonImageOptions6.SvgImageSize = New System.Drawing.Size(26, 26)
+        Me.windowsUIButtonPanel.Buttons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraBars.Docking2010.WindowsUIButton("New", True, WindowsUIButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False), New DevExpress.XtraBars.Docking2010.WindowsUIButton("Edit", True, WindowsUIButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False), New DevExpress.XtraBars.Docking2010.WindowsUIButton("Delete", True, WindowsUIButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False), New DevExpress.XtraBars.Docking2010.WindowsUIButton("Refresh", True, WindowsUIButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False), New DevExpress.XtraBars.Docking2010.WindowsUISeparator(), New DevExpress.XtraBars.Docking2010.WindowsUIButton("Print", True, WindowsUIButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False), New DevExpress.XtraBars.Docking2010.WindowsUISeparator(), New DevExpress.XtraBars.Docking2010.WindowsUIButton("Detail Toko", True, WindowsUIButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False)})
+        Me.windowsUIButtonPanel.Controls.Add(Me.TidDtOrder)
         Me.windowsUIButtonPanel.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.windowsUIButtonPanel.EnableImageTransparency = true
+        Me.windowsUIButtonPanel.EnableImageTransparency = True
         Me.windowsUIButtonPanel.ForeColor = System.Drawing.Color.White
         Me.windowsUIButtonPanel.Location = New System.Drawing.Point(0, 831)
         Me.windowsUIButtonPanel.Margin = New System.Windows.Forms.Padding(5, 8, 5, 8)
@@ -916,7 +573,15 @@ Partial Public Class DataOrder
         Me.windowsUIButtonPanel.Size = New System.Drawing.Size(1360, 92)
         Me.windowsUIButtonPanel.TabIndex = 5
         Me.windowsUIButtonPanel.Text = "windowsUIButtonPanel"
-        Me.windowsUIButtonPanel.UseButtonBackgroundImages = false
+        Me.windowsUIButtonPanel.UseButtonBackgroundImages = False
+        '
+        'TidDtOrder
+        '
+        Me.TidDtOrder.Location = New System.Drawing.Point(53, 8)
+        Me.TidDtOrder.Name = "TidDtOrder"
+        Me.TidDtOrder.Size = New System.Drawing.Size(100, 27)
+        Me.TidDtOrder.TabIndex = 0
+        Me.TidDtOrder.Visible = False
         '
         'DataOrder
         '
@@ -934,14 +599,15 @@ Partial Public Class DataOrder
         Me.layoutControl.ResumeLayout(false)
         CType(Me.gridControl,System.ComponentModel.ISupportInitialize).EndInit
         CType(Me.AdvBandedGridView1,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.BandedGridView2,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.BandedGridView1,System.ComponentModel.ISupportInitialize).EndInit
         CType(Me.layoutControlGroup,System.ComponentModel.ISupportInitialize).EndInit
         CType(Me.itemLabel,System.ComponentModel.ISupportInitialize).EndInit
         CType(Me.itemGrid,System.ComponentModel.ISupportInitialize).EndInit
         CType(Me.FlyoutPanel1,System.ComponentModel.ISupportInitialize).EndInit
         Me.FlyoutPanel1.ResumeLayout(false)
+        Me.FlyoutPanel1.PerformLayout
         CType(Me.FlyoutPanelControl1,System.ComponentModel.ISupportInitialize).EndInit
+        Me.windowsUIButtonPanel.ResumeLayout(false)
+        Me.windowsUIButtonPanel.PerformLayout
         Me.ResumeLayout(false)
         Me.PerformLayout
 
@@ -957,41 +623,6 @@ End Sub
     Private WithEvents itemGrid As DevExpress.XtraLayout.LayoutControlItem
     Private WithEvents windowsUIButtonPanel As DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel
     Friend WithEvents SqlDataSource1 As DevExpress.DataAccess.Sql.SqlDataSource
-    Friend WithEvents BandedGridView1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridView2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-    Friend WithEvents coliddtorder As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents coliddivisi As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents colnoorder As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents coltglorder As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents colidklien As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents colidbrand As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents colnamaorder As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents colsurvei As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents coliddivisi_survei As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents coldeadline_survei As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents colstatus_kirim As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents coldeadline_ki As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents colidstatus_proyek As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents coldeadline_design As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents colselesai_design As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents coldeadline_printing As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents colselesai_printing As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents coldeadline_produksi As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents colselesai_produksi As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents coluser_input As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents coltime_input As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents coluser_koreksi As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents coltime_koreksi As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents colrevisi As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents coluser_batal As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents coltime_batal As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents colalasan_batal As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents coltime_closing As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents colnmklien As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents colbrand As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents coldivisi As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents AdvBandedGridView1 As DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -1024,13 +655,14 @@ End Sub
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents DETAIL As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Public WithEvents GroupEntry As DevExpress.XtraEditors.GroupControl
     Friend WithEvents Flyout1 As DevExpress.XtraBars.Docking2010.Views.WindowsUI.Flyout
     Friend WithEvents TileContainer1 As DevExpress.XtraBars.Docking2010.Views.WindowsUI.TileContainer
     Friend WithEvents EntryDOTile As DevExpress.XtraBars.Docking2010.Views.WindowsUI.Tile
     Public WithEvents FlyoutPanel1 As DevExpress.Utils.FlyoutPanel
     Public WithEvents FlyoutPanelControl1 As DevExpress.Utils.FlyoutPanelControl
+    Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents DETAIL As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Protected WithEvents TidDtOrder As System.Windows.Forms.TextBox
 End Class
