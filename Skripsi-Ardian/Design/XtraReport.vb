@@ -1,0 +1,4 @@
+﻿
+Class XtraReport
+
+End Class

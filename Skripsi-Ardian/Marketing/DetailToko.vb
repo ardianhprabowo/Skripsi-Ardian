@@ -432,6 +432,7 @@ Public Class DetailToko
             ListToko.Items.Clear()
             TampilToko()
         Else
+            Me.Enabled = False
             Me.Dispose()
             TIDOrder.Text = ""
             ListToko.Enabled = False

@@ -103,11 +103,11 @@ Partial Public Class DataOrder
         Me.layoutControl.Controls.Add(Me.gridControl)
         Me.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.layoutControl.Location = New System.Drawing.Point(0, 0)
-        Me.layoutControl.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.layoutControl.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.layoutControl.Name = "layoutControl"
         Me.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1108, 481, 812, 500)
         Me.layoutControl.Root = Me.layoutControlGroup
-        Me.layoutControl.Size = New System.Drawing.Size(1360, 831)
+        Me.layoutControl.Size = New System.Drawing.Size(1190, 623)
         Me.layoutControl.TabIndex = 1
         '
         'labelControl
@@ -120,11 +120,11 @@ Partial Public Class DataOrder
         Me.labelControl.Appearance.Options.UseTextOptions = True
         Me.labelControl.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.labelControl.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical
-        Me.labelControl.Location = New System.Drawing.Point(53, 0)
-        Me.labelControl.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.labelControl.Location = New System.Drawing.Point(46, 0)
+        Me.labelControl.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.labelControl.Name = "labelControl"
-        Me.labelControl.Padding = New System.Windows.Forms.Padding(0, 5, 17, 9)
-        Me.labelControl.Size = New System.Drawing.Size(1254, 46)
+        Me.labelControl.Padding = New System.Windows.Forms.Padding(0, 4, 15, 7)
+        Me.labelControl.Size = New System.Drawing.Size(1098, 36)
         Me.labelControl.StyleController = Me.layoutControl
         Me.labelControl.TabIndex = 4
         Me.labelControl.Text = "Data Order"
@@ -133,12 +133,12 @@ Partial Public Class DataOrder
         '
         Me.gridControl.DataMember = "DataOrder"
         Me.gridControl.DataSource = Me.SqlDataSource1
-        Me.gridControl.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(5, 8, 5, 8)
-        Me.gridControl.Location = New System.Drawing.Point(53, 46)
+        Me.gridControl.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.gridControl.Location = New System.Drawing.Point(46, 36)
         Me.gridControl.MainView = Me.AdvBandedGridView1
-        Me.gridControl.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.gridControl.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.gridControl.Name = "gridControl"
-        Me.gridControl.Size = New System.Drawing.Size(1254, 785)
+        Me.gridControl.Size = New System.Drawing.Size(1098, 587)
         Me.gridControl.TabIndex = 2
         Me.gridControl.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.AdvBandedGridView1})
         '
@@ -159,7 +159,8 @@ Partial Public Class DataOrder
         '
         Me.AdvBandedGridView1.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand4, Me.DETAIL, Me.gridBand5})
         Me.AdvBandedGridView1.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31})
-        Me.AdvBandedGridView1.DetailHeight = 538
+        Me.AdvBandedGridView1.DetailHeight = 403
+        Me.AdvBandedGridView1.FixedLineWidth = 1
         Me.AdvBandedGridView1.GridControl = Me.gridControl
         Me.AdvBandedGridView1.Name = "AdvBandedGridView1"
         Me.AdvBandedGridView1.OptionsBehavior.Editable = False
@@ -174,28 +175,28 @@ Partial Public Class DataOrder
         Me.gridBand4.Columns.Add(Me.GridColumn29)
         Me.gridBand4.Columns.Add(Me.GridColumn30)
         Me.gridBand4.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
-        Me.gridBand4.MinWidth = 60
+        Me.gridBand4.MinWidth = 52
         Me.gridBand4.Name = "gridBand4"
         Me.gridBand4.VisibleIndex = 0
-        Me.gridBand4.Width = 284
+        Me.gridBand4.Width = 249
         '
         'GridColumn29
         '
         Me.GridColumn29.Caption = "KLIEN"
         Me.GridColumn29.FieldName = "nmklien"
-        Me.GridColumn29.MinWidth = 25
+        Me.GridColumn29.MinWidth = 22
         Me.GridColumn29.Name = "GridColumn29"
         Me.GridColumn29.Visible = True
-        Me.GridColumn29.Width = 130
+        Me.GridColumn29.Width = 114
         '
         'GridColumn30
         '
         Me.GridColumn30.Caption = "BRAND"
         Me.GridColumn30.FieldName = "brand"
-        Me.GridColumn30.MinWidth = 25
+        Me.GridColumn30.MinWidth = 22
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.Width = 154
+        Me.GridColumn30.Width = 135
         '
         'DETAIL
         '
@@ -225,213 +226,214 @@ Partial Public Class DataOrder
         Me.DETAIL.Columns.Add(Me.GridColumn26)
         Me.DETAIL.Columns.Add(Me.GridColumn27)
         Me.DETAIL.Columns.Add(Me.GridColumn28)
+        Me.DETAIL.MinWidth = 9
         Me.DETAIL.Name = "DETAIL"
         Me.DETAIL.VisibleIndex = 1
-        Me.DETAIL.Width = 435
+        Me.DETAIL.Width = 380
         '
         'GridColumn1
         '
         Me.GridColumn1.FieldName = "iddtorder"
-        Me.GridColumn1.MinWidth = 25
+        Me.GridColumn1.MinWidth = 22
         Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Width = 126
+        Me.GridColumn1.Width = 110
         '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "NO ORDER"
         Me.GridColumn3.FieldName = "noorder"
-        Me.GridColumn3.MinWidth = 25
+        Me.GridColumn3.MinWidth = 22
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsEditForm.Caption = "NO ORDER"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.Width = 95
+        Me.GridColumn3.Width = 83
         '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "TGL. ORDER"
         Me.GridColumn4.FieldName = "tglorder"
-        Me.GridColumn4.MinWidth = 25
+        Me.GridColumn4.MinWidth = 22
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.Width = 132
+        Me.GridColumn4.Width = 115
         '
         'GridColumn7
         '
         Me.GridColumn7.Caption = "ORDER"
         Me.GridColumn7.FieldName = "namaorder"
-        Me.GridColumn7.MinWidth = 25
+        Me.GridColumn7.MinWidth = 22
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.Width = 90
+        Me.GridColumn7.Width = 79
         '
         'GridColumn31
         '
         Me.GridColumn31.Caption = "DIVISI"
         Me.GridColumn31.FieldName = "divisi"
-        Me.GridColumn31.MinWidth = 25
+        Me.GridColumn31.MinWidth = 22
         Me.GridColumn31.Name = "GridColumn31"
         Me.GridColumn31.Visible = True
-        Me.GridColumn31.Width = 118
+        Me.GridColumn31.Width = 103
         '
         'GridColumn2
         '
         Me.GridColumn2.FieldName = "iddivisi"
-        Me.GridColumn2.MinWidth = 25
+        Me.GridColumn2.MinWidth = 22
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.RowIndex = 1
-        Me.GridColumn2.Width = 42
+        Me.GridColumn2.Width = 37
         '
         'GridColumn5
         '
         Me.GridColumn5.FieldName = "idklien"
-        Me.GridColumn5.MinWidth = 25
+        Me.GridColumn5.MinWidth = 22
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.RowIndex = 1
-        Me.GridColumn5.Width = 25
+        Me.GridColumn5.Width = 22
         '
         'GridColumn6
         '
         Me.GridColumn6.FieldName = "idbrand"
-        Me.GridColumn6.MinWidth = 25
+        Me.GridColumn6.MinWidth = 22
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.RowIndex = 1
-        Me.GridColumn6.Width = 32
+        Me.GridColumn6.Width = 28
         '
         'GridColumn8
         '
         Me.GridColumn8.FieldName = "survei"
-        Me.GridColumn8.MinWidth = 25
+        Me.GridColumn8.MinWidth = 22
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.RowIndex = 1
-        Me.GridColumn8.Width = 25
+        Me.GridColumn8.Width = 22
         '
         'GridColumn9
         '
         Me.GridColumn9.FieldName = "iddivisi_survei"
-        Me.GridColumn9.MinWidth = 25
+        Me.GridColumn9.MinWidth = 22
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.RowIndex = 1
-        Me.GridColumn9.Width = 25
+        Me.GridColumn9.Width = 22
         '
         'GridColumn10
         '
         Me.GridColumn10.FieldName = "deadline_survei"
-        Me.GridColumn10.MinWidth = 25
+        Me.GridColumn10.MinWidth = 22
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.RowIndex = 1
-        Me.GridColumn10.Width = 25
+        Me.GridColumn10.Width = 22
         '
         'GridColumn11
         '
         Me.GridColumn11.FieldName = "status_kirim"
-        Me.GridColumn11.MinWidth = 25
+        Me.GridColumn11.MinWidth = 22
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.RowIndex = 1
-        Me.GridColumn11.Width = 80
+        Me.GridColumn11.Width = 70
         '
         'GridColumn13
         '
         Me.GridColumn13.FieldName = "idstatus_proyek"
-        Me.GridColumn13.MinWidth = 25
+        Me.GridColumn13.MinWidth = 22
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.RowIndex = 1
-        Me.GridColumn13.Width = 25
+        Me.GridColumn13.Width = 22
         '
         'GridColumn15
         '
         Me.GridColumn15.FieldName = "selesai_design"
-        Me.GridColumn15.MinWidth = 25
+        Me.GridColumn15.MinWidth = 22
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.RowIndex = 1
-        Me.GridColumn15.Width = 25
+        Me.GridColumn15.Width = 22
         '
         'GridColumn17
         '
         Me.GridColumn17.FieldName = "selesai_printing"
-        Me.GridColumn17.MinWidth = 25
+        Me.GridColumn17.MinWidth = 22
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.RowIndex = 1
-        Me.GridColumn17.Width = 25
+        Me.GridColumn17.Width = 22
         '
         'GridColumn19
         '
         Me.GridColumn19.FieldName = "selesai_produksi"
-        Me.GridColumn19.MinWidth = 25
+        Me.GridColumn19.MinWidth = 22
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.RowIndex = 1
-        Me.GridColumn19.Width = 25
+        Me.GridColumn19.Width = 22
         '
         'GridColumn20
         '
         Me.GridColumn20.FieldName = "user_input"
-        Me.GridColumn20.MinWidth = 25
+        Me.GridColumn20.MinWidth = 22
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.RowIndex = 1
-        Me.GridColumn20.Width = 25
+        Me.GridColumn20.Width = 22
         '
         'GridColumn21
         '
         Me.GridColumn21.FieldName = "time_input"
-        Me.GridColumn21.MinWidth = 25
+        Me.GridColumn21.MinWidth = 22
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.RowIndex = 1
-        Me.GridColumn21.Width = 25
+        Me.GridColumn21.Width = 22
         '
         'GridColumn22
         '
         Me.GridColumn22.FieldName = "user_koreksi"
-        Me.GridColumn22.MinWidth = 25
+        Me.GridColumn22.MinWidth = 22
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.RowIndex = 1
-        Me.GridColumn22.Width = 25
+        Me.GridColumn22.Width = 22
         '
         'GridColumn23
         '
         Me.GridColumn23.FieldName = "time_koreksi"
-        Me.GridColumn23.MinWidth = 25
+        Me.GridColumn23.MinWidth = 22
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.RowIndex = 1
-        Me.GridColumn23.Width = 25
+        Me.GridColumn23.Width = 22
         '
         'GridColumn24
         '
         Me.GridColumn24.FieldName = "revisi"
-        Me.GridColumn24.MinWidth = 25
+        Me.GridColumn24.MinWidth = 22
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.RowIndex = 1
-        Me.GridColumn24.Width = 25
+        Me.GridColumn24.Width = 22
         '
         'GridColumn25
         '
         Me.GridColumn25.FieldName = "user_batal"
-        Me.GridColumn25.MinWidth = 25
+        Me.GridColumn25.MinWidth = 22
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.RowIndex = 1
-        Me.GridColumn25.Width = 25
+        Me.GridColumn25.Width = 22
         '
         'GridColumn26
         '
         Me.GridColumn26.FieldName = "time_batal"
-        Me.GridColumn26.MinWidth = 25
+        Me.GridColumn26.MinWidth = 22
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.RowIndex = 1
-        Me.GridColumn26.Width = 25
+        Me.GridColumn26.Width = 22
         '
         'GridColumn27
         '
         Me.GridColumn27.FieldName = "alasan_batal"
-        Me.GridColumn27.MinWidth = 25
+        Me.GridColumn27.MinWidth = 22
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.RowIndex = 1
-        Me.GridColumn27.Width = 25
+        Me.GridColumn27.Width = 22
         '
         'GridColumn28
         '
         Me.GridColumn28.FieldName = "time_closing"
-        Me.GridColumn28.MinWidth = 25
+        Me.GridColumn28.MinWidth = 22
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.RowIndex = 1
-        Me.GridColumn28.Width = 25
+        Me.GridColumn28.Width = 22
         '
         'gridBand5
         '
@@ -440,45 +442,46 @@ Partial Public Class DataOrder
         Me.gridBand5.Columns.Add(Me.GridColumn16)
         Me.gridBand5.Columns.Add(Me.GridColumn14)
         Me.gridBand5.Columns.Add(Me.GridColumn18)
+        Me.gridBand5.MinWidth = 9
         Me.gridBand5.Name = "gridBand5"
         Me.gridBand5.VisibleIndex = 2
-        Me.gridBand5.Width = 432
+        Me.gridBand5.Width = 377
         '
         'GridColumn12
         '
         Me.GridColumn12.Caption = "DEADLINE KIRIM"
         Me.GridColumn12.FieldName = "deadline_ki"
-        Me.GridColumn12.MinWidth = 25
+        Me.GridColumn12.MinWidth = 22
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.Width = 108
+        Me.GridColumn12.Width = 94
         '
         'GridColumn16
         '
         Me.GridColumn16.Caption = "DEADLINE PRINTING"
         Me.GridColumn16.FieldName = "deadline_printing"
-        Me.GridColumn16.MinWidth = 25
+        Me.GridColumn16.MinWidth = 22
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.Width = 128
+        Me.GridColumn16.Width = 112
         '
         'GridColumn14
         '
         Me.GridColumn14.Caption = "DEADLINE DESIGN"
         Me.GridColumn14.FieldName = "deadline_design"
-        Me.GridColumn14.MinWidth = 25
+        Me.GridColumn14.MinWidth = 22
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.Width = 118
+        Me.GridColumn14.Width = 103
         '
         'GridColumn18
         '
         Me.GridColumn18.Caption = "PRODUKSI"
         Me.GridColumn18.FieldName = "deadline_produksi"
-        Me.GridColumn18.MinWidth = 25
+        Me.GridColumn18.MinWidth = 22
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.Width = 78
+        Me.GridColumn18.Width = 68
         '
         'layoutControlGroup
         '
@@ -486,8 +489,8 @@ Partial Public Class DataOrder
         Me.layoutControlGroup.GroupBordersVisible = False
         Me.layoutControlGroup.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.itemLabel, Me.itemGrid})
         Me.layoutControlGroup.Name = "Root"
-        Me.layoutControlGroup.Padding = New DevExpress.XtraLayout.Utils.Padding(53, 53, 0, 0)
-        Me.layoutControlGroup.Size = New System.Drawing.Size(1360, 831)
+        Me.layoutControlGroup.Padding = New DevExpress.XtraLayout.Utils.Padding(46, 46, 0, 0)
+        Me.layoutControlGroup.Size = New System.Drawing.Size(1190, 623)
         Me.layoutControlGroup.TextVisible = False
         '
         'itemLabel
@@ -496,17 +499,17 @@ Partial Public Class DataOrder
         Me.itemLabel.Location = New System.Drawing.Point(0, 0)
         Me.itemLabel.Name = "itemLabel"
         Me.itemLabel.Padding = New DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0)
-        Me.itemLabel.Size = New System.Drawing.Size(1254, 46)
+        Me.itemLabel.Size = New System.Drawing.Size(1098, 36)
         Me.itemLabel.TextSize = New System.Drawing.Size(0, 0)
         Me.itemLabel.TextVisible = False
         '
         'itemGrid
         '
         Me.itemGrid.Control = Me.gridControl
-        Me.itemGrid.Location = New System.Drawing.Point(0, 46)
+        Me.itemGrid.Location = New System.Drawing.Point(0, 36)
         Me.itemGrid.Name = "itemGrid"
         Me.itemGrid.Padding = New DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0)
-        Me.itemGrid.Size = New System.Drawing.Size(1254, 785)
+        Me.itemGrid.Size = New System.Drawing.Size(1098, 587)
         Me.itemGrid.TextSize = New System.Drawing.Size(0, 0)
         Me.itemGrid.TextVisible = False
         '
@@ -514,16 +517,17 @@ Partial Public Class DataOrder
         '
         Me.FlyoutPanel1.AutoSize = True
         Me.FlyoutPanel1.Controls.Add(Me.FlyoutPanelControl1)
-        Me.FlyoutPanel1.Location = New System.Drawing.Point(113, 204)
+        Me.FlyoutPanel1.Location = New System.Drawing.Point(99, 153)
+        Me.FlyoutPanel1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.FlyoutPanel1.Name = "FlyoutPanel1"
-        Me.FlyoutPanel1.OptionsButtonPanel.ButtonPanelHeight = 50
+        Me.FlyoutPanel1.OptionsButtonPanel.ButtonPanelHeight = 37
         Me.FlyoutPanel1.OptionsButtonPanel.ButtonPanelLocation = DevExpress.Utils.FlyoutPanelButtonPanelLocation.Bottom
         ButtonImageOptions1.Image = CType(resources.GetObject("ButtonImageOptions1.Image"), System.Drawing.Image)
         Me.FlyoutPanel1.OptionsButtonPanel.Buttons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.Utils.PeekFormButton("Close", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, "Close", -1, False)})
         Me.FlyoutPanel1.OptionsButtonPanel.ShowButtonPanel = True
         Me.FlyoutPanel1.OwnerControl = Me
-        Me.FlyoutPanel1.Padding = New System.Windows.Forms.Padding(0, 0, 0, 50)
-        Me.FlyoutPanel1.Size = New System.Drawing.Size(1130, 479)
+        Me.FlyoutPanel1.Padding = New System.Windows.Forms.Padding(0, 0, 0, 37)
+        Me.FlyoutPanel1.Size = New System.Drawing.Size(989, 359)
         Me.FlyoutPanel1.TabIndex = 5
         '
         'FlyoutPanelControl1
@@ -533,8 +537,9 @@ Partial Public Class DataOrder
         Me.FlyoutPanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlyoutPanelControl1.FlyoutPanel = Me.FlyoutPanel1
         Me.FlyoutPanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.FlyoutPanelControl1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.FlyoutPanelControl1.Name = "FlyoutPanelControl1"
-        Me.FlyoutPanelControl1.Size = New System.Drawing.Size(1130, 429)
+        Me.FlyoutPanelControl1.Size = New System.Drawing.Size(989, 322)
         Me.FlyoutPanelControl1.TabIndex = 0
         '
         'windowsUIButtonPanel
@@ -568,36 +573,37 @@ Partial Public Class DataOrder
         Me.windowsUIButtonPanel.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.windowsUIButtonPanel.EnableImageTransparency = True
         Me.windowsUIButtonPanel.ForeColor = System.Drawing.Color.White
-        Me.windowsUIButtonPanel.Location = New System.Drawing.Point(0, 831)
-        Me.windowsUIButtonPanel.Margin = New System.Windows.Forms.Padding(5, 8, 5, 8)
-        Me.windowsUIButtonPanel.MaximumSize = New System.Drawing.Size(0, 92)
-        Me.windowsUIButtonPanel.MinimumSize = New System.Drawing.Size(80, 92)
+        Me.windowsUIButtonPanel.Location = New System.Drawing.Point(0, 623)
+        Me.windowsUIButtonPanel.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.windowsUIButtonPanel.MaximumSize = New System.Drawing.Size(0, 69)
+        Me.windowsUIButtonPanel.MinimumSize = New System.Drawing.Size(70, 69)
         Me.windowsUIButtonPanel.Name = "windowsUIButtonPanel"
-        Me.windowsUIButtonPanel.Size = New System.Drawing.Size(1360, 92)
+        Me.windowsUIButtonPanel.Size = New System.Drawing.Size(1190, 69)
         Me.windowsUIButtonPanel.TabIndex = 5
         Me.windowsUIButtonPanel.Text = "windowsUIButtonPanel"
         Me.windowsUIButtonPanel.UseButtonBackgroundImages = False
         '
         'TidDtOrder
         '
-        Me.TidDtOrder.Location = New System.Drawing.Point(53, 8)
+        Me.TidDtOrder.Location = New System.Drawing.Point(46, 6)
+        Me.TidDtOrder.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TidDtOrder.Name = "TidDtOrder"
-        Me.TidDtOrder.Size = New System.Drawing.Size(100, 27)
+        Me.TidDtOrder.Size = New System.Drawing.Size(88, 23)
         Me.TidDtOrder.TabIndex = 0
         Me.TidDtOrder.Visible = False
         '
         'DataOrder
         '
         Me.Appearance.BackColor = System.Drawing.Color.White
-        Me.Appearance.Options.UseBackColor = true
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8!, 20!)
+        Me.Appearance.Options.UseBackColor = True
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.FlyoutPanel1)
         Me.Controls.Add(Me.layoutControl)
         Me.Controls.Add(Me.windowsUIButtonPanel)
-        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "DataOrder"
-        Me.Size = New System.Drawing.Size(1360, 923)
+        Me.Size = New System.Drawing.Size(1190, 692)
         CType(Me.layoutControl,System.ComponentModel.ISupportInitialize).EndInit
         Me.layoutControl.ResumeLayout(false)
         CType(Me.gridControl,System.ComponentModel.ISupportInitialize).EndInit

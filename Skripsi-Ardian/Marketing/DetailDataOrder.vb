@@ -35,11 +35,10 @@ Public Class DetailDataOrder
 
     Private Sub FlyoutPanel1_ButtonClick(sender As Object, e As DevExpress.Utils.FlyoutPanelButtonClickEventArgs) Handles FlyoutPanel1.ButtonClick
         Dim tag As String = e.Button.Tag.ToString()
+        Dim Status As New StatusSurvei
         Select Case tag
-            Case "accept"
-                ' . . .
             Case "Tutup"
-                Dim Status As New StatusSurvei
+
                 'Dim TokoDetail As New DetailToko
                 FlyoutPanelControl1.Controls.Clear()
                 Status.Dispose()
@@ -148,5 +147,9 @@ Public Class DetailDataOrder
 
     Private Sub DetailDataOrder_Load(sender As Object, e As EventArgs) Handles Me.Load
         ListHeaderDetaildo()
+    End Sub
+
+    Private Sub FlyoutPanel1_Load(sender As Object, e As EventArgs) Handles FlyoutPanel1.Load
+
     End Sub
 End Class

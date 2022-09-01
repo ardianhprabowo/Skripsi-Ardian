@@ -176,4 +176,8 @@ Partial Public Class DataOrder
     Private Sub windowsUIButtonPanel_Click(sender As Object, e As EventArgs) Handles windowsUIButtonPanel.Click
 
     End Sub
+
+    Private Sub FlyoutPanel1_Load(sender As Object, e As EventArgs) Handles FlyoutPanel1.Load
+
+    End Sub
 End Class

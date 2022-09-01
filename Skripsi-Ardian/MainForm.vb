@@ -30,7 +30,7 @@ Public Class MainForm
     End Sub
 
    
-    Private Sub AccordionControlElement6_Click(sender As Object, e As EventArgs) Handles AccordionControlElement6.Click
+    Private Sub AccordionControlElement6_Click(sender As Object, e As EventArgs) Handles User_logout.Click
 
         AccordAccount.Text = "Belum Login"
         FluentDesignFormContainer1.Controls.Add(Nothing)
@@ -40,20 +40,27 @@ Public Class MainForm
 
     End Sub
 
-    Private Sub AccordionControlElement4_Click(sender As Object, e As EventArgs) Handles AccordionControlElement4.Click
+    Private Sub AccordionControlElement4_Click(sender As Object, e As EventArgs) Handles User_viewProfil.Click
         FluentDesignFormContainer1.Controls.Add(New UserRegistration)
 
     End Sub
 
-    Private Sub AccordionControlElement2_Click(sender As Object, e As EventArgs) Handles AccordionControlElement2.Click
+    Private Sub AccordionControlElement2_Click(sender As Object, e As EventArgs) Handles Marketing_DataOrder.Click
         Me.FluentDesignFormContainer1.Controls.Add(New DataOrder() With {
        .Dock = DockStyle.Fill
         })
     End Sub
 
-    Private Sub AccordionControlElement3_Click(sender As Object, e As EventArgs) Handles AccordionControlElement3.Click
-        Me.FluentDesignFormContainer1.Controls.Add(New DetailDataOrder() With {
-      .Dock = DockStyle.Fill
-       })
+    Private Sub AccordionControlElement5_Click(sender As Object, e As EventArgs) Handles Desain_InternalPO.Click
+        Me.FluentDesignFormContainer1.Controls.Add(New POInternalDesign() With {
+        .Dock = DockStyle.Fill
+         })
     End Sub
+
+    Private Sub AccordionControlElement8_Click(sender As Object, e As EventArgs) Handles Printing_InternalPO.Click
+        Me.FluentDesignFormContainer1.Controls.Add(New POInternalPrinting() With {
+       .Dock = DockStyle.Fill
+        })
+    End Sub
+
 End Class

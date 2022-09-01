@@ -95,6 +95,13 @@
     <Compile Include="Class\CMD5.vb" />
     <Compile Include="Class\Conectionggvm.vb" />
     <Compile Include="Class\Fungsi.vb" />
+    <Compile Include="Design\POInternalDesign.Designer.vb">
+      <DependentUpon>POInternalDesign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Design\POInternalDesign.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Design\XtraReport.vb" />
     <Compile Include="MainForm.Designer.vb">
       <DependentUpon>MainForm.vb</DependentUpon>
     </Compile>
@@ -144,12 +151,21 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Class\OverlayFormShow.vb" />
+    <Compile Include="Printing\POInternalPrinting.Designer.vb">
+      <DependentUpon>POInternalPrinting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Printing\POInternalPrinting.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UserControl\UserRegistration.Designer.vb">
       <DependentUpon>UserRegistration.vb</DependentUpon>
     </Compile>
     <Compile Include="UserControl\UserRegistration.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <EmbeddedResource Include="Design\POInternalDesign.resx">
+      <DependentUpon>POInternalDesign.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -183,6 +199,9 @@
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Printing\POInternalPrinting.resx">
+      <DependentUpon>POInternalPrinting.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControl\UserRegistration.resx">
       <DependentUpon>UserRegistration.vb</DependentUpon>
     </EmbeddedResource>
@@ -204,9 +223,20 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Design\" />
-    <Folder Include="Printing\" />
+    <Folder Include="Cetak\" />
     <Folder Include="Produksi\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\message.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\message_cut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\message_prt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sub.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
