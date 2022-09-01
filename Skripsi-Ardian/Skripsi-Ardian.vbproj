@@ -108,6 +108,12 @@
     <Compile Include="Marketing\DataOrder.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Marketing\DetailDataOrder.Designer.vb">
+      <DependentUpon>DetailDataOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Marketing\DetailDataOrder.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Marketing\DetailToko.Designer.vb">
       <DependentUpon>DetailToko.vb</DependentUpon>
     </Compile>
@@ -118,6 +124,12 @@
       <DependentUpon>EntryDO.vb</DependentUpon>
     </Compile>
     <Compile Include="Marketing\EntryDO.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Marketing\StatusSurvei.Designer.vb">
+      <DependentUpon>StatusSurvei.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Marketing\StatusSurvei.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="My Project\Application.Designer.vb">
@@ -144,11 +156,17 @@
     <EmbeddedResource Include="Marketing\DataOrder.resx">
       <DependentUpon>DataOrder.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Marketing\DetailDataOrder.resx">
+      <DependentUpon>DetailDataOrder.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Marketing\DetailToko.resx">
       <DependentUpon>DetailToko.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Marketing\EntryDO.resx">
       <DependentUpon>EntryDO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Marketing\StatusSurvei.resx">
+      <DependentUpon>StatusSurvei.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">

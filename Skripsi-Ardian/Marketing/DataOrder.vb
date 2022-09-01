@@ -73,11 +73,9 @@ Partial Public Class DataOrder
              })
             FlyoutPanel1.Height = Height
             RaiseEvent GetTextBoxText(TidDtOrder.Text)
-
-
-
-
             FlyoutPanel1.ShowPopup()
+        ElseIf e.Button.Properties.Caption = "Keluar" Then
+            Me.Dispose()
         End If
     End Sub
 
@@ -169,11 +167,13 @@ Partial Public Class DataOrder
         survei = AdvBandedGridView1.GetRowCellValue(AdvBandedGridView1.FocusedRowHandle, "survei").ToString()
     End Sub
 
-    Private Sub windowsUIButtonPanel_Click(sender As Object, e As EventArgs) Handles windowsUIButtonPanel.Click
+
+
+    Private Sub labelControl_Click(sender As Object, e As EventArgs) Handles labelControl.Click
 
     End Sub
 
-    Private Sub FlyoutPanel1_Load(sender As Object, e As EventArgs) Handles FlyoutPanel1.Load
+    Private Sub windowsUIButtonPanel_Click(sender As Object, e As EventArgs) Handles windowsUIButtonPanel.Click
 
     End Sub
 End Class

@@ -50,4 +50,10 @@ Public Class MainForm
        .Dock = DockStyle.Fill
         })
     End Sub
+
+    Private Sub AccordionControlElement3_Click(sender As Object, e As EventArgs) Handles AccordionControlElement3.Click
+        Me.FluentDesignFormContainer1.Controls.Add(New DetailDataOrder() With {
+      .Dock = DockStyle.Fill
+       })
+    End Sub
 End Class
