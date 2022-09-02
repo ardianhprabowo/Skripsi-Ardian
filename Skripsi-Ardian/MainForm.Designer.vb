@@ -39,11 +39,11 @@ Partial Class MainForm
         Me.Printing_InternalPO = New DevExpress.XtraBars.Navigation.AccordionControlElement()
         Me.AccordProduksi = New DevExpress.XtraBars.Navigation.AccordionControlElement()
         Me.Produksi_InternalPO = New DevExpress.XtraBars.Navigation.AccordionControlElement()
+        Me.Produksi_AlokasiManpower = New DevExpress.XtraBars.Navigation.AccordionControlElement()
+        Me.Produksi_ListPOSelesai = New DevExpress.XtraBars.Navigation.AccordionControlElement()
         Me.AccordionControlElement1 = New DevExpress.XtraBars.Navigation.AccordionControlElement()
         Me.FluentDesignFormControl1 = New DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl()
         Me.FluentFormDefaultManager1 = New DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(Me.components)
-        Me.Produksi_AlokasiManpower = New DevExpress.XtraBars.Navigation.AccordionControlElement()
-        Me.Produksi_ListPOSelesai = New DevExpress.XtraBars.Navigation.AccordionControlElement()
         CType(Me.AccordionControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FluentDesignFormControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FluentFormDefaultManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -140,12 +140,11 @@ Partial Class MainForm
         Me.Desain_InternalPO.ImageOptions.Image = CType(resources.GetObject("Desain_InternalPO.ImageOptions.Image"), System.Drawing.Image)
         Me.Desain_InternalPO.Name = "Desain_InternalPO"
         Me.Desain_InternalPO.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
-        Me.Desain_InternalPO.Text = "P.O INTERNAL"
+        Me.Desain_InternalPO.Text = "TERIMA P.O INTERNAL"
         '
         'AccordPrinting
         '
         Me.AccordPrinting.Elements.AddRange(New DevExpress.XtraBars.Navigation.AccordionControlElement() {Me.Printing_InternalPO})
-        Me.AccordPrinting.Expanded = True
         Me.AccordPrinting.ImageOptions.Image = CType(resources.GetObject("AccordPrinting.ImageOptions.Image"), System.Drawing.Image)
         Me.AccordPrinting.Name = "AccordPrinting"
         Me.AccordPrinting.Text = "PRINTING"
@@ -155,7 +154,7 @@ Partial Class MainForm
         Me.Printing_InternalPO.ImageOptions.Image = CType(resources.GetObject("Printing_InternalPO.ImageOptions.Image"), System.Drawing.Image)
         Me.Printing_InternalPO.Name = "Printing_InternalPO"
         Me.Printing_InternalPO.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
-        Me.Printing_InternalPO.Text = "P.O INTERNAL"
+        Me.Printing_InternalPO.Text = "TERIMA P.O INTERNAL"
         '
         'AccordProduksi
         '
@@ -170,7 +169,23 @@ Partial Class MainForm
         Me.Produksi_InternalPO.ImageOptions.Image = CType(resources.GetObject("Produksi_InternalPO.ImageOptions.Image"), System.Drawing.Image)
         Me.Produksi_InternalPO.Name = "Produksi_InternalPO"
         Me.Produksi_InternalPO.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
-        Me.Produksi_InternalPO.Text = "P.O INTERNAL"
+        Me.Produksi_InternalPO.Text = "TERIMA P.O INTERNAL"
+        '
+        'Produksi_AlokasiManpower
+        '
+        Me.Produksi_AlokasiManpower.ImageOptions.SvgImage = CType(resources.GetObject("Produksi_AlokasiManpower.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.Produksi_AlokasiManpower.ImageOptions.SvgImageSize = New System.Drawing.Size(16, 16)
+        Me.Produksi_AlokasiManpower.Name = "Produksi_AlokasiManpower"
+        Me.Produksi_AlokasiManpower.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
+        Me.Produksi_AlokasiManpower.Text = "Alokasi Manpower"
+        '
+        'Produksi_ListPOSelesai
+        '
+        Me.Produksi_ListPOSelesai.ImageOptions.SvgImage = CType(resources.GetObject("Produksi_ListPOSelesai.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.Produksi_ListPOSelesai.ImageOptions.SvgImageSize = New System.Drawing.Size(16, 16)
+        Me.Produksi_ListPOSelesai.Name = "Produksi_ListPOSelesai"
+        Me.Produksi_ListPOSelesai.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
+        Me.Produksi_ListPOSelesai.Text = "List P.O Selesai"
         '
         'AccordionControlElement1
         '
@@ -194,22 +209,6 @@ Partial Class MainForm
         Me.FluentFormDefaultManager1.DockingEnabled = False
         Me.FluentFormDefaultManager1.Form = Me
         Me.FluentFormDefaultManager1.MaxItemId = 1
-        '
-        'Produksi_AlokasiManpower
-        '
-        Me.Produksi_AlokasiManpower.ImageOptions.SvgImage = CType(resources.GetObject("Produksi_AlokasiManpower.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
-        Me.Produksi_AlokasiManpower.ImageOptions.SvgImageSize = New System.Drawing.Size(16, 16)
-        Me.Produksi_AlokasiManpower.Name = "Produksi_AlokasiManpower"
-        Me.Produksi_AlokasiManpower.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
-        Me.Produksi_AlokasiManpower.Text = "Alokasi Manpower"
-        '
-        'Produksi_ListPOSelesai
-        '
-        Me.Produksi_ListPOSelesai.ImageOptions.SvgImage = CType(resources.GetObject("Produksi_ListPOSelesai.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
-        Me.Produksi_ListPOSelesai.ImageOptions.SvgImageSize = New System.Drawing.Size(16, 16)
-        Me.Produksi_ListPOSelesai.Name = "Produksi_ListPOSelesai"
-        Me.Produksi_ListPOSelesai.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
-        Me.Produksi_ListPOSelesai.Text = "List P.O Selesai"
         '
         'MainForm
         '
