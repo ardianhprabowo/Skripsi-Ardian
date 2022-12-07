@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{503874F8-31AC-4731-A50B-3FA44EE28DF4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Skripsi_Ardian</RootNamespace>
+    <RootNamespace>Prototype</RootNamespace>
     <AssemblyName>Produksi</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -42,9 +42,10 @@
     <MyType>WindowsForms</MyType>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Skripsi_Ardian.My.MyApplication</StartupObject>
+    <StartupObject>Prototype.My.MyApplication</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.36, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.BonusSkins.v20.1" />
     <Reference Include="DevExpress.CodeParser.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -69,8 +70,12 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -157,6 +162,18 @@
     <Compile Include="Printing\POInternalPrinting.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Produksi\POProduksi.Designer.vb">
+      <DependentUpon>POProduksi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Produksi\POProduksi.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Produksi\POSelesai.Designer.vb">
+      <DependentUpon>POSelesai.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Produksi\POSelesai.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UserControl\UserRegistration.Designer.vb">
       <DependentUpon>UserRegistration.vb</DependentUpon>
     </Compile>
@@ -202,6 +219,12 @@
     <EmbeddedResource Include="Printing\POInternalPrinting.resx">
       <DependentUpon>POInternalPrinting.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Produksi\POProduksi.resx">
+      <DependentUpon>POProduksi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Produksi\POSelesai.resx">
+      <DependentUpon>POSelesai.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControl\UserRegistration.resx">
       <DependentUpon>UserRegistration.vb</DependentUpon>
     </EmbeddedResource>
@@ -224,7 +247,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Cetak\" />
-    <Folder Include="Produksi\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\message.png" />

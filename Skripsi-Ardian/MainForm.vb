@@ -63,4 +63,19 @@ Public Class MainForm
         })
     End Sub
 
+    Private Sub Produksi_AlokasiManpower_Click(sender As Object, e As EventArgs) Handles Produksi_AlokasiManpower.Click
+
+    End Sub
+
+    Private Sub Produksi_InternalPO_Click(sender As Object, e As EventArgs) Handles Produksi_InternalPO.Click
+        Me.FluentDesignFormContainer1.Controls.Add(New POProduksi() With {
+      .Dock = DockStyle.Fill
+       })
+    End Sub
+
+    Private Sub Produksi_ListPOSelesai_Click(sender As Object, e As EventArgs) Handles Produksi_ListPOSelesai.Click
+        Me.FluentDesignFormContainer1.Controls.Add(New POSelesai() With {
+    .Dock = DockStyle.Fill
+     })
+    End Sub
 End Class

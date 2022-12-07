@@ -103,7 +103,7 @@ Partial Public Class DataOrder
         Me.layoutControl.Controls.Add(Me.gridControl)
         Me.layoutControl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.layoutControl.Location = New System.Drawing.Point(0, 0)
-        Me.layoutControl.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.layoutControl.Margin = New System.Windows.Forms.Padding(4)
         Me.layoutControl.Name = "layoutControl"
         Me.layoutControl.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1108, 481, 812, 500)
         Me.layoutControl.Root = Me.layoutControlGroup
@@ -121,7 +121,7 @@ Partial Public Class DataOrder
         Me.labelControl.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.labelControl.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical
         Me.labelControl.Location = New System.Drawing.Point(46, 0)
-        Me.labelControl.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.labelControl.Margin = New System.Windows.Forms.Padding(4)
         Me.labelControl.Name = "labelControl"
         Me.labelControl.Padding = New System.Windows.Forms.Padding(0, 4, 15, 7)
         Me.labelControl.Size = New System.Drawing.Size(1098, 36)
@@ -133,10 +133,10 @@ Partial Public Class DataOrder
         '
         Me.gridControl.DataMember = "DataOrder"
         Me.gridControl.DataSource = Me.SqlDataSource1
-        Me.gridControl.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.gridControl.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
         Me.gridControl.Location = New System.Drawing.Point(46, 36)
         Me.gridControl.MainView = Me.AdvBandedGridView1
-        Me.gridControl.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.gridControl.Margin = New System.Windows.Forms.Padding(4)
         Me.gridControl.Name = "gridControl"
         Me.gridControl.Size = New System.Drawing.Size(1098, 587)
         Me.gridControl.TabIndex = 2
@@ -226,7 +226,6 @@ Partial Public Class DataOrder
         Me.DETAIL.Columns.Add(Me.GridColumn26)
         Me.DETAIL.Columns.Add(Me.GridColumn27)
         Me.DETAIL.Columns.Add(Me.GridColumn28)
-        Me.DETAIL.MinWidth = 9
         Me.DETAIL.Name = "DETAIL"
         Me.DETAIL.VisibleIndex = 1
         Me.DETAIL.Width = 380
@@ -442,7 +441,6 @@ Partial Public Class DataOrder
         Me.gridBand5.Columns.Add(Me.GridColumn16)
         Me.gridBand5.Columns.Add(Me.GridColumn14)
         Me.gridBand5.Columns.Add(Me.GridColumn18)
-        Me.gridBand5.MinWidth = 9
         Me.gridBand5.Name = "gridBand5"
         Me.gridBand5.VisibleIndex = 2
         Me.gridBand5.Width = 377
@@ -601,26 +599,26 @@ Partial Public Class DataOrder
         Me.Controls.Add(Me.FlyoutPanel1)
         Me.Controls.Add(Me.layoutControl)
         Me.Controls.Add(Me.windowsUIButtonPanel)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "DataOrder"
         Me.Size = New System.Drawing.Size(1190, 692)
-        CType(Me.layoutControl,System.ComponentModel.ISupportInitialize).EndInit
-        Me.layoutControl.ResumeLayout(false)
-        CType(Me.gridControl,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.AdvBandedGridView1,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.layoutControlGroup,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.itemLabel,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.itemGrid,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.FlyoutPanel1,System.ComponentModel.ISupportInitialize).EndInit
-        Me.FlyoutPanel1.ResumeLayout(false)
-        Me.FlyoutPanel1.PerformLayout
-        CType(Me.FlyoutPanelControl1,System.ComponentModel.ISupportInitialize).EndInit
-        Me.windowsUIButtonPanel.ResumeLayout(false)
-        Me.windowsUIButtonPanel.PerformLayout
-        Me.ResumeLayout(false)
-        Me.PerformLayout
+        CType(Me.layoutControl, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.layoutControl.ResumeLayout(False)
+        CType(Me.gridControl, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.AdvBandedGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.layoutControlGroup, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.itemLabel, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.itemGrid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.FlyoutPanel1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.FlyoutPanel1.ResumeLayout(False)
+        Me.FlyoutPanel1.PerformLayout()
+        CType(Me.FlyoutPanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.windowsUIButtonPanel.ResumeLayout(False)
+        Me.windowsUIButtonPanel.PerformLayout()
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
 
-End Sub
+    End Sub
 
 #End Region
 

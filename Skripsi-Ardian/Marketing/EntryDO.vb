@@ -201,7 +201,7 @@ Public Class EntryDO
                     If SURVEI.Checked = True Then
                         If IDSurvei.Text = "" Then
                             Me.Cursor = Cursors.Default
-                            MsgBox("Pilih dulu yang Survei....Produksi atau Marketing !!...", MsgBoxStyle.Information, "Information")
+                            MsgBox("Pilih dulu yang Survei....DataOrder atau Marketing !!...", MsgBoxStyle.Information, "Information")
                             Exit Sub
                         End If
                     End If

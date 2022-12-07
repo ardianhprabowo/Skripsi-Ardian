@@ -61,10 +61,10 @@ Namespace My
      Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()>  _
     Friend Module MySettingsProperty
         
-        <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.Skripsi_Ardian.Settings
+        <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")> _
+        Friend ReadOnly Property Settings() As Global.Prototype.Settings
             Get
-                Return Global.Skripsi_Ardian.Settings.Default
+                Return Global.Prototype.Settings.Default
             End Get
         End Property
     End Module

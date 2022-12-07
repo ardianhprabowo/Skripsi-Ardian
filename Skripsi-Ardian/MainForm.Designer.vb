@@ -177,7 +177,7 @@ Partial Class MainForm
         Me.Produksi_AlokasiManpower.ImageOptions.SvgImageSize = New System.Drawing.Size(16, 16)
         Me.Produksi_AlokasiManpower.Name = "Produksi_AlokasiManpower"
         Me.Produksi_AlokasiManpower.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
-        Me.Produksi_AlokasiManpower.Text = "Alokasi Manpower"
+        Me.Produksi_AlokasiManpower.Text = "DAFTAR ALOKASI PEKERJAAN"
         '
         'Produksi_ListPOSelesai
         '

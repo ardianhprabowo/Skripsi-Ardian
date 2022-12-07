@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.Skripsi_Ardian.MainForm
+            Me.MainForm = Global.Prototype.MainForm
         End Sub
     End Class
 End Namespace
