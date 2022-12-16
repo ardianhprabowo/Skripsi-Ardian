@@ -224,7 +224,7 @@
   <metadata name="SqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="CustomSqlQuery2.Sql" xml:space="preserve">
+  <data name="CustomSqlQuery1.Sql" xml:space="preserve">
     <value>select `a`.`idpo_prd` AS `idpo_prd`,`a`.`nopo` AS `nopo`,`a`.`idklien` AS `idklien`,`a`.`tanggal` AS `tanggal`,`a`.`lokasi` AS `lokasi`,`a`.`brand` AS `brand`,`a`.`nope` AS `nope`,`a`.`deadline_produksi` AS `deadline_produksi`,`a`.`selesai_produksi` AS `selesai_produksi`,`a`.`deadline_desain` AS `deadline_desain`,`a`.`selesai_desain` AS `selesai_desain`,`a`.`deadline_printing` AS `deadline_printing`,`a`.`selesai_printing` AS `selesai_printing`,`a`.`deadline_ki` AS `deadline_ki`,`a`.`time_closhing` AS `time_closhing`,`a`.`kirim_po` AS `kirim_po`,`a`.`proses_po` AS `proses_po`,`a`.`terima_po` AS `terima_po`,`a`.`kirim_ppic` AS `kirim_ppic`,`a`.`idpe` AS `idpe`,`a`.`iddivisi` AS `iddivisi`,`b`.`nama` AS `klien`,(case when isnull(`a`.`kirim_po`) then 'Belum Dikirim' else `a`.`kirim_po` end) AS `status_kirimpo`,(case when (`a`.`catatan` is not null) then 'Perlu PO Revisi' else `a`.`catatan` end) AS `catatan` from (`po_produksi` `a` join `klien` `b`) where ((`a`.`idklien` = `b`.`id`) and isnull(`a`.`time_closhing`)) order by `a`.`catatan` desc,`a`.`kirim_po` desc</value>
   </data>
   <data name="SqlDataSource1.ResultSchemaSerializable" xml:space="preserve">

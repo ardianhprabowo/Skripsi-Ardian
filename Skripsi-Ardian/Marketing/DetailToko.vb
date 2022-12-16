@@ -366,7 +366,7 @@ Public Class DetailToko
                     Dim kd As String
                     'Count Kode Barang
                     s = ""
-                    s = s & " Select max(idbarang_pe)As id from barang_penawaran "
+                    s = s & " Select max(idbarang_int)As id from barang "
                     cmd = New OdbcCommand(s, conn)
                     dr = cmd.ExecuteReader
                     dr.Read()
@@ -374,13 +374,13 @@ Public Class DetailToko
                     kd = Microsoft.VisualBasic.Right(kd, 6)
 
                     c = ""
-                    c = c & "insert barang_penawaran (idsubkel,kdbarang,barang,keterangan)"
+                    c = c & "insert barang (idsubkel,kdbarang_int,barang_int,keterangan_brgint)"
                     c = c & "values ('41', '" & kd & "' , '" & TBarangPrd.Text & "', 'Otomatis') "
                     cmd = New OdbcCommand(c, conn)
                     cmd.ExecuteNonQuery()
 
                     c = ""
-                    c = c & " Select max(idbarang_pe) As id from barang_penawaran "
+                    c = c & " Select max(idbarang_int) As id from barang "
                     da = New OdbcDataAdapter(c, conn)
                     dt = New DataTable
                     da.Fill(dt)
@@ -390,7 +390,7 @@ Public Class DetailToko
                 End If
 
                 s = ""
-                s = s & " insert into prd_trans_detaildo_kirim (idkirim,iddtorder,idbarang_pe,panjang_prd,lebar_prd, "
+                s = s & " insert into prd_trans_detaildo_kirim (idkirim,iddtorder,idbarang_int,panjang_prd,lebar_prd, "
                 s = s & " tinggi_prd, sisi_prd, qty_prd,"
                 If CSurvei.Checked = True Then
                     s = s & " deadline_implementasi, "
@@ -430,7 +430,7 @@ Public Class DetailToko
                 GGVM_conn()
                 s = ""
                 s = s & " update prd_trans_detaildo_kirim set"
-                s = s & " idbarang_pe = '" & TidBarangPrd.Text & "', panjang_prd = '" & TPPrd.Text & "', lebar_prd = '" & TLPrd.Text & "',tinggi_prd = '" & TTPrd.Text & "', "
+                s = s & " idbarang_int = '" & TidBarangPrd.Text & "', panjang_prd = '" & TPPrd.Text & "', lebar_prd = '" & TLPrd.Text & "',tinggi_prd = '" & TTPrd.Text & "', "
                 s = s & " sisi_prd = '" & TSPrd.Text & "',qty_prd = '" & TQtyPrd.Text & "', "
                 If CSurvei.Checked = True Then
                     s = s & "  deadline_implementasi = '" & Format(DTDeadlineImpleTK.Value, "yyyy/MM/dd") & "',  "

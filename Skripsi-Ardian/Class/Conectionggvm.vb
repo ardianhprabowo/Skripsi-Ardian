@@ -25,8 +25,8 @@ Module Conectionggvm
     Public Sub GGVM_conn()
         'str = "Dsn=ggvmconn;uid=root;database=geogiven_VM;port=3306"
         'str = "Dsn=ggvmconn_local;;uid=root;database=geogiven_vm;port=3306"
-        'str = "Driver={MySQL ODBC 5.2 UNICODE Driver};Server=127.0.0.1;Database=p2p_db; User=root;Password=toorGGVM;Option=3;port=3306;"
-        str = "Driver={MySQL ODBC 5.3 UNICODE Driver};Server=127.0.0.1;Database=skripsi; User=root;Password=toorGGVM;Option=3;port=3306;"
+        str = "Driver={MySQL ODBC 5.2 UNICODE Driver};Server=127.0.0.1;Database=skripsi; User=root;Password=toorGGVM;Option=3;port=3306;"
+        'str = "Driver={MySQL ODBC 5.3 UNICODE Driver};Server=127.0.0.1;Database=skripsi; User=root;Password=toorGGVM;Option=3;port=3306;"
         'str = "Driver={MySQL ODBC 5.3 UNICODE Driver};Server=192.168.0.10;Database=geogiven_vm; User=root;Password=toorGGVM;Option=3;port=3306;"
         conn = New OdbcConnection(str)
         If conn.State = ConnectionState.Closed Then

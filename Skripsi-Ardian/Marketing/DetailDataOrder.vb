@@ -28,6 +28,18 @@ Public Class DetailDataOrder
             FlyoutPanel1.ShowPopup()
         ElseIf e.Button.Properties.Caption = "Refresh" Then
             SqlDataSource1.FillAsync()
+        ElseIf e.Button.Properties.Caption = "ACC" Then
+            GGVM_conn()
+            Dim c As String
+            c = ""
+            c = c & " update prd_dataorder set"
+            c = c & " idstatus_proyek ='11'"
+            c = c & " where iddtorder = '" & iddo & "'"
+            cmd = New Odbc.OdbcCommand(c, conn)
+            cmd.ExecuteNonQuery()
+            SqlDataSource1.FillAsync()
+            MsgBox("Proses ACC DO Selesai !!..", MsgBoxStyle.Information, "Information")
+            GGVM_conn_close()
         ElseIf e.Button.Properties.Caption = "Keluar" Then
             Me.Dispose()
         End If
@@ -92,10 +104,10 @@ Public Class DetailDataOrder
         ListDetailDO.Columns.Add("MATERIAL", 100, HorizontalAlignment.Left)
         ListDetailDO.Columns.Add("KETERANGAN", 100, HorizontalAlignment.Left)
         ListDetailDO.Columns.Add("QTY-TK", 80, HorizontalAlignment.Right)
-        ListDetailDO.Columns.Add("idbarang", 1, HorizontalAlignment.Left)
+        'ListDetailDO.Columns.Add("idbarang", 1, HorizontalAlignment.Left)
         ListDetailDO.Columns.Add("idmaterial", 1, HorizontalAlignment.Left)
         ListDetailDO.Columns.Add("iddetaildo", 1, HorizontalAlignment.Left)
-        ListDetailDO.Columns.Add("SATUAN", 1, HorizontalAlignment.Left)
+        'ListDetailDO.Columns.Add("SATUAN", 1, HorizontalAlignment.Left)
 
     End Sub
     Private Sub TampilDetailDo()
@@ -130,11 +142,11 @@ Public Class DetailDataOrder
                     .Add(FormatNumber(tbl.Rows(i)("harga_PE"), 0, , , TriState.True))
                     .Add(IIf(IsDBNull(tbl.Rows(i)("material")), "", tbl.Rows(i)("material")))
                     .Add(tbl.Rows(i)("keterangan"))
-                    .Add(tbl.Rows(i)("qty_TOKO"))
-                    .Add(tbl.Rows(i)("idbarang"))
+                    .Add(IIf(IsDBNull(tbl.Rows(i)("qty_toko")), "", tbl.Rows(i)("qty_toko")))
+                    ' .Add(tbl.Rows(i)("idbarang"))
                     .Add(IIf(IsDBNull(tbl.Rows(i)("idmaterial")), "", tbl.Rows(i)("idmaterial")))
                     .Add(tbl.Rows(i)("iddetailpe"))
-                    .Add(tbl.Rows(i)("SATUAN"))
+                    '.Add(tbl.Rows(i)("SATUAN"))
                 End With
             End With
         Next

@@ -21,7 +21,7 @@ Partial Class POProduksi
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(POProduksi))
-        Dim CustomSqlQuery2 As DevExpress.DataAccess.Sql.CustomSqlQuery = New DevExpress.DataAccess.Sql.CustomSqlQuery()
+        Dim CustomSqlQuery1 As DevExpress.DataAccess.Sql.CustomSqlQuery = New DevExpress.DataAccess.Sql.CustomSqlQuery()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnHapus = New DevExpress.XtraEditors.SimpleButton()
@@ -69,6 +69,12 @@ Partial Class POProduksi
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.tabbedControlGroup1 = New DevExpress.XtraLayout.TabbedControlGroup()
+        Me.layoutControlGroup4 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.layoutControlGroup3 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -78,12 +84,6 @@ Partial Class POProduksi
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.layoutControlGroup4 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -117,6 +117,12 @@ Partial Class POProduksi
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tabbedControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.layoutControlGroup4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.layoutControlGroup3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -126,12 +132,6 @@ Partial Class POProduksi
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.layoutControlGroup4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -269,9 +269,9 @@ Partial Class POProduksi
         '
         Me.SqlDataSource1.ConnectionName = "localhost_geogiven_vm_Connection-Kantor"
         Me.SqlDataSource1.Name = "SqlDataSource1"
-        CustomSqlQuery2.Name = "Query"
-        CustomSqlQuery2.Sql = resources.GetString("CustomSqlQuery2.Sql")
-        Me.SqlDataSource1.Queries.AddRange(New DevExpress.DataAccess.Sql.SqlQuery() {CustomSqlQuery2})
+        CustomSqlQuery1.Name = "Query"
+        CustomSqlQuery1.Sql = resources.GetString("CustomSqlQuery1.Sql")
+        Me.SqlDataSource1.Queries.AddRange(New DevExpress.DataAccess.Sql.SqlQuery() {CustomSqlQuery1})
         Me.SqlDataSource1.ResultSchemaSerializable = resources.GetString("SqlDataSource1.ResultSchemaSerializable")
         '
         'GridView1
@@ -536,6 +536,72 @@ Partial Class POProduksi
         Me.tabbedControlGroup1.Text = "Daftar Alokasi Pekerjaan"
         Me.tabbedControlGroup1.TextLocation = DevExpress.Utils.Locations.Bottom
         '
+        'layoutControlGroup4
+        '
+        Me.layoutControlGroup4.CustomizationFormText = "Tab2"
+        Me.layoutControlGroup4.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem6, Me.LayoutControlItem9, Me.LayoutControlItem11, Me.LayoutControlItem7, Me.LayoutControlItem10})
+        Me.layoutControlGroup4.Location = New System.Drawing.Point(0, 0)
+        Me.layoutControlGroup4.Name = "layoutControlGroup4"
+        Me.layoutControlGroup4.Size = New System.Drawing.Size(795, 299)
+        Me.layoutControlGroup4.Text = "Alokasi Man Power"
+        '
+        'LayoutControlItem6
+        '
+        Me.LayoutControlItem6.Control = Me.ListBarang
+        Me.LayoutControlItem6.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem6.CustomizationFormText = "DAFTAR BARANG/TOKO"
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem6.Name = "LayoutControlItem6"
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(397, 221)
+        Me.LayoutControlItem6.Text = "DAFTAR BARANG/TOKO"
+        Me.LayoutControlItem6.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(141, 15)
+        '
+        'LayoutControlItem9
+        '
+        Me.LayoutControlItem9.Control = Me.BtnRefresh
+        Me.LayoutControlItem9.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem9.CustomizationFormText = "layoutControlItem2"
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 221)
+        Me.LayoutControlItem9.Name = "LayoutControlItem9"
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(795, 26)
+        Me.LayoutControlItem9.Text = "layoutControlItem2"
+        Me.LayoutControlItem9.TextLocation = DevExpress.Utils.Locations.Left
+        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem9.TextVisible = False
+        '
+        'LayoutControlItem11
+        '
+        Me.LayoutControlItem11.Control = Me.BtnExit
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 273)
+        Me.LayoutControlItem11.Name = "LayoutControlItem11"
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(795, 26)
+        Me.LayoutControlItem11.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem11.TextVisible = False
+        '
+        'LayoutControlItem7
+        '
+        Me.LayoutControlItem7.Control = Me.ListManpower
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(397, 0)
+        Me.LayoutControlItem7.Name = "LayoutControlItem7"
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(398, 221)
+        Me.LayoutControlItem7.Text = "Daftar Manpower"
+        Me.LayoutControlItem7.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(141, 15)
+        '
+        'LayoutControlItem10
+        '
+        Me.LayoutControlItem10.Control = Me.BtnAddWorker
+        Me.LayoutControlItem10.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem10.CustomizationFormText = "layoutControlItem3"
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 247)
+        Me.LayoutControlItem10.Name = "LayoutControlItem10"
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(795, 26)
+        Me.LayoutControlItem10.Text = "layoutControlItem3"
+        Me.LayoutControlItem10.TextLocation = DevExpress.Utils.Locations.Left
+        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem10.TextVisible = False
+        '
         'layoutControlGroup3
         '
         Me.layoutControlGroup3.CustomizationFormText = "Tab1"
@@ -650,72 +716,6 @@ Partial Class POProduksi
         Me.LayoutControlItem8.TextLocation = DevExpress.Utils.Locations.Left
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem8.TextVisible = False
-        '
-        'layoutControlGroup4
-        '
-        Me.layoutControlGroup4.CustomizationFormText = "Tab2"
-        Me.layoutControlGroup4.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem6, Me.LayoutControlItem9, Me.LayoutControlItem11, Me.LayoutControlItem7, Me.LayoutControlItem10})
-        Me.layoutControlGroup4.Location = New System.Drawing.Point(0, 0)
-        Me.layoutControlGroup4.Name = "layoutControlGroup4"
-        Me.layoutControlGroup4.Size = New System.Drawing.Size(795, 299)
-        Me.layoutControlGroup4.Text = "Alokasi Man Power"
-        '
-        'LayoutControlItem6
-        '
-        Me.LayoutControlItem6.Control = Me.ListBarang
-        Me.LayoutControlItem6.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem6.CustomizationFormText = "DAFTAR BARANG/TOKO"
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(397, 221)
-        Me.LayoutControlItem6.Text = "DAFTAR BARANG/TOKO"
-        Me.LayoutControlItem6.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(141, 15)
-        '
-        'LayoutControlItem9
-        '
-        Me.LayoutControlItem9.Control = Me.BtnRefresh
-        Me.LayoutControlItem9.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem9.CustomizationFormText = "layoutControlItem2"
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 221)
-        Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(795, 26)
-        Me.LayoutControlItem9.Text = "layoutControlItem2"
-        Me.LayoutControlItem9.TextLocation = DevExpress.Utils.Locations.Left
-        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem9.TextVisible = False
-        '
-        'LayoutControlItem11
-        '
-        Me.LayoutControlItem11.Control = Me.BtnExit
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 273)
-        Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(795, 26)
-        Me.LayoutControlItem11.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem11.TextVisible = False
-        '
-        'LayoutControlItem7
-        '
-        Me.LayoutControlItem7.Control = Me.ListManpower
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(397, 0)
-        Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(398, 221)
-        Me.LayoutControlItem7.Text = "Daftar Manpower"
-        Me.LayoutControlItem7.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(141, 15)
-        '
-        'LayoutControlItem10
-        '
-        Me.LayoutControlItem10.Control = Me.BtnAddWorker
-        Me.LayoutControlItem10.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem10.CustomizationFormText = "layoutControlItem3"
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 247)
-        Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(795, 26)
-        Me.LayoutControlItem10.Text = "layoutControlItem3"
-        Me.LayoutControlItem10.TextLocation = DevExpress.Utils.Locations.Left
-        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem10.TextVisible = False
         '
         'LayoutControlGroup2
         '
@@ -969,6 +969,12 @@ Partial Class POProduksi
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tabbedControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.layoutControlGroup4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.layoutControlGroup3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -978,12 +984,6 @@ Partial Class POProduksi
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.layoutControlGroup4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
