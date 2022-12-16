@@ -135,7 +135,6 @@ Partial Class EntryDO
         '
         'DTDeadlineKI
         '
-        Me.DTDeadlineKI.Enabled = False
         Me.DTDeadlineKI.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DTDeadlineKI.Location = New System.Drawing.Point(21, 343)
         Me.DTDeadlineKI.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)

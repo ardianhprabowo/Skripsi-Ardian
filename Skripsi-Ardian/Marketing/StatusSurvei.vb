@@ -226,7 +226,7 @@ Public Class StatusSurvei
         Me.Cursor = Cursors.WaitCursor
         GGVM_conn()
         s = ""
-        s = s & " select * from view_detaildo2"
+        s = s & " select * from view_detaildo"
         s = s & " where iddtorder='" & TIDDtOrder.Text & "' "
         s = s & " GROUP BY iddetailpe "
         da = New OdbcDataAdapter(s, conn)
@@ -314,11 +314,11 @@ Public Class StatusSurvei
         GGVM_conn()
         s = ""
         s = s & " select y.* from ("
-        s = s & " select  a.*,b.nama as nmklien,c.brand,f.nama as divisi "
+        s = s & " select  a.*,b.klien as nmklien,c.brand,f.divisi as divisi "
         s = s & " from prd_dataorder a, klien b, brand c,  divisi f  "
-        s = s & " where a.idklien = b.id"
+        s = s & " where a.idklien = b.idklien"
         s = s & " and a.idbrand = c.idbrand "
-        s = s & " and a.iddivisi = f.id_divisi "
+        s = s & " and a.iddivisi = f.iddivisi "
         's = s & " and a.idstatus_proyek in ('1')"
         s = s & " and a.time_closing is null ) y "
         ' s = s & " left join trans_do_survei x on y.iddtorder = x.iddtorder "

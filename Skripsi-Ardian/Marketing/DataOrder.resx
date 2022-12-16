@@ -130,25 +130,12 @@
 	`y`.`idbrand` AS `idbrand`,
 	`y`.`namaorder` AS `namaorder`,
 	`y`.`survei` AS `survei`,
-	`y`.`iddivisi_survei` AS `iddivisi_survei`,
 	`y`.`deadline_survei` AS `deadline_survei`,
 	`y`.`status_kirim` AS `status_kirim`,
 	`y`.`deadline_ki` AS `deadline_ki`,
 	`y`.`idstatus_proyek` AS `idstatus_proyek`,
-	`y`.`deadline_design` AS `deadline_design`,
-	`y`.`selesai_design` AS `selesai_design`,
-	`y`.`deadline_printing` AS `deadline_printing`,
-	`y`.`selesai_printing` AS `selesai_printing`,
-	`y`.`deadline_produksi` AS `deadline_produksi`,
-	`y`.`selesai_produksi` AS `selesai_produksi`,
 	`y`.`user_input` AS `user_input`,
 	`y`.`time_input` AS `time_input`,
-	`y`.`user_koreksi` AS `user_koreksi`,
-	`y`.`time_koreksi` AS `time_koreksi`,
-	`y`.`revisi` AS `revisi`,
-	`y`.`user_batal` AS `user_batal`,
-	`y`.`time_batal` AS `time_batal`,
-	`y`.`alasan_batal` AS `alasan_batal`,
 	`y`.`time_closing` AS `time_closing`,
 	`y`.`nmklien` AS `nmklien`,
 	`y`.`brand` AS `brand`,
@@ -164,50 +151,33 @@ FROM
 				`a`.`idbrand` AS `idbrand`,
 				`a`.`namaorder` AS `namaorder`,
 				`a`.`survei` AS `survei`,
-				`a`.`iddivisi_survei` AS `iddivisi_survei`,
 				`a`.`deadline_survei` AS `deadline_survei`,
 				`a`.`status_kirim` AS `status_kirim`,
 				`a`.`deadline_ki` AS `deadline_ki`,
 				`a`.`idstatus_proyek` AS `idstatus_proyek`,
-				`a`.`deadline_design` AS `deadline_design`,
-				`a`.`selesai_design` AS `selesai_design`,
-				`a`.`deadline_printing` AS `deadline_printing`,
-				`a`.`selesai_printing` AS `selesai_printing`,
-				`a`.`deadline_produksi` AS `deadline_produksi`,
-				`a`.`selesai_produksi` AS `selesai_produksi`,
 				`a`.`user_input` AS `user_input`,
 				`a`.`time_input` AS `time_input`,
-				`a`.`user_koreksi` AS `user_koreksi`,
-				`a`.`time_koreksi` AS `time_koreksi`,
-				`a`.`revisi` AS `revisi`,
-				`a`.`user_batal` AS `user_batal`,
-				`a`.`time_batal` AS `time_batal`,
-				`a`.`alasan_batal` AS `alasan_batal`,
-				`a`.`time_closing` AS `time_closing`,
-				`b`.`nama` AS `nmklien`,
+				a.time_closing  as time_closing,
+				`b`.`klien` AS `nmklien`,
 				`c`.`brand` AS `brand`,
-				`f`.`nama` AS `divisi` 
+				`f`.`divisi` AS `divisi` 
 			FROM
-				((( `geogiven_vm`.`prd_dataorder` `a` JOIN `geogiven_vm`.`klien` `b` ) JOIN `geogiven_vm`.`brand` `c` ) JOIN `geogiven_vm`.`divisi` `f` ) 
+				((( `skripsi`.`prd_dataorder` `a` JOIN `skripsi`.`klien` `b` ) JOIN `skripsi`.`brand` `c` ) JOIN `skripsi`.`divisi` `f` ) 
 			WHERE
 				((
-						`a`.`idklien` = `b`.`id` 
+						`a`.`idklien` = `b`.`idklien` 
 						) 
 					AND ( `a`.`idbrand` = `c`.`idbrand` ) 
-					AND ( `a`.`iddivisi` = `f`.`id_divisi` ) 
-				AND isnull( `a`.`time_closing` )))) `y`
-		LEFT JOIN `geogiven_vm`.`trans_do_survei` `x` ON ((
-				`y`.`iddtorder` = `x`.`iddtorder` 
-			))) 
-WHERE
-	isnull( `x`.`idtrans` ) 
+					AND ( `a`.`iddivisi` = `f`.`iddivisi` ) 
+				AND isnull( `a`.`time_closing` )))) `y`) 
 ORDER BY
 	`y`.`tglorder` DESC
 	
-LIMIT 100</value>
+LIMIT 100
+</value>
   </data>
   <data name="SqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
-    <value>PERhdGFTZXQgTmFtZT0iU3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IkRhdGFPcmRlciI+PEZpZWxkIE5hbWU9ImlkZHRvcmRlciIgVHlwZT0iSW50NjQiIC8+PEZpZWxkIE5hbWU9ImlkZGl2aXNpIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0ibm9vcmRlciIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJ0Z2xvcmRlciIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9Imlka2xpZW4iIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJpZGJyYW5kIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0ibmFtYW9yZGVyIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InN1cnZlaSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJpZGRpdmlzaV9zdXJ2ZWkiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iZGVhZGxpbmVfc3VydmVpIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0ic3RhdHVzX2tpcmltIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9ImRlYWRsaW5lX2tpIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0iaWRzdGF0dXNfcHJveWVrIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iZGVhZGxpbmVfZGVzaWduIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0ic2VsZXNhaV9kZXNpZ24iIFR5cGU9IkRhdGVUaW1lIiAvPjxGaWVsZCBOYW1lPSJkZWFkbGluZV9wcmludGluZyIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9InNlbGVzYWlfcHJpbnRpbmciIFR5cGU9IkRhdGVUaW1lIiAvPjxGaWVsZCBOYW1lPSJkZWFkbGluZV9wcm9kdWtzaSIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9InNlbGVzYWlfcHJvZHVrc2kiIFR5cGU9IkRhdGVUaW1lIiAvPjxGaWVsZCBOYW1lPSJ1c2VyX2lucHV0IiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InRpbWVfaW5wdXQiIFR5cGU9IkRhdGVUaW1lIiAvPjxGaWVsZCBOYW1lPSJ1c2VyX2tvcmVrc2kiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0idGltZV9rb3Jla3NpIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0icmV2aXNpIiBUeXBlPSJTQnl0ZSIgLz48RmllbGQgTmFtZT0idXNlcl9iYXRhbCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJ0aW1lX2JhdGFsIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0iYWxhc2FuX2JhdGFsIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InRpbWVfY2xvc2luZyIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9Im5ta2xpZW4iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iYnJhbmQiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iZGl2aXNpIiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjwvRGF0YVNldD4=</value>
+    <value>PERhdGFTZXQgTmFtZT0iU3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IkRhdGFPcmRlciI+PEZpZWxkIE5hbWU9ImlkZHRvcmRlciIgVHlwZT0iSW50NjQiIC8+PEZpZWxkIE5hbWU9ImlkZGl2aXNpIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0ibm9vcmRlciIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJ0Z2xvcmRlciIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9Imlka2xpZW4iIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJpZGJyYW5kIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0ibmFtYW9yZGVyIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InN1cnZlaSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJkZWFkbGluZV9zdXJ2ZWkiIFR5cGU9IkRhdGVUaW1lIiAvPjxGaWVsZCBOYW1lPSJzdGF0dXNfa2lyaW0iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iZGVhZGxpbmVfa2kiIFR5cGU9IkRhdGVUaW1lIiAvPjxGaWVsZCBOYW1lPSJpZHN0YXR1c19wcm95ZWsiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJ1c2VyX2lucHV0IiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InRpbWVfaW5wdXQiIFR5cGU9IkRhdGVUaW1lIiAvPjxGaWVsZCBOYW1lPSJ0aW1lX2Nsb3NpbmciIFR5cGU9IkRhdGVUaW1lIiAvPjxGaWVsZCBOYW1lPSJubWtsaWVuIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9ImJyYW5kIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9ImRpdmlzaSIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48L0RhdGFTZXQ+</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="ButtonImageOptions1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

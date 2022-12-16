@@ -69,27 +69,6 @@ Public Class POInternalDesign
         ListPOPrint.Columns.Add("BAHAN", 110, HorizontalAlignment.Right)
         ListPOPrint.Columns.Add("FINISHING", 150, HorizontalAlignment.Right)
     End Sub
-    Private Sub ListHeadCutting()
-        ListPOCutting.FullRowSelect = True
-        ListPOCutting.MultiSelect = True
-        ListPOCutting.View = View.Details
-        ListPOCutting.CheckBoxes = True
-        ListPOCutting.Columns.Clear()
-        ListPOCutting.Items.Clear()
-        ListPOCutting.Columns.Add("TOKO", 180, HorizontalAlignment.Left)
-        ListPOCutting.Columns.Add("BARANG", 200, HorizontalAlignment.Left)
-        ListPOCutting.Columns.Add("P", 60, HorizontalAlignment.Right)
-        ListPOCutting.Columns.Add("L", 60, HorizontalAlignment.Right)
-        ListPOCutting.Columns.Add("T", 60, HorizontalAlignment.Right)
-        ListPOCutting.Columns.Add("SISI", 60, HorizontalAlignment.Right)
-        ListPOCutting.Columns.Add("JML", 60, HorizontalAlignment.Right)
-        ListPOCutting.Columns.Add("iditem_prt", 0, HorizontalAlignment.Right)
-        ListPOCutting.Columns.Add("iddetail_po_prt", 0, HorizontalAlignment.Right)
-        ListPOCutting.Columns.Add("idtoko", 0, HorizontalAlignment.Right)
-        ListPOCutting.Columns.Add("BAHAN", 110, HorizontalAlignment.Right)
-        ListPOCutting.Columns.Add("FINISHING", 150, HorizontalAlignment.Right)
-
-    End Sub
 #End Region
 #Region "Deklarasi Fungsi"
     Private Sub TampilPODeTAIL()
@@ -186,48 +165,7 @@ Public Class POInternalDesign
         GGVM_conn_close()
     End Sub
 
-    Private Sub TampilDetailCutting()
-        Dim s As String
-        Dim i As Integer
-        Dim tbl As New DataTable
-
-        ListPOCutting.Items.Clear()
-        GGVM_conn()
-        s = ""
-        s = s & " select * from view_detailpocutting "
-        s = s & " where idtoko = '" & TIdToko.Text & "' and iddetail_dsn='" & ListDetailPODsn.Items(brske).SubItems(14).Text & "' "
-        da = New OdbcDataAdapter(s, conn)
-        'ds.Clear()
-        tbl = New DataTable
-        tbl.Clear()
-        da.Fill(tbl)
-        For i = 0 To tbl.Rows.Count - 1
-            With ListPOCutting
-                .Items.Add(tbl.Rows(i)("toko"))
-                With .Items(.Items.Count - 1).SubItems
-                    .Add(tbl.Rows(i)("item_cut"))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("panjang_cut")), "", tbl.Rows(i)("panjang_cut")))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("lebar_cut")), "", tbl.Rows(i)("lebar_cut")))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("tinggi_cut")), "", tbl.Rows(i)("tinggi_cut")))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("sisi_cut")), "", tbl.Rows(i)("sisi_cut")))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("qty_cut")), "", tbl.Rows(i)("qty_cut")))
-                    .Add(tbl.Rows(i)("iditem_cut"))
-                    .Add(tbl.Rows(i)("iddetail_po_cut"))
-                    If tbl.Rows(i)("idtoko") Is DBNull.Value Then
-                        .Add("0")
-                    Else
-                        .Add(tbl.Rows(i)("idtoko"))
-                    End If
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("bahan")), "", tbl.Rows(i)("bahan")))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("finishing")), "", tbl.Rows(i)("finishing")))
-                    .Add(tbl.Rows(i)("idbahan"))
-                    .Add(tbl.Rows(i)("idfinishing"))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("idpo_cut")), "", tbl.Rows(i)("idpo_cut")))
-                End With
-            End With
-        Next
-        GGVM_conn_close()
-    End Sub
+   
     Private Sub AutoCompBarangPrinting()
 
         Try
@@ -295,7 +233,6 @@ Public Class POInternalDesign
         CPrinting.Enabled = True
         BtnSimpanDetail.Enabled = True
         BtnSimpanDetail.Text = "Simpan"
-        ListPOCutting.Enabled = False
         ListPOPrint.Enabled = False
         BtnEditDsn.Enabled = False
         BtnEntryDsn.Enabled = False
@@ -347,7 +284,6 @@ Public Class POInternalDesign
         TFinishing.Text = ""
         CCutting.Enabled = False
         CPrinting.Enabled = False
-        ListPOCutting.Enabled = True
         ListPOPrint.Enabled = True
         BtnEditDsn.Enabled = False
         BtnEntryDsn.Enabled = True
@@ -357,7 +293,6 @@ Public Class POInternalDesign
         ' ...
         ListHeadDetail()
         ListHeadPrint()
-        ListHeadCutting()
         RbTerima.Checked = True
         BtnAccDsn.Caption = "TERIMA PO"
     End Sub
@@ -678,23 +613,6 @@ Public Class POInternalDesign
         Me.Cursor = Cursors.Default
     End Sub
 
-    Private Sub ListPOCutting_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListPOCutting.SelectedIndexChanged
-        Me.Cursor = Cursors.WaitCursor
-        With Me.ListPOCutting
-            For Each check As ListViewItem In ListPOCutting.CheckedItems
-                check.Checked = False
-            Next
-            For Each item As ListViewItem In ListPOCutting.SelectedItems
-                item.Checked = True
-                brske = item.Index
-            Next
-            TidDetailpoCut.Text = ListPOCutting.Items(brske).SubItems(9).Text
-            BtnExitDsn.Caption = "HAPUS"
-            BtnEditDsn.Enabled = True
-        End With
-        'TampilDetailPrinting()
-        Me.Cursor = Cursors.Default
-    End Sub
 
     Private Sub BtnSimpanAlasan_Click(sender As Object, e As EventArgs) Handles BtnSimpanAlasan.Click
         If Len(Me.TAlasan.Text) < 10 Or Len(Me.TAlasan.Text) > 150 Then
@@ -862,7 +780,6 @@ Public Class POInternalDesign
         PanelAlasan.Visible = False
         TAlasan.Text = ""
         TampilDetailPrinting()
-        TampilDetailCutting()
         Proses = "Entry"
         tutupdesain()
     End Sub
@@ -999,7 +916,6 @@ Public Class POInternalDesign
                 GGVM_conn_close()
                 'Panel1.Visible = False
                 TampilDetailPrinting()
-                TampilDetailCutting()
                 TBarang2.Text = ""
                 TIdBarang2.Text = ""
                 'C.TBarang.Text = ""
@@ -1165,7 +1081,6 @@ Public Class POInternalDesign
         cmd.ExecuteNonQuery()
 
         TampilDetailPrinting()
-        TampilDetailCutting()
         TampilPODeTAIL()
     End Sub
 
@@ -1283,7 +1198,6 @@ Public Class POInternalDesign
         cmd.ExecuteNonQuery()
 
         TampilDetailPrinting()
-        TampilDetailCutting()
         TampilPODeTAIL()
     End Sub
 
@@ -1397,7 +1311,7 @@ Public Class POInternalDesign
     End Sub
     Private Sub BtnEditDsn_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BtnEditDsn.ItemClick
         Dim ada, item, cutting As Boolean
-        Dim jmldt, jmldetail, brs, brs2, brs3, jmldetailcut As Integer
+        Dim jmldt, jmldetail, brs, brs2, jmldetailcut As Integer
         ada = False
         item = False
         cutting = False
@@ -1428,13 +1342,7 @@ Public Class POInternalDesign
             End If
         Next
 
-        For h = 0 To ListPOCutting.Items.Count - 1
-            If ListPOCutting.Items(h).Checked = True Then
-                cutting = True
-                brs3 = h
-                jmldetailcut = jmldetailcut + 1
-            End If
-        Next
+       
 
         AutoCompBarangPrinting()
         For i = 0 To ListDetailPODsn.Items.Count - 1
@@ -1479,34 +1387,13 @@ Public Class POInternalDesign
                     TidPoPrt.Text = ListPOPrint.Items(i).SubItems(14).Text
                 End If
             Next
-        ElseIf item = False And cutting = True Then
-            For i = 0 To ListPOCutting.Items.Count - 1
-                If ListPOCutting.Items(i).Checked = True Then
-                    CCutting.Checked = True
-                    brs3 = i
-                    TidDetailPoPrt.Text = ListPOCutting.Items(i).SubItems(8).Text
-                    Tp3.Text = ListPOCutting.Items(i).SubItems(2).Text
-                    Tl3.Text = ListPOCutting.Items(i).SubItems(3).Text
-                    Tt3.Text = ListPOCutting.Items(i).SubItems(4).Text
-                    Tj3.Text = ListPOCutting.Items(i).SubItems(6).Text
-                    TBarang2.Text = ListPOCutting.Items(i).SubItems(1).Text
-                    CBahan.Text = ListPOCutting.Items(i).SubItems(10).Text
-                    TFinishing.Text = ListPOCutting.Items(i).SubItems(11).Text
-                    TidBahan.Text = ListPOCutting.Items(i).SubItems(12).Text
-                    TidFinishing.Text = ListPOCutting.Items(i).SubItems(13).Text
-                    TidPOCut.Text = ListPOCutting.Items(i).SubItems(14).Text
-                End If
-            Next
+     
         ElseIf item = False Then
             MsgBox("Tidak ada data PO Printing yang akan dipilih, Pilih dulu datanya!!...", MsgBoxStyle.Information, "Information")
             ListPOPrint.Focus()
             Exit Sub
         ElseIf jmldetail > 1 Then
             MsgBox("Hanya 1(satu) data PO-PRINTING yg bisa di-Entry !!...", MsgBoxStyle.Information, "Information")
-            Exit Sub
-        ElseIf cutting = False Then
-            MsgBox("Tidak ada PO Cutting yang akan dipilih, Pilih dulu datanya!!...", MsgBoxStyle.Information, "Information")
-            ListPOCutting.Focus()
             Exit Sub
         ElseIf jmldetailcut > 1 Then
             MsgBox("Hanya 1(satu) data PO-CUTTING yg bisa di-Entry !!...", MsgBoxStyle.Information, "Information")
@@ -1531,7 +1418,6 @@ Public Class POInternalDesign
             'TIdBarang1.Text = ListDetailPODsn.Items(brske).SubItems(11).Text
         End With
         TampilDetailPrinting()
-        TampilDetailCutting()
         Me.Cursor = Cursors.Default
     End Sub
     Private Sub CBahan_SelectedValueChanged(sender As Object, e As EventArgs) Handles CBahan.SelectedValueChanged

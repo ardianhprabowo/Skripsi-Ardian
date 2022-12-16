@@ -15,9 +15,9 @@ Partial Public Class DataOrder
     Friend Shared Event GetKlien(ByVal NoDo As String)
     Friend Shared Event GetProyek(ByVal NoDo As String)
     Friend Shared Event GetDeadline(ByVal NoDo As String)
-    Friend Shared Event GetDivIDSurvei(ByVal NoDo As String)
+    'Friend Shared Event GetDivIDSurvei(ByVal NoDo As String)
     Friend Shared Event GetDivSurvei(ByVal NoDo As String)
-    Dim nodo, divisi, idivisi_survei, survei, tanggal, klien, idklien, brand, idbrand, proyek, deadline As String
+    Dim nodo, divisi, survei, tanggal, klien, idklien, brand, idbrand, proyek, deadline As String
     Public Sub New()
         InitializeComponent()
 
@@ -54,7 +54,7 @@ Partial Public Class DataOrder
             RaiseEvent GetKlien(klien)
             RaiseEvent GetBrand(brand)
             RaiseEvent GetDeadline(deadline)
-            RaiseEvent GetDivIDSurvei(idivisi_survei)
+            'RaiseEvent GetDivIDSurvei(idivisi_survei)
             RaiseEvent GetDivSurvei(survei)
             FlyoutPanel1.ShowPopup()
         ElseIf e.Button.Properties.Caption = "Delete" Then
@@ -117,7 +117,7 @@ Partial Public Class DataOrder
         TidDtOrder.Text = ""
         nodo = ""
         divisi = ""
-        idivisi_survei = ""
+        'idivisi_survei = ""
         tanggal = ""
         klien = ""
         idklien = ""
@@ -129,7 +129,7 @@ Partial Public Class DataOrder
         TidDtOrder.Text = AdvBandedGridView1.GetRowCellValue(AdvBandedGridView1.FocusedRowHandle, "iddtorder").ToString()
         nodo = AdvBandedGridView1.GetRowCellValue(AdvBandedGridView1.FocusedRowHandle, "noorder").ToString()
         divisi = AdvBandedGridView1.GetRowCellValue(AdvBandedGridView1.FocusedRowHandle, "divisi").ToString()
-        idivisi_survei = AdvBandedGridView1.GetRowCellValue(AdvBandedGridView1.FocusedRowHandle, "iddivisi_survei").ToString()
+        'idivisi_survei = AdvBandedGridView1.GetRowCellValue(AdvBandedGridView1.FocusedRowHandle, "iddivisi_survei").ToString()
         tanggal = AdvBandedGridView1.GetRowCellValue(AdvBandedGridView1.FocusedRowHandle, "tglorder").ToString()
         klien = AdvBandedGridView1.GetRowCellValue(AdvBandedGridView1.FocusedRowHandle, "nmklien").ToString()
         idklien = AdvBandedGridView1.GetRowCellValue(AdvBandedGridView1.FocusedRowHandle, "idklien").ToString()
@@ -144,7 +144,7 @@ Partial Public Class DataOrder
         TidDtOrder.Text = ""
         nodo = ""
         divisi = ""
-        idivisi_survei = ""
+        'idivisi_survei = ""
         tanggal = ""
         klien = ""
         idklien = ""
@@ -156,7 +156,7 @@ Partial Public Class DataOrder
         TidDtOrder.Text = AdvBandedGridView1.GetRowCellValue(AdvBandedGridView1.FocusedRowHandle, "iddtorder").ToString()
         nodo = AdvBandedGridView1.GetRowCellValue(AdvBandedGridView1.FocusedRowHandle, "noorder").ToString()
         divisi = AdvBandedGridView1.GetRowCellValue(AdvBandedGridView1.FocusedRowHandle, "divisi").ToString()
-        idivisi_survei = AdvBandedGridView1.GetRowCellValue(AdvBandedGridView1.FocusedRowHandle, "iddivisi_survei").ToString()
+        ' idivisi_survei = AdvBandedGridView1.GetRowCellValue(AdvBandedGridView1.FocusedRowHandle, "iddivisi_survei").ToString()
         tanggal = AdvBandedGridView1.GetRowCellValue(AdvBandedGridView1.FocusedRowHandle, "tglorder").ToString()
         klien = AdvBandedGridView1.GetRowCellValue(AdvBandedGridView1.FocusedRowHandle, "nmklien").ToString()
         idklien = AdvBandedGridView1.GetRowCellValue(AdvBandedGridView1.FocusedRowHandle, "idklien").ToString()
@@ -177,7 +177,4 @@ Partial Public Class DataOrder
 
     End Sub
 
-    Private Sub FlyoutPanel1_Load(sender As Object, e As EventArgs) Handles FlyoutPanel1.Load
-
-    End Sub
 End Class

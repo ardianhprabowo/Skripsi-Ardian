@@ -20,9 +20,9 @@ Partial Class POInternalDesign
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ButtonImageOptions2 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
-        Dim CustomSqlQuery2 As DevExpress.DataAccess.Sql.CustomSqlQuery = New DevExpress.DataAccess.Sql.CustomSqlQuery()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(POInternalDesign))
+        Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim CustomSqlQuery1 As DevExpress.DataAccess.Sql.CustomSqlQuery = New DevExpress.DataAccess.Sql.CustomSqlQuery()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.BtnEntryDsn = New DevExpress.XtraBars.BarButtonItem()
@@ -49,8 +49,6 @@ Partial Class POInternalDesign
         Me.TabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.ListPOPrint = New System.Windows.Forms.ListView()
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
-        Me.ListPOCutting = New System.Windows.Forms.ListView()
         Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
@@ -175,7 +173,6 @@ Partial Class POInternalDesign
         CType(Me.TabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.XtraTabPage1.SuspendLayout()
-        Me.XtraTabPage2.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -310,31 +307,35 @@ Partial Class POInternalDesign
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1072, 34)
+        Me.barDockControlTop.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1225, 41)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 606)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 808)
         Me.barDockControlBottom.Manager = Me.BarManager1
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1072, 0)
+        Me.barDockControlBottom.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1225, 0)
         '
         'barDockControlLeft
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 34)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 41)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 572)
+        Me.barDockControlLeft.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 767)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1072, 34)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1225, 41)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 572)
+        Me.barDockControlRight.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 767)
         '
         'KirimPrinting
         '
@@ -357,14 +358,15 @@ Partial Class POInternalDesign
         '
         Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainerControl1.Horizontal = False
-        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 34)
+        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 41)
+        Me.SplitContainerControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.SplitContainerControl1.Name = "SplitContainerControl1"
         Me.SplitContainerControl1.Panel1.Controls.Add(Me.GroupControl1)
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.SplitContainerControl2)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(1072, 241)
-        Me.SplitContainerControl1.SplitterPosition = 71
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1225, 326)
+        Me.SplitContainerControl1.SplitterPosition = 95
         Me.SplitContainerControl1.TabIndex = 4
         '
         'GroupControl1
@@ -373,8 +375,9 @@ Partial Class POInternalDesign
         Me.GroupControl1.Controls.Add(Me.RbTerima)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1072, 71)
+        Me.GroupControl1.Size = New System.Drawing.Size(1225, 95)
         Me.GroupControl1.TabIndex = 5
         Me.GroupControl1.Text = "PILIH MENU"
         '
@@ -383,9 +386,10 @@ Partial Class POInternalDesign
         Me.RbKirim.BackColor = System.Drawing.Color.Transparent
         Me.RbKirim.Dock = System.Windows.Forms.DockStyle.Top
         Me.RbKirim.ForeColor = System.Drawing.Color.Black
-        Me.RbKirim.Location = New System.Drawing.Point(2, 47)
+        Me.RbKirim.Location = New System.Drawing.Point(2, 62)
+        Me.RbKirim.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.RbKirim.Name = "RbKirim"
-        Me.RbKirim.Size = New System.Drawing.Size(1068, 25)
+        Me.RbKirim.Size = New System.Drawing.Size(1221, 33)
         Me.RbKirim.TabIndex = 3
         Me.RbKirim.Text = "Pembuatan/Kirim PO. Printing"
         Me.RbKirim.UseVisualStyleBackColor = False
@@ -395,9 +399,10 @@ Partial Class POInternalDesign
         Me.RbTerima.BackColor = System.Drawing.Color.Transparent
         Me.RbTerima.Dock = System.Windows.Forms.DockStyle.Top
         Me.RbTerima.ForeColor = System.Drawing.Color.Black
-        Me.RbTerima.Location = New System.Drawing.Point(2, 22)
+        Me.RbTerima.Location = New System.Drawing.Point(2, 29)
+        Me.RbTerima.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.RbTerima.Name = "RbTerima"
-        Me.RbTerima.Size = New System.Drawing.Size(1068, 25)
+        Me.RbTerima.Size = New System.Drawing.Size(1221, 33)
         Me.RbTerima.TabIndex = 4
         Me.RbTerima.Text = "Terima PO Produksi"
         Me.RbTerima.UseVisualStyleBackColor = False
@@ -406,13 +411,14 @@ Partial Class POInternalDesign
         '
         Me.SplitContainerControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainerControl2.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainerControl2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.SplitContainerControl2.Name = "SplitContainerControl2"
         Me.SplitContainerControl2.Panel1.Controls.Add(Me.GroupControl2)
         Me.SplitContainerControl2.Panel1.Text = "Panel1"
         Me.SplitContainerControl2.Panel2.Controls.Add(Me.TabControl1)
         Me.SplitContainerControl2.Panel2.Text = "Panel2"
-        Me.SplitContainerControl2.Size = New System.Drawing.Size(1072, 164)
-        Me.SplitContainerControl2.SplitterPosition = 532
+        Me.SplitContainerControl2.Size = New System.Drawing.Size(1225, 224)
+        Me.SplitContainerControl2.SplitterPosition = 608
         Me.SplitContainerControl2.TabIndex = 0
         '
         'GroupControl2
@@ -420,8 +426,9 @@ Partial Class POInternalDesign
         Me.GroupControl2.Controls.Add(Me.ListDetailPODsn)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(532, 164)
+        Me.GroupControl2.Size = New System.Drawing.Size(608, 224)
         Me.GroupControl2.TabIndex = 0
         Me.GroupControl2.Text = "DETAIL P.O INTERNAL DESAIN"
         '
@@ -431,9 +438,10 @@ Partial Class POInternalDesign
         Me.ListDetailPODsn.Enabled = False
         Me.ListDetailPODsn.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.ListDetailPODsn.HideSelection = False
-        Me.ListDetailPODsn.Location = New System.Drawing.Point(2, 22)
+        Me.ListDetailPODsn.Location = New System.Drawing.Point(2, 29)
+        Me.ListDetailPODsn.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ListDetailPODsn.Name = "ListDetailPODsn"
-        Me.ListDetailPODsn.Size = New System.Drawing.Size(528, 140)
+        Me.ListDetailPODsn.Size = New System.Drawing.Size(604, 193)
         Me.ListDetailPODsn.TabIndex = 4
         Me.ListDetailPODsn.UseCompatibleStateImageBehavior = False
         '
@@ -441,17 +449,19 @@ Partial Class POInternalDesign
         '
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
+        Me.TabControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedTabPage = Me.XtraTabPage1
-        Me.TabControl1.Size = New System.Drawing.Size(534, 164)
+        Me.TabControl1.Size = New System.Drawing.Size(610, 224)
         Me.TabControl1.TabIndex = 0
-        Me.TabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
+        Me.TabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1})
         '
         'XtraTabPage1
         '
         Me.XtraTabPage1.Controls.Add(Me.ListPOPrint)
+        Me.XtraTabPage1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(526, 132)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(600, 184)
         Me.XtraTabPage1.Text = "DETAIL P.O PRINTING"
         '
         'ListPOPrint
@@ -460,28 +470,11 @@ Partial Class POInternalDesign
         Me.ListPOPrint.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListPOPrint.HideSelection = False
         Me.ListPOPrint.Location = New System.Drawing.Point(0, 0)
+        Me.ListPOPrint.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ListPOPrint.Name = "ListPOPrint"
-        Me.ListPOPrint.Size = New System.Drawing.Size(526, 132)
+        Me.ListPOPrint.Size = New System.Drawing.Size(600, 184)
         Me.ListPOPrint.TabIndex = 5
         Me.ListPOPrint.UseCompatibleStateImageBehavior = False
-        '
-        'XtraTabPage2
-        '
-        Me.XtraTabPage2.Controls.Add(Me.ListPOCutting)
-        Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(526, 132)
-        Me.XtraTabPage2.Text = "DETAIL P.O CUTTING"
-        '
-        'ListPOCutting
-        '
-        Me.ListPOCutting.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ListPOCutting.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.ListPOCutting.Location = New System.Drawing.Point(0, 0)
-        Me.ListPOCutting.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.ListPOCutting.Name = "ListPOCutting"
-        Me.ListPOCutting.Size = New System.Drawing.Size(526, 132)
-        Me.ListPOCutting.TabIndex = 10
-        Me.ListPOCutting.UseCompatibleStateImageBehavior = False
         '
         'BarButtonItem1
         '
@@ -559,21 +552,23 @@ Partial Class POInternalDesign
         '
         Me.BarDockControl4.CausesValidation = False
         Me.BarDockControl4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BarDockControl4.Location = New System.Drawing.Point(1072, 34)
+        Me.BarDockControl4.Location = New System.Drawing.Point(1225, 41)
         Me.BarDockControl4.Manager = Nothing
-        Me.BarDockControl4.Size = New System.Drawing.Size(0, 572)
+        Me.BarDockControl4.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.BarDockControl4.Size = New System.Drawing.Size(0, 767)
         '
         'GroupControl3
         '
         Me.GroupControl3.Controls.Add(Me.GridControl1)
-        ButtonImageOptions2.SvgImage = CType(resources.GetObject("ButtonImageOptions2.SvgImage"), DevExpress.Utils.Svg.SvgImage)
-        ButtonImageOptions2.SvgImageSize = New System.Drawing.Size(16, 16)
-        Me.GroupControl3.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Tampil Pekerjaan Selesai", True, ButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.CheckButton, "", -1, True, Nothing, True, False, True, Nothing, -1)})
+        ButtonImageOptions1.SvgImage = CType(resources.GetObject("ButtonImageOptions1.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        ButtonImageOptions1.SvgImageSize = New System.Drawing.Size(16, 16)
+        Me.GroupControl3.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Tampil Pekerjaan Selesai", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.CheckButton, "", -1, True, Nothing, True, False, True, Nothing, -1)})
         Me.GroupControl3.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 275)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 367)
+        Me.GroupControl3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(1072, 331)
+        Me.GroupControl3.Size = New System.Drawing.Size(1225, 441)
         Me.GroupControl3.TabIndex = 0
         Me.GroupControl3.Text = "P.O INTERNAL DESAIN"
         '
@@ -582,11 +577,13 @@ Partial Class POInternalDesign
         Me.GridControl1.DataMember = "Query"
         Me.GridControl1.DataSource = Me.SqlDataSource1
         Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(2, 27)
+        Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.GridControl1.Location = New System.Drawing.Point(2, 33)
         Me.GridControl1.MainView = Me.GridPODsn
+        Me.GridControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.GridControl1.MenuManager = Me.BarManager1
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(1068, 302)
+        Me.GridControl1.Size = New System.Drawing.Size(1221, 406)
         Me.GridControl1.TabIndex = 0
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridPODsn})
         '
@@ -594,14 +591,16 @@ Partial Class POInternalDesign
         '
         Me.SqlDataSource1.ConnectionName = "localhost_geogiven_vm_Connection-Kantor"
         Me.SqlDataSource1.Name = "SqlDataSource1"
-        CustomSqlQuery2.Name = "Query"
-        CustomSqlQuery2.Sql = "select * from view_tampilpo_dsn" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "ORDER BY kirim_po DESC "
-        Me.SqlDataSource1.Queries.AddRange(New DevExpress.DataAccess.Sql.SqlQuery() {CustomSqlQuery2})
+        CustomSqlQuery1.Name = "Query"
+        CustomSqlQuery1.Sql = "select * from view_tampilpo_dsn" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "ORDER BY kirim_po DESC "
+        Me.SqlDataSource1.Queries.AddRange(New DevExpress.DataAccess.Sql.SqlQuery() {CustomSqlQuery1})
         Me.SqlDataSource1.ResultSchemaSerializable = resources.GetString("SqlDataSource1.ResultSchemaSerializable")
         '
         'GridPODsn
         '
         Me.GridPODsn.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colidpo_dsn, Me.colnopo, Me.colidklien, Me.colidkota, Me.coltanggal, Me.collokasi, Me.colbrand, Me.colnope, Me.coldeadline_desain, Me.colselesai_desain, Me.coldeadline_ki, Me.coltime_closhing, Me.colkirim_po, Me.colterima_po, Me.colkirim_ppic, Me.colklien, Me.coliddtorder, Me.colidpo_prd, Me.colPO_Produksi, Me.colStatus})
+        Me.GridPODsn.DetailHeight = 467
+        Me.GridPODsn.FixedLineWidth = 3
         Me.GridPODsn.GridControl = Me.GridControl1
         Me.GridPODsn.Name = "GridPODsn"
         Me.GridPODsn.OptionsFilter.AllowAutoFilterConditionChange = DevExpress.Utils.DefaultBoolean.[False]
@@ -615,128 +614,168 @@ Partial Class POInternalDesign
         'colidpo_dsn
         '
         Me.colidpo_dsn.FieldName = "idpo_dsn"
+        Me.colidpo_dsn.MinWidth = 23
         Me.colidpo_dsn.Name = "colidpo_dsn"
+        Me.colidpo_dsn.Width = 86
         '
         'colnopo
         '
         Me.colnopo.Caption = "No. P.O"
         Me.colnopo.FieldName = "nopo"
+        Me.colnopo.MinWidth = 23
         Me.colnopo.Name = "colnopo"
         Me.colnopo.Visible = True
         Me.colnopo.VisibleIndex = 1
+        Me.colnopo.Width = 86
         '
         'colidklien
         '
         Me.colidklien.FieldName = "idklien"
+        Me.colidklien.MinWidth = 23
         Me.colidklien.Name = "colidklien"
+        Me.colidklien.Width = 86
         '
         'colidkota
         '
         Me.colidkota.FieldName = "idkota"
+        Me.colidkota.MinWidth = 23
         Me.colidkota.Name = "colidkota"
+        Me.colidkota.Width = 86
         '
         'coltanggal
         '
         Me.coltanggal.Caption = "Tanggal"
         Me.coltanggal.FieldName = "tanggal"
+        Me.coltanggal.MinWidth = 23
         Me.coltanggal.Name = "coltanggal"
         Me.coltanggal.Visible = True
         Me.coltanggal.VisibleIndex = 3
+        Me.coltanggal.Width = 86
         '
         'collokasi
         '
         Me.collokasi.FieldName = "lokasi"
+        Me.collokasi.MinWidth = 23
         Me.collokasi.Name = "collokasi"
+        Me.collokasi.Width = 86
         '
         'colbrand
         '
         Me.colbrand.Caption = "Brand"
         Me.colbrand.FieldName = "brand"
+        Me.colbrand.MinWidth = 23
         Me.colbrand.Name = "colbrand"
         Me.colbrand.Visible = True
         Me.colbrand.VisibleIndex = 4
+        Me.colbrand.Width = 86
         '
         'colnope
         '
         Me.colnope.Caption = "No. PE"
         Me.colnope.FieldName = "nope"
+        Me.colnope.MinWidth = 23
         Me.colnope.Name = "colnope"
         Me.colnope.Visible = True
         Me.colnope.VisibleIndex = 5
+        Me.colnope.Width = 86
         '
         'coldeadline_desain
         '
         Me.coldeadline_desain.Caption = "Deadline Desain"
         Me.coldeadline_desain.FieldName = "deadline_desain"
+        Me.coldeadline_desain.MinWidth = 23
         Me.coldeadline_desain.Name = "coldeadline_desain"
         Me.coldeadline_desain.Visible = True
         Me.coldeadline_desain.VisibleIndex = 6
+        Me.coldeadline_desain.Width = 86
         '
         'colselesai_desain
         '
         Me.colselesai_desain.FieldName = "selesai_desain"
+        Me.colselesai_desain.MinWidth = 23
         Me.colselesai_desain.Name = "colselesai_desain"
+        Me.colselesai_desain.Width = 86
         '
         'coldeadline_ki
         '
         Me.coldeadline_ki.Caption = "Deadline Kirim"
         Me.coldeadline_ki.FieldName = "deadline_ki"
+        Me.coldeadline_ki.MinWidth = 23
         Me.coldeadline_ki.Name = "coldeadline_ki"
         Me.coldeadline_ki.Visible = True
         Me.coldeadline_ki.VisibleIndex = 7
+        Me.coldeadline_ki.Width = 86
         '
         'coltime_closhing
         '
         Me.coltime_closhing.FieldName = "time_closhing"
+        Me.coltime_closhing.MinWidth = 23
         Me.coltime_closhing.Name = "coltime_closhing"
+        Me.coltime_closhing.Width = 86
         '
         'colkirim_po
         '
         Me.colkirim_po.FieldName = "kirim_po"
+        Me.colkirim_po.MinWidth = 23
         Me.colkirim_po.Name = "colkirim_po"
+        Me.colkirim_po.Width = 86
         '
         'colterima_po
         '
         Me.colterima_po.FieldName = "terima_po"
+        Me.colterima_po.MinWidth = 23
         Me.colterima_po.Name = "colterima_po"
+        Me.colterima_po.Width = 86
         '
         'colkirim_ppic
         '
         Me.colkirim_ppic.FieldName = "kirim_ppic"
+        Me.colkirim_ppic.MinWidth = 23
         Me.colkirim_ppic.Name = "colkirim_ppic"
+        Me.colkirim_ppic.Width = 86
         '
         'colklien
         '
         Me.colklien.Caption = "Klien"
         Me.colklien.FieldName = "klien"
+        Me.colklien.MinWidth = 23
         Me.colklien.Name = "colklien"
         Me.colklien.Visible = True
         Me.colklien.VisibleIndex = 2
+        Me.colklien.Width = 86
         '
         'coliddtorder
         '
         Me.coliddtorder.FieldName = "iddtorder"
+        Me.coliddtorder.MinWidth = 23
         Me.coliddtorder.Name = "coliddtorder"
+        Me.coliddtorder.Width = 86
         '
         'colidpo_prd
         '
         Me.colidpo_prd.FieldName = "idpo_prd"
+        Me.colidpo_prd.MinWidth = 23
         Me.colidpo_prd.Name = "colidpo_prd"
+        Me.colidpo_prd.Width = 86
         '
         'colPO_Produksi
         '
         Me.colPO_Produksi.FieldName = "PO_Produksi"
+        Me.colPO_Produksi.MinWidth = 23
         Me.colPO_Produksi.Name = "colPO_Produksi"
         Me.colPO_Produksi.Visible = True
         Me.colPO_Produksi.VisibleIndex = 8
+        Me.colPO_Produksi.Width = 86
         '
         'colStatus
         '
         Me.colStatus.Caption = "Status"
         Me.colStatus.FieldName = "Status"
+        Me.colStatus.MinWidth = 23
         Me.colStatus.Name = "colStatus"
         Me.colStatus.Visible = True
         Me.colStatus.VisibleIndex = 9
+        Me.colStatus.Width = 86
         '
         'Panel2
         '
@@ -775,17 +814,19 @@ Partial Class POInternalDesign
         Me.Panel2.Controls.Add(Me.Tj1)
         Me.Panel2.Controls.Add(Me.Label11)
         Me.Panel2.Controls.Add(Me.TBrand)
-        Me.Panel2.Location = New System.Drawing.Point(168, 78)
+        Me.Panel2.Location = New System.Drawing.Point(192, 104)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(725, 451)
+        Me.Panel2.Size = New System.Drawing.Size(845, 600)
         Me.Panel2.TabIndex = 10
         Me.Panel2.Visible = False
         '
         'TidPE
         '
-        Me.TidPE.Location = New System.Drawing.Point(598, 68)
+        Me.TidPE.Location = New System.Drawing.Point(683, 91)
+        Me.TidPE.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TidPE.Name = "TidPE"
-        Me.TidPE.Size = New System.Drawing.Size(100, 23)
+        Me.TidPE.Size = New System.Drawing.Size(114, 27)
         Me.TidPE.TabIndex = 178
         Me.TidPE.Visible = False
         '
@@ -794,9 +835,9 @@ Partial Class POInternalDesign
         Me.Label29.AutoSize = True
         Me.Label29.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
         Me.Label29.ForeColor = System.Drawing.Color.White
-        Me.Label29.Location = New System.Drawing.Point(447, 19)
+        Me.Label29.Location = New System.Drawing.Point(511, 25)
         Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(10, 13)
+        Me.Label29.Size = New System.Drawing.Size(13, 19)
         Me.Label29.TabIndex = 177
         Me.Label29.Text = ":"
         '
@@ -805,17 +846,18 @@ Partial Class POInternalDesign
         Me.Label30.AutoSize = True
         Me.Label30.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
         Me.Label30.ForeColor = System.Drawing.Color.White
-        Me.Label30.Location = New System.Drawing.Point(380, 20)
+        Me.Label30.Location = New System.Drawing.Point(434, 27)
         Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(35, 13)
+        Me.Label30.Size = New System.Drawing.Size(45, 19)
         Me.Label30.TabIndex = 175
         Me.Label30.Text = "KOTA"
         '
         'TKota
         '
-        Me.TKota.Location = New System.Drawing.Point(463, 19)
+        Me.TKota.Location = New System.Drawing.Point(529, 25)
+        Me.TKota.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TKota.Name = "TKota"
-        Me.TKota.Size = New System.Drawing.Size(217, 22)
+        Me.TKota.Size = New System.Drawing.Size(248, 26)
         Me.TKota.TabIndex = 176
         '
         'PanelAlasan
@@ -825,9 +867,11 @@ Partial Class POInternalDesign
         Me.PanelAlasan.Controls.Add(Me.BtnTutupAlasan)
         Me.PanelAlasan.Controls.Add(Me.TAlasan)
         Me.PanelAlasan.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PanelAlasan.Location = New System.Drawing.Point(166, 111)
+        Me.PanelAlasan.Location = New System.Drawing.Point(190, 148)
+        Me.PanelAlasan.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.PanelAlasan.Name = "PanelAlasan"
-        Me.PanelAlasan.Size = New System.Drawing.Size(396, 136)
+        Me.PanelAlasan.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.PanelAlasan.Size = New System.Drawing.Size(453, 181)
         Me.PanelAlasan.TabIndex = 174
         Me.PanelAlasan.TabStop = False
         Me.PanelAlasan.Text = "MASUKKAN ALASAN REVISI"
@@ -839,9 +883,10 @@ Partial Class POInternalDesign
         Me.BtnSimpanAlasan.Appearance.Options.UseFont = True
         Me.BtnSimpanAlasan.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.BtnSimpanAlasan.ImageOptions.SvgImage = CType(resources.GetObject("BtnSimpanAlasan.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
-        Me.BtnSimpanAlasan.Location = New System.Drawing.Point(3, 73)
+        Me.BtnSimpanAlasan.Location = New System.Drawing.Point(3, 97)
+        Me.BtnSimpanAlasan.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.BtnSimpanAlasan.Name = "BtnSimpanAlasan"
-        Me.BtnSimpanAlasan.Size = New System.Drawing.Size(390, 30)
+        Me.BtnSimpanAlasan.Size = New System.Drawing.Size(447, 40)
         Me.BtnSimpanAlasan.TabIndex = 30
         Me.BtnSimpanAlasan.Text = "SIMPAN"
         '
@@ -851,17 +896,19 @@ Partial Class POInternalDesign
         Me.BtnTutupAlasan.Appearance.Options.UseFont = True
         Me.BtnTutupAlasan.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.BtnTutupAlasan.ImageOptions.SvgImage = CType(resources.GetObject("BtnTutupAlasan.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
-        Me.BtnTutupAlasan.Location = New System.Drawing.Point(3, 103)
+        Me.BtnTutupAlasan.Location = New System.Drawing.Point(3, 137)
+        Me.BtnTutupAlasan.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.BtnTutupAlasan.Name = "BtnTutupAlasan"
-        Me.BtnTutupAlasan.Size = New System.Drawing.Size(390, 30)
+        Me.BtnTutupAlasan.Size = New System.Drawing.Size(447, 40)
         Me.BtnTutupAlasan.TabIndex = 31
         Me.BtnTutupAlasan.Text = "Tutup"
         '
         'TAlasan
         '
-        Me.TAlasan.Location = New System.Drawing.Point(14, 27)
+        Me.TAlasan.Location = New System.Drawing.Point(16, 36)
+        Me.TAlasan.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TAlasan.Name = "TAlasan"
-        Me.TAlasan.Size = New System.Drawing.Size(358, 22)
+        Me.TAlasan.Size = New System.Drawing.Size(409, 26)
         Me.TAlasan.TabIndex = 0
         '
         'Label24
@@ -869,9 +916,9 @@ Partial Class POInternalDesign
         Me.Label24.AutoSize = True
         Me.Label24.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
         Me.Label24.ForeColor = System.Drawing.Color.White
-        Me.Label24.Location = New System.Drawing.Point(133, 129)
+        Me.Label24.Location = New System.Drawing.Point(152, 172)
         Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(10, 13)
+        Me.Label24.Size = New System.Drawing.Size(13, 19)
         Me.Label24.TabIndex = 170
         Me.Label24.Text = ":"
         '
@@ -880,9 +927,9 @@ Partial Class POInternalDesign
         Me.Label25.AutoSize = True
         Me.Label25.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
         Me.Label25.ForeColor = System.Drawing.Color.White
-        Me.Label25.Location = New System.Drawing.Point(11, 129)
+        Me.Label25.Location = New System.Drawing.Point(13, 172)
         Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(81, 13)
+        Me.Label25.Size = New System.Drawing.Size(101, 19)
         Me.Label25.TabIndex = 169
         Me.Label25.Text = "KETERANGAN"
         '
@@ -891,9 +938,9 @@ Partial Class POInternalDesign
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
         Me.Label23.ForeColor = System.Drawing.Color.White
-        Me.Label23.Location = New System.Drawing.Point(135, 66)
+        Me.Label23.Location = New System.Drawing.Point(154, 88)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(10, 13)
+        Me.Label23.Size = New System.Drawing.Size(13, 19)
         Me.Label23.TabIndex = 168
         Me.Label23.Text = ":"
         '
@@ -901,16 +948,16 @@ Partial Class POInternalDesign
         '
         Me.TKeterangan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TKeterangan.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.TKeterangan.Location = New System.Drawing.Point(149, 128)
+        Me.TKeterangan.Location = New System.Drawing.Point(170, 171)
+        Me.TKeterangan.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TKeterangan.Name = "TKeterangan"
-        Me.TKeterangan.Size = New System.Drawing.Size(426, 22)
+        Me.TKeterangan.Size = New System.Drawing.Size(487, 26)
         Me.TKeterangan.TabIndex = 43
         '
         'SplitContainer1
         '
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.SplitContainer1.Location = New System.Drawing.Point(0, 408)
-        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.SplitContainer1.Location = New System.Drawing.Point(0, 544)
         Me.SplitContainer1.Name = "SplitContainer1"
         '
         'SplitContainer1.Panel1
@@ -920,8 +967,8 @@ Partial Class POInternalDesign
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.BtnClose)
-        Me.SplitContainer1.Size = New System.Drawing.Size(721, 39)
-        Me.SplitContainer1.SplitterDistance = 383
+        Me.SplitContainer1.Size = New System.Drawing.Size(841, 52)
+        Me.SplitContainer1.SplitterDistance = 446
         Me.SplitContainer1.SplitterWidth = 3
         Me.SplitContainer1.TabIndex = 167
         '
@@ -932,8 +979,9 @@ Partial Class POInternalDesign
         Me.BtnSimpanDetail.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BtnSimpanDetail.ImageOptions.Image = CType(resources.GetObject("BtnSimpanDetail.ImageOptions.Image"), System.Drawing.Image)
         Me.BtnSimpanDetail.Location = New System.Drawing.Point(0, 0)
+        Me.BtnSimpanDetail.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.BtnSimpanDetail.Name = "BtnSimpanDetail"
-        Me.BtnSimpanDetail.Size = New System.Drawing.Size(383, 39)
+        Me.BtnSimpanDetail.Size = New System.Drawing.Size(446, 52)
         Me.BtnSimpanDetail.TabIndex = 29
         Me.BtnSimpanDetail.Text = "SIMPAN"
         '
@@ -944,8 +992,9 @@ Partial Class POInternalDesign
         Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BtnClose.ImageOptions.SvgImage = CType(resources.GetObject("BtnClose.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.BtnClose.Location = New System.Drawing.Point(0, 0)
+        Me.BtnClose.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(335, 39)
+        Me.BtnClose.Size = New System.Drawing.Size(392, 52)
         Me.BtnClose.TabIndex = 0
         Me.BtnClose.Text = "Tutup"
         '
@@ -976,18 +1025,20 @@ Partial Class POInternalDesign
         Me.Panel3.Controls.Add(Me.Label12)
         Me.Panel3.Controls.Add(Me.Label13)
         Me.Panel3.Controls.Add(Me.TIdBarang2)
-        Me.Panel3.Location = New System.Drawing.Point(54, 166)
+        Me.Panel3.Location = New System.Drawing.Point(62, 221)
+        Me.Panel3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(638, 208)
+        Me.Panel3.Size = New System.Drawing.Size(729, 277)
         Me.Panel3.TabIndex = 159
         '
         'idrevisi
         '
         Me.idrevisi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.idrevisi.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.idrevisi.Location = New System.Drawing.Point(544, 165)
+        Me.idrevisi.Location = New System.Drawing.Point(622, 220)
+        Me.idrevisi.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.idrevisi.Name = "idrevisi"
-        Me.idrevisi.Size = New System.Drawing.Size(20, 22)
+        Me.idrevisi.Size = New System.Drawing.Size(23, 26)
         Me.idrevisi.TabIndex = 59
         Me.idrevisi.Visible = False
         '
@@ -995,9 +1046,10 @@ Partial Class POInternalDesign
         '
         Me.TidPOCut.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TidPOCut.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.TidPOCut.Location = New System.Drawing.Point(507, 113)
+        Me.TidPOCut.Location = New System.Drawing.Point(579, 151)
+        Me.TidPOCut.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TidPOCut.Name = "TidPOCut"
-        Me.TidPOCut.Size = New System.Drawing.Size(20, 22)
+        Me.TidPOCut.Size = New System.Drawing.Size(23, 26)
         Me.TidPOCut.TabIndex = 58
         Me.TidPOCut.Visible = False
         '
@@ -1005,9 +1057,10 @@ Partial Class POInternalDesign
         '
         Me.TidPoPrt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TidPoPrt.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.TidPoPrt.Location = New System.Drawing.Point(507, 87)
+        Me.TidPoPrt.Location = New System.Drawing.Point(579, 116)
+        Me.TidPoPrt.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TidPoPrt.Name = "TidPoPrt"
-        Me.TidPoPrt.Size = New System.Drawing.Size(20, 22)
+        Me.TidPoPrt.Size = New System.Drawing.Size(23, 26)
         Me.TidPoPrt.TabIndex = 57
         Me.TidPoPrt.Visible = False
         '
@@ -1015,19 +1068,21 @@ Partial Class POInternalDesign
         '
         Me.TidFinishing.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TidFinishing.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.TidFinishing.Location = New System.Drawing.Point(489, 173)
+        Me.TidFinishing.Location = New System.Drawing.Point(559, 231)
+        Me.TidFinishing.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TidFinishing.Name = "TidFinishing"
-        Me.TidFinishing.Size = New System.Drawing.Size(20, 22)
+        Me.TidFinishing.Size = New System.Drawing.Size(23, 26)
         Me.TidFinishing.TabIndex = 56
         Me.TidFinishing.Visible = False
         '
         'TidDetailpoCut
         '
         Me.TidDetailpoCut.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TidDetailpoCut.Location = New System.Drawing.Point(13, 104)
+        Me.TidDetailpoCut.Location = New System.Drawing.Point(15, 139)
+        Me.TidDetailpoCut.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TidDetailpoCut.Name = "TidDetailpoCut"
         Me.TidDetailpoCut.ReadOnly = True
-        Me.TidDetailpoCut.Size = New System.Drawing.Size(48, 20)
+        Me.TidDetailpoCut.Size = New System.Drawing.Size(54, 23)
         Me.TidDetailpoCut.TabIndex = 173
         Me.TidDetailpoCut.Visible = False
         '
@@ -1035,28 +1090,28 @@ Partial Class POInternalDesign
         '
         Me.TidBahan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TidBahan.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.TidBahan.Location = New System.Drawing.Point(415, 140)
+        Me.TidBahan.Location = New System.Drawing.Point(474, 187)
+        Me.TidBahan.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TidBahan.Name = "TidBahan"
-        Me.TidBahan.Size = New System.Drawing.Size(20, 22)
+        Me.TidBahan.Size = New System.Drawing.Size(23, 26)
         Me.TidBahan.TabIndex = 55
         Me.TidBahan.Visible = False
         '
         'CBahan
         '
         Me.CBahan.FormattingEnabled = True
-        Me.CBahan.Location = New System.Drawing.Point(159, 140)
-        Me.CBahan.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.CBahan.Location = New System.Drawing.Point(182, 187)
         Me.CBahan.Name = "CBahan"
-        Me.CBahan.Size = New System.Drawing.Size(248, 23)
+        Me.CBahan.Size = New System.Drawing.Size(283, 28)
         Me.CBahan.TabIndex = 54
         '
         'Label27
         '
         Me.Label27.AutoSize = True
         Me.Label27.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label27.Location = New System.Drawing.Point(141, 141)
+        Me.Label27.Location = New System.Drawing.Point(161, 188)
         Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(10, 13)
+        Me.Label27.Size = New System.Drawing.Size(13, 19)
         Me.Label27.TabIndex = 53
         Me.Label27.Text = ":"
         '
@@ -1064,19 +1119,20 @@ Partial Class POInternalDesign
         '
         Me.Label28.AutoSize = True
         Me.Label28.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label28.Location = New System.Drawing.Point(22, 141)
+        Me.Label28.Location = New System.Drawing.Point(25, 188)
         Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(47, 13)
+        Me.Label28.Size = New System.Drawing.Size(60, 19)
         Me.Label28.TabIndex = 52
         Me.Label28.Text = "BAHAN"
         '
         'TidDetailDsn
         '
         Me.TidDetailDsn.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TidDetailDsn.Location = New System.Drawing.Point(13, 65)
+        Me.TidDetailDsn.Location = New System.Drawing.Point(15, 87)
+        Me.TidDetailDsn.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TidDetailDsn.Name = "TidDetailDsn"
         Me.TidDetailDsn.ReadOnly = True
-        Me.TidDetailDsn.Size = New System.Drawing.Size(48, 20)
+        Me.TidDetailDsn.Size = New System.Drawing.Size(54, 23)
         Me.TidDetailDsn.TabIndex = 166
         Me.TidDetailDsn.Visible = False
         '
@@ -1084,18 +1140,19 @@ Partial Class POInternalDesign
         '
         Me.TFinishing.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TFinishing.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.TFinishing.Location = New System.Drawing.Point(159, 171)
+        Me.TFinishing.Location = New System.Drawing.Point(182, 228)
+        Me.TFinishing.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TFinishing.Name = "TFinishing"
-        Me.TFinishing.Size = New System.Drawing.Size(325, 22)
+        Me.TFinishing.Size = New System.Drawing.Size(371, 26)
         Me.TFinishing.TabIndex = 51
         '
         'Label22
         '
         Me.Label22.AutoSize = True
         Me.Label22.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label22.Location = New System.Drawing.Point(141, 174)
+        Me.Label22.Location = New System.Drawing.Point(161, 232)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(10, 13)
+        Me.Label22.Size = New System.Drawing.Size(13, 19)
         Me.Label22.TabIndex = 50
         Me.Label22.Text = ":"
         '
@@ -1103,19 +1160,20 @@ Partial Class POInternalDesign
         '
         Me.Label26.AutoSize = True
         Me.Label26.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label26.Location = New System.Drawing.Point(22, 174)
+        Me.Label26.Location = New System.Drawing.Point(25, 232)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(62, 13)
+        Me.Label26.Size = New System.Drawing.Size(79, 19)
         Me.Label26.TabIndex = 49
         Me.Label26.Text = "FINISHING"
         '
         'TidDetailPoPrt
         '
         Me.TidDetailPoPrt.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TidDetailPoPrt.Location = New System.Drawing.Point(26, 3)
+        Me.TidDetailPoPrt.Location = New System.Drawing.Point(30, 4)
+        Me.TidDetailPoPrt.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TidDetailPoPrt.Name = "TidDetailPoPrt"
         Me.TidDetailPoPrt.ReadOnly = True
-        Me.TidDetailPoPrt.Size = New System.Drawing.Size(48, 20)
+        Me.TidDetailPoPrt.Size = New System.Drawing.Size(54, 23)
         Me.TidDetailPoPrt.TabIndex = 165
         Me.TidDetailPoPrt.Visible = False
         '
@@ -1129,38 +1187,39 @@ Partial Class POInternalDesign
         Me.PanelP.Controls.Add(Me.Label15)
         Me.PanelP.Controls.Add(Me.Tt2)
         Me.PanelP.Controls.Add(Me.Label14)
-        Me.PanelP.Location = New System.Drawing.Point(159, 50)
-        Me.PanelP.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.PanelP.Location = New System.Drawing.Point(182, 67)
         Me.PanelP.Name = "PanelP"
-        Me.PanelP.Size = New System.Drawing.Size(332, 38)
+        Me.PanelP.Size = New System.Drawing.Size(379, 51)
         Me.PanelP.TabIndex = 48
         Me.PanelP.Visible = False
         '
         'Tj2
         '
         Me.Tj2.EditValue = "0"
-        Me.Tj2.Location = New System.Drawing.Point(250, 19)
+        Me.Tj2.Location = New System.Drawing.Point(286, 25)
+        Me.Tj2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Tj2.Name = "Tj2"
         Me.Tj2.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Tj2.Size = New System.Drawing.Size(77, 22)
+        Me.Tj2.Size = New System.Drawing.Size(88, 26)
         Me.Tj2.TabIndex = 26
         '
         'Tp2
         '
         Me.Tp2.EditValue = "0"
-        Me.Tp2.Location = New System.Drawing.Point(1, 19)
+        Me.Tp2.Location = New System.Drawing.Point(1, 25)
+        Me.Tp2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Tp2.Name = "Tp2"
         Me.Tp2.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Tp2.Size = New System.Drawing.Size(77, 22)
+        Me.Tp2.Size = New System.Drawing.Size(88, 26)
         Me.Tp2.TabIndex = 20
         '
         'Label16
         '
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label16.Location = New System.Drawing.Point(84, 4)
+        Me.Label16.Location = New System.Drawing.Point(96, 5)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(41, 13)
+        Me.Label16.Size = New System.Drawing.Size(51, 19)
         Me.Label16.TabIndex = 21
         Me.Label16.Text = "LEBAR"
         '
@@ -1168,47 +1227,49 @@ Partial Class POInternalDesign
         '
         Me.Label17.AutoSize = True
         Me.Label17.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label17.Location = New System.Drawing.Point(1, 4)
+        Me.Label17.Location = New System.Drawing.Point(1, 5)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(60, 13)
+        Me.Label17.Size = New System.Drawing.Size(75, 19)
         Me.Label17.TabIndex = 19
         Me.Label17.Text = "PANJANG"
         '
         'Tl2
         '
         Me.Tl2.EditValue = "0"
-        Me.Tl2.Location = New System.Drawing.Point(84, 19)
+        Me.Tl2.Location = New System.Drawing.Point(96, 25)
+        Me.Tl2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Tl2.Name = "Tl2"
         Me.Tl2.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Tl2.Size = New System.Drawing.Size(77, 22)
+        Me.Tl2.Size = New System.Drawing.Size(88, 26)
         Me.Tl2.TabIndex = 22
         '
         'Label15
         '
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label15.Location = New System.Drawing.Point(170, 4)
+        Me.Label15.Location = New System.Drawing.Point(194, 5)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(44, 13)
+        Me.Label15.Size = New System.Drawing.Size(56, 19)
         Me.Label15.TabIndex = 23
         Me.Label15.Text = "TINGGI"
         '
         'Tt2
         '
         Me.Tt2.EditValue = "0"
-        Me.Tt2.Location = New System.Drawing.Point(167, 19)
+        Me.Tt2.Location = New System.Drawing.Point(191, 25)
+        Me.Tt2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Tt2.Name = "Tt2"
         Me.Tt2.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Tt2.Size = New System.Drawing.Size(77, 22)
+        Me.Tt2.Size = New System.Drawing.Size(88, 26)
         Me.Tt2.TabIndex = 24
         '
         'Label14
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label14.Location = New System.Drawing.Point(253, 4)
+        Me.Label14.Location = New System.Drawing.Point(289, 5)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(53, 13)
+        Me.Label14.Size = New System.Drawing.Size(66, 19)
         Me.Label14.TabIndex = 25
         Me.Label14.Text = "JUMLAH"
         '
@@ -1222,29 +1283,29 @@ Partial Class POInternalDesign
         Me.PanelC.Controls.Add(Me.Tt3)
         Me.PanelC.Controls.Add(Me.Label18)
         Me.PanelC.Controls.Add(Me.Tj3)
-        Me.PanelC.Location = New System.Drawing.Point(159, 89)
-        Me.PanelC.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.PanelC.Location = New System.Drawing.Point(182, 119)
         Me.PanelC.Name = "PanelC"
-        Me.PanelC.Size = New System.Drawing.Size(332, 44)
+        Me.PanelC.Size = New System.Drawing.Size(379, 59)
         Me.PanelC.TabIndex = 47
         Me.PanelC.Visible = False
         '
         'Tp3
         '
         Me.Tp3.EditValue = "0"
-        Me.Tp3.Location = New System.Drawing.Point(1, 20)
+        Me.Tp3.Location = New System.Drawing.Point(1, 27)
+        Me.Tp3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Tp3.Name = "Tp3"
         Me.Tp3.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Tp3.Size = New System.Drawing.Size(77, 22)
+        Me.Tp3.Size = New System.Drawing.Size(88, 26)
         Me.Tp3.TabIndex = 31
         '
         'Label21
         '
         Me.Label21.AutoSize = True
         Me.Label21.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label21.Location = New System.Drawing.Point(84, 5)
+        Me.Label21.Location = New System.Drawing.Point(96, 7)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(41, 13)
+        Me.Label21.Size = New System.Drawing.Size(51, 19)
         Me.Label21.TabIndex = 32
         Me.Label21.Text = "LEBAR"
         '
@@ -1252,66 +1313,70 @@ Partial Class POInternalDesign
         '
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label20.Location = New System.Drawing.Point(1, 5)
+        Me.Label20.Location = New System.Drawing.Point(1, 7)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(60, 13)
+        Me.Label20.Size = New System.Drawing.Size(75, 19)
         Me.Label20.TabIndex = 30
         Me.Label20.Text = "PANJANG"
         '
         'Tl3
         '
         Me.Tl3.EditValue = "0"
-        Me.Tl3.Location = New System.Drawing.Point(84, 20)
+        Me.Tl3.Location = New System.Drawing.Point(96, 27)
+        Me.Tl3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Tl3.Name = "Tl3"
         Me.Tl3.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Tl3.Size = New System.Drawing.Size(77, 22)
+        Me.Tl3.Size = New System.Drawing.Size(88, 26)
         Me.Tl3.TabIndex = 33
         '
         'Label19
         '
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label19.Location = New System.Drawing.Point(167, 5)
+        Me.Label19.Location = New System.Drawing.Point(191, 7)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(44, 13)
+        Me.Label19.Size = New System.Drawing.Size(56, 19)
         Me.Label19.TabIndex = 34
         Me.Label19.Text = "TINGGI"
         '
         'Tt3
         '
         Me.Tt3.EditValue = "0"
-        Me.Tt3.Location = New System.Drawing.Point(167, 20)
+        Me.Tt3.Location = New System.Drawing.Point(191, 27)
+        Me.Tt3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Tt3.Name = "Tt3"
         Me.Tt3.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Tt3.Size = New System.Drawing.Size(77, 22)
+        Me.Tt3.Size = New System.Drawing.Size(88, 26)
         Me.Tt3.TabIndex = 35
         '
         'Label18
         '
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label18.Location = New System.Drawing.Point(250, 5)
+        Me.Label18.Location = New System.Drawing.Point(286, 7)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(53, 13)
+        Me.Label18.Size = New System.Drawing.Size(66, 19)
         Me.Label18.TabIndex = 36
         Me.Label18.Text = "JUMLAH"
         '
         'Tj3
         '
         Me.Tj3.EditValue = "0"
-        Me.Tj3.Location = New System.Drawing.Point(250, 20)
+        Me.Tj3.Location = New System.Drawing.Point(286, 27)
+        Me.Tj3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Tj3.Name = "Tj3"
         Me.Tj3.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Tj3.Size = New System.Drawing.Size(77, 22)
+        Me.Tj3.Size = New System.Drawing.Size(88, 26)
         Me.Tj3.TabIndex = 37
         '
         'CSubKerjaan
         '
         Me.CSubKerjaan.AutoSize = True
         Me.CSubKerjaan.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.CSubKerjaan.Location = New System.Drawing.Point(507, 25)
+        Me.CSubKerjaan.Location = New System.Drawing.Point(579, 33)
+        Me.CSubKerjaan.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.CSubKerjaan.Name = "CSubKerjaan"
-        Me.CSubKerjaan.Size = New System.Drawing.Size(113, 17)
+        Me.CSubKerjaan.Size = New System.Drawing.Size(140, 23)
         Me.CSubKerjaan.TabIndex = 40
         Me.CSubKerjaan.Text = "SUB PEKERJAAN"
         Me.CSubKerjaan.UseVisualStyleBackColor = True
@@ -1321,9 +1386,10 @@ Partial Class POInternalDesign
         Me.CPrinting.AutoSize = True
         Me.CPrinting.Enabled = False
         Me.CPrinting.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.CPrinting.Location = New System.Drawing.Point(65, 66)
+        Me.CPrinting.Location = New System.Drawing.Point(74, 88)
+        Me.CPrinting.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.CPrinting.Name = "CPrinting"
-        Me.CPrinting.Size = New System.Drawing.Size(84, 17)
+        Me.CPrinting.Size = New System.Drawing.Size(105, 23)
         Me.CPrinting.TabIndex = 39
         Me.CPrinting.Text = "PRINTING :"
         Me.CPrinting.UseVisualStyleBackColor = True
@@ -1333,9 +1399,10 @@ Partial Class POInternalDesign
         Me.CCutting.AutoSize = True
         Me.CCutting.Enabled = False
         Me.CCutting.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.CCutting.Location = New System.Drawing.Point(65, 105)
+        Me.CCutting.Location = New System.Drawing.Point(74, 140)
+        Me.CCutting.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.CCutting.Name = "CCutting"
-        Me.CCutting.Size = New System.Drawing.Size(85, 17)
+        Me.CCutting.Size = New System.Drawing.Size(107, 23)
         Me.CCutting.TabIndex = 38
         Me.CCutting.Text = "CUTTING   :"
         Me.CCutting.UseVisualStyleBackColor = True
@@ -1344,18 +1411,20 @@ Partial Class POInternalDesign
         '
         Me.TBarang2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TBarang2.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.TBarang2.Location = New System.Drawing.Point(159, 24)
+        Me.TBarang2.Location = New System.Drawing.Point(182, 32)
+        Me.TBarang2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TBarang2.Name = "TBarang2"
-        Me.TBarang2.Size = New System.Drawing.Size(325, 22)
+        Me.TBarang2.Size = New System.Drawing.Size(371, 26)
         Me.TBarang2.TabIndex = 28
         '
         'CMal
         '
         Me.CMal.AutoSize = True
         Me.CMal.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.CMal.Location = New System.Drawing.Point(507, 47)
+        Me.CMal.Location = New System.Drawing.Point(579, 63)
+        Me.CMal.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.CMal.Name = "CMal"
-        Me.CMal.Size = New System.Drawing.Size(51, 17)
+        Me.CMal.Size = New System.Drawing.Size(61, 23)
         Me.CMal.TabIndex = 27
         Me.CMal.Text = "MAL"
         Me.CMal.UseVisualStyleBackColor = True
@@ -1364,9 +1433,9 @@ Partial Class POInternalDesign
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label12.Location = New System.Drawing.Point(141, 28)
+        Me.Label12.Location = New System.Drawing.Point(161, 37)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(10, 13)
+        Me.Label12.Size = New System.Drawing.Size(13, 19)
         Me.Label12.TabIndex = 21
         Me.Label12.Text = ":"
         '
@@ -1374,71 +1443,77 @@ Partial Class POInternalDesign
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label13.Location = New System.Drawing.Point(22, 28)
+        Me.Label13.Location = New System.Drawing.Point(25, 37)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(109, 13)
+        Me.Label13.Size = New System.Drawing.Size(138, 19)
         Me.Label13.TabIndex = 20
         Me.Label13.Text = "BARANG PRINTING"
         '
         'TIdBarang2
         '
         Me.TIdBarang2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TIdBarang2.Location = New System.Drawing.Point(163, 3)
+        Me.TIdBarang2.Location = New System.Drawing.Point(186, 4)
+        Me.TIdBarang2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TIdBarang2.Name = "TIdBarang2"
         Me.TIdBarang2.ReadOnly = True
-        Me.TIdBarang2.Size = New System.Drawing.Size(48, 20)
+        Me.TIdBarang2.Size = New System.Drawing.Size(54, 23)
         Me.TIdBarang2.TabIndex = 161
         Me.TIdBarang2.Visible = False
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(353, 166)
+        Me.Label7.Location = New System.Drawing.Point(403, 221)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(10, 15)
+        Me.Label7.Size = New System.Drawing.Size(12, 20)
         Me.Label7.TabIndex = 150
         Me.Label7.Text = ":"
         '
         'TIdBrand
         '
         Me.TIdBrand.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TIdBrand.Location = New System.Drawing.Point(80, 45)
+        Me.TIdBrand.Location = New System.Drawing.Point(91, 60)
+        Me.TIdBrand.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TIdBrand.Name = "TIdBrand"
         Me.TIdBrand.ReadOnly = True
-        Me.TIdBrand.Size = New System.Drawing.Size(48, 20)
+        Me.TIdBrand.Size = New System.Drawing.Size(54, 23)
         Me.TIdBrand.TabIndex = 164
         Me.TIdBrand.Visible = False
         '
         'TToko
         '
-        Me.TToko.Location = New System.Drawing.Point(149, 16)
+        Me.TToko.Location = New System.Drawing.Point(170, 21)
+        Me.TToko.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TToko.Name = "TToko"
-        Me.TToko.Size = New System.Drawing.Size(217, 22)
+        Me.TToko.Size = New System.Drawing.Size(248, 26)
         Me.TToko.TabIndex = 141
         '
         'TBarang1
         '
-        Me.TBarang1.Location = New System.Drawing.Point(149, 63)
+        Me.TBarang1.Location = New System.Drawing.Point(170, 84)
+        Me.TBarang1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TBarang1.Name = "TBarang1"
-        Me.TBarang1.Size = New System.Drawing.Size(309, 22)
+        Me.TBarang1.Size = New System.Drawing.Size(353, 26)
         Me.TBarang1.TabIndex = 142
         '
         'Tp1
         '
         Me.Tp1.EditValue = "0"
-        Me.Tp1.Location = New System.Drawing.Point(149, 103)
+        Me.Tp1.Location = New System.Drawing.Point(170, 137)
+        Me.Tp1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Tp1.Name = "Tp1"
         Me.Tp1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Tp1.Size = New System.Drawing.Size(77, 22)
+        Me.Tp1.Size = New System.Drawing.Size(88, 26)
         Me.Tp1.TabIndex = 152
         '
         'TIdToko
         '
         Me.TIdToko.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TIdToko.Location = New System.Drawing.Point(80, 21)
+        Me.TIdToko.Location = New System.Drawing.Point(91, 28)
+        Me.TIdToko.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TIdToko.Name = "TIdToko"
         Me.TIdToko.ReadOnly = True
-        Me.TIdToko.Size = New System.Drawing.Size(48, 20)
+        Me.TIdToko.Size = New System.Drawing.Size(54, 23)
         Me.TIdToko.TabIndex = 163
         Me.TIdToko.Visible = False
         '
@@ -1447,9 +1522,9 @@ Partial Class POInternalDesign
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
         Me.Label8.ForeColor = System.Drawing.Color.White
-        Me.Label8.Location = New System.Drawing.Point(232, 87)
+        Me.Label8.Location = New System.Drawing.Point(265, 116)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(41, 13)
+        Me.Label8.Size = New System.Drawing.Size(51, 19)
         Me.Label8.TabIndex = 153
         Me.Label8.Text = "LEBAR"
         '
@@ -1458,29 +1533,31 @@ Partial Class POInternalDesign
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
         Me.Label9.ForeColor = System.Drawing.Color.White
-        Me.Label9.Location = New System.Drawing.Point(149, 87)
+        Me.Label9.Location = New System.Drawing.Point(170, 116)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(60, 13)
+        Me.Label9.Size = New System.Drawing.Size(75, 19)
         Me.Label9.TabIndex = 151
         Me.Label9.Text = "PANJANG"
         '
         'TIdpoprd
         '
         Me.TIdpoprd.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TIdpoprd.Location = New System.Drawing.Point(490, 103)
+        Me.TIdpoprd.Location = New System.Drawing.Point(560, 137)
+        Me.TIdpoprd.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TIdpoprd.Name = "TIdpoprd"
         Me.TIdpoprd.ReadOnly = True
-        Me.TIdpoprd.Size = New System.Drawing.Size(48, 20)
+        Me.TIdpoprd.Size = New System.Drawing.Size(54, 23)
         Me.TIdpoprd.TabIndex = 162
         Me.TIdpoprd.Visible = False
         '
         'Tl1
         '
         Me.Tl1.EditValue = "0"
-        Me.Tl1.Location = New System.Drawing.Point(232, 103)
+        Me.Tl1.Location = New System.Drawing.Point(265, 137)
+        Me.Tl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Tl1.Name = "Tl1"
         Me.Tl1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Tl1.Size = New System.Drawing.Size(77, 22)
+        Me.Tl1.Size = New System.Drawing.Size(88, 26)
         Me.Tl1.TabIndex = 154
         '
         'Label1
@@ -1488,9 +1565,9 @@ Partial Class POInternalDesign
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
         Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(11, 68)
+        Me.Label1.Location = New System.Drawing.Point(13, 91)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(111, 13)
+        Me.Label1.Size = New System.Drawing.Size(142, 19)
         Me.Label1.TabIndex = 143
         Me.Label1.Text = "BARANG PRODUKSI"
         '
@@ -1499,9 +1576,9 @@ Partial Class POInternalDesign
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
         Me.Label6.ForeColor = System.Drawing.Color.White
-        Me.Label6.Location = New System.Drawing.Point(135, 41)
+        Me.Label6.Location = New System.Drawing.Point(154, 55)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(10, 13)
+        Me.Label6.Size = New System.Drawing.Size(13, 19)
         Me.Label6.TabIndex = 149
         Me.Label6.Text = ":"
         '
@@ -1510,9 +1587,9 @@ Partial Class POInternalDesign
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
         Me.Label10.ForeColor = System.Drawing.Color.White
-        Me.Label10.Location = New System.Drawing.Point(315, 87)
+        Me.Label10.Location = New System.Drawing.Point(360, 116)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(44, 13)
+        Me.Label10.Size = New System.Drawing.Size(56, 19)
         Me.Label10.TabIndex = 155
         Me.Label10.Text = "TINGGI"
         '
@@ -1521,9 +1598,9 @@ Partial Class POInternalDesign
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(11, 21)
+        Me.Label2.Location = New System.Drawing.Point(13, 28)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(36, 13)
+        Me.Label2.Size = New System.Drawing.Size(47, 19)
         Me.Label2.TabIndex = 144
         Me.Label2.Text = "TOKO"
         '
@@ -1532,29 +1609,31 @@ Partial Class POInternalDesign
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
         Me.Label5.ForeColor = System.Drawing.Color.White
-        Me.Label5.Location = New System.Drawing.Point(135, 105)
+        Me.Label5.Location = New System.Drawing.Point(154, 140)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(10, 13)
+        Me.Label5.Size = New System.Drawing.Size(13, 19)
         Me.Label5.TabIndex = 148
         Me.Label5.Text = ":"
         '
         'TIdBarang1
         '
         Me.TIdBarang1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TIdBarang1.Location = New System.Drawing.Point(469, 63)
+        Me.TIdBarang1.Location = New System.Drawing.Point(536, 84)
+        Me.TIdBarang1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TIdBarang1.Name = "TIdBarang1"
         Me.TIdBarang1.ReadOnly = True
-        Me.TIdBarang1.Size = New System.Drawing.Size(48, 20)
+        Me.TIdBarang1.Size = New System.Drawing.Size(54, 23)
         Me.TIdBarang1.TabIndex = 160
         Me.TIdBarang1.Visible = False
         '
         'Tt1
         '
         Me.Tt1.EditValue = "0"
-        Me.Tt1.Location = New System.Drawing.Point(315, 103)
+        Me.Tt1.Location = New System.Drawing.Point(360, 137)
+        Me.Tt1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Tt1.Name = "Tt1"
         Me.Tt1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Tt1.Size = New System.Drawing.Size(77, 22)
+        Me.Tt1.Size = New System.Drawing.Size(88, 26)
         Me.Tt1.TabIndex = 156
         '
         'Label3
@@ -1562,9 +1641,9 @@ Partial Class POInternalDesign
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
         Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(11, 44)
+        Me.Label3.Location = New System.Drawing.Point(13, 59)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(46, 13)
+        Me.Label3.Size = New System.Drawing.Size(58, 19)
         Me.Label3.TabIndex = 145
         Me.Label3.Text = "BRAND"
         '
@@ -1573,19 +1652,20 @@ Partial Class POInternalDesign
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
         Me.Label4.ForeColor = System.Drawing.Color.White
-        Me.Label4.Location = New System.Drawing.Point(135, 20)
+        Me.Label4.Location = New System.Drawing.Point(154, 27)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(10, 13)
+        Me.Label4.Size = New System.Drawing.Size(13, 19)
         Me.Label4.TabIndex = 147
         Me.Label4.Text = ":"
         '
         'Tj1
         '
         Me.Tj1.EditValue = "0"
-        Me.Tj1.Location = New System.Drawing.Point(399, 103)
+        Me.Tj1.Location = New System.Drawing.Point(456, 137)
+        Me.Tj1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Tj1.Name = "Tj1"
         Me.Tj1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Tj1.Size = New System.Drawing.Size(77, 22)
+        Me.Tj1.Size = New System.Drawing.Size(88, 26)
         Me.Tj1.TabIndex = 158
         '
         'Label11
@@ -1593,22 +1673,23 @@ Partial Class POInternalDesign
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
         Me.Label11.ForeColor = System.Drawing.Color.White
-        Me.Label11.Location = New System.Drawing.Point(399, 87)
+        Me.Label11.Location = New System.Drawing.Point(456, 116)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(53, 13)
+        Me.Label11.Size = New System.Drawing.Size(66, 19)
         Me.Label11.TabIndex = 157
         Me.Label11.Text = "JUMLAH"
         '
         'TBrand
         '
-        Me.TBrand.Location = New System.Drawing.Point(149, 39)
+        Me.TBrand.Location = New System.Drawing.Point(170, 52)
+        Me.TBrand.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TBrand.Name = "TBrand"
-        Me.TBrand.Size = New System.Drawing.Size(217, 22)
+        Me.TBrand.Size = New System.Drawing.Size(248, 26)
         Me.TBrand.TabIndex = 146
         '
         'POInternalDesign
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7!, 15!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.SplitContainerControl1)
@@ -1618,23 +1699,23 @@ Partial Class POInternalDesign
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "POInternalDesign"
-        Me.Size = New System.Drawing.Size(1072, 606)
-        CType(Me.BarManager1,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.RepositoryItemTextEdit1,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.SplitContainerControl1,System.ComponentModel.ISupportInitialize).EndInit
-        Me.SplitContainerControl1.ResumeLayout(false)
-        CType(Me.GroupControl1,System.ComponentModel.ISupportInitialize).EndInit
-        Me.GroupControl1.ResumeLayout(false)
-        CType(Me.SplitContainerControl2,System.ComponentModel.ISupportInitialize).EndInit
-        Me.SplitContainerControl2.ResumeLayout(false)
-        CType(Me.GroupControl2,System.ComponentModel.ISupportInitialize).EndInit
-        Me.GroupControl2.ResumeLayout(false)
-        CType(Me.TabControl1,System.ComponentModel.ISupportInitialize).EndInit
-        Me.TabControl1.ResumeLayout(false)
-        Me.XtraTabPage1.ResumeLayout(false)
-        Me.XtraTabPage2.ResumeLayout(false)
-        CType(Me.GroupControl3,System.ComponentModel.ISupportInitialize).EndInit
+        Me.Size = New System.Drawing.Size(1225, 808)
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainerControl1.ResumeLayout(False)
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl1.ResumeLayout(False)
+        CType(Me.SplitContainerControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainerControl2.ResumeLayout(False)
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl2.ResumeLayout(False)
+        CType(Me.TabControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabControl1.ResumeLayout(False)
+        Me.XtraTabPage1.ResumeLayout(False)
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(false)
         CType(Me.GridControl1,System.ComponentModel.ISupportInitialize).EndInit
         CType(Me.GridPODsn,System.ComponentModel.ISupportInitialize).EndInit
@@ -1698,8 +1779,6 @@ End Sub
     Friend WithEvents TabControl1 As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents ListPOPrint As System.Windows.Forms.ListView
-    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents ListPOCutting As System.Windows.Forms.ListView
     Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents BarDockControl4 As DevExpress.XtraBars.BarDockControl
     Friend WithEvents BarButtonItem1 As DevExpress.XtraBars.BarButtonItem

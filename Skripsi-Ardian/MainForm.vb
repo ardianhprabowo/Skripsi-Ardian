@@ -78,4 +78,22 @@ Public Class MainForm
     .Dock = DockStyle.Fill
      })
     End Sub
+
+    Private Sub Marketing_DetailDO_Click(sender As Object, e As EventArgs) Handles Marketing_DetailDO.Click
+        Me.FluentDesignFormContainer1.Controls.Add(New DetailDataOrder() With {
+    .Dock = DockStyle.Fill
+     })
+    End Sub
+
+    Private Sub Marketing_Penawaran_Click(sender As Object, e As EventArgs) Handles Marketing_Penawaran.Click
+        Me.FluentDesignFormContainer1.Controls.Add(New PenawaranP2P() With {
+   .Dock = DockStyle.Fill
+    })
+    End Sub
+
+    Private Sub Marketing_POInternal_Click(sender As Object, e As EventArgs) Handles Marketing_POInternal.Click
+        Me.FluentDesignFormContainer1.Controls.Add(New KirimPOInt() With {
+   .Dock = DockStyle.Fill
+    })
+    End Sub
 End Class

@@ -49,13 +49,9 @@ Public Class DetailDataOrder
         End Select
     End Sub
 
-    Private Sub GridControl2_Click(sender As Object, e As EventArgs) Handles GridControl2.Click
-
-    End Sub
-
     Private Sub GridView3_RowCellClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs) Handles GridView3.RowCellClick
         iddo = ""
-        iddo = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "iddtorder").ToString()
+        iddo = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "IDDTORDER").ToString()
         ListDetailDO.BeginUpdate()
         Try
             ListDetailDO.Items.Clear()
@@ -67,7 +63,7 @@ Public Class DetailDataOrder
 
     Private Sub GridView3_SelectionChanged(sender As Object, e As DevExpress.Data.SelectionChangedEventArgs) Handles GridView3.SelectionChanged
         iddo = ""
-        iddo = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "iddtorder").ToString()
+        iddo = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "IDDTORDER").ToString()
         ListDetailDO.BeginUpdate()
         Try
             ListDetailDO.Items.Clear()
@@ -110,7 +106,7 @@ Public Class DetailDataOrder
         ListDetailDO.Items.Clear()
         GGVM_conn()
         s = ""
-        s = s & " select * from view_detaildo2 "
+        s = s & " select * from view_detaildo "
         s = s & " where iddtorder = '" & iddo & "'"
         s = s & " GROUP BY iddetailpe "
         da = New OdbcDataAdapter(s, conn)
@@ -150,6 +146,10 @@ Public Class DetailDataOrder
     End Sub
 
     Private Sub FlyoutPanel1_Load(sender As Object, e As EventArgs) Handles FlyoutPanel1.Load
+
+    End Sub
+
+    Private Sub WindowsUIButtonPanel1_Click(sender As Object, e As EventArgs) Handles WindowsUIButtonPanel1.Click
 
     End Sub
 End Class

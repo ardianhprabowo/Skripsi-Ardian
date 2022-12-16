@@ -14,7 +14,7 @@ Public Class EntryDO
         AddHandler DataOrder.GetBrand, AddressOf SetTextBrand
         AddHandler DataOrder.GetProyek, AddressOf SetTextProyek
         AddHandler DataOrder.GetDeadline, AddressOf SetTextDeadline
-        AddHandler DataOrder.GetDivIDSurvei, AddressOf SetTextIDSurvei
+        'AddHandler DataOrder.GetDivIDSurvei, AddressOf SetTextIDSurvei
         AddHandler DataOrder.GetDivSurvei, AddressOf SetTextSurvei
 
         'TampilToko()
@@ -64,11 +64,12 @@ Public Class EntryDO
         ListKota.CheckBoxes = True
         ListKota.Columns.Clear()
         ListKota.Items.Clear()
-        ListKota.Columns.Add("DISTRIBUTOR", 200, HorizontalAlignment.Left)
+        'ListKota.Columns.Add("DISTRIBUTOR", 200, HorizontalAlignment.Left)
         ListKota.Columns.Add("TOKO", 200, HorizontalAlignment.Left)
-        ListKota.Columns.Add("IDDist", 1, HorizontalAlignment.Left)
+        ListKota.Columns.Add("KOTA", 200, HorizontalAlignment.Left)
         ListKota.Columns.Add("IDTOKO", 1, HorizontalAlignment.Left)
         ListKota.Columns.Add("IDKirim", 1, HorizontalAlignment.Left)
+        ListKota.Columns.Add("IDKOTA", 1, HorizontalAlignment.Left)
     End Sub
 
 
@@ -77,12 +78,11 @@ Public Class EntryDO
         Dim s As String
         Dim tbl As New DataTable
         s = ""
-        s = s & " select a.idkirim, if (d.`distributor` is null,'',d.`distributor`) as distributor, "
-        s = s & " if (c.toko is null,'', c.toko) as toko, if(a.idtoko is null,'',a.idtoko) as idtoko,"
-        s = s & "  if (a.iddist is null,'',a.iddist) as iddist from prd_kirim_dataorder a"
+        s = s & " select a.idkirim,  "
+        s = s & " if (c.toko is null,'', c.toko) as toko, if(a.idtoko is null,'',a.idtoko) as idtoko , d.kota,d.idkota from prd_kirim_dataorder a"
         s = s & " left join prd_dataorder b on b.iddtorder = a.iddtorder"
         s = s & " left join prd_toko c on c.idtoko = a.`idtoko` "
-        s = s & " left join distributor d on d.iddist = a.iddist "
+        s = s & " INNER JOIN kota d on d.IDKOTA = c.IDKOTA "
         s = s & " where a.iddtorder ='" & TidDtOrder.Text & "'"
         da = New OdbcDataAdapter(s, conn)
         'ds.Clear()
@@ -93,12 +93,12 @@ Public Class EntryDO
 
         For i = 0 To tbl.Rows.Count - 1
             With ListKota
-                .Items.Add(tbl.Rows(i)("distributor"))
+                .Items.Add(tbl.Rows(i)("toko"))
                 With .Items(.Items.Count - 1).SubItems
-                    .Add(tbl.Rows(i)("toko"))
-                    .Add(tbl.Rows(i)("iddist"))
+                    .Add(tbl.Rows(i)("kota"))
                     .Add(tbl.Rows(i)("idtoko"))
                     .Add(tbl.Rows(i)("idkirim"))
+                    .Add(tbl.Rows(i)("idkota"))
                 End With
             End With
         Next
@@ -109,16 +109,16 @@ Public Class EntryDO
         GGVM_conn()
         Dim s As String
         s = ""
-        s = s & " select y.* from ( select nama,id from klien"
+        s = s & " select y.* from ( select klien,idklien from klien"
         s = s & " where status='1'"
-        s = s & " and nama like '%" & TKlien.Text & "%'"
-        s = s & " order by nama ) y "
+        s = s & " and klien like '%" & TKlien.Text & "%'"
+        s = s & " order by klien ) y "
         da = New OdbcDataAdapter(s, conn)
         ds = New DataSet
         da.Fill(ds)
         Dim Klien As New AutoCompleteStringCollection
         For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
-            Klien.Add(ds.Tables(0).Rows(i)("nama").ToString())
+            Klien.Add(ds.Tables(0).Rows(i)("klien").ToString())
         Next
         With TKlien
             .AutoCompleteSource = AutoCompleteSource.CustomSource
@@ -132,7 +132,7 @@ Public Class EntryDO
         Dim s As String
         s = ""
         s = s & " select y.* from (select brand,idbrand from brand"
-        s = s & " where status='1'"
+        s = s & " where status_brand='1'"
         ' s = s & " and idklien ='" & TIDKlien.Text & "'"
         s = s & " and brand like '%" & TBrand.Text & "%'"
         s = s & " order by brand ) y"
@@ -240,7 +240,9 @@ Public Class EntryDO
                 End If
                 c = c & " namaorder,"
                 If SURVEI.Checked = True Then
-                    c = c & " survei, iddivisi_survei, "
+                    c = c & " survei, "
+                Else
+                    c = c & "survei, "
                 End If
                 c = c & " deadline_ki,"
                 c = c & " idstatus_proyek,user_input,time_input) values"
@@ -251,11 +253,12 @@ Public Class EntryDO
                 c = c & "'" & nmProyek & "',"
                 If SURVEI.Checked = True Then
                     c = c & " 'Y',"
-                    c = c & " '" & IDSurvei.Text & "',"
+                Else
+                    c = c & " 'N',"
                 End If
                 c = c & "'" & Format(DTDeadlineKI.Value, "yyyy/MM/dd") & "',"
                 c = c & "'1','" & userid & "',now())"
-                cmd = New System.Data.Odbc.OdbcCommand(c, conn)
+                cmd = New OdbcCommand(c, conn)
                 cmd.ExecuteNonQuery()
 
                 s = ""
@@ -353,14 +356,14 @@ Public Class EntryDO
     Private Sub TKlien_TextChanged(sender As Object, e As EventArgs) Handles TKlien.TextChanged
         Dim s As String
         GGVM_conn()
-        s = "select id from klien where nama= '" & TKlien.Text & "'"
+        s = "select idklien from klien where klien= '" & TKlien.Text & "'"
         cmd = New OdbcCommand(s, conn)
         dr = cmd.ExecuteReader
         dr.Read()
         If Not dr.HasRows Then
             TIDKlien.Text = ""
         Else
-            TIDKlien.Text = dr.Item("id")
+            TIDKlien.Text = dr.Item("idklien")
         End If
         GGVM_conn_close()
     End Sub
@@ -413,13 +416,13 @@ Public Class EntryDO
                 Try
                     GGVM_conn()
                     For Each item As ListViewItem In ListKota.Items
-                        Dim sql As String = " INSERT INTO prd_kirim_dataorder (iddtorder,iddist,idtoko) VALUES (?, ?, ?)"
+                        Dim sql As String = " INSERT INTO prd_kirim_dataorder (iddtorder,idtoko,idkota) VALUES (?, ?,?)"
                         cmd = New OdbcCommand
                         With cmd
                             .CommandText = (sql)
                             .Parameters.Add("@iddtorder", OdbcType.VarChar).Value = TidDtOrder.Text
-                            .Parameters.Add("@iddist", OdbcType.Double).Value = Convert.ToDouble(item.SubItems(2).Text)
-                            .Parameters.Add("@idtoko", OdbcType.VarChar).Value = Convert.ToInt32(item.SubItems(3).Text)
+                            .Parameters.Add("@idtoko", OdbcType.VarChar).Value = Convert.ToInt32(item.SubItems(2).Text)
+                            .Parameters.Add("@idkota", OdbcType.VarChar).Value = Convert.ToInt32(item.SubItems(3).Text)
                             .Connection = conn
                         End With
                         dr = cmd.ExecuteReader
@@ -601,29 +604,18 @@ Public Class EntryDO
     End Sub
 
     Private Sub TPenerima_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TPenerima.KeyPress
-        Dim s As String
+        Dim s As String = ""
 
         If e.KeyChar = Convert.ToChar(32) Or e.KeyChar = Convert.ToChar(127) Then
         Else
             Me.Cursor = Cursors.WaitCursor
 
             GridPanel.DataSource = Nothing
-            s = ""
-            If CDist.Checked = True Then
-
+            If CToko.Checked = True Then
                 GGVM_conn()
-                s = s & " select a.distributor, if (c.toko is null,'',c.toko)as toko,  "
-                s = s & " a.iddist, if (b.idtoko is null,'0',b.idtoko)as idtoko, a.kota "
-                s = s & " from distributor a "
-                s = s & " left join prd_trans_toko b on a.iddist = b.iddist "
-                s = s & " left join prd_toko c on c.idtoko = b.idtoko "
-                s = s & " where a.distributor like '%" & TPenerima.Text & "%' "
-            ElseIf CToko.Checked = True Then
-                GGVM_conn()
-                s = s & " select if (c.distributor is null,'',c.distributor) as distributor,a.toko ,if(c.iddist is null, '0',c.iddist) as iddist ,  a.idtoko,  d.kota "
+                s = ""
+                s = s & " select a.toko ,d.kota ,  a.idtoko,d.idkota "
                 s = s & " from prd_toko a "
-                s = s & " left join prd_trans_toko b on a.idtoko = b.idtoko "
-                s = s & " left join distributor c on c.iddist = b.iddist "
                 s = s & " left join kota d on d.idkota = a.idkota "
                 s = s & " where a.toko like '%" & TPenerima.Text & "%' "
             End If
@@ -639,7 +631,7 @@ Public Class EntryDO
             GridPanel.Columns(1).Width = 150
             GridPanel.Columns(2).Width = 1
             GridPanel.Columns(3).Width = 1
-            GridPanel.Columns(4).Width = 100
+            'GridPanel.Columns(4).Width = 1
             Me.Cursor = Cursors.Default
         End If
         GGVM_conn_close()
@@ -666,8 +658,8 @@ Public Class EntryDO
             Case "edit"
                 i = GridPanel.CurrentRow.Index
                 If i < (GridPanel.RowCount) - 1 Then
-                    TIdDist.Text = GridPanel.Rows.Item(i).Cells(2).Value
-                    TidToko.Text = GridPanel.Rows.Item(i).Cells(3).Value
+                    'TIdDist.Text = GridPanel.Rows.Item(i).Cells(2).Value
+                    TidToko.Text = GridPanel.Rows.Item(i).Cells(2).Value
                     GridPanel.ClearSelection()
                 End If
 
@@ -683,7 +675,7 @@ Public Class EntryDO
                         cmd = New OdbcCommand(c, conn)
                         cmd.ExecuteNonQuery()
 
-                        sql = " INSERT INTO prd_kirim_dataorder (iddtorder,iddist,idtoko) VALUES ('" & TidDtOrder.Text & "', '" & TIdDist.Text & "', '" & TidToko.Text & "')"
+                        sql = " INSERT INTO prd_kirim_dataorder (iddtorder,idtoko) VALUES ('" & TidDtOrder.Text & "', '" & TidToko.Text & "')"
                         cmd = New OdbcCommand(sql, conn)
                         cmd.ExecuteNonQuery()
 

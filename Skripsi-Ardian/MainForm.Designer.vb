@@ -44,6 +44,8 @@ Partial Class MainForm
         Me.AccordionControlElement1 = New DevExpress.XtraBars.Navigation.AccordionControlElement()
         Me.FluentDesignFormControl1 = New DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl()
         Me.FluentFormDefaultManager1 = New DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(Me.components)
+        Me.Marketing_Penawaran = New DevExpress.XtraBars.Navigation.AccordionControlElement()
+        Me.Marketing_POInternal = New DevExpress.XtraBars.Navigation.AccordionControlElement()
         CType(Me.AccordionControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FluentDesignFormControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FluentFormDefaultManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,10 +54,10 @@ Partial Class MainForm
         'FluentDesignFormContainer1
         '
         Me.FluentDesignFormContainer1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.FluentDesignFormContainer1.Location = New System.Drawing.Point(273, 26)
-        Me.FluentDesignFormContainer1.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.FluentDesignFormContainer1.Location = New System.Drawing.Point(312, 33)
+        Me.FluentDesignFormContainer1.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.FluentDesignFormContainer1.Name = "FluentDesignFormContainer1"
-        Me.FluentDesignFormContainer1.Size = New System.Drawing.Size(859, 424)
+        Me.FluentDesignFormContainer1.Size = New System.Drawing.Size(982, 567)
         Me.FluentDesignFormContainer1.TabIndex = 0
         '
         'AccordionControl1
@@ -64,14 +66,14 @@ Partial Class MainForm
         Me.AccordionControl1.Appearance.AccordionControl.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal
         Me.AccordionControl1.Dock = System.Windows.Forms.DockStyle.Left
         Me.AccordionControl1.Elements.AddRange(New DevExpress.XtraBars.Navigation.AccordionControlElement() {Me.AccordAccount, Me.AccordMarketing, Me.AccordDesain, Me.AccordPrinting, Me.AccordProduksi, Me.AccordionControlElement1})
-        Me.AccordionControl1.Location = New System.Drawing.Point(0, 26)
-        Me.AccordionControl1.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.AccordionControl1.Location = New System.Drawing.Point(0, 33)
+        Me.AccordionControl1.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.AccordionControl1.Name = "AccordionControl1"
         Me.AccordionControl1.OptionsHamburgerMenu.DisplayMode = DevExpress.XtraBars.Navigation.AccordionControlDisplayMode.Overlay
         Me.AccordionControl1.OptionsMinimizing.AllowMinimizeMode = DevExpress.Utils.DefaultBoolean.[True]
         Me.AccordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch
         Me.AccordionControl1.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Always
-        Me.AccordionControl1.Size = New System.Drawing.Size(273, 424)
+        Me.AccordionControl1.Size = New System.Drawing.Size(312, 567)
         Me.AccordionControl1.TabIndex = 1
         Me.AccordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu
         '
@@ -81,7 +83,6 @@ Partial Class MainForm
         Me.AccordAccount.Appearance.Normal.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.AccordAccount.Appearance.Normal.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.AccordAccount.Elements.AddRange(New DevExpress.XtraBars.Navigation.AccordionControlElement() {Me.User_viewProfil, Me.User_logout})
-        Me.AccordAccount.Expanded = True
         Me.AccordAccount.HeaderIndent = 60
         Me.AccordAccount.Height = 90
         Me.AccordAccount.ImageOptions.Image = CType(resources.GetObject("AccordAccount.ImageOptions.Image"), System.Drawing.Image)
@@ -104,7 +105,8 @@ Partial Class MainForm
         '
         'AccordMarketing
         '
-        Me.AccordMarketing.Elements.AddRange(New DevExpress.XtraBars.Navigation.AccordionControlElement() {Me.Marketing_DataOrder, Me.AccordionControlSeparator1, Me.Marketing_DetailDO})
+        Me.AccordMarketing.Elements.AddRange(New DevExpress.XtraBars.Navigation.AccordionControlElement() {Me.Marketing_DataOrder, Me.AccordionControlSeparator1, Me.Marketing_DetailDO, Me.Marketing_Penawaran, Me.Marketing_POInternal})
+        Me.AccordMarketing.Expanded = True
         Me.AccordMarketing.HeaderTemplate.AddRange(New DevExpress.XtraBars.Navigation.HeaderElementInfo() {New DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Image), New DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Text), New DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.ContextButtons), New DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.HeaderControl)})
         Me.AccordMarketing.ImageOptions.Image = CType(resources.GetObject("AccordMarketing.ImageOptions.Image"), System.Drawing.Image)
         Me.AccordMarketing.Name = "AccordMarketing"
@@ -159,7 +161,6 @@ Partial Class MainForm
         'AccordProduksi
         '
         Me.AccordProduksi.Elements.AddRange(New DevExpress.XtraBars.Navigation.AccordionControlElement() {Me.Produksi_InternalPO, Me.Produksi_AlokasiManpower, Me.Produksi_ListPOSelesai})
-        Me.AccordProduksi.Expanded = True
         Me.AccordProduksi.ImageOptions.Image = CType(resources.GetObject("AccordProduksi.ImageOptions.Image"), System.Drawing.Image)
         Me.AccordProduksi.Name = "AccordProduksi"
         Me.AccordProduksi.Text = "PRODUKSI"
@@ -198,9 +199,9 @@ Partial Class MainForm
         Me.FluentDesignFormControl1.FluentDesignForm = Me
         Me.FluentDesignFormControl1.Location = New System.Drawing.Point(0, 0)
         Me.FluentDesignFormControl1.Manager = Me.FluentFormDefaultManager1
-        Me.FluentDesignFormControl1.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.FluentDesignFormControl1.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.FluentDesignFormControl1.Name = "FluentDesignFormControl1"
-        Me.FluentDesignFormControl1.Size = New System.Drawing.Size(1132, 26)
+        Me.FluentDesignFormControl1.Size = New System.Drawing.Size(1294, 33)
         Me.FluentDesignFormControl1.TabIndex = 2
         Me.FluentDesignFormControl1.TabStop = False
         '
@@ -210,18 +211,33 @@ Partial Class MainForm
         Me.FluentFormDefaultManager1.Form = Me
         Me.FluentFormDefaultManager1.MaxItemId = 1
         '
+        'Marketing_Penawaran
+        '
+        Me.Marketing_Penawaran.HeaderTemplate.AddRange(New DevExpress.XtraBars.Navigation.HeaderElementInfo() {New DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Image), New DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Text), New DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.ContextButtons), New DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.HeaderControl)})
+        Me.Marketing_Penawaran.ImageOptions.Image = CType(resources.GetObject("AccordionControlElement2.ImageOptions.Image"), System.Drawing.Image)
+        Me.Marketing_Penawaran.Name = "Marketing_Penawaran"
+        Me.Marketing_Penawaran.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
+        Me.Marketing_Penawaran.Text = "PENAWARAN"
+        '
+        'Marketing_POInternal
+        '
+        Me.Marketing_POInternal.ImageOptions.Image = CType(resources.GetObject("AccordionControlElement3.ImageOptions.Image"), System.Drawing.Image)
+        Me.Marketing_POInternal.Name = "Marketing_POInternal"
+        Me.Marketing_POInternal.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
+        Me.Marketing_POInternal.Text = "KIRIM P.O INTERNAL"
+        '
         'MainForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1132, 450)
+        Me.ClientSize = New System.Drawing.Size(1294, 600)
         Me.ControlBox = False
         Me.ControlContainer = Me.FluentDesignFormContainer1
         Me.Controls.Add(Me.FluentDesignFormContainer1)
         Me.Controls.Add(Me.AccordionControl1)
         Me.Controls.Add(Me.FluentDesignFormControl1)
         Me.FluentDesignFormControl = Me.FluentDesignFormControl1
-        Me.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.Name = "MainForm"
         Me.NavigationControl = Me.AccordionControl1
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
@@ -253,4 +269,6 @@ Partial Class MainForm
     Friend WithEvents User_logout As DevExpress.XtraBars.Navigation.AccordionControlElement
     Friend WithEvents Produksi_AlokasiManpower As DevExpress.XtraBars.Navigation.AccordionControlElement
     Friend WithEvents Produksi_ListPOSelesai As DevExpress.XtraBars.Navigation.AccordionControlElement
+    Friend WithEvents Marketing_Penawaran As DevExpress.XtraBars.Navigation.AccordionControlElement
+    Friend WithEvents Marketing_POInternal As DevExpress.XtraBars.Navigation.AccordionControlElement
 End Class

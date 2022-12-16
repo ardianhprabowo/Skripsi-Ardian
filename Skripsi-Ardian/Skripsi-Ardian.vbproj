@@ -138,6 +138,18 @@
     <Compile Include="Marketing\EntryDO.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Marketing\KirimPOInt.Designer.vb">
+      <DependentUpon>KirimPOInt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Marketing\KirimPOInt.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Marketing\PenawaranP2P.Designer.vb">
+      <DependentUpon>PenawaranP2P.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Marketing\PenawaranP2P.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Marketing\StatusSurvei.Designer.vb">
       <DependentUpon>StatusSurvei.vb</DependentUpon>
     </Compile>
@@ -197,6 +209,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Marketing\EntryDO.resx">
       <DependentUpon>EntryDO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Marketing\KirimPOInt.resx">
+      <DependentUpon>KirimPOInt.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Marketing\PenawaranP2P.resx">
+      <DependentUpon>PenawaranP2P.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Marketing\StatusSurvei.resx">
       <DependentUpon>StatusSurvei.vb</DependentUpon>

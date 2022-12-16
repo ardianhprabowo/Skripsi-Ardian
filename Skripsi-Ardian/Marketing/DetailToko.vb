@@ -45,12 +45,6 @@ Public Class DetailToko
         CSurvei.Checked = False
         CRealImple.Enabled = True
         CRealImple.Checked = False
-        CRealKirim.Enabled = True
-        CRealKirim.Checked = False
-        CRealSurvei.Enabled = True
-        CRealSurvei.Checked = False
-        CRealTerimaBrg.Enabled = True
-        CRealTerimaBrg.Checked = False
 
 
 
@@ -119,26 +113,23 @@ Public Class DetailToko
         ListBarang.Columns.Add("TINGGI", 150, HorizontalAlignment.Left)
         ListBarang.Columns.Add("SISI", 200, HorizontalAlignment.Left)
         ListBarang.Columns.Add("QTY", 50, HorizontalAlignment.Left)
-        ListBarang.Columns.Add("KETERANGAN", 100, HorizontalAlignment.Left)
-        ListBarang.Columns.Add("Deadline Survei", 50, HorizontalAlignment.Left)
-        ListBarang.Columns.Add("Realisasi Survei", 50, HorizontalAlignment.Left)
-        ListBarang.Columns.Add("Deadline Implementasi", 50, HorizontalAlignment.Left)
-        ListBarang.Columns.Add("Realisasi Implementasi", 50, HorizontalAlignment.Left)
-        ListBarang.Columns.Add("Deadline Kirim", 50, HorizontalAlignment.Left)
-        ListBarang.Columns.Add("Realisasi Kirim", 50, HorizontalAlignment.Left)
-        ListBarang.Columns.Add("Realisasi Terima Barang", 50, HorizontalAlignment.Left)
+        ListBarang.Columns.Add("KET.", 100, HorizontalAlignment.Left)
+        ListBarang.Columns.Add("Deadline Implementasi", 100, HorizontalAlignment.Left)
+        ListBarang.Columns.Add("Realisasi Implementasi", 100, HorizontalAlignment.Left)
+        ListBarang.Columns.Add("Deadline Kirim", 100, HorizontalAlignment.Left)
         ListBarang.Columns.Add("IDTrans", 1, HorizontalAlignment.Left)
         ListBarang.Columns.Add("IDBarang", 1, HorizontalAlignment.Left)
     End Sub
     Private Sub TampilBarangPerToko()
         GGVM_conn()
         s = ""
-        s = s & " select b.barang, c.panjang_prd, c.lebar_prd, c.tinggi_prd,c.sisi_prd,c.qty_prd, c.keterangan, c.deadline_survei,"
-        s = s & " c.realisasi_survei, c.deadline_implementasi, c.realisasi_implementasi, c.deadline_kirim, c.realisasi_kirim, c.realisasi_terima_brg, "
-        s = s & " c.idtrans, b.idbarang"
+        s = s & " select b.barang, c.panjang_prd, c.lebar_prd, c.tinggi_prd,c.sisi_prd,c.qty_prd, c.keterangan_detail,"
+        s = s & "  c.deadline_implementasi, c.realisasi_implementasi, c.deadline_kirim, "
+        s = s & " c.idtrans, b.idbarang_pe"
         s = s & " from prd_dataorder a,barang_penawaran b , prd_trans_detaildo_kirim c "
         s = s & "  where a.iddtorder = c.iddtorder And "
-        s = s & " b.idbarang = c.idbarang_prd and c.idkirim = '" & TIdKirimTK.Text & "' "
+        s = s & " b.idbarang_pe = c.idbarang_pe and c.idkirim = '" & TIdKirimTK.Text & "' "
+        s = s & " and c.isdelete ='N' "
         da = New OdbcDataAdapter(s, conn)
         'ds.Clear()
         tbl = New DataTable
@@ -154,16 +145,12 @@ Public Class DetailToko
                     .Add(tbl.Rows(i)("tinggi_prd"))
                     .Add(tbl.Rows(i)("sisi_prd"))
                     .Add(tbl.Rows(i)("qty_prd"))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("keterangan")), "", tbl.Rows(i)("keterangan")))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("deadline_survei")), "", tbl.Rows(i)("deadline_survei")))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("realisasi_survei")), "", tbl.Rows(i)("realisasi_survei")))
+                    .Add(IIf(IsDBNull(tbl.Rows(i)("keterangan_detail")), "-", tbl.Rows(i)("keterangan_detail")))
                     .Add(IIf(IsDBNull(tbl.Rows(i)("deadline_implementasi")), "", tbl.Rows(i)("deadline_implementasi")))
                     .Add(IIf(IsDBNull(tbl.Rows(i)("realisasi_implementasi")), "", tbl.Rows(i)("realisasi_implementasi")))
                     .Add(IIf(IsDBNull(tbl.Rows(i)("deadline_kirim")), "", tbl.Rows(i)("deadline_kirim")))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("realisasi_kirim")), "", tbl.Rows(i)("realisasi_kirim")))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("realisasi_terima_brg")), "", tbl.Rows(i)("realisasi_terima_brg")))
                     .Add(tbl.Rows(i)("idtrans"))
-                    .Add(tbl.Rows(i)("idbarang"))
+                    .Add(tbl.Rows(i)("idbarang_pe"))
                 End With
             End With
         Next
@@ -199,16 +186,8 @@ Public Class DetailToko
 
         CDeadKirim.Enabled = False
         CDeadKirim.Checked = False
-        CSurvei.Enabled = False
-        CSurvei.Checked = False
         CRealImple.Enabled = False
         CRealImple.Checked = False
-        CRealKirim.Enabled = False
-        CRealKirim.Checked = False
-        CRealSurvei.Enabled = False
-        CRealSurvei.Checked = False
-        CRealTerimaBrg.Enabled = False
-        CRealTerimaBrg.Checked = False
 
         BtnInsertDetail.Enabled = False
         BtnUpdateDetailTK.Enabled = False
@@ -223,11 +202,7 @@ Public Class DetailToko
         TQtyPrd.Enabled = False
         TKetTK.Enabled = False
         DTDeadlineImpleTK.Enabled = False
-        DTRealImpleTK.Enabled = False
-        DTDeadlineSurveiTK.Enabled = False
-        DTRealSurveiTK.Enabled = False
         DTDeadlineKirimTK.Enabled = False
-        DTTglTerima.Enabled = False
         BtnSimpanDetailTK.Enabled = False
         BtnUpdateDetailTK.Enabled = True
         BtnInsertDetail.Enabled = True
@@ -242,18 +217,10 @@ Public Class DetailToko
         TQtyPrd.Text = "1"
         DTDeadlineImpleTK.Format = DateTimePickerFormat.Custom
         DTDeadlineImpleTK.CustomFormat = "dd/MM/yyyy"
-        DTDeadlineSurveiTK.Format = DateTimePickerFormat.Custom
-        DTDeadlineSurveiTK.CustomFormat = "dd/MM/yyyy"
         DTRealImpleTK.Format = DateTimePickerFormat.Custom
         DTRealImpleTK.CustomFormat = "dd/MM/yyyy"
-        DTRealSurveiTK.Format = DateTimePickerFormat.Custom
-        DTRealSurveiTK.CustomFormat = "dd/MM/yyyy"
-        DTTglTerima.Format = DateTimePickerFormat.Custom
-        DTTglTerima.CustomFormat = "dd/MM/yyyy"
         DTDeadlineKirimTK.Format = DateTimePickerFormat.Custom
         DTDeadlineKirimTK.CustomFormat = "dd/MM/yyyy"
-        DTRealKirimTK.Format = DateTimePickerFormat.Custom
-        DTRealKirimTK.CustomFormat = "dd/MM/yyyy"
     End Sub
     Private Sub EditModeTK()
         TBarangPrd.Enabled = True
@@ -305,17 +272,13 @@ Public Class DetailToko
     
     Private Sub CSurvei_CheckedChanged(sender As Object, e As EventArgs) Handles CSurvei.CheckedChanged
         If CSurvei.Checked = True Then
-            DTDeadlineSurveiTK.Enabled = True
+
             DTDeadlineImpleTK.Enabled = True
-            DTDeadlineSurveiTK.Format = DateTimePickerFormat.Custom
-            DTDeadlineSurveiTK.CustomFormat = "dd/MM/yyyy"
             DTDeadlineImpleTK.Format = DateTimePickerFormat.Custom
             DTDeadlineImpleTK.CustomFormat = "dd/MM/yyyy"
         Else
-            DTDeadlineSurveiTK.Enabled = False
+
             DTDeadlineImpleTK.Enabled = False
-            DTDeadlineSurveiTK.Format = DateTimePickerFormat.Custom
-            DTDeadlineSurveiTK.CustomFormat = "dd/MM/yyyy"
             DTDeadlineImpleTK.Format = DateTimePickerFormat.Custom
             DTDeadlineImpleTK.CustomFormat = "dd/MM/yyyy"
         End If
@@ -323,63 +286,17 @@ Public Class DetailToko
 
     Private Sub CDeadKirim_CheckedChanged(sender As Object, e As EventArgs) Handles CDeadKirim.CheckedChanged
         If CDeadKirim.Checked = True Then
-            DTDeadlineKirimTK.Enabled = True
+            DTDeadlineImpleTK.Enabled = True
             DTDeadlineImpleTK.Format = DateTimePickerFormat.Custom
             DTDeadlineImpleTK.CustomFormat = "dd/MM/yyyy"
         Else
-            DTDeadlineKirimTK.Enabled = False
+            DTDeadlineImpleTK.Enabled = False
             DTDeadlineImpleTK.Format = DateTimePickerFormat.Custom
             DTDeadlineImpleTK.CustomFormat = "dd/MM/yyyy"
         End If
     End Sub
 
-    Private Sub CRealSurvei_CheckedChanged(sender As Object, e As EventArgs) Handles CRealSurvei.CheckedChanged
-        If CRealSurvei.Checked = True Then
-            DTRealSurveiTK.Enabled = True
-            DTRealSurveiTK.Format = DateTimePickerFormat.Custom
-            DTRealSurveiTK.CustomFormat = "dd/MM/yyyy"
-        Else
-            DTRealSurveiTK.Enabled = False
-            DTRealSurveiTK.Format = DateTimePickerFormat.Custom
-            DTRealSurveiTK.CustomFormat = "dd/MM/yyyy"
-        End If
-    End Sub
 
-    Private Sub CRealKirim_CheckedChanged(sender As Object, e As EventArgs) Handles CRealKirim.CheckedChanged
-        If CRealKirim.Checked = True Then
-            DTRealKirimTK.Enabled = True
-            DTRealKirimTK.Format = DateTimePickerFormat.Custom
-            DTRealKirimTK.CustomFormat = "dd/MM/yyyy"
-        Else
-            DTRealKirimTK.Enabled = False
-            DTRealKirimTK.Format = DateTimePickerFormat.Custom
-            DTRealKirimTK.CustomFormat = "dd/MM/yyyy"
-        End If
-    End Sub
-
-    Private Sub CRealImple_CheckedChanged(sender As Object, e As EventArgs) Handles CRealImple.CheckedChanged
-        If CRealImple.Checked = True Then
-            DTRealImpleTK.Enabled = True
-            DTRealImpleTK.Format = DateTimePickerFormat.Custom
-            DTRealImpleTK.CustomFormat = "dd/MM/yyyy"
-        Else
-            DTRealImpleTK.Enabled = False
-            DTRealImpleTK.Format = DateTimePickerFormat.Custom
-            DTRealImpleTK.CustomFormat = "dd/MM/yyyy"
-        End If
-    End Sub
-
-    Private Sub CRealTerimaBrg_CheckedChanged(sender As Object, e As EventArgs) Handles CRealTerimaBrg.CheckedChanged
-        If CRealTerimaBrg.Checked = True Then
-            CRealTerimaBrg.Enabled = True
-            DTTglTerima.Format = DateTimePickerFormat.Custom
-            DTTglTerima.CustomFormat = "dd/MM/yyyy"
-        Else
-            CRealTerimaBrg.Enabled = False
-            DTTglTerima.Format = DateTimePickerFormat.Custom
-            DTTglTerima.CustomFormat = "dd/MM/yyyy"
-        End If
-    End Sub
 
     Private Sub ListToko_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListToko.SelectedIndexChanged
         Me.Cursor = Cursors.WaitCursor
@@ -430,6 +347,7 @@ Public Class DetailToko
             ListToko.Enabled = True
             ListBarang.Items.Clear()
             ListToko.Items.Clear()
+            BtnHapusBarang.Enabled = False
             TampilToko()
         Else
             Me.Enabled = False
@@ -448,7 +366,7 @@ Public Class DetailToko
                     Dim kd As String
                     'Count Kode Barang
                     s = ""
-                    s = s & " Select max(idbarang)As id from barang_penawaran "
+                    s = s & " Select max(idbarang_pe)As id from barang_penawaran "
                     cmd = New OdbcCommand(s, conn)
                     dr = cmd.ExecuteReader
                     dr.Read()
@@ -462,7 +380,7 @@ Public Class DetailToko
                     cmd.ExecuteNonQuery()
 
                     c = ""
-                    c = c & " Select max(idbarang) As id from barang_penawaran "
+                    c = c & " Select max(idbarang_pe) As id from barang_penawaran "
                     da = New OdbcDataAdapter(c, conn)
                     dt = New DataTable
                     da.Fill(dt)
@@ -472,46 +390,28 @@ Public Class DetailToko
                 End If
 
                 s = ""
-                s = s & " insert into prd_trans_detaildo_kirim (idkirim,iddtorder,idbarang_prd,panjang_prd,lebar_prd, "
+                s = s & " insert into prd_trans_detaildo_kirim (idkirim,iddtorder,idbarang_pe,panjang_prd,lebar_prd, "
                 s = s & " tinggi_prd, sisi_prd, qty_prd,"
                 If CSurvei.Checked = True Then
-                    s = s & " deadline_survei, deadline_implementasi, "
+                    s = s & " deadline_implementasi, "
                 End If
                 If CDeadKirim.Checked = True Then
                     s = s & " deadline_kirim, "
                 End If
-                If CRealSurvei.Checked = True Then
-                    s = s & "realisasi_survei, "
-                End If
                 If CRealImple.Checked = True Then
                     s = s & " realisasi_implementasi, "
                 End If
-                If CRealTerimaBrg.Checked = True Then
-                    s = s & " realisasi_terima_brg, "
-                End If
-                If CRealKirim.Checked = True Then
-                    s = s & " realisasi_kirim, "
-                End If
-                s = s & "  keterangan ) "
+                s = s & "  keterangan_detail ) "
                 s = s & " values ( '" & TIdKirimTK.Text & "' , '" & TIDOrder.Text & "', '" & TidBarangPrd.Text & "', '" & TPPrd.Text & "', "
                 s = s & " '" & TLPrd.Text & "', '" & TTPrd.Text & "', '" & TSPrd.Text & "', '" & TQtyPrd.Text & "', "
                 If CSurvei.Checked = True Then
-                    s = s & " '" & Format(DTDeadlineSurveiTK.Value, "yyyy/MM/dd") & "','" & Format(DTDeadlineImpleTK.Value, "yyyy/MM/dd") & "',  "
+                    s = s & "'" & Format(DTDeadlineImpleTK.Value, "yyyy/MM/dd") & "',  "
                 End If
                 If CDeadKirim.Checked = True Then
                     s = s & "'" & Format(DTDeadlineKirimTK.Value, "yyyy/MM/dd") & "', "
                 End If
-                If CRealSurvei.Checked = True Then
-                    s = s & "'" & Format(DTRealSurveiTK.Value, "yyyy/MM/dd") & "', "
-                End If
                 If CRealImple.Checked = True Then
                     s = s & "'" & Format(DTRealImpleTK.Value, "yyyy/MM/dd") & "', "
-                End If
-                If CRealTerimaBrg.Checked = True Then
-                    s = s & "'" & Format(DTTglTerima.Value, "yyyy/MM/dd") & "', "
-                End If
-                If CRealKirim.Checked = True Then
-                    s = s & "'" & Format(DTRealKirimTK.Value, "yyyy/MM/dd") & "', "
                 End If
                 s = s & " '" & TKetTK.Text & "' ) "
                 cmd = New OdbcCommand(s, conn)
@@ -530,28 +430,20 @@ Public Class DetailToko
                 GGVM_conn()
                 s = ""
                 s = s & " update prd_trans_detaildo_kirim set"
-                s = s & " idbarang_prd = '" & TidBarangPrd.Text & "', panjang_prd = '" & TPPrd.Text & "', lebar_prd = '" & TLPrd.Text & "',tinggi_prd = '" & TTPrd.Text & "', "
+                s = s & " idbarang_pe = '" & TidBarangPrd.Text & "', panjang_prd = '" & TPPrd.Text & "', lebar_prd = '" & TLPrd.Text & "',tinggi_prd = '" & TTPrd.Text & "', "
                 s = s & " sisi_prd = '" & TSPrd.Text & "',qty_prd = '" & TQtyPrd.Text & "', "
                 If CSurvei.Checked = True Then
-                    s = s & " deadline_survei ='" & Format(DTDeadlineSurveiTK.Value, "yyyy/MM/dd") & "', deadline_implementasi = '" & Format(DTDeadlineImpleTK.Value, "yyyy/MM/dd") & "',  "
+                    s = s & "  deadline_implementasi = '" & Format(DTDeadlineImpleTK.Value, "yyyy/MM/dd") & "',  "
                 End If
                 If CDeadKirim.Checked = True Then
                     s = s & " deadline_kirim = '" & Format(DTDeadlineKirimTK.Value, "yyyy/MM/dd") & "', "
                 End If
-                If CRealSurvei.Checked = True Then
-                    s = s & " realisasi_survei ='" & Format(DTRealSurveiTK.Value, "yyyy/MM/dd") & "', "
-                End If
                 If CRealImple.Checked = True Then
                     s = s & " realisasi_implementasi = '" & Format(DTRealImpleTK.Value, "yyyy/MM/dd") & "', "
                 End If
-                If CRealTerimaBrg.Checked = True Then
-                    s = s & "realisasi_terima_brg'" & Format(DTTglTerima.Value, "yyyy/MM/dd") & "', "
-                End If
-                If CRealKirim.Checked = True Then
-                    s = s & "realisasi_kirim = '" & Format(DTRealKirimTK.Value, "yyyy/MM/dd") & "', "
-                End If
                 s = s & " userupdate = '" & userid & "',"
-                s = s & " keterangan = '" & TKetTK.Text & "' "
+                s = s & " timeupdate = now(),"
+                s = s & " keterangan_detail = '" & TKetTK.Text & "' "
                 s = s & " where idtrans = '" & TidTrans.Text & "' "
                 cmd = New OdbcCommand(s, conn)
                 cmd.ExecuteNonQuery()
@@ -584,12 +476,14 @@ Public Class DetailToko
         With Me.ListBarang
             For Each check As ListViewItem In ListBarang.CheckedItems
                 check.Checked = False
+                BtnHapusBarang.Enabled = False
             Next
             For Each item As ListViewItem In ListBarang.SelectedItems
                 item.Checked = True
                 brsbrg = item.Index
                 If item.Checked = True Then
                     BtnUpdateDetailTK.Enabled = True
+                    BtnHapusBarang.Enabled = True
                 Else
                     BtnUpdateDetailTK.Enabled = False
                 End If
@@ -602,20 +496,23 @@ Public Class DetailToko
         TSPrd.Text = ListBarang.Items(brsbrg).SubItems(4).Text
         TQtyPrd.Text = ListBarang.Items(brsbrg).SubItems(5).Text
         TKetTK.Text = ListBarang.Items(brsbrg).SubItems(6).Text
-        DTDeadlineSurveiTK.Text = ListBarang.Items(brsbrg).SubItems(7).Text
-        DTRealSurveiTK.Text = ListBarang.Items(brsbrg).SubItems(8).Text
-        DTDeadlineImpleTK.Text = ListBarang.Items(brsbrg).SubItems(9).Text
-        DTRealImpleTK.Text = ListBarang.Items(brsbrg).SubItems(10).Text
-        DTDeadlineKirimTK.Text = ListBarang.Items(brsbrg).SubItems(11).Text
-        DTRealKirimTK.Text = ListBarang.Items(brsbrg).SubItems(12).Text
-        DTTglTerima.Text = ListBarang.Items(brsbrg).SubItems(13).Text
-        TidTrans.Text = ListBarang.Items(brsbrg).SubItems(14).Text
-        TidBarangPrd.Text = ListBarang.Items(brsbrg).SubItems(15).Text
+        DTDeadlineImpleTK.Text = ListBarang.Items(brsbrg).SubItems(7).Text
+        DTRealImpleTK.Text = ListBarang.Items(brsbrg).SubItems(8).Text
+        DTDeadlineKirimTK.Text = ListBarang.Items(brsbrg).SubItems(9).Text
+        TidTrans.Text = ListBarang.Items(brsbrg).SubItems(10).Text
+        TidBarangPrd.Text = ListBarang.Items(brsbrg).SubItems(11).Text
 
         Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnUpdateDetailTK_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BtnUpdateDetailTK.ItemClick
+
+        CDeadKirim.Enabled = True
+        CDeadKirim.Checked = False
+        CSurvei.Enabled = True
+        CSurvei.Checked = False
+        CRealImple.Enabled = True
+        CRealImple.Checked = False
         EditModeTK()
         ProsesDetail = "EditDetail"
         'Call TampilToko()
@@ -632,23 +529,22 @@ Public Class DetailToko
         ListBarang.BeginUpdate()
         Dim I As Integer
         For I = ListBarang.Items.Count - 1 To 0 Step -1
-            If ListBarang.Items(I).Checked = True Then
-                ada = True
-                brs = I
-                jmldt = jmldt + 1
-                If ada = False Then
-                    MsgBox("Pilih Barangnya Dulu", MsgBoxStyle.Information)
-                    Exit Sub
-                End If
+            ada = True
+            brs = I
+            jmldt = jmldt + 1
+            If ada = False Then
+                MsgBox("Pilih Barangnya Dulu", MsgBoxStyle.Information)
+                Exit Sub
+            End If
                 For Each item As ListViewItem In ListBarang.CheckedItems
                     GGVM_conn()
                     Dim sql2 As String
 
-                    sql2 = "DELETE FROM prd_trans_detaildo_kirim WHERE idtrans = ?"
+                    sql2 = "UPDATE prd_trans_detaildo_kirim set isdelete='Y' WHERE idtrans = ?"
                     cmd = New OdbcCommand
                     With cmd
                         .CommandText = (sql2)
-                        .Parameters.Add("@idtrans", OdbcType.BigInt).Value = Convert.ToInt32(item.SubItems(14).Text)
+                        .Parameters.Add("@idtrans", OdbcType.BigInt).Value = Convert.ToInt32(item.SubItems(10).Text)
                         .Connection = conn
                     End With
                     dr = cmd.ExecuteReader
@@ -661,12 +557,11 @@ Public Class DetailToko
                     conn.Close()
                     dr = Nothing
                     cmd = Nothing
-
-                    MsgBox("Barang Berhasil diHapus")
-                    Call TampilBarangPerToko()
                 Next
-            End If
+                BtnHapusBarang.Enabled = False
         Next I
+        MsgBox("Barang Berhasil diHapus")
+        Call TampilBarangPerToko()
         ListBarang.EndUpdate()
     End Sub
 End Class
