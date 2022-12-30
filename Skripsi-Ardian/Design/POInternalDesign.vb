@@ -5,7 +5,6 @@ Imports System.Data.Odbc
 
 Public Class POInternalDesign
     Dim s, c As String
-    Dim idpo, idpodsn, iddtorder As String
     Dim filter As Boolean
     Dim brske, brspo As Integer
     Dim LoadDT As String
@@ -19,11 +18,30 @@ Public Class POInternalDesign
     End Sub
 
 #Region " Deklarasi  Listview"
+    Private Sub ListHeadDsn()
+        ListPODsn.FullRowSelect = True
+        ListPODsn.MultiSelect = True
+        ListPODsn.View = View.Details
+        ListPODsn.CheckBoxes = True
+        ListPODsn.Columns.Clear()
+        ListPODsn.Items.Clear()
+        ListPODsn.Columns.Add("NO.PO", 150, HorizontalAlignment.Left)
+        ListPODsn.Columns.Add("TANGGAL", 110, HorizontalAlignment.Left)
+        ListPODsn.Columns.Add("KLIEN", 200, HorizontalAlignment.Left)
+        ListPODsn.Columns.Add("BRAND", 150, HorizontalAlignment.Left)
+        ListPODsn.Columns.Add("NOPE", 200, HorizontalAlignment.Left)
+        ListPODsn.Columns.Add("idpo", 0, HorizontalAlignment.Left)
+        ListPODsn.Columns.Add("iddsn", 0, HorizontalAlignment.Left)
+        ListPODsn.Columns.Add("DEADLINE", 150, HorizontalAlignment.Left)
+        ListPODsn.Columns.Add("iddtorder", 0, HorizontalAlignment.Left)
+        ListPODsn.Columns.Add("STATUS", 150, HorizontalAlignment.Left)
+        ListPODsn.Columns.Add("PO PRODUKSI", 150, HorizontalAlignment.Left)
+    End Sub
+
     Private Sub ListHeadDetail()
         ListDetailPODsn.FullRowSelect = True
         ListDetailPODsn.MultiSelect = True
         ListDetailPODsn.View = View.Details
-        ListDetailPODsn.OwnerDraw = True
         ListDetailPODsn.CheckBoxes = True
         'ListDetailPODsn.SmallImageList = ImgList
         ListDetailPODsn.Columns.Clear()
@@ -40,13 +58,9 @@ Public Class POInternalDesign
         ListDetailPODsn.Columns.Add("IDBARANG", 0, HorizontalAlignment.Right)
         ListDetailPODsn.Columns.Add("IDPOPRD", 0, HorizontalAlignment.Right)
         ListDetailPODsn.Columns.Add("IDTOKO", 0, HorizontalAlignment.Right)
-        ListDetailPODsn.Columns.Add("IDBRAND", 0, HorizontalAlignment.Right)
         ListDetailPODsn.Columns.Add("IDDTORDER", 0, HorizontalAlignment.Right)
         ListDetailPODsn.Columns.Add("IDDETAILDSN", 0, HorizontalAlignment.Right)
         ListDetailPODsn.Columns.Add("KETERANGAN", 150, HorizontalAlignment.Right)
-        ListDetailPODsn.Columns.Add("time_kirim_prt", 0, HorizontalAlignment.Right)
-        ListDetailPODsn.Columns.Add("time_kirim_cut", 0, HorizontalAlignment.Right)
-        ListDetailPODsn.Columns.Add("issubkon", 0, HorizontalAlignment.Right)
     End Sub
 
     Private Sub ListHeadPrint()
@@ -61,7 +75,6 @@ Public Class POInternalDesign
         ListPOPrint.Columns.Add("P", 60, HorizontalAlignment.Right)
         ListPOPrint.Columns.Add("L", 60, HorizontalAlignment.Right)
         ListPOPrint.Columns.Add("T", 60, HorizontalAlignment.Right)
-        ListPOPrint.Columns.Add("SISI", 60, HorizontalAlignment.Right)
         ListPOPrint.Columns.Add("JML", 60, HorizontalAlignment.Right)
         ListPOPrint.Columns.Add("iditem_prt", 0, HorizontalAlignment.Right)
         ListPOPrint.Columns.Add("iddetail_po_prt", 0, HorizontalAlignment.Right)
@@ -71,56 +84,111 @@ Public Class POInternalDesign
     End Sub
 #End Region
 #Region "Deklarasi Fungsi"
-    Private Sub TampilPODeTAIL()
+    Private Sub TampilPODesain()
 
         Dim s As String
         Dim i As Integer
         Dim tbl As New DataTable
 
+        ListPODsn.Items.Clear()
         ListDetailPODsn.Items.Clear()
-        ListPOPrint.Items.Clear()
         GGVM_conn()
         s = ""
-        s = s & " SELECT * from view_detailpo_dsn"
-        s = s & " WHERE idpo_prd ='" & idpo & "' "
-        If filter = True Then
-            s = s & " and kirim_po is not null and kirim_ppic is not null"
-        Else
-            s = s & " and kirim_po is null and kirim_ppic is null"
+        s = s & " select * from view_podesain"
+        If RbTerima.Checked = True Then
+            s = s & " WHERE isnull(terima_po_dsn) "
+        ElseIf RbKirim.Checked = True Then
+            s = s & " WHERE terima_po_dsn is not null "
+            If FilterPekerjaan.Checked = True Then
+                s = s & " and time_closhing_dsn is not null and terima_po_dsn is not null and selesai_desain is not null"
+            ElseIf CbOnprogress.Checked = True Then
+                s = s & " and time_closhing_dsn is null and  terima_po_dsn is not null and kirim_po_dsn is not null"
+            Else
+                s = s & " and time_closhing_dsn is null and terima_po_dsn is not null and kirim_po_dsn is null"
+            End If
         End If
-
-        ' s = s & " WHERE idpo_prd ='" & TidPO.Text & "'"
-        da = New OdbcDataAdapter(s, conn)
+        s = s & " ORDER BY kirim_po_dsn DESC "
+        da = New System.Data.Odbc.OdbcDataAdapter(s, conn)
         'ds.Clear()
         tbl = New DataTable
         tbl.Clear()
         da.Fill(tbl)
+
         For i = 0 To tbl.Rows.Count - 1
-            With ListDetailPODsn
-                .Items.Add(tbl.Rows(i)("toko"))
+            Dim statuspekerjaan As String = ""
+            If IIf(IsDBNull(tbl.Rows(i)("time_closhing_dsn")).ToString, "", tbl.Rows(i)("time_closhing_dsn")).ToString = "" And IIf(IsDBNull(tbl.Rows(i)("kirim_po_dsn")).ToString, "", tbl.Rows(i)("kirim_po_dsn")).ToString <> "" And IIf(IsDBNull(tbl.Rows(i)("terima_po_dsn")).ToString, "", tbl.Rows(i)("terima_po_dsn")).ToString <> "" Then
+                statuspekerjaan = "On Progress"
+            ElseIf IIf(IsDBNull(tbl.Rows(i)("time_closhing_dsn")).ToString, "", tbl.Rows(i)("time_closhing_dsn")).ToString <> "" And IIf(IsDBNull(tbl.Rows(i)("terima_po_dsn")).ToString, "", tbl.Rows(i)("terima_po_dsn")).ToString <> "" Then
+                statuspekerjaan = "Selesai"
+            ElseIf IIf(IsDBNull(tbl.Rows(i)("terima_po_dsn")).ToString, "", tbl.Rows(i)("terima_po_dsn")).ToString <> "" And IIf(IsDBNull(tbl.Rows(i)("time_closhing_dsn")).ToString, "", tbl.Rows(i)("time_closhing_dsn")).ToString = "" Then
+                statuspekerjaan = "Diterima"
+            Else
+                statuspekerjaan = "Belum diTerima"
+            End If
+            With ListPODsn
+                .Items.Add(tbl.Rows(i)("nopo_dsn"))
                 With .Items(.Items.Count - 1).SubItems
-                    .Add(tbl.Rows(i)("kota"))
-                    .Add(tbl.Rows(i)("barang"))
-                    .Add(tbl.Rows(i)("brand"))
-                    .Add(Int(Val(tbl.Rows(i)("panjang_prd"))))
-                    .Add(Int(Val(tbl.Rows(i)("lebar_prd"))))
-                    .Add(Int(Val(tbl.Rows(i)("tinggi_prd"))))
-                    .Add(Int(Val(tbl.Rows(i)("sisi_prd"))))
-                    .Add(Int(Val(tbl.Rows(i)("qty_prd"))))
-                    .Add(tbl.Rows(i)("idbarang"))
-                    .Add(tbl.Rows(i)("idpo_prd"))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("idtoko")), "", tbl.Rows(i)("idtoko")))
-                    .Add(tbl.Rows(i)("idbrand"))
-                    .Add(tbl.Rows(i)("iddtorder"))
-                    .Add(tbl.Rows(i)("iddetail_dsn"))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("keterangan")), "", tbl.Rows(i)("keterangan")))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("time_kirim_prt")), "", tbl.Rows(i)("time_kirim_prt")))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("time_kirim_cut")), "", tbl.Rows(i)("time_kirim_cut")))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("issubkon")), "", tbl.Rows(i)("issubkon")))
+                    .Add(IIf(IsDBNull(tbl.Rows(i)("tanggalpo_dsn")), "", tbl.Rows(i)("tanggalpo_dsn")))
+                    .Add(IIf(IsDBNull(tbl.Rows(i)("klien")), "", tbl.Rows(i)("klien")))
+                    .Add(IIf(IsDBNull(tbl.Rows(i)("brand")), "", tbl.Rows(i)("brand")))
+                    .Add(IIf(IsDBNull(tbl.Rows(i)("nope")), "", tbl.Rows(i)("nope")))
+                    .Add(IIf(IsDBNull(tbl.Rows(i)("idpo_prd")), "", tbl.Rows(i)("idpo_prd")))
+                    .Add(IIf(IsDBNull(tbl.Rows(i)("idpo_dsn")), "", tbl.Rows(i)("idpo_dsn")))
+                    .Add(IIf(IsDBNull(tbl.Rows(i)("deadline_desain")), "", tbl.Rows(i)("deadline_desain")))
+                    .Add(IIf(IsDBNull(tbl.Rows(i)("iddtorder")), "", tbl.Rows(i)("iddtorder")))
+                    .Add(statuspekerjaan)
+                    .Add(tbl.Rows(i)("PO_Produksi"))
                 End With
             End With
         Next
         GGVM_conn_close()
+    End Sub
+    Private Sub TampilPODeTAIL()
+
+        Dim s As String
+        Dim i As Integer
+        Dim tbld As New DataTable
+
+        ListDetailPODsn.Items.Clear()
+        ListPOPrint.Items.Clear()
+        GGVM_conn()
+        s = ""
+        s = s & " SELECT * from view_detailpo_dsn "
+        s = s & " WHERE idpo_dsn ='" & ListPODsn.Items(brspo).SubItems(6).Text & "' "
+        'If filter = True Then
+        '    s = s & " and kirim_po is not null and kirim_ppic is not null"
+        'Else
+        '    s = s & " and kirim_po is null and kirim_ppic is null"
+        'End If
+
+        ' s = s & " WHERE idpo_prd ='" & TidPO.Text & "'"
+        da = New OdbcDataAdapter(s, conn)
+        'ds.Clear()
+        tbld = New DataTable
+        tbld.Clear()
+        da.Fill(tbld)
+        For i = 0 To tbld.Rows.Count - 1
+            With ListDetailPODsn
+                .Items.Add(tbld.Rows(i)("toko"))
+                With .Items(.Items.Count - 1).SubItems
+                    .Add(tbld.Rows(i)("kota"))
+                    .Add(tbld.Rows(i)("barang"))
+                    .Add(tbld.Rows(i)("brand"))
+                    .Add(Int(Val(tbld.Rows(i)("panjang_prd"))))
+                    .Add(Int(Val(tbld.Rows(i)("lebar_prd"))))
+                    .Add(Int(Val(tbld.Rows(i)("tinggi_prd"))))
+                    .Add(Int(Val(tbld.Rows(i)("sisi_prd"))))
+                    .Add(Int(Val(tbld.Rows(i)("qty_prd"))))
+                    .Add(tbld.Rows(i)("idbarang"))
+                    .Add(tbld.Rows(i)("idpo_dsn"))
+                    .Add(IIf(IsDBNull(tbld.Rows(i)("idtoko")), "", tbld.Rows(i)("idtoko")))
+                    .Add(tbld.Rows(i)("iddtorder"))
+                    .Add(tbld.Rows(i)("iddetail_dsn"))
+                    .Add(IIf(IsDBNull(tbld.Rows(i)("keterangan")), "", tbld.Rows(i)("keterangan")))
+                End With
+            End With
+        Next
+        'GGVM_conn_close()
     End Sub
     Private Sub TampilDetailPrinting()
         Dim s As String
@@ -130,8 +198,8 @@ Public Class POInternalDesign
         ListPOPrint.Items.Clear()
         GGVM_conn()
         s = ""
-        s = s & " select * from view_detailPoPrint "
-        s = s & " where idtoko = '" & TIdToko.Text & "' and iddetail_dsn='" & ListDetailPODsn.Items(brske).SubItems(14).Text & "' "
+        s = s & " select * from view_detailpo_printing "
+        s = s & " where idtoko = '" & TIdToko.Text & "' and iddetail_dsn='" & ListDetailPODsn.Items(brske).SubItems(13).Text & "' "
         da = New OdbcDataAdapter(s, conn)
         'ds.Clear()
         tbl = New DataTable
@@ -141,13 +209,12 @@ Public Class POInternalDesign
             With ListPOPrint
                 .Items.Add(tbl.Rows(i)("toko"))
                 With .Items(.Items.Count - 1).SubItems
-                    .Add(tbl.Rows(i)("item_prt"))
+                    .Add(tbl.Rows(i)("barang"))
                     .Add(IIf(IsDBNull(tbl.Rows(i)("panjang_prt")), "", tbl.Rows(i)("panjang_prt")))
                     .Add(IIf(IsDBNull(tbl.Rows(i)("lebar_prt")), "", tbl.Rows(i)("lebar_prt")))
                     .Add(IIf(IsDBNull(tbl.Rows(i)("tinggi_prt")), "", tbl.Rows(i)("tinggi_prt")))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("sisi_prt")), "", tbl.Rows(i)("sisi_prt")))
                     .Add(IIf(IsDBNull(tbl.Rows(i)("qty_prt")), "", tbl.Rows(i)("qty_prt")))
-                    .Add(tbl.Rows(i)("iditem_prt"))
+                    .Add(tbl.Rows(i)("idbarang"))
                     .Add(tbl.Rows(i)("iddetail_po_prt"))
                     If tbl.Rows(i)("idtoko") Is DBNull.Value Then
                         .Add("0")
@@ -165,24 +232,23 @@ Public Class POInternalDesign
         GGVM_conn_close()
     End Sub
 
-   
+
     Private Sub AutoCompBarangPrinting()
 
         Try
             GGVM_conn()
             s = ""
             s = s & " select * from ("
-            s = s & " select barang,idbarang from barang"
+            s = s & " select barang_int,idbarang_int from barang"
             s = s & " where idsubkel = 79"
-            s = s & " and status='1'"
             's = s & " and barang like '%" & TBarang2.Text & "%'"
-            s = s & " group by barang ) y"
+            s = s & " group by barang_int ) y"
             da = New OdbcDataAdapter(s, conn)
             ds = New DataSet
             da.Fill(ds)
             Dim BarangPrinting As New AutoCompleteStringCollection
             For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
-                BarangPrinting.Add(ds.Tables(0).Rows(i)("barang"))
+                BarangPrinting.Add(ds.Tables(0).Rows(i)("barang_int"))
             Next
             With TBarang2
                 .AutoCompleteSource = AutoCompleteSource.CustomSource
@@ -199,7 +265,6 @@ Public Class POInternalDesign
             GGVM_conn()
             s = ""
             s = s & " select finishing from prd_finishing_printing "
-            s = s & " where status='1'"
             da = New OdbcDataAdapter(s, conn)
             ds = New DataSet
             da.Fill(ds)
@@ -224,12 +289,11 @@ Public Class POInternalDesign
         Tp1.Enabled = False
         Tl1.Enabled = False
         Tt1.Enabled = False
-
+        TKota.Enabled = False
         TBarang2.Enabled = True
         Tp2.Enabled = True
         Tl2.Enabled = True
         Tt2.Enabled = True
-        CCutting.Enabled = True
         CPrinting.Enabled = True
         BtnSimpanDetail.Enabled = True
         BtnSimpanDetail.Text = "Simpan"
@@ -265,7 +329,7 @@ Public Class POInternalDesign
         Tt1.Text = ""
         Tj1.Text = ""
         TIdBarang1.Text = ""
-        TIdpoprd.Text = ""
+        TidPO.Text = ""
         TIdToko.Text = ""
         TIdBrand.Text = ""
         TBarang2.Text = ""
@@ -275,14 +339,9 @@ Public Class POInternalDesign
         Tl2.Text = "0"
         Tt2.Text = "0"
         Tj2.Text = "0"
-        Tp3.Text = "0"
-        Tl3.Text = "0"
-        Tt3.Text = "0"
-        Tp3.Text = "0"
         TidBahan.Text = ""
         CBahan.Text = ""
         TFinishing.Text = ""
-        CCutting.Enabled = False
         CPrinting.Enabled = False
         ListPOPrint.Enabled = True
         BtnEditDsn.Enabled = False
@@ -290,9 +349,10 @@ Public Class POInternalDesign
     End Sub
 #End Region
     Private Sub POInternalDesign_Load(sender As Object, e As EventArgs) Handles Me.Load
-        ' ...
+        ListHeadDsn()
         ListHeadDetail()
         ListHeadPrint()
+        TampilPODesain()
         RbTerima.Checked = True
         BtnAccDsn.Caption = "TERIMA PO"
     End Sub
@@ -303,64 +363,30 @@ Public Class POInternalDesign
             BtnAccDsn.Enabled = True
             BtnAccDsn.Caption = "TERIMA PO"
             BtnAccDsn.DropDownEnabled = False
-            RbKirim.Checked = False
-            Dim view As ColumnView = GridPODsn
-            Dim colterimapo As GridColumn = view.Columns("terima_po")
-            colterimapo.ClearFilter()
-            colterimapo.FilterInfo = New DevExpress.XtraGrid.Columns.ColumnFilterInfo("[terima_po] IS NULL")
+            TampilPODesain()
+            FilterPekerjaan.Enabled = False
+            CbOnprogress.Enabled = False
             BtnSelesai.Enabled = False
-            SqlDataSource1.FillAsync()
-        Else
-            Dim view As ColumnView = GridPODsn
-            Dim colterimapo As GridColumn = view.Columns("terima_po")
-            colterimapo.ClearFilter()
         End If
     End Sub
 
     Private Sub RbKirim_CheckedChanged(sender As Object, e As EventArgs) Handles RbKirim.CheckedChanged
         If RbKirim.Checked = True Then
-            RbTerima.Checked = False
             BtnAccDsn.Enabled = True
             BtnAccDsn.Caption = "KIRIM PO"
             BtnAccDsn.DropDownEnabled = True
+            TampilPODesain()
+            FilterPekerjaan.Enabled = True
+            CbOnprogress.Enabled = True
             BtnSelesai.Enabled = True
-            Dim view As ColumnView = GridPODsn
-            Dim colterimapo As GridColumn = view.Columns("terima_po")
-            Dim closing As GridColumn = view.Columns("time_closhing")
-            colterimapo.ClearFilter()
-            closing.ClearFilter()
-            closing.FilterInfo = New DevExpress.XtraGrid.Columns.ColumnFilterInfo("[time_closhing] IS NULL")
-            colterimapo.FilterInfo = New DevExpress.XtraGrid.Columns.ColumnFilterInfo("[terima_po] IS NOT NULL")
-            SqlDataSource1.FillAsync()
-        Else
-            Dim view As ColumnView = GridPODsn
-            Dim colterimapo As GridColumn = view.Columns("terima_po")
-            Dim closing As GridColumn = view.Columns("time_closhing")
-            colterimapo.ClearFilter()
-            closing.ClearFilter()
         End If
     End Sub
 
-    Private Sub GroupControl3_CustomButtonChecked(sender As Object, e As DevExpress.XtraBars.Docking2010.BaseButtonEventArgs) Handles GroupControl3.CustomButtonChecked
-        RbKirim.Checked = False
-        RbTerima.Checked = False
-        Dim view As ColumnView = GridPODsn
-        Dim closing As GridColumn = view.Columns("time_closhing")
-        closing.ClearFilter()
-        closing.FilterInfo = New DevExpress.XtraGrid.Columns.ColumnFilterInfo("[time_closhing] IS NOT NULL")
-        
-    End Sub
 
-    Private Sub GroupControl3_CustomButtonUnchecked(sender As Object, e As DevExpress.XtraBars.Docking2010.BaseButtonEventArgs) Handles GroupControl3.CustomButtonUnchecked
-        Dim view As ColumnView = GridPODsn
-        Dim closing As GridColumn = view.Columns("time_closhing")
-        closing.ClearFilter()
-        RbKirim.Checked = True
-    End Sub
     Private Sub TFinishing_TextChanged(sender As Object, e As EventArgs) Handles TFinishing.TextChanged
         Try
             GGVM_conn()
-            s = " select * from prd_finishing_printing where finishing =  '" & TFinishing.Text & "' and status='1'"
+            s = " select * from prd_finishing_printing where finishing =  '" & TFinishing.Text & "' "
             cmd = New OdbcCommand(s, conn)
             dr = cmd.ExecuteReader
             dr.Read()
@@ -377,14 +403,14 @@ Public Class POInternalDesign
     Private Sub TBarang2_TextChanged(sender As Object, e As EventArgs) Handles TBarang2.TextChanged
         Try
             GGVM_conn()
-            s = " select * from barang where barang =  '" & TBarang2.Text & "' and status='1'"
+            s = " select * from barang where barang_int =  '" & TBarang2.Text & "' "
             cmd = New OdbcCommand(s, conn)
             dr = cmd.ExecuteReader
             dr.Read()
             If Not dr.HasRows Then
                 TIdBarang2.Text = ""
             Else
-                TIdBarang2.Text = dr.Item("idbarang")
+                TIdBarang2.Text = dr.Item("idbarang_int")
             End If
         Catch ex As Exception
             MsgBox("Terjadi kesalahan! " & ex.Message)
@@ -397,11 +423,11 @@ Public Class POInternalDesign
         ada = False
         item = False
         jmldt = 0
-        If idpo = "" Then
+        If TidPoDsn.Text = "" Then
             MsgBox("Tidak ada data PO yang akan di Entry, Pilih dulu datanya!!...", MsgBoxStyle.Information, "Information")
             Exit Sub
         End If
-        If idpodsn = "" Then
+        If TidDetailDsn.Text = "" Then
             MsgBox("Tidak ada data Detail yang akan dipilih, Pilih dulu datanya!!...", MsgBoxStyle.Information, "Information")
             Exit Sub
         End If
@@ -428,6 +454,7 @@ Public Class POInternalDesign
         For i = 0 To ListDetailPODsn.Items.Count - 1
             If ListDetailPODsn.Items(i).Checked = True Then
                 brs2 = i
+
                 TToko.Text = ListDetailPODsn.Items(i).SubItems(0).Text
                 TKota.Text = ListDetailPODsn.Items(i).SubItems(1).Text
                 TBarang1.Text = ListDetailPODsn.Items(i).SubItems(2).Text
@@ -437,10 +464,9 @@ Public Class POInternalDesign
                 Tt1.Text = ListDetailPODsn.Items(i).SubItems(6).Text
                 Tj1.Text = ListDetailPODsn.Items(i).SubItems(8).Text
                 TIdBarang1.Text = ListDetailPODsn.Items(i).SubItems(9).Text
-                TIdpoprd.Text = ListDetailPODsn.Items(i).SubItems(10).Text
+                TidPO.Text = ListDetailPODsn.Items(i).SubItems(10).Text
                 TIdToko.Text = ListDetailPODsn.Items(i).SubItems(11).Text
-                TIdBrand.Text = ListDetailPODsn.Items(i).SubItems(12).Text
-                TKeterangan.Text = ListDetailPODsn.Items(i).SubItems(15).Text
+                TKeterangan.Text = ListDetailPODsn.Items(i).SubItems(14).Text
                 'CBarang.Checked = False
                 TBarang2.Text = ""
                 'C.TBarang.Text = ""
@@ -455,58 +481,7 @@ Public Class POInternalDesign
         EntryMode()
         Proses = "Entry"
     End Sub
-    
 
-    Private Sub GridControl1_Click(sender As Object, e As EventArgs) Handles GridControl1.Click
-
-    End Sub
-
-    Private Sub GridPODsn_RowClick(sender As Object, e As RowClickEventArgs) Handles GridPODsn.RowClick
-        idpo = ""
-        idpodsn = ""
-        iddtorder = ""
-        idpo = GridPODsn.GetRowCellValue(GridPODsn.FocusedRowHandle, "idpo_dsn").ToString()
-        idpodsn = GridPODsn.GetRowCellValue(GridPODsn.FocusedRowHandle, "idpo_dsn").ToString()
-        iddtorder = GridPODsn.GetRowCellValue(GridPODsn.FocusedRowHandle, "iddtorder").ToString()
-    End Sub
-
-    Private Sub GridPODsn_SelectionChanged(sender As Object, e As DevExpress.Data.SelectionChangedEventArgs) Handles GridPODsn.SelectionChanged
-        idpo = ""
-        idpodsn = ""
-        iddtorder = ""
-        idpo = GridPODsn.GetRowCellValue(GridPODsn.FocusedRowHandle, "idpo_prd").ToString()
-        idpodsn = GridPODsn.GetRowCellValue(GridPODsn.FocusedRowHandle, "idpo_dsn").ToString()
-        iddtorder = GridPODsn.GetRowCellValue(GridPODsn.FocusedRowHandle, "iddtorder").ToString()
-        GGVM_conn()
-        s = ""
-        s = s & " select if (terima_po is null,'', terima_po)as acc from po_desain"
-        s = s & " where idpo_dsn='" & idpodsn & "'"
-        da = New OdbcDataAdapter(s, conn)
-        'ds.Clear()
-        dt = New DataTable
-        dt.Clear()
-        da.Fill(dt)
-
-        If dt.Rows(0)("acc") = "" Then
-            ' MsgBox("Data Belum di Acc tidak dapat di Entry!!...", MsgBoxStyle.Information, "Information")
-            ListDetailPODsn.Enabled = False
-            BtnAccDsn.Enabled = True
-            BtnEntryDsn.Enabled = False
-            RbTerima.Checked = True
-            RbKirim.Checked = False
-        Else
-            ListDetailPODsn.Enabled = True
-            BtnEntryDsn.Enabled = True
-            If BtnAccDsn.Caption = "KIRIM PO" Then
-                BtnAccDsn.Enabled = True
-            Else
-                BtnAccDsn.Enabled = False
-            End If
-            RbTerima.Checked = False
-            RbKirim.Checked = True
-        End If
-        TampilPODeTAIL()
-    End Sub
 
     Private Sub BtnExitDsn_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BtnExitDsn.ItemClick
         If BtnExitDsn.Caption = "HAPUS" Then
@@ -527,7 +502,7 @@ Public Class POInternalDesign
     End Sub
 
     Private Sub BtnCetakPO_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BtnCetakPO.ItemClick
-        If idpo = "" Then
+        If ListPODsn.Items(brspo).SubItems(5).Text = "" Then
             MsgBox("Tidak ada data PO-INTERNAL yg dicetak, Pilih dulu datanya!!...", MsgBoxStyle.Information, "Information")
             Exit Sub
         End If
@@ -535,7 +510,7 @@ Public Class POInternalDesign
         Me.Cursor = Cursors.WaitCursor
 
 
-        Dim report As New XtraReport
+        'Dim report As New XtraReport
         'report = New ReportPOInternalDesain
         ' Obtain a parameter and set its value.
         'report.Parameters("idpo_dsn").Value = idpo
@@ -545,17 +520,6 @@ Public Class POInternalDesign
 
         Me.Cursor = Cursors.Default
         ' report.ShowPreview()
-    End Sub
-    Private Sub CCutting_CheckedChanged(sender As Object, e As EventArgs) Handles CCutting.CheckedChanged
-        If CCutting.Checked = True Then
-            PanelC.Visible = True
-        Else
-            PanelC.Visible = False
-            Tt3.Text = "0"
-            Tl3.Text = "0"
-            Tp3.Text = "0"
-            Tj3.Text = "0"
-        End If
     End Sub
     Private Sub CPrinting_CheckedChanged(sender As Object, e As EventArgs) Handles CPrinting.CheckedChanged
         If CPrinting.Checked = True Then
@@ -569,9 +533,10 @@ Public Class POInternalDesign
         End If
     End Sub
     Private Sub TidDetailPoPrt_TextChanged(sender As Object, e As EventArgs) Handles TidDetailPoPrt.TextChanged
+
+        GGVM_conn()
         Try
-            GGVM_conn()
-            s = " select * from view_detailpoprint where iddetail_po_prt =  '" & TidDetailPoPrt.Text & "' and idpo_prt is null"
+            s = " select * from view_detailpo_printing where iddetail_po_prt =  '" & TidDetailPoPrt.Text & "' and idpo_prt is null"
             cmd = New OdbcCommand(s, conn)
             dr = cmd.ExecuteReader
             dr.Read()
@@ -587,13 +552,12 @@ Public Class POInternalDesign
                 Tt2.Text = dr.Item("tinggi_prt")
                 Tl2.Text = dr.Item("lebar_prt")
                 Tj2.Text = dr.Item("qty_prt")
-                TBarang2.Text = dr.Item("item_prd")
+                TBarang2.Text = dr.Item("barang")
                 'TIdBarang2.Text = dr.Item("iditem_prd")
             End If
         Catch ex As Exception
             MsgBox("Terjadi kesalahan! " & ex.Message)
         End Try
-        GGVM_conn_close()
     End Sub
     Private Sub ListPOPrint_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListPOPrint.SelectedIndexChanged
         Me.Cursor = Cursors.WaitCursor
@@ -605,7 +569,7 @@ Public Class POInternalDesign
                 item.Checked = True
                 brske = item.Index
             Next
-            TidDetailPoPrt.Text = ListPOPrint.Items(brske).SubItems(9).Text
+            TidDetailPoPrt.Text = ListPOPrint.Items(brske).SubItems(7).Text
             BtnExitDsn.Caption = "HAPUS"
             BtnEditDsn.Enabled = True
         End With
@@ -623,65 +587,64 @@ Public Class POInternalDesign
 
         End If
         If CPrinting.Checked = True Then
-            c = ""
-            c = c & " update po_printing set "
-            c = c & " user_edit = '" & userid & "',"
-            c = c & " timeedit = now()"
-            c = c & " where idpo_prt = '" & TidPoPrt.Text & "'"
-            cmd = New OdbcCommand(c, conn)
-            cmd.ExecuteNonQuery()
+            'c = ""
+            'c = c & " update po_printing set "
+            'c = c & " user_edit = '" & userid & "',"
+            'c = c & " timeedit = now()"
+            'c = c & " where idpo_prt = '" & TidPoPrt.Text & "'"
+            'cmd = New OdbcCommand(c, conn)
+            'cmd.ExecuteNonQuery()
 
-            sql = ""
-            sql = sql & "insert into prd_revisi_detail_po_printing (iddetail_po_prt,idpo_prt,idtoko,iditem_prt,item_prt,idsatuan,keterangan,panjang_prd, "
-            sql = sql & " tinggi_prd,lebar_prd,sisi_prd,qty_prd,panjang_prt,tinggi_prt,lebar_prt,sisi_prt,qty_prt,idfinishing,idbahan,iddetail_dsn, "
-            sql = sql & " isdelete,time_start,time_end,time_temp,done)  select * from prd_detail_po_printing WHERE iddetail_po_prt =  '" & TidDetailPoPrt.Text & "'"
-            cmd = New OdbcCommand(sql, conn)
-            cmd.ExecuteNonQuery()
+            'sql = ""
+            'sql = sql & "insert into prd_revisi_detail_po_printing (iddetail_po_prt,idpo_prt,idtoko,iditem_prt,item_prt,idsatuan,keterangan,panjang_prd, "
+            'sql = sql & " tinggi_prd,lebar_prd,sisi_prd,qty_prd,panjang_prt,tinggi_prt,lebar_prt,sisi_prt,qty_prt,idfinishing,idbahan,iddetail_dsn, "
+            'sql = sql & " isdelete,time_start,time_end,time_temp,done)  select * from prd_detail_po_printing WHERE iddetail_po_prt =  '" & TidDetailPoPrt.Text & "'"
+            'cmd = New OdbcCommand(sql, conn)
+            'cmd.ExecuteNonQuery()
 
-            c = ""
-            c = c & " insert into prd_revisi_po_printing (iddetail_po_prt,alasan,timerevisi,userrevisi) "
-            c = c & " values ('" & TidDetailPoPrt.Text & "', '" & TAlasan.Text & "', now(),'" & userid & "' ) "
-            cmd = New OdbcCommand(c, conn)
-            cmd.ExecuteNonQuery()
+            'c = ""
+            'c = c & " insert into prd_revisi_po_printing (iddetail_po_prt,alasan,timerevisi,userrevisi) "
+            'c = c & " values ('" & TidDetailPoPrt.Text & "', '" & TAlasan.Text & "', now(),'" & userid & "' ) "
+            'cmd = New OdbcCommand(c, conn)
+            'cmd.ExecuteNonQuery()
 
-            s = ""
-            s = s & " select max(idrevisi) as id from prd_revisi_po_printing where iddetail_po_prt ='" & TidDetailPoPrt.Text & "'"
-            da = New OdbcDataAdapter(s, conn)
-            dt = New DataTable
-            dt.Clear()
-            da.Fill(dt)
-            idrevisi.Text = dt.Rows(0)("id")
+            's = ""
+            's = s & " select max(idrevisi) as id from prd_revisi_po_printing where iddetail_po_prt ='" & TidDetailPoPrt.Text & "'"
+            'da = New OdbcDataAdapter(s, conn)
+            'dt = New DataTable
+            'dt.Clear()
+            'da.Fill(dt)
+            'idrevisi.Text = dt.Rows(0)("id")
 
-            sql = ""
-            sql = sql & " update prd_revisi_detail_po_printing set idrevisi = '" & idrevisi.Text & "' "
-            sql = sql & " where iddetail_po_prt = '" & TidDetailPoPrt.Text & "' and idrevisi is null "
-            cmd = New OdbcCommand(sql, conn)
-            cmd.ExecuteNonQuery()
+            'sql = ""
+            'sql = sql & " update prd_revisi_detail_po_printing set idrevisi = '" & idrevisi.Text & "' "
+            'sql = sql & " where iddetail_po_prt = '" & TidDetailPoPrt.Text & "' and idrevisi is null "
+            'cmd = New OdbcCommand(sql, conn)
+            'cmd.ExecuteNonQuery()
 
 
-            sql = ""
-            sql = sql & " select max(revisike)as idrev  from prd_revisi_po_printing where iddetail_po_prt = '" & TidDetailPoPrt.Text & "'"
-            da = New OdbcDataAdapter(sql, conn)
-            dt = New DataTable
-            dt.Clear()
-            da.Fill(dt)
-            Dim count As Integer
-            If dt.Rows(0)("idrev") = "1" Then
-                count = 1
-            Else
-                count = 0
-            End If
-            count = dt.Rows(0)("idrev") + 1
+            'sql = ""
+            'sql = sql & " select max(revisike)as idrev  from prd_revisi_po_printing where iddetail_po_prt = '" & TidDetailPoPrt.Text & "'"
+            'da = New OdbcDataAdapter(sql, conn)
+            'dt = New DataTable
+            'dt.Clear()
+            'da.Fill(dt)
+            'Dim count As Integer
+            'If dt.Rows(0)("idrev") = "1" Then
+            '    count = 1
+            'Else
+            '    count = 0
+            'End If
+            'count = dt.Rows(0)("idrev") + 1
 
-            c = ""
-            c = c & "update prd_revisi_po_printing set revisike ='" & count & "' where idrevisi ='" & idrevisi.Text & "'"
-            cmd = New OdbcCommand(c, conn)
-            cmd.ExecuteNonQuery()
+            'c = ""
+            'c = c & "update prd_revisi_po_printing set revisike ='" & count & "' where idrevisi ='" & idrevisi.Text & "'"
+            'cmd = New OdbcCommand(c, conn)
+            'cmd.ExecuteNonQuery()
 
             c = ""
             c = c & " update prd_detail_po_printing set "
-            c = c & " iditem_prt = '" & TIdBarang2.Text & "',"
-            c = c & " item_prt = '" & TBarang2.Text & "', "
+            c = c & " idbarang = '" & TIdBarang2.Text & "',"
             c = c & " panjang_prd = '" & Tp1.Text & "', "
             c = c & " tinggi_prd = '" & Tt1.Text & "', "
             c = c & " lebar_prd = '" & Tl1.Text & "', "
@@ -693,82 +656,6 @@ Public Class POInternalDesign
             c = c & " idbahan = '" & TidBahan.Text & "' , "
             c = c & " idfinishing = '" & TidFinishing.Text & "' "
             c = c & " where iddetail_po_prt = '" & TidDetailPoPrt.Text & "'"
-            cmd = New OdbcCommand(c, conn)
-            cmd.ExecuteNonQuery()
-            Me.Cursor = Cursors.Default
-        End If
-        If CCutting.Checked = True Then
-            c = ""
-            c = c & " update po_cutting set "
-            c = c & " user_edit = '" & userid & "',"
-            c = c & " timeedit = now()"
-            c = c & " where idpo_cut = '" & TidPOCut.Text & "'"
-            cmd = New OdbcCommand(c, conn)
-            cmd.ExecuteNonQuery()
-
-            sql = ""
-            sql = sql & "insert into prd_revisi_detail_po_cutting (iddetail_po_prt,idpo_prt,idtoko,iditem_prt,item_prt,idsatuan,keterangan,panjang_prd, "
-            sql = sql & " tinggi_prd,lebar_prd,sisi_prd,qty_prd,panjang_cut,tinggi_cut,lebar_cut,sisi_cut,qty_cut,idfinishing,idbahan,iddetail_dsn, "
-            sql = sql & " isdelete,time_start,time_end,time_temp,done)  select * from prd_detail_po_cutting WHERE iddetail_po_cut =  '" & TidDetailpoCut.Text & "'"
-            cmd = New OdbcCommand(sql, conn)
-            cmd.ExecuteNonQuery()
-
-            c = ""
-            c = c & " insert into prd_revisi_po_cutting (iddetail_po_prt,alasan,timerevisi,userrevisi) "
-            c = c & " values ('" & TidDetailpoCut.Text & "', '" & TAlasan.Text & "', now(),'" & userid & "' ) "
-            cmd = New OdbcCommand(c, conn)
-            cmd.ExecuteNonQuery()
-
-
-            s = ""
-            s = s & " select max(idrevisi) as id from prd_revisi_po_cutting where iddetail_po_cut ='" & TidDetailpoCut.Text & "'"
-            da = New OdbcDataAdapter(s, conn)
-            dt = New DataTable
-            dt.Clear()
-            da.Fill(dt)
-            idrevisi.Text = dt.Rows(0)("id")
-
-            sql = ""
-            sql = sql & " update prd_revisi_detail_po_cutting set idrevisi = '" & idrevisi.Text & "' "
-            sql = sql & " where iddetail_po_cut = '" & TidDetailpoCut.Text & "' and idrevisi is null "
-            cmd = New OdbcCommand(sql, conn)
-            cmd.ExecuteNonQuery()
-
-            sql = ""
-            sql = sql & " select max(revisike)as idrev  from prd_revisi_po_cutting where iddetail_po_cut = '" & TidDetailPoPrt.Text & "'"
-            da = New OdbcDataAdapter(sql, conn)
-            dt = New DataTable
-            dt.Clear()
-            da.Fill(dt)
-            Dim count As Integer
-            If dt.Rows(0)("idrev") = "1" Then
-                count = 1
-            Else
-                count = 0
-            End If
-            count = dt.Rows(0)("idrev") + 1
-
-
-            c = ""
-            c = c & "update prd_revisi_po_cutting set revisike ='" & count & "' where idrevisi ='" & idrevisi.Text & "'"
-            cmd = New OdbcCommand(c, conn)
-            cmd.ExecuteNonQuery()
-
-            c = ""
-            c = c & " update prd_detail_po_cutting set "
-            c = c & " iditem_cut = '" & TIdBarang2.Text & "',"
-            c = c & " item_cut = '" & TBarang2.Text & "', "
-            c = c & " panjang_prd = '" & Tp1.Text & "', "
-            c = c & " tinggi_prd = '" & Tt1.Text & "', "
-            c = c & " lebar_prd = '" & Tl1.Text & "', "
-            c = c & " qty_prd = '" & Tj1.Text & "', "
-            c = c & " panjang_cut = '" & Tp3.Text & "', "
-            c = c & " tinggi_cut = '" & Tt3.Text & "', "
-            c = c & " lebar_cut = '" & Tl3.Text & "', "
-            c = c & " qty_cut = '" & Tj3.Text & "' , "
-            c = c & " idbahan = '" & TidBahan.Text & "' , "
-            c = c & " idfinishing = '" & TidFinishing.Text & "' "
-            c = c & " where iddetail_po_cut = '" & TidDetailpoCut.Text & "'"
             cmd = New OdbcCommand(c, conn)
             cmd.ExecuteNonQuery()
             Me.Cursor = Cursors.Default
@@ -797,7 +684,7 @@ Public Class POInternalDesign
                 If TBarang2.Text = "" Then
                     MsgBox("Isi Dulu Barang-Nya .. !!", MsgBoxStyle.Information, "Pemberitahuan")
                     Exit Sub
-                ElseIf CPrinting.Checked = False And CCutting.Checked = False Then
+                ElseIf CPrinting.Checked = False Then
                     MsgBox("Pilih Salah satu Printing / Cutting .. !!", MsgBoxStyle.Information, "Pemberitahuan")
                     Exit Sub
                 ElseIf TidBahan.Text = "" Then
@@ -807,14 +694,14 @@ Public Class POInternalDesign
                     Dim kd As String
 
                     sql = ""
-                    sql = sql & " select * from barang where barang = '" & TBarang2.Text & "' "
+                    sql = sql & " select * from barang where barang_int = '" & TBarang2.Text & "' "
                     cmd = New OdbcCommand(sql, conn)
                     dr = cmd.ExecuteReader
                     dr.Read()
                     If Not dr.HasRows Then
                         'Count Kode Barang
                         s = ""
-                        s = s & " Select max(idbarang)As id from barang"
+                        s = s & " Select max(idbarang_int)As id from barang"
                         cmd = New OdbcCommand(s, conn)
                         dr = cmd.ExecuteReader
                         dr.Read()
@@ -822,13 +709,13 @@ Public Class POInternalDesign
                         kd = Microsoft.VisualBasic.Right(kd, 6)
 
                         c = ""
-                        c = c & "insert barang (idsubkel,kdbarang,barang,keterangan)"
+                        c = c & "insert barang (idsubkel,kdbarang_int,barang_int,keterangan_brgint)"
                         c = c & "values ('79', '" & kd & "' , '" & TBarang2.Text & "', 'Otomatis') "
                         cmd = New OdbcCommand(c, conn)
                         cmd.ExecuteNonQuery()
 
                         c = ""
-                        c = c & " Select max(idbarang) As id from barang "
+                        c = c & " Select max(idbarang_int) As id from barang "
                         da = New OdbcDataAdapter(c, conn)
                         dt = New DataTable
                         da.Fill(dt)
@@ -841,7 +728,7 @@ Public Class POInternalDesign
                     End If
                 ElseIf TidFinishing.Text = "" Then
                     s = ""
-                    s = s & " insert into prd_finishing_printing ( finishing, status ) values ('" & TFinishing.Text & "', '1')"
+                    s = s & " insert into prd_finishing_printing ( finishing ) values ('" & TFinishing.Text & "')"
                     cmd = New OdbcCommand(s, conn)
                     cmd.ExecuteNonQuery()
 
@@ -855,7 +742,7 @@ Public Class POInternalDesign
                     End If
                 ElseIf TidBahan.Text = "" Then
                     s = ""
-                    s = s & " insert into prd_bahan_printing ( bahan, status ) values ('" & CBahan.Text & "', '1')"
+                    s = s & " insert into prd_bahan_printing ( bahan ) values ('" & CBahan.Text & "')"
                     cmd = New OdbcCommand(s, conn)
                     cmd.ExecuteNonQuery()
 
@@ -870,46 +757,20 @@ Public Class POInternalDesign
                 End If
                 If CPrinting.Checked = True Then
                     c = ""
-                    c = c & " insert into prd_detail_po_printing (idtoko,iditem_prt,item_prt,idsatuan,panjang_prd,tinggi_prd,lebar_prd,"
-                    c = c & "  qty_prd,panjang_prt,tinggi_prt,lebar_prt, "
+                    c = c & " insert into prd_detail_po_printing (idtoko,idbarang,"
+                    c = c & "  panjang_prt,tinggi_prt,lebar_prt, "
                     If CMal.Checked = True Then
                         c = c & " keterangan, "
                     End If
                     c = c & " qty_prt,iddetail_dsn,idfinishing,idbahan) values "
-                    c = c & " ('" & TIdToko.Text & "','" & TIdBarang2.Text & "','" & TBarang2.Text & "','1','" & Tp1.Text & "',"
-                    c = c & "'" & Tt1.Text & "','" & Tl1.Text & "','" & Tj1.Text & "','" & Tp2.Text & "','" & Tt2.Text & "','" & Tl2.Text & "', "
+                    c = c & " ('" & TIdToko.Text & "','" & TIdBarang2.Text & "','" & Tp2.Text & "','" & Tt2.Text & "','" & Tl2.Text & "', "
                     If CMal.Checked = True Then
                         c = c & " 'MAL', "
                     End If
-                    c = c & " '" & Tj2.Text & "','" & ListDetailPODsn.Items(brske).SubItems(14).Text & "','" & TidFinishing.Text & "','" & TidBahan.Text & "')"
+                    c = c & " '" & Tj2.Text & "','" & ListDetailPODsn.Items(brske).SubItems(13).Text & "','" & TidFinishing.Text & "','" & TidBahan.Text & "')"
                     cmd = New OdbcCommand(c, conn)
                     cmd.ExecuteNonQuery()
                     Me.Cursor = Cursors.Default
-                End If
-                If CCutting.Checked = True Then
-                    c = ""
-                    c = c & " insert into prd_detail_po_cutting (idtoko,iditem_cut,item_cut,idsatuan,panjang_prd,tinggi_prd,lebar_prd,"
-                    c = c & "  qty_prd,panjang_cut,tinggi_cut,lebar_cut, "
-                    If CMal.Checked = True Then
-                        c = c & " keterangan, "
-                    End If
-                    c = c & " qty_cut,iddetail_dsn,idfinishing,idbahan) values "
-                    c = c & " ('" & TIdToko.Text & "','" & TIdBarang2.Text & "','" & TBarang2.Text & "','1','" & Tp1.Text & "',"
-                    c = c & "'" & Tt1.Text & "','" & Tl1.Text & "','" & Tj1.Text & "','" & Tp3.Text & "','" & Tt3.Text & "','" & Tl3.Text & "', "
-                    If CMal.Checked = True Then
-                        c = c & " 'MAL', "
-                    End If
-                    c = c & " '" & Tj3.Text & "','" & ListDetailPODsn.Items(brske).SubItems(14).Text & "','" & TidFinishing.Text & "','" & TidBahan.Text & "')"
-                    cmd = New OdbcCommand(c, conn)
-                    cmd.ExecuteNonQuery()
-                    Me.Cursor = Cursors.Default
-                End If
-                If CSubKerjaan.Checked = True Then
-                    sql = ""
-                    sql = sql & "insert into prd_trans_detailpo_desain (iddetail_po_dsn,idtoko,idbarang,issubkon) "
-                    sql = sql & " values ('" & ListDetailPODsn.Items(brske).SubItems(14).Text & "','" & TIdToko.Text & "','" & TIdBarang1.Text & "','Y') "
-                    cmd = New OdbcCommand(sql, conn)
-                    cmd.ExecuteNonQuery()
                 End If
 
                 MsgBox("Data PO sudah di-SIMPAN !!..", MsgBoxStyle.Information, "Information")
@@ -923,10 +784,6 @@ Public Class POInternalDesign
                 Tl2.Text = "0"
                 Tt2.Text = "0"
                 Tj2.Text = "0"
-                Tp3.Text = "0"
-                Tl3.Text = "0"
-                Tt3.Text = "0"
-                Tp3.Text = "0"
                 TidBahan.Text = ""
                 CBahan.Text = ""
                 TFinishing.Text = ""
@@ -935,21 +792,21 @@ Public Class POInternalDesign
                 If TBarang2.Text = "" Then
                     MsgBox("Isi Dulu Barang-Nya .. !!", MsgBoxStyle.Information, "Pemberitahuan")
                     Exit Sub
-                ElseIf CPrinting.Checked = False And CCutting.Checked = False Then
+                ElseIf CPrinting.Checked = False Then
                     MsgBox("Pilih Salah satu Printing / Cutting .. !!", MsgBoxStyle.Information, "Pemberitahuan")
                     Exit Sub
                 ElseIf TIdBarang2.Text = "" Then
                     Dim kd As String
 
                     sql = ""
-                    sql = sql & " select * from barang where barang = '" & TBarang2.Text & "' "
+                    sql = sql & " select * from barang_int where barang = '" & TBarang2.Text & "' "
                     cmd = New OdbcCommand(sql, conn)
                     dr = cmd.ExecuteReader
                     dr.Read()
                     If Not dr.HasRows Then
                         'Count Kode Barang
                         s = ""
-                        s = s & " Select max(idbarang)As id from barang"
+                        s = s & " Select max(idbarang_int)As id from barang"
                         cmd = New OdbcCommand(s, conn)
                         dr = cmd.ExecuteReader
                         dr.Read()
@@ -957,13 +814,13 @@ Public Class POInternalDesign
                         kd = Microsoft.VisualBasic.Right(kd, 6)
 
                         c = ""
-                        c = c & "insert barang (idsubkel,kdbarang,barang,keterangan)"
+                        c = c & "insert barang (idsubkel,kdbarang,barang_int,keterangan_brgint)"
                         c = c & "values ('79', '" & kd & "' , '" & TBarang2.Text & "', 'Otomatis') "
                         cmd = New OdbcCommand(c, conn)
                         cmd.ExecuteNonQuery()
 
                         c = ""
-                        c = c & " Select max(idbarang) As id from barang "
+                        c = c & " Select max(idbarang_int) As id from barang "
                         da = New OdbcDataAdapter(c, conn)
                         dt = New DataTable
                         da.Fill(dt)
@@ -976,233 +833,38 @@ Public Class POInternalDesign
                     End If
 
                 End If
-                PanelAlasan.Visible = True
+                c = ""
+                c = c & " update prd_detail_po_printing set "
+                c = c & " idbarang = '" & TIdBarang2.Text & "',"
+                c = c & " panjang_prt = '" & Tp2.Text & "', "
+                c = c & " tinggi_prt = '" & Tt2.Text & "', "
+                c = c & " lebar_prt = '" & Tl2.Text & "', "
+                c = c & " qty_prt = '" & Tj2.Text & "' , "
+                c = c & " idbahan = '" & TidBahan.Text & "' , "
+                c = c & " idfinishing = '" & TidFinishing.Text & "' "
+                c = c & " where iddetail_po_prt = '" & TidDetailPoPrt.Text & "'"
+                cmd = New OdbcCommand(c, conn)
+                cmd.ExecuteNonQuery()
+                Me.Cursor = Cursors.Default
+
+                MsgBox("Data PO sudah di-Update !!..", MsgBoxStyle.Information, "Information")
+                GGVM_conn_close()
+                Panel2.Visible = False
+                PanelAlasan.Visible = False
                 TAlasan.Text = ""
-                TAlasan.Focus()
+                TampilDetailPrinting()
+                Proses = "Entry"
+                tutupdesain()
 
 
         End Select
     End Sub
-    Private Sub KirimCutting_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles KirimCutting.ItemClick
-        ListDetailPODsn.BeginUpdate()
-        If ListDetailPODsn.CheckedIndices.Count > 0 Then
-            For i = 0 To ListDetailPODsn.CheckedIndices.Count - 1
-                'c = ""
-                'c = c & " update prd_dataorder set"
-                'c = c & " idstatus_proyek ='29'"
-                'c = c & " where iddtorder = '" & ListDetailPODsn.Items(brske).SubItems(13).Text & "'"
-                'cmd = New OdbcCommand(c, conn)
-                'cmd.ExecuteNonQuery()
-
-
-                s = ""
-                s = s & " select idpe from proyek"
-                s = s & " where iddtorder ='" & ListDetailPODsn.Items(brske).SubItems(13).Text & "'"
-                da = New OdbcDataAdapter(s, conn)
-                'ds.Clear()
-                dt = New DataTable
-                dt.Clear()
-                da.Fill(dt)
-
-                If dt.Rows.Count > 0 Then
-                    TidPE.Text = dt.Rows(0)("idpe")
-                End If
-
-
-                sql = ""
-                sql = sql & "insert into po_cutting (iddtorder,"
-                If TidPE.Text <> "" Then
-                    sql = sql & "idpe ,"
-                End If
-                sql = sql & " tanggal,iddivisi,idstatus_proyek ) values "
-                sql = sql & " ('" & iddtorder & "',"
-                If TidPE.Text <> "" Then
-                    sql = sql & " '" & TidPE.Text & "', "
-                End If
-                sql = sql & " now(),'9','29')"
-                cmd = New OdbcCommand(sql, conn)
-                cmd.ExecuteNonQuery()
-
-                sql = ""
-                sql = sql & " select max(idpo_cut)as idcut from po_cutting"
-                da = New OdbcDataAdapter(sql, conn)
-                'ds.Clear()
-                Dim tblid_cut = New DataTable
-                tblid_cut.Clear()
-                da.Fill(tblid_cut)
-
-                c = ""
-                c = c & " update prd_detail_po_cutting set"
-                c = c & " idpo_cut ='" & tblid_cut.Rows(0)("idcut") & "'"
-                c = c & " where idpo_cut is null"
-                cmd = New OdbcCommand(c, conn)
-                cmd.ExecuteNonQuery()
-
-                sql = "select iddetail_po_dsn from prd_trans_detailpo_desain where iddetail_po_dsn = '" & ListDetailPODsn.Items(ListDetailPODsn.CheckedIndices(i)).SubItems(13).Text & "' "
-                cmd = New OdbcCommand(sql, conn)
-                dr = cmd.ExecuteReader
-                dr.Read()
-                If Not dr.HasRows Then
-                    Dim sql1 = "insert into prd_trans_detailpo_desain (iddetail_po_dsn,idtoko,idbarang, idpo_cut, time_kirim_cut) values (?,?,?,?,?) "
-                    cmd = New OdbcCommand
-                    With cmd
-                        .CommandText = (sql1)
-                        .Parameters.Add("@iddetail_po_dsn", OdbcType.BigInt).Value = Convert.ToInt32(ListDetailPODsn.Items(ListDetailPODsn.CheckedIndices(i)).SubItems(13).Text)
-                        .Parameters.Add("@idtoko", OdbcType.Int).Value = Convert.ToInt32(ListDetailPODsn.Items(ListDetailPODsn.CheckedIndices(i)).SubItems(10).Text)
-                        .Parameters.Add("@idbarang", OdbcType.Int).Value = Convert.ToInt32(ListDetailPODsn.Items(ListDetailPODsn.CheckedIndices(i)).SubItems(8).Text)
-                        .Parameters.Add("@idpo_cut", OdbcType.Int).Value = Convert.ToInt32(tblid_cut.Rows(0)("idcut"))
-                        .Parameters.Add("@time_kirim", OdbcType.DateTime).Value = Now()
-                        .Connection = conn
-                    End With
-                    dr = cmd.ExecuteReader
-                    Console.WriteLine(cmd.CommandText.ToString)
-                    While dr.Read
-                        Console.WriteLine(dr(0))
-                        Console.WriteLine()
-                    End While
-                    Console.ReadLine()
-                Else
-                    Dim sql1 = "update prd_trans_detailpo_desain set time_kirim_cut = now(), idpo_cut ='" & tblid_cut.Rows(0)("idcut") & "' where iddetail_po_dsn ='" & ListDetailPODsn.Items(ListDetailPODsn.CheckedIndices(i)).SubItems(13).Text & "'  "
-                    cmd = New OdbcCommand(sql1, conn)
-                    cmd.ExecuteNonQuery()
-                End If
-
-
-            Next
-        End If
-        ListDetailPODsn.EndUpdate()
-
-        MsgBox("PO Telah di Kirim ke Cutting !!..", MsgBoxStyle.Information, "Information")
-        'Insert History Kirim PO Cutting
-        sql = ""
-        sql = sql & " insert prd_history_dataorder (iddtorder,idstatusproyek,waktu,userid) values "
-        sql = sql & " ('" & ListDetailPODsn.Items(brske).SubItems(13).Text & "','30',now(),'" & userid & "')"
-        cmd = New OdbcCommand(sql, conn)
-        cmd.ExecuteNonQuery()
-
-        TampilDetailPrinting()
-        TampilPODeTAIL()
-    End Sub
-
     Private Sub KirimPrinting_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles KirimPrinting.ItemClick
-        Dim ada As Boolean
-        Dim jmldt As Integer
-        ada = False
-        jmldt = 0
-        For i = 0 To ListDetailPODsn.Items.Count - 1
-            If ListDetailPODsn.Items(i).Checked = True Then
-                ada = True
-            End If
-        Next
-        If ada = False Then
-            MsgBox("Tidak ada data yang akan di Entry, Pilih dulu datanya!!...", MsgBoxStyle.Information, "Information")
-            ListDetailPODsn.Focus()
-            Exit Sub
-        End If
-        GGVM_conn()
-        ListDetailPODsn.BeginUpdate()
-        If ListDetailPODsn.CheckedIndices.Count > 0 Then
-            For i = 0 To ListDetailPODsn.CheckedIndices.Count - 1
-                'c = ""
-                'c = c & " update prd_dataorder set"
-                'c = c & " idstatus_proyek ='21'"
-                'c = c & " where iddtorder = '" & iddtorder & "'"
-                'cmd = New OdbcCommand(c, conn)
-                'cmd.ExecuteNonQuery()
-
-
-                s = ""
-                s = s & " select idpe from proyek"
-                s = s & " where iddtorder ='" & iddtorder & "'"
-                da = New OdbcDataAdapter(s, conn)
-                'ds.Clear()
-                dt = New DataTable
-                dt.Clear()
-                da.Fill(dt)
-
-                If dt.Rows.Count > 0 Then
-                    TidPE.Text = dt.Rows(0)("idpe")
-                End If
-
-
-                sql = ""
-                sql = sql & "insert into po_printing (iddtorder,"
-                If TidPE.Text <> "" Then
-                    sql = sql & "idpe ,"
-                End If
-                sql = sql & " tanggal,iddivisi,idstatus_proyek ) values "
-                sql = sql & " ('" & iddtorder & "',"
-                If TidPE.Text <> "" Then
-                    sql = sql & " '" & TidPE.Text & "', "
-                End If
-                sql = sql & " now(),'9','21')"
-                cmd = New OdbcCommand(sql, conn)
-                cmd.ExecuteNonQuery()
-
-
-                sql = ""
-                sql = sql & " select max(idpo_prt)as idprt from po_printing"
-                da = New OdbcDataAdapter(sql, conn)
-                'ds.Clear()
-                Dim tblid_prt = New DataTable
-                tblid_prt.Clear()
-                da.Fill(tblid_prt)
-
-                c = ""
-                c = c & " update prd_detail_po_printing set"
-                c = c & " idpo_prt ='" & tblid_prt.Rows(0)("idprt") & "'"
-                c = c & " where idpo_prt is null"
-                cmd = New OdbcCommand(c, conn)
-                cmd.ExecuteNonQuery()
-
-                sql = "select iddetail_po_dsn from prd_trans_detailpo_desain where iddetail_po_dsn = '" & ListDetailPODsn.Items(ListDetailPODsn.CheckedIndices(i)).SubItems(13).Text & "' "
-                cmd = New OdbcCommand(sql, conn)
-                dr = cmd.ExecuteReader
-                dr.Read()
-                If Not dr.HasRows Then
-                    Dim sql1 = "insert into prd_trans_detailpo_desain (iddetail_po_dsn,idtoko,idbarang, idpo_prt, time_kirim_prt) values (?,?,?,?,?) "
-                    cmd = New OdbcCommand
-                    With cmd
-                        .CommandText = (sql1)
-                        .Parameters.Add("@iddetail_po_dsn", OdbcType.BigInt).Value = Convert.ToInt32(ListDetailPODsn.Items(ListDetailPODsn.CheckedIndices(i)).SubItems(13).Text)
-                        .Parameters.Add("@idtoko", OdbcType.Int).Value = Convert.ToInt32(ListDetailPODsn.Items(ListDetailPODsn.CheckedIndices(i)).SubItems(10).Text)
-                        .Parameters.Add("@idbarang", OdbcType.Int).Value = Convert.ToInt32(ListDetailPODsn.Items(ListDetailPODsn.CheckedIndices(i)).SubItems(8).Text)
-                        .Parameters.Add("@idpo_prt", OdbcType.Int).Value = Convert.ToInt32(tblid_prt.Rows(0)("idprt"))
-                        .Parameters.Add("@time_kirim_prt", OdbcType.DateTime).Value = Now()
-                        .Connection = conn
-                    End With
-                    dr = cmd.ExecuteReader
-                    Console.WriteLine(cmd.CommandText.ToString)
-                    While dr.Read
-                        Console.WriteLine(dr(0))
-                        Console.WriteLine()
-                    End While
-                    Console.ReadLine()
-                Else
-                    Dim sql1 = "update prd_trans_detailpo_desain set time_kirim_prt = now(), idpo_prt ='" & tblid_prt.Rows(0)("idprt") & "' where iddetail_po_dsn ='" & ListDetailPODsn.Items(ListDetailPODsn.CheckedIndices(i)).SubItems(13).Text & "'  "
-                    cmd = New OdbcCommand(sql1, conn)
-                    cmd.ExecuteNonQuery()
-                End If
-
-
-            Next
-        End If
-        ListDetailPODsn.EndUpdate()
-
-        MsgBox("PO Telah di Kirim ke Printing !!..", MsgBoxStyle.Information, "Information")
-        'Insert History Kirim PO Cutting
-        sql = ""
-        sql = sql & " insert prd_history_dataorder (iddtorder,idstatusproyek,waktu,userid) values "
-        sql = sql & " ('" & idpo & "','22',now(),'" & userid & "')"
-        cmd = New OdbcCommand(sql, conn)
-        cmd.ExecuteNonQuery()
-
-        TampilDetailPrinting()
-        TampilPODeTAIL()
+        
     End Sub
 
     Private Sub BtnAccDsn_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BtnAccDsn.ItemClick
-        If idpodsn = "" Then
+        If TidPoDsn.Text = "" Then
             MsgBox("Tidak ada data yang akan di Entry, Pilih dulu datanya!!...", MsgBoxStyle.Information, "Information")
             Exit Sub
         End If
@@ -1211,15 +873,15 @@ Public Class POInternalDesign
             BtnAccDsn.DropDownEnabled = False
             c = ""
             c = c & " update po_desain set "
-            c = c & "terima_po = now() "
-            c = c & " where idpo_dsn = '" & idpodsn & "'"
+            c = c & "terima_po_dsn = now() "
+            c = c & " where idpo_dsn = '" & ListPODsn.Items(brspo).SubItems(6).Text & "'"
             cmd = New OdbcCommand(c, conn)
             cmd.ExecuteNonQuery()
 
             c = ""
             c = c & " insert prd_history_dataorder (iddtorder,idstatusproyek,waktu,userid) values "
-            c = c & " ('" & iddtorder & "','21',now(),'" & userid & "')"
-            cmd = New System.Data.Odbc.OdbcCommand(c, conn)
+            c = c & " ('" & ListPODsn.Items(brspo).SubItems(8).Text & "','21',now(),'" & userid & "')"
+            cmd = New OdbcCommand(c, conn)
             cmd.ExecuteNonQuery()
 
             MsgBox("PO Telah di Terima !!..", MsgBoxStyle.Information, "Information")
@@ -1233,6 +895,135 @@ Public Class POInternalDesign
             End If
             RbTerima.Checked = False
             RbKirim.Checked = True
+        ElseIf BtnAccDsn.Caption = "KIRIM PO" Then
+            Dim ada As Boolean
+            Dim jmldt As Integer
+            ada = False
+            jmldt = 0
+            For i = 0 To ListDetailPODsn.Items.Count - 1
+                If ListDetailPODsn.Items(i).Checked = True Then
+                    ada = True
+                End If
+            Next
+            If ada = False Then
+                MsgBox("Tidak ada data yang akan di Entry, Pilih dulu datanya!!...", MsgBoxStyle.Information, "Information")
+                ListDetailPODsn.Focus()
+                Exit Sub
+            End If
+            GGVM_conn()
+            ListDetailPODsn.BeginUpdate()
+            s = ""
+            s = s & " select idpe from proyek"
+            s = s & " where iddtorder ='" & ListPODsn.Items(brspo).SubItems(8).Text & "'"
+            da = New OdbcDataAdapter(s, conn)
+            'ds.Clear()
+            dt = New DataTable
+            dt.Clear()
+            da.Fill(dt)
+
+            If dt.Rows.Count > 0 Then
+                TidPE.Text = dt.Rows(0)("idpe")
+            End If
+
+
+            sql = ""
+            sql = sql & "insert into po_printing (idpe,"
+            sql = sql & " tanggal_prt ) values "
+            sql = sql & " ('" & TidPE.Text & "', now())"
+            cmd = New OdbcCommand(sql, conn)
+            cmd.ExecuteNonQuery()
+
+
+            sql = ""
+            sql = sql & " select max(idpo_prt)as idprt from po_printing"
+            da = New OdbcDataAdapter(sql, conn)
+            'ds.Clear()
+            Dim tblid_prt = New DataTable
+            tblid_prt.Clear()
+            da.Fill(tblid_prt)
+            If ListDetailPODsn.CheckedIndices.Count > 0 Then
+                For i = 0 To ListDetailPODsn.CheckedIndices.Count - 1
+                    'c = ""
+                    'c = c & " update prd_dataorder set"
+                    'c = c & " idstatus_proyek ='21'"
+                    'c = c & " where iddtorder = '" & iddtorder & "'"
+                    'cmd = New OdbcCommand(c, conn)
+                    'cmd.ExecuteNonQuery()
+
+
+                    sql = "select iddetail_po_dsn from prd_trans_detailpo_desain where iddetail_po_dsn = '" & ListDetailPODsn.Items(ListDetailPODsn.CheckedIndices(i)).SubItems(13).Text & "' "
+                    cmd = New OdbcCommand(sql, conn)
+                    dr = cmd.ExecuteReader
+                    dr.Read()
+                    If Not dr.HasRows Then
+                        Dim sql1 = "insert into prd_trans_detailpo_desain (iddetail_po_dsn,idtoko,idbarang, idpo_prt, time_kirim_prt) values (?,?,?,?,?) "
+                        cmd = New OdbcCommand
+                        With cmd
+                            .CommandText = (sql1)
+                            .Parameters.Add("@iddetail_po_dsn", OdbcType.BigInt).Value = Convert.ToInt32(ListDetailPODsn.Items(ListDetailPODsn.CheckedIndices(i)).SubItems(13).Text)
+                            .Parameters.Add("@idtoko", OdbcType.Int).Value = Convert.ToInt32(ListDetailPODsn.Items(ListDetailPODsn.CheckedIndices(i)).SubItems(11).Text)
+                            .Parameters.Add("@idbarang", OdbcType.Int).Value = Convert.ToInt32(ListDetailPODsn.Items(ListDetailPODsn.CheckedIndices(i)).SubItems(9).Text)
+                            .Parameters.Add("@idpo_prt", OdbcType.Int).Value = Convert.ToInt32(tblid_prt.Rows(0)("idprt"))
+                            .Parameters.Add("@time_kirim_prt", OdbcType.DateTime).Value = Now()
+                            .Connection = conn
+                        End With
+                        dr = cmd.ExecuteReader
+                        Console.WriteLine(cmd.CommandText.ToString)
+                        While dr.Read
+                            Console.WriteLine(dr(0))
+                            Console.WriteLine()
+                        End While
+                        Console.ReadLine()
+                    Else
+                        Dim sql1 = "update prd_trans_detailpo_desain set time_kirim_prt = now(), idpo_prt ='" & tblid_prt.Rows(0)("idprt") & "' where iddetail_po_dsn ='" & ListDetailPODsn.Items(ListDetailPODsn.CheckedIndices(i)).SubItems(13).Text & "'  "
+                        cmd = New OdbcCommand(sql1, conn)
+                        cmd.ExecuteNonQuery()
+                    End If
+                Next
+                c = ""
+                c = c & " update prd_detail_po_printing set"
+                c = c & " idpo_prt ='" & tblid_prt.Rows(0)("idprt") & "'"
+                c = c & " where idpo_prt is null"
+                cmd = New OdbcCommand(c, conn)
+                cmd.ExecuteNonQuery()
+                MsgBox("PO Telah di Kirim ke Printing !!..", MsgBoxStyle.Information, "Information")
+            End If
+            For Each item As ListViewItem In ListDetailPODsn.Items
+                sql = ""
+                sql = sql & "select * from prd_trans_detailpo_desain where idbarang = '" & item.SubItems(9).Text & "'"
+                cmd = New OdbcCommand(sql, conn)
+                dr = cmd.ExecuteReader
+                dr.Read()
+                If Not dr.HasRows Then
+                    ' MsgBox("Harap Kirim dulu Semua PO, Sebelum Menyelesaikan ", MsgBoxStyle.Information)
+                    Exit Sub
+                Else
+                    c = ""
+                    c = c & " update po_desain set time_closhing_dsn = now(),kirim_po_dsn = now()"
+                    c = c & " where idpo_dsn ='" & ListPODsn.Items(brspo).SubItems(6).Text & "'"
+                    cmd = New OdbcCommand(c, conn)
+                    cmd.ExecuteNonQuery()
+
+                    s = ""
+                    s = s & " update po_produksi set selesai_desain = now()"
+                    s = s & " where idpo_prd ='" & ListPODsn.Items(brspo).SubItems(5).Text & "'"
+                    cmd = New OdbcCommand(s, conn)
+                    cmd.ExecuteNonQuery()
+                End If
+                MsgBox("PO SUDAH DISELESAIKAN !!", MsgBoxStyle.Information)
+            Next
+
+
+            ListDetailPODsn.EndUpdate()
+            'Insert History Kirim PO Cutting
+            sql = ""
+            sql = sql & " insert prd_history_dataorder (iddtorder,idstatusproyek,waktu,userid) values "
+            sql = sql & " ('" & ListPODsn.Items(brspo).SubItems(8).Text & "','22',now(),'" & userid & "')"
+            cmd = New OdbcCommand(sql, conn)
+            cmd.ExecuteNonQuery()
+
+            TampilDetailPrinting()
+            TampilPODeTAIL()
         Else
             Return
         End If
@@ -1258,8 +1049,9 @@ Public Class POInternalDesign
             Exit Sub
         End If
         For Each item As ListViewItem In ListDetailPODsn.Items
+           
             sql = ""
-            sql = sql & "select * from prd_trans_detailpo_desain where idbarang = '" & item.SubItems(8).Text & "'"
+            sql = sql & "select * from prd_trans_detailpo_desain where idbarang = '" & item.SubItems(9).Text & "'"
             cmd = New OdbcCommand(sql, conn)
             dr = cmd.ExecuteReader
             dr.Read()
@@ -1268,10 +1060,15 @@ Public Class POInternalDesign
                 Exit Sub
             Else
                 c = ""
-                c = c & " update po_desain set"
-                c = c & " kirim_po = now(),kirim_ppic = now() , time_closhing = now()"
-                c = c & " where idpo_dsn ='" & idpodsn & "'"
-                cmd = New System.Data.Odbc.OdbcCommand(c, conn)
+                c = c & " update po_desain set time_closhing_dsn = now(),kirim_po = now()"
+                c = c & " where idpo_dsn ='" & ListPODsn.Items(brspo).SubItems(6).Text & "'"
+                cmd = New OdbcCommand(c, conn)
+                cmd.ExecuteNonQuery()
+
+                s = ""
+                s = s & " update po_produksi set selesai_desain = now()"
+                s = s & " where idpo_prd ='" & ListPODsn.Items(brspo).SubItems(5).Text & "'"
+                cmd = New OdbcCommand(s, conn)
                 cmd.ExecuteNonQuery()
             End If
         Next
@@ -1279,45 +1076,43 @@ Public Class POInternalDesign
         SqlDataSource1.FillAsync()
         'GGVM_conn_close()
     End Sub
-    Private Sub ListDetailPODsn_DrawColumnHeader(sender As Object, e As DrawListViewColumnHeaderEventArgs) Handles ListDetailPODsn.DrawColumnHeader
+    Private Sub ListDetailPODsn_DrawColumnHeader(sender As Object, e As DrawListViewColumnHeaderEventArgs)
         e.DrawDefault = True
     End Sub
 
-    Private Sub ListDetailPODsn_DrawSubItem(sender As Object, e As DrawListViewSubItemEventArgs) Handles ListDetailPODsn.DrawSubItem
-        Using txtbrsh As New SolidBrush(e.SubItem.ForeColor)
-            If ListDetailPODsn.SelectedIndices.Contains(e.ItemIndex) And ListDetailPODsn.Focused Then
-                e.Graphics.FillRectangle(New SolidBrush(Color.FromKnownColor(KnownColor.Highlight)), e.Bounds)
-                txtbrsh.Color = Color.White
-            End If
-            Using sf As New StringFormat With {.Alignment = StringAlignment.Near, .LineAlignment = StringAlignment.Center, .FormatFlags = StringFormatFlags.NoWrap, .Trimming = StringTrimming.EllipsisCharacter}
-                If e.Item.SubItems(1) Is e.SubItem Then
-                    e.DrawDefault = False
-                    Dim rb As New Rectangle(e.Bounds.X + e.Bounds.Height, e.Bounds.Y, e.Bounds.Width + e.Bounds.Height, e.Bounds.Height)
-                    If e.Item.SubItems(15).Text <> "" And e.Item.SubItems(16).Text = "" Then
-                        e.Graphics.DrawImage(My.Resources.message_prt, e.Bounds.X, e.Bounds.Y, e.Bounds.Height, e.Bounds.Height)
-                    ElseIf e.Item.SubItems(16).Text <> "" And e.Item.SubItems(15).Text = "" Then
-                        e.Graphics.DrawImage(My.Resources.message_cut, e.Bounds.X, e.Bounds.Y, e.Bounds.Height, e.Bounds.Height)
-                    ElseIf e.Item.SubItems(15).Text <> "" And e.Item.SubItems(16).Text <> "" Then
-                        e.Graphics.DrawImage(My.Resources.message, e.Bounds.X, e.Bounds.Y, e.Bounds.Height, e.Bounds.Height)
-                    ElseIf e.Item.SubItems(17).Text = "Y" Then
-                        e.Graphics.DrawImage(My.Resources._sub, e.Bounds.X, e.Bounds.Y, e.Bounds.Height, e.Bounds.Height)
-                    End If
-                    e.Graphics.DrawString(e.SubItem.Text, e.SubItem.Font, txtbrsh, rb, sf)
-                Else
-                    e.DrawDefault = True
-                End If
-            End Using
-        End Using
+    Private Sub ListDetailPODsn_DrawSubItem(sender As Object, e As DrawListViewSubItemEventArgs)
+        'Using txtbrsh As New SolidBrush(e.SubItem.ForeColor)
+        '    If ListDetailPODsn.SelectedIndices.Contains(e.ItemIndex) And ListDetailPODsn.Focused Then
+        '        e.Graphics.FillRectangle(New SolidBrush(Color.FromKnownColor(KnownColor.Highlight)), e.Bounds)
+        '        txtbrsh.Color = Color.White
+        '    End If
+        '    Using sf As New StringFormat With {.Alignment = StringAlignment.Near, .LineAlignment = StringAlignment.Center, .FormatFlags = StringFormatFlags.NoWrap, .Trimming = StringTrimming.EllipsisCharacter}
+        '        If e.Item.SubItems(1) Is e.SubItem Then
+        '            e.DrawDefault = False
+        '            Dim rb As New Rectangle(e.Bounds.X + e.Bounds.Height, e.Bounds.Y, e.Bounds.Width + e.Bounds.Height, e.Bounds.Height)
+        '            If e.Item.SubItems(15).Text <> "" And e.Item.SubItems(16).Text = "" Then
+        '                e.Graphics.DrawImage(My.Resources.message_prt, e.Bounds.X, e.Bounds.Y, e.Bounds.Height, e.Bounds.Height)
+        '            ElseIf e.Item.SubItems(16).Text <> "" And e.Item.SubItems(15).Text = "" Then
+        '                e.Graphics.DrawImage(My.Resources.message_cut, e.Bounds.X, e.Bounds.Y, e.Bounds.Height, e.Bounds.Height)
+        '            ElseIf e.Item.SubItems(15).Text <> "" And e.Item.SubItems(16).Text <> "" Then
+        '                e.Graphics.DrawImage(My.Resources.message, e.Bounds.X, e.Bounds.Y, e.Bounds.Height, e.Bounds.Height)
+        '            ElseIf e.Item.SubItems(17).Text = "Y" Then
+        '                e.Graphics.DrawImage(My.Resources._sub, e.Bounds.X, e.Bounds.Y, e.Bounds.Height, e.Bounds.Height)
+        '            End If
+        '            e.Graphics.DrawString(e.SubItem.Text, e.SubItem.Font, txtbrsh, rb, sf)
+        '        Else
+        '            e.DrawDefault = True
+        '        End If
+        '    End Using
+        'End Using
     End Sub
     Private Sub BtnEditDsn_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BtnEditDsn.ItemClick
-        Dim ada, item, cutting As Boolean
-        Dim jmldt, jmldetail, brs, brs2, jmldetailcut As Integer
+        Dim ada, item As Boolean
+        Dim jmldt, jmldetail, brs, brs2 As Integer
         ada = False
         item = False
-        cutting = False
         jmldt = 0
         jmldetail = 0
-        jmldetailcut = 0
         For i = 0 To ListDetailPODsn.Items.Count - 1
             If ListDetailPODsn.Items(i).Checked = True Then
                 ada = True
@@ -1342,7 +1137,7 @@ Public Class POInternalDesign
             End If
         Next
 
-       
+
 
         AutoCompBarangPrinting()
         For i = 0 To ListDetailPODsn.Items.Count - 1
@@ -1355,48 +1150,38 @@ Public Class POInternalDesign
                 Tp1.Text = ListDetailPODsn.Items(i).SubItems(4).Text
                 Tl1.Text = ListDetailPODsn.Items(i).SubItems(5).Text
                 Tt1.Text = ListDetailPODsn.Items(i).SubItems(6).Text
-                Tj1.Text = ListDetailPODsn.Items(i).SubItems(7).Text
+                Tj1.Text = ListDetailPODsn.Items(i).SubItems(8).Text
                 TIdBarang1.Text = ListDetailPODsn.Items(i).SubItems(9).Text
-                TIdpoprd.Text = ListDetailPODsn.Items(i).SubItems(10).Text
+                TidPO.Text = ListDetailPODsn.Items(i).SubItems(10).Text
                 TIdToko.Text = ListDetailPODsn.Items(i).SubItems(11).Text
-                TIdBrand.Text = ListDetailPODsn.Items(i).SubItems(12).Text
-                TidDetailDsn.Text = ListDetailPODsn.Items(i).SubItems(14).Text
-                TKeterangan.Text = ListDetailPODsn.Items(i).SubItems(15).Text
+                TKeterangan.Text = ListDetailPODsn.Items(i).SubItems(14).Text
             End If
         Next
 
-        If item = True And cutting = True Then
-            MsgBox("Pilih salah satu data yang mau diedit, Cutting/Printing!!...", MsgBoxStyle.Information, "Information")
-            ListDetailPODsn.Focus()
-            Exit Sub
-        ElseIf item = True And cutting = False Then
+        If item = False Then
+             MsgBox("Tidak ada data PO Printing yang akan dipilih, Pilih dulu datanya!!...", MsgBoxStyle.Information, "Information")
+            ListPOPrint.Focus()
+        ElseIf item = True Then
             For i = 0 To ListPOPrint.Items.Count - 1
                 If ListPOPrint.Items(i).Checked = True Then
                     CPrinting.Checked = True
                     brs2 = i
-                    TidDetailPoPrt.Text = ListPOPrint.Items(i).SubItems(8).Text
+                    TBarang2.Text = ListPOPrint.Items(i).SubItems(1).Text
                     Tp2.Text = ListPOPrint.Items(i).SubItems(2).Text
                     Tl2.Text = ListPOPrint.Items(i).SubItems(3).Text
                     Tt2.Text = ListPOPrint.Items(i).SubItems(4).Text
-                    Tj2.Text = ListPOPrint.Items(i).SubItems(6).Text
-                    TBarang2.Text = ListPOPrint.Items(i).SubItems(1).Text
-                    CBahan.Text = ListPOPrint.Items(i).SubItems(10).Text
-                    TFinishing.Text = ListPOPrint.Items(i).SubItems(11).Text
-                    TidBahan.Text = ListPOPrint.Items(i).SubItems(12).Text
-                    TidFinishing.Text = ListPOPrint.Items(i).SubItems(13).Text
-                    TidPoPrt.Text = ListPOPrint.Items(i).SubItems(14).Text
+                    Tj2.Text = ListPOPrint.Items(i).SubItems(5).Text
+                    TidDetailPoPrt.Text = ListPOPrint.Items(i).SubItems(7).Text
+                    CBahan.Text = ListPOPrint.Items(i).SubItems(9).Text
+                    TFinishing.Text = ListPOPrint.Items(i).SubItems(10).Text
+                    TidBahan.Text = ListPOPrint.Items(i).SubItems(11).Text
+                    TidFinishing.Text = ListPOPrint.Items(i).SubItems(12).Text
+                    TidPoPrt.Text = ListPOPrint.Items(i).SubItems(13).Text
+
                 End If
             Next
-     
-        ElseIf item = False Then
-            MsgBox("Tidak ada data PO Printing yang akan dipilih, Pilih dulu datanya!!...", MsgBoxStyle.Information, "Information")
-            ListPOPrint.Focus()
-            Exit Sub
         ElseIf jmldetail > 1 Then
             MsgBox("Hanya 1(satu) data PO-PRINTING yg bisa di-Entry !!...", MsgBoxStyle.Information, "Information")
-            Exit Sub
-        ElseIf jmldetailcut > 1 Then
-            MsgBox("Hanya 1(satu) data PO-CUTTING yg bisa di-Entry !!...", MsgBoxStyle.Information, "Information")
             Exit Sub
         End If
         EntryMode()
@@ -1404,7 +1189,7 @@ Public Class POInternalDesign
         Proses = "Edit"
     End Sub
 
-    Private Sub ListDetailPODsn_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListDetailPODsn.SelectedIndexChanged
+    Private Sub ListDetailPODsn_SelectedIndexChanged(sender As Object, e As EventArgs)
         Me.Cursor = Cursors.WaitCursor
         With Me.ListDetailPODsn
             'For Each check As ListViewItem In ListDetailPODsn.CheckedItems
@@ -1447,5 +1232,104 @@ Public Class POInternalDesign
 
     Private Sub Panel1_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Panel2.MouseUp
         Panel1Captured = False
+    End Sub
+    Private Sub ListPODsn_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListPODsn.SelectedIndexChanged
+        Me.Cursor = Cursors.WaitCursor
+
+        TampilPODeTAIL()
+        With Me.ListPODsn
+            For Each check As ListViewItem In ListPODsn.CheckedItems
+                TidPO.Text = ""
+                TidPoDsn.Text = ""
+                check.Checked = False
+            Next
+            For Each item As ListViewItem In ListPODsn.SelectedItems
+                'item.Checked = True
+                brspo = item.Index
+                'TidPO.Text = ListPODsn.Items(brspo).SubItems(5).Text
+                TidPoDsn.Text = ListPODsn.Items(brspo).SubItems(6).Text
+                item.Checked = True
+                Dim tbl As New DataTable
+                GGVM_conn()
+                s = ""
+                s = s & " select if (terima_po_dsn is null,'', terima_po_dsn)as acc from po_desain"
+                s = s & " where idpo_dsn='" & TidPoDsn.Text & "'"
+                da = New OdbcDataAdapter(s, conn)
+                'ds.Clear()
+                tbl = New DataTable
+                tbl.Clear()
+                da.Fill(tbl)
+
+                If tbl.Rows(0)("acc") = "" Then
+                    ' MsgBox("Data Belum di Acc tidak dapat di Entry!!...", MsgBoxStyle.Information, "Information")
+                    ListDetailPODsn.Enabled = False
+                    BtnAccDsn.Enabled = True
+                    BtnEntryDsn.Enabled = False
+                    RbTerima.Checked = True
+                    RbKirim.Checked = False
+                Else
+                    ListDetailPODsn.Enabled = True
+                    BtnEntryDsn.Enabled = True
+                    If BtnAccDsn.Caption = "KIRIM PO" Then
+                        BtnAccDsn.Enabled = True
+                    Else
+                        BtnAccDsn.Enabled = False
+                    End If
+                    RbTerima.Checked = False
+                    RbKirim.Checked = True
+                End If
+            Next
+
+            'TextBox1.Text = ListPODsn.Items(brspo).SubItems(8).Text
+            'tiddtorder.text = ListPODsn.Items(brske).SubItems(9).Text
+        End With
+
+
+        Me.Cursor = Cursors.Default
+        TampilPODeTAIL()
+        ' GGVM_conn_close()
+    End Sub
+
+    Private Sub ListDetailPODsn_SelectedIndexChanged_1(sender As Object, e As EventArgs) Handles ListDetailPODsn.SelectedIndexChanged
+        Me.Cursor = Cursors.WaitCursor
+        With Me.ListDetailPODsn
+            'For Each check As ListViewItem In ListDetailPODsn.CheckedItems
+            '    check.Checked = False
+            'Next
+            For Each item As ListViewItem In ListDetailPODsn.SelectedItems
+                item.Checked = True
+                brske = item.Index
+            Next
+            TIdToko.Text = ListDetailPODsn.Items(brske).SubItems(11).Text
+            TidDetailDsn.Text = ListDetailPODsn.Items(brske).SubItems(13).Text
+        End With
+        TampilDetailPrinting()
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub FilterPekerjaan_CheckedChanged(sender As Object, e As EventArgs) Handles FilterPekerjaan.CheckedChanged
+        If FilterPekerjaan.Checked = True Then
+            CbOnprogress.Checked = False
+            Call TampilPODesain()
+        Else
+            Call TampilPODesain()
+        End If
+    End Sub
+
+    Private Sub CbOnprogress_CheckedChanged(sender As Object, e As EventArgs) Handles CbOnprogress.CheckedChanged
+        If CbOnprogress.Checked = True Then
+            FilterPekerjaan.Checked = False
+            BtnSelesai.Enabled = True
+            Call TampilPODesain()
+        Else
+            Call TampilPODesain()
+            BtnSelesai.Enabled = False
+        End If
+    End Sub
+
+    Private Sub BtnRefreshDsn_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BtnRefreshDsn.ItemClick
+        ListPODsn.Items.Clear()
+        ListDetailPODsn.Items.Clear()
+        TampilPODesain()
     End Sub
 End Class

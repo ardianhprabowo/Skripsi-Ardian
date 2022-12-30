@@ -1,5 +1,7 @@
 ﻿Imports DevExpress.Utils
 Imports System.Data.Odbc
+Imports DevExpress.XtraEditors
+Imports DevExpress.XtraGrid.Columns
 
 Public Class DetailDataOrder
     Friend Shared Event GetDataOrder(ByVal idDO As String)
@@ -12,36 +14,56 @@ Public Class DetailDataOrder
         ' Fill the SqlDataSource asynchronously
         SqlDataSource1.FillAsync()
     End Sub
-
     Private Sub WindowsUIButtonPanel1_ButtonClick(sender As Object, e As DevExpress.XtraBars.Docking2010.ButtonEventArgs) Handles WindowsUIButtonPanel1.ButtonClick
         If e.Button.Properties.Caption = "Print" Then
             GridControl2.ShowRibbonPrintPreview()
         ElseIf e.Button.Properties.Caption = "Detail D.O" Then
-            Proses = "entry"
-            FlyoutPanel1.Options.AnimationType = DevExpress.Utils.Win.PopupToolWindowAnimation.Fade
-            FlyoutPanelControl1.Controls.Add(New StatusSurvei() With {
-            .Dock = DockStyle.Fill
-             })
-            RaiseEvent GetDataOrder(iddo)
-            FlyoutPanel1.Width = ClientSize.Width
-            FlyoutPanel1.Height = 620
-            FlyoutPanel1.ShowPopup()
+                Proses = "entry"
+                FlyoutPanel1.Options.AnimationType = DevExpress.Utils.Win.PopupToolWindowAnimation.Fade
+                FlyoutPanelControl1.Controls.Add(New StatusSurvei() With {
+                .Dock = DockStyle.Fill
+                 })
+
+                RaiseEvent GetDataOrder(iddo)
+                FlyoutPanel1.Width = ClientSize.Width
+                FlyoutPanel1.Height = ClientSize.Height
+                FlyoutPanel1.ShowPopup()
         ElseIf e.Button.Properties.Caption = "Refresh" Then
+            GridView3.RefreshData()
             SqlDataSource1.FillAsync()
-        ElseIf e.Button.Properties.Caption = "ACC" Then
+            ListDetailDO.Items.Clear()
+            ElseIf e.Button.Properties.Caption = "ACC" Then
             GGVM_conn()
             Dim c As String
             c = ""
             c = c & " update prd_dataorder set"
-            c = c & " idstatus_proyek ='11'"
+            c = c & " idstatus_proyek ='9'"
             c = c & " where iddtorder = '" & iddo & "'"
-            cmd = New Odbc.OdbcCommand(c, conn)
+            cmd = New OdbcCommand(c, conn)
             cmd.ExecuteNonQuery()
             SqlDataSource1.FillAsync()
             MsgBox("Proses ACC DO Selesai !!..", MsgBoxStyle.Information, "Information")
             GGVM_conn_close()
         ElseIf e.Button.Properties.Caption = "Keluar" Then
-            Me.Dispose()
+            Me.Hide()
+        ElseIf e.Button.Properties.Caption = "PROSES P.E" Then
+            'update status_proyek dataorder
+            Dim c As String
+            GGVM_conn()
+            c = ""
+            c = c & " update prd_dataorder set "
+            c = c & " idstatus_proyek='11'"
+            c = c & " where iddtorder='" & iddo & "'"
+            cmd = New OdbcCommand(c, conn)
+            cmd.ExecuteNonQuery()
+
+            c = ""
+            c = c & " insert prd_history_dataorder (iddtorder,idstatusproyek,waktu,userid) values "
+            c = c & " ('" & iddo & "','11',now(),'" & userid & "')"
+            cmd = New System.Data.Odbc.OdbcCommand(c, conn)
+            cmd.ExecuteNonQuery()
+            MsgBox("Proses Ke-Pembuatan Penawaran  !!..", MsgBoxStyle.Information, "Information")
+            GGVM_conn_close()
         End If
     End Sub
 
@@ -50,7 +72,6 @@ Public Class DetailDataOrder
         Dim Status As New StatusSurvei
         Select Case tag
             Case "Tutup"
-
                 'Dim TokoDetail As New DetailToko
                 FlyoutPanelControl1.Controls.Clear()
                 Status.Dispose()
@@ -105,7 +126,7 @@ Public Class DetailDataOrder
         ListDetailDO.Columns.Add("KETERANGAN", 100, HorizontalAlignment.Left)
         ListDetailDO.Columns.Add("QTY-TK", 80, HorizontalAlignment.Right)
         'ListDetailDO.Columns.Add("idbarang", 1, HorizontalAlignment.Left)
-        ListDetailDO.Columns.Add("idmaterial", 1, HorizontalAlignment.Left)
+        'ListDetailDO.Columns.Add("idmaterial", 1, HorizontalAlignment.Left)
         ListDetailDO.Columns.Add("iddetaildo", 1, HorizontalAlignment.Left)
         'ListDetailDO.Columns.Add("SATUAN", 1, HorizontalAlignment.Left)
 
@@ -144,7 +165,7 @@ Public Class DetailDataOrder
                     .Add(tbl.Rows(i)("keterangan"))
                     .Add(IIf(IsDBNull(tbl.Rows(i)("qty_toko")), "", tbl.Rows(i)("qty_toko")))
                     ' .Add(tbl.Rows(i)("idbarang"))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("idmaterial")), "", tbl.Rows(i)("idmaterial")))
+                    '.Add(IIf(IsDBNull(tbl.Rows(i)("idmaterial")), "", tbl.Rows(i)("idmaterial")))
                     .Add(tbl.Rows(i)("iddetailpe"))
                     '.Add(tbl.Rows(i)("SATUAN"))
                 End With
@@ -157,11 +178,8 @@ Public Class DetailDataOrder
         ListHeaderDetaildo()
     End Sub
 
-    Private Sub FlyoutPanel1_Load(sender As Object, e As EventArgs) Handles FlyoutPanel1.Load
-
-    End Sub
-
-    Private Sub WindowsUIButtonPanel1_Click(sender As Object, e As EventArgs) Handles WindowsUIButtonPanel1.Click
+   
+    Private Sub ListDetailDO_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListDetailDO.SelectedIndexChanged
 
     End Sub
 End Class

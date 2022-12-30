@@ -609,16 +609,13 @@ Public Class EntryDO
         If e.KeyChar = Convert.ToChar(32) Or e.KeyChar = Convert.ToChar(127) Then
         Else
             Me.Cursor = Cursors.WaitCursor
-
             GridPanel.DataSource = Nothing
-            If CToko.Checked = True Then
-                GGVM_conn()
-                s = ""
-                s = s & " select a.toko ,d.kota ,  a.idtoko,d.idkota "
-                s = s & " from prd_toko a "
-                s = s & " left join kota d on d.idkota = a.idkota "
-                s = s & " where a.toko like '%" & TPenerima.Text & "%' "
-            End If
+            GGVM_conn()
+            s = ""
+            s = s & " select a.toko ,d.kota ,  a.idtoko,d.idkota "
+            s = s & " from prd_toko a "
+            s = s & " left join kota d on d.idkota = a.idkota "
+            s = s & " where a.toko like '%" & TPenerima.Text & "%' "
             da = New OdbcDataAdapter(s, conn)
             ds = New DataSet
             ds.Clear()
@@ -660,6 +657,7 @@ Public Class EntryDO
                 If i < (GridPanel.RowCount) - 1 Then
                     'TIdDist.Text = GridPanel.Rows.Item(i).Cells(2).Value
                     TidToko.Text = GridPanel.Rows.Item(i).Cells(2).Value
+
                     GridPanel.ClearSelection()
                 End If
 
@@ -675,16 +673,10 @@ Public Class EntryDO
                         cmd = New OdbcCommand(c, conn)
                         cmd.ExecuteNonQuery()
 
-                        sql = " INSERT INTO prd_kirim_dataorder (iddtorder,idtoko) VALUES ('" & TidDtOrder.Text & "', '" & TidToko.Text & "')"
+                        sql = " INSERT INTO prd_kirim_dataorder (iddtorder,idtoko,idkota) VALUES ('" & TidDtOrder.Text & "', '" & TidToko.Text & "', '" & GridPanel.Rows.Item(i).Cells(3).Value & "')"
                         cmd = New OdbcCommand(sql, conn)
                         cmd.ExecuteNonQuery()
-
-                        If CDist.Checked = True Then
-                            MsgBox("Data Distributor sudah diSimpan !!..", MsgBoxStyle.Information, "Information")
-                        End If
-                        If CToko.Checked = True Then
-                            MsgBox("Data Toko sudah diSimpan !!..", MsgBoxStyle.Information, "Information")
-                        End If
+                        MsgBox("Data Toko sudah diSimpan !!..", MsgBoxStyle.Information, "Information")
                         TampilPenerima()
                         'GGVM_conn_close()
                     Case vbNo

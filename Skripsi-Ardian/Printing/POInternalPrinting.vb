@@ -10,7 +10,6 @@ Public Class POInternalPrinting
         ListPOPrt.CheckBoxes = True
         ListPOPrt.Columns.Clear()
         ListPOPrt.Items.Clear()
-        ListPOPrt.Columns.Add("NO.PO", 100, HorizontalAlignment.Left)
         ListPOPrt.Columns.Add("TOKO", 150, HorizontalAlignment.Left)
         ListPOPrt.Columns.Add("BRAND", 100, HorizontalAlignment.Left)
         ListPOPrt.Columns.Add("BARANG", 150, HorizontalAlignment.Left)
@@ -33,7 +32,6 @@ Public Class POInternalPrinting
         ListDetailPrt.Columns.Add("P", 60, HorizontalAlignment.Right)
         ListDetailPrt.Columns.Add("L", 60, HorizontalAlignment.Right)
         ListDetailPrt.Columns.Add("T", 60, HorizontalAlignment.Right)
-        ListDetailPrt.Columns.Add("SISI", 60, HorizontalAlignment.Right)
         ListDetailPrt.Columns.Add("JML", 60, HorizontalAlignment.Right)
         ListDetailPrt.Columns.Add("KETERANGAN", 120, HorizontalAlignment.Right)
         ListDetailPrt.Columns.Add("BAHAN", 150, HorizontalAlignment.Right)
@@ -42,45 +40,63 @@ Public Class POInternalPrinting
     Private Sub TampilPOPrinting()
 
         Dim s As String
-        Dim i As Integer
         Dim dt As New DataTable
-
+        Dim nopo As String
+        Dim toko As String
         ListPOPrt.Items.Clear()
         ListDetailPrt.Items.Clear()
         GGVM_conn()
         s = ""
-        s = s & " SELECT * from view_poprinting"
-        da = New OdbcDataAdapter(s, conn)
-        'ds.Clear()
-        dt = New DataTable
-        dt.Clear()
-        da.Fill(dt)
-
-        For i = 0 To dt.Rows.Count - 1
+        s = s & " SELECT * from view_poprinting "
+        s = s & " order by nopo desc"
+         cmd = New OdbcCommand(s, conn)
+        dr = cmd.ExecuteReader
+        ListPOPrt.Items.Clear()
+        ListPOPrt.BeginUpdate()
+        While dr.Read
+            nopo = dr.Item("nopo")
+            toko = dr.Item("toko")
             Dim statuspekerjaan As String = ""
-            If IIf(IsDBNull(dt.Rows(i)("terima_po")).ToString, "", dt.Rows(i)("terima_po")).ToString <> "" And IIf(IsDBNull(dt.Rows(i)("time_closhing")).ToString, "", dt.Rows(i)("time_closhing")).ToString = "" Then
+            If IIf(IsDBNull(dr.Item("terima_po")).ToString, "", dr.Item("terima_po")).ToString <> "" And IIf(IsDBNull(dr.Item("time_closhing")).ToString, "", dr.Item("time_closhing")).ToString = "" Then
                 statuspekerjaan = "Diterima"
-            ElseIf IIf(IsDBNull(dt.Rows(i)("time_closhing")).ToString, "", dt.Rows(i)("time_closhing")).ToString <> "" And IIf(IsDBNull(dt.Rows(i)("terima_po")).ToString, "", dt.Rows(i)("terima_po")).ToString <> "" Then
+            ElseIf IIf(IsDBNull(dr.Item("time_closhing")).ToString, "", dr.Item("time_closhing")).ToString <> "" And IIf(IsDBNull(dr.Item("terima_po")).ToString, "", dr.Item("terima_po")).ToString <> "" Then
                 statuspekerjaan = "Selesai"
             Else
                 statuspekerjaan = "Belum diTerima"
             End If
-            With ListPOPrt
-                .Items.Add(dt.Rows(i)("nopo"))
-                With .Items(.Items.Count - 1).SubItems
-                    .Add(IIf(IsDBNull(dt.Rows(i)("toko")), "", dt.Rows(i)("toko")))
-                    .Add(IIf(IsDBNull(dt.Rows(i)("brand")), "", dt.Rows(i)("brand")))
-                    .Add(IIf(IsDBNull(dt.Rows(i)("barang")), "", dt.Rows(i)("barang")))
-                    .Add(IIf(IsDBNull(dt.Rows(i)("deadline_printing")), "", dt.Rows(i)("deadline_printing")))
-                    .Add(IIf(IsDBNull(dt.Rows(i)("iddetail_dsn")), "", dt.Rows(i)("iddetail_dsn")))
-                    .Add(IIf(IsDBNull(dt.Rows(i)("idpo_prd")), "", dt.Rows(i)("idpo_prd")))
-                    .Add(IIf(IsDBNull(dt.Rows(i)("idpo_prt")), "", dt.Rows(i)("idpo_prt")))
-                    .Add(IIf(IsDBNull(dt.Rows(i)("idpo_dsn")), "", dt.Rows(i)("idpo_dsn")))
-                    .Add(IIf(IsDBNull(dt.Rows(i)("iddtorder")), "", dt.Rows(i)("iddtorder")))
-                    .Add(statuspekerjaan)
-                End With
-            End With
-        Next
+            Dim lvitem As New ListViewItem(toko)
+            Try
+                If ListPOPrt.Groups.Item(nopo).Header = nopo Then
+                    lvitem.Group = ListPOPrt.Groups(nopo)
+                    'lvitem.SubItems.Add(dr.Item("toko"))
+                    lvitem.SubItems.Add(dr.Item("brand"))
+                    lvitem.SubItems.Add(dr.Item("barang"))
+                    lvitem.SubItems.Add(dr.Item("deadline_printing"))
+                    lvitem.SubItems.Add(dr.Item("iddetail_dsn"))
+                    lvitem.SubItems.Add(dr.Item("idpo_prd"))
+                    lvitem.SubItems.Add(dr.Item("idpo_prt"))
+                    lvitem.SubItems.Add(dr.Item("idpo_dsn"))
+                    lvitem.SubItems.Add(dr.Item("iddtorder"))
+                    lvitem.SubItems.Add(statuspekerjaan)
+                    ListPOPrt.Items.Add(lvitem)
+                End If
+            Catch
+                ListPOPrt.Groups.Add(New ListViewGroup(nopo, nopo))
+                lvitem.Group = ListPOPrt.Groups(nopo)
+                'lvitem.SubItems.Add(dr.Item("toko"))
+                lvitem.SubItems.Add(dr.Item("brand"))
+                lvitem.SubItems.Add(dr.Item("barang"))
+                lvitem.SubItems.Add(dr.Item("deadline_printing"))
+                lvitem.SubItems.Add(dr.Item("iddetail_dsn"))
+                lvitem.SubItems.Add(dr.Item("idpo_prd"))
+                lvitem.SubItems.Add(dr.Item("idpo_prt"))
+                lvitem.SubItems.Add(dr.Item("idpo_dsn"))
+                lvitem.SubItems.Add(dr.Item("iddtorder"))
+                lvitem.SubItems.Add(statuspekerjaan)
+                ListPOPrt.Items.Add(lvitem)
+            End Try
+        End While
+        ListPOPrt.EndUpdate()
         GGVM_conn_close()
     End Sub
     Private Sub TampilDetailPrinting()
@@ -92,7 +108,7 @@ Public Class POInternalPrinting
         ListDetailPrt.Items.Clear()
         GGVM_conn()
         s = ""
-        s = s & " SELECT * FROM `view_detailpoprint` where iddetail_dsn = '" & ListPOPrt.Items(brske).SubItems(5).Text & "' "
+        s = s & " SELECT * FROM `view_detailpo_printing` where iddetail_dsn = '" & ListPOPrt.Items(brske).SubItems(4).Text & "' "
         da = New OdbcDataAdapter(s, conn)
         'ds.Clear()
         dt = New DataTable
@@ -101,14 +117,13 @@ Public Class POInternalPrinting
 
         For i = 0 To dt.Rows.Count - 1
             With ListDetailPrt
-                .Items.Add(dt.Rows(i)("item_prt"))
+                .Items.Add(dt.Rows(i)("barang"))
                 With .Items(.Items.Count - 1).SubItems
                     .Add(IIf(IsDBNull(dt.Rows(i)("panjang_prt")), "", dt.Rows(i)("panjang_prt")))
                     .Add(IIf(IsDBNull(dt.Rows(i)("tinggi_prt")), "", dt.Rows(i)("tinggi_prt")))
                     .Add(IIf(IsDBNull(dt.Rows(i)("lebar_prt")), "", dt.Rows(i)("lebar_prt")))
-                    .Add(IIf(IsDBNull(dt.Rows(i)("sisi_prt")), "", dt.Rows(i)("sisi_prt")))
                     .Add(IIf(IsDBNull(dt.Rows(i)("qty_prt")), "", dt.Rows(i)("qty_prt")))
-                    .Add(IIf(IsDBNull(dt.Rows(i)("keterangan")), "", dt.Rows(i)("keterangan")))
+                    .Add(IIf(IsDBNull(dt.Rows(i)("keterangan_prt")), "", dt.Rows(i)("keterangan_prt")))
                     .Add(IIf(IsDBNull(dt.Rows(i)("bahan")), "", dt.Rows(i)("bahan")))
                     .Add(IIf(IsDBNull(dt.Rows(i)("finishing")), "", dt.Rows(i)("finishing")))
                 End With
@@ -164,37 +179,37 @@ Public Class POInternalPrinting
         Try
             GGVM_conn()
             s = ""
-            s = s & " SELECT a.*,c.terima_po FROM `prd_detail_po_desain` a "
+            s = s & " SELECT a.*,c.terima_po_prt FROM `prd_detail_po_desain` a "
             s = s & " INNER JOIN prd_detail_po_printing b on b.iddetail_dsn = a.iddetail_dsn "
             s = s & " INNER JOIN po_printing c on c.idpo_prt = b.idpo_prt "
-            s = s & " where a.idpo_dsn ='" & ListPOPrt.Items(brske).SubItems(8).Text & "'"
+            s = s & " where a.idpo_dsn ='" & ListPOPrt.Items(brske).SubItems(7).Text & "'"
             da = New OdbcDataAdapter(s, conn)
             dt = New DataTable
             dt.clear()
             da.Fill(dt)
 
             For Each rs As DataRow In dt.Rows
-                If IsDBNull(rs("terima_po")) Then ' Null check
+                If IsDBNull(rs("terima_po_prt")) Then ' Null check
                     MsgBox("PO Belum di Proses TERIMA !!..", MsgBoxStyle.Information, "Information")
                     Exit Sub
-                ElseIf String.IsNullOrEmpty(rs("terima_po").ToString()) Then ' Empty check
+                ElseIf String.IsNullOrEmpty(rs("terima_po_prt").ToString()) Then ' Empty check
                     MsgBox("PO Belum di Proses TERIMA !!..", MsgBoxStyle.Information, "Information")
                     Exit Sub
                 Else
                     s = ""
                     s = s & " update po_produksi set selesai_printing=now() "
-                    s = s & " where idpo_prd ='" & ListPOPrt.Items(brske).SubItems(6).Text & "' "
+                    s = s & " where idpo_prd ='" & ListPOPrt.Items(brske).SubItems(5).Text & "' "
                     cmd = New OdbcCommand(s, conn)
                     cmd.ExecuteNonQuery()
 
                     c = ""
                     c = c & " insert prd_history_dataorder (iddtorder,idstatusproyek,waktu,userid) values "
-                    c = c & " ('" & ListPOPrt.Items(brske).SubItems(9).Text & "','24',now(),'" & userid & "')"
+                    c = c & " ('" & ListPOPrt.Items(brske).SubItems(8).Text & "','24',now(),'" & userid & "')"
                     cmd = New OdbcCommand(c, conn)
                     cmd.ExecuteNonQuery()
 
                     sql = ""
-                    sql = sql & " update po_printing set time_closhing = now(), user_edit='" & userid & "' where idpo_prt = '" & ListPOPrt.Items(brske).SubItems(7).Text & "'"
+                    sql = sql & " update po_printing set time_closhing_prt = now(), userclose_prt='" & userid & "' where idpo_prt = '" & ListPOPrt.Items(brske).SubItems(6).Text & "'"
                     cmd = New OdbcCommand(sql, conn)
                     cmd.ExecuteNonQuery()
                 End If
@@ -229,16 +244,22 @@ Public Class POInternalPrinting
             ListPOPrt.Focus()
             Exit Sub
         End If
-        If jmldt > 1 Then
-            MsgBox("Hanya 1(satu) data PO-PRINTING yg bisa di-Entry !!...", MsgBoxStyle.Information, "Information")
-            Exit Sub
-        End If
+        'If jmldt > 1 Then
+        '    MsgBox("Hanya 1(satu) data PO-PRINTING yg bisa di-Entry !!...", MsgBoxStyle.Information, "Information")
+        '    Exit Sub
+        'End If
         Try
             GGVM_conn()
             s = ""
-            s = s & " update po_printing set terima_po =now() , user_terima ='" & userid & "' "
-            s = s & " where idpo_prt ='" & ListPOPrt.Items(brske).SubItems(7).Text & "' "
+            s = s & " update po_printing set terima_po_prt =now() , userterima_prt ='" & userid & "' "
+            s = s & " where idpo_prt ='" & ListPOPrt.Items(brske).SubItems(6).Text & "' "
             cmd = New OdbcCommand(s, conn)
+            cmd.ExecuteNonQuery()
+
+            c = ""
+            c = c & " insert prd_history_dataorder (iddtorder,idstatusproyek,waktu,userid) values "
+            c = c & " ('" & ListPOPrt.Items(brske).SubItems(8).Text & "','23',now(),'" & userid & "')"
+            cmd = New OdbcCommand(c, conn)
             cmd.ExecuteNonQuery()
 
             MsgBox("Data PO sudah di-Terima !!..", MsgBoxStyle.Information, "Information")

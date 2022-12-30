@@ -130,8 +130,6 @@
 	`y`.`idbrand` AS `idbrand`,
 	`y`.`namaorder` AS `namaorder`,
 	`y`.`survei` AS `survei`,
-	`y`.`deadline_survei` AS `deadline_survei`,
-	`y`.`status_kirim` AS `status_kirim`,
 	`y`.`deadline_ki` AS `deadline_ki`,
 	`y`.`idstatus_proyek` AS `idstatus_proyek`,
 	`y`.`user_input` AS `user_input`,
@@ -151,13 +149,11 @@ FROM
 				`a`.`idbrand` AS `idbrand`,
 				`a`.`namaorder` AS `namaorder`,
 				`a`.`survei` AS `survei`,
-				`a`.`deadline_survei` AS `deadline_survei`,
-				`a`.`status_kirim` AS `status_kirim`,
 				`a`.`deadline_ki` AS `deadline_ki`,
 				`a`.`idstatus_proyek` AS `idstatus_proyek`,
 				`a`.`user_input` AS `user_input`,
 				`a`.`time_input` AS `time_input`,
-				a.time_closing  as time_closing,
+				a.time_closing AS time_closing,
 				`b`.`klien` AS `nmklien`,
 				`c`.`brand` AS `brand`,
 				`f`.`divisi` AS `divisi` 
@@ -169,15 +165,15 @@ FROM
 						) 
 					AND ( `a`.`idbrand` = `c`.`idbrand` ) 
 					AND ( `a`.`iddivisi` = `f`.`iddivisi` ) 
-				AND isnull( `a`.`time_closing` )))) `y`) 
+					AND ( a.IDSTATUS_PROYEK = '1' )
+				AND isnull( `a`.`time_closing` )))) `y` 
+	) 
 ORDER BY
-	`y`.`tglorder` DESC
-	
-LIMIT 100
-</value>
+	`y`.`tglorder` DESC 
+	LIMIT 100</value>
   </data>
   <data name="SqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
-    <value>PERhdGFTZXQgTmFtZT0iU3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IkRhdGFPcmRlciI+PEZpZWxkIE5hbWU9ImlkZHRvcmRlciIgVHlwZT0iSW50NjQiIC8+PEZpZWxkIE5hbWU9ImlkZGl2aXNpIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0ibm9vcmRlciIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJ0Z2xvcmRlciIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9Imlka2xpZW4iIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJpZGJyYW5kIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0ibmFtYW9yZGVyIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InN1cnZlaSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJkZWFkbGluZV9zdXJ2ZWkiIFR5cGU9IkRhdGVUaW1lIiAvPjxGaWVsZCBOYW1lPSJzdGF0dXNfa2lyaW0iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iZGVhZGxpbmVfa2kiIFR5cGU9IkRhdGVUaW1lIiAvPjxGaWVsZCBOYW1lPSJpZHN0YXR1c19wcm95ZWsiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJ1c2VyX2lucHV0IiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InRpbWVfaW5wdXQiIFR5cGU9IkRhdGVUaW1lIiAvPjxGaWVsZCBOYW1lPSJ0aW1lX2Nsb3NpbmciIFR5cGU9IkRhdGVUaW1lIiAvPjxGaWVsZCBOYW1lPSJubWtsaWVuIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9ImJyYW5kIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9ImRpdmlzaSIgVHlwZT0iU3RyaW5nIiAvPjwvVmlldz48L0RhdGFTZXQ+</value>
+    <value>PERhdGFTZXQgTmFtZT0iU3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IkRhdGFPcmRlciI+PEZpZWxkIE5hbWU9ImlkZHRvcmRlciIgVHlwZT0iSW50NjQiIC8+PEZpZWxkIE5hbWU9ImlkZGl2aXNpIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0ibm9vcmRlciIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJ0Z2xvcmRlciIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9Imlka2xpZW4iIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJpZGJyYW5kIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0ibmFtYW9yZGVyIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InN1cnZlaSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJkZWFkbGluZV9raSIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9Imlkc3RhdHVzX3Byb3llayIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9InVzZXJfaW5wdXQiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0idGltZV9pbnB1dCIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9InRpbWVfY2xvc2luZyIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9Im5ta2xpZW4iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iYnJhbmQiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iZGl2aXNpIiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjwvRGF0YVNldD4=</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="ButtonImageOptions1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -203,7 +199,7 @@ LIMIT 100
 </value>
   </data>
   <assembly alias="DevExpress.Data.v20.1" name="DevExpress.Data.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="WindowsUIButtonImageOptions6.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v20.1" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="WindowsUIButtonImageOptions5.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v20.1" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFlEZXZFeHByZXNzLkRhdGEudjIwLjEsIFZlcnNpb249MjAuMS42
         LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjg4ZDE3NTRkNzAwZTQ5YQUBAAAAHURl
@@ -222,6 +218,29 @@ LIMIT 100
         MC41YzAsMS45LDEuNiwzLjUsMy41LDMuNWMxLjksMCwzLjUtMS42LDMuNS0zLjUgICBjMCwxLjksMS42
         LDMuNSwzLjUsMy41czMuNS0xLjYsMy41LTMuNWMwLDEuOSwxLjYsMy41LDMuNSwzLjVzMy41LTEuNiwz
         LjUtMy41VjEwVjhMMjYsNHoiIGNsYXNzPSJSZWQiIC8+DQogIDwvZz4NCjwvc3ZnPgs=
+</value>
+  </data>
+  <data name="WindowsUIButtonImageOptions6.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v20.1" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFlEZXZFeHByZXNzLkRhdGEudjIwLjEsIFZlcnNpb249MjAuMS42
+        LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjg4ZDE3NTRkNzAwZTQ5YQUBAAAAHURl
+        dkV4cHJlc3MuVXRpbHMuU3ZnLlN2Z0ltYWdlAQAAAAREYXRhBwICAAAACQMAAAAPAwAAAJUDAAAC77u/
+        PD94bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0nVVRGLTgnPz4NCjxzdmcgeD0iMHB4IiB5PSIwcHgi
+        IHZpZXdCb3g9IjAgMCAzMiAzMiIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+        MjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3Bh
+        Y2U9InByZXNlcnZlIiBpZD0iTGF5ZXJfMSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAg
+        MzIgMzIiPg0KICA8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLkdyZWVue2ZpbGw6IzAzOUMyMzt9Cgku
+        QmxhY2t7ZmlsbDojNzI3MjcyO30KCS5SZWR7ZmlsbDojRDExQzFDO30KCS5ZZWxsb3d7ZmlsbDojRkZC
+        MTE1O30KCS5CbHVle2ZpbGw6IzExNzdENzt9CgkuV2hpdGV7ZmlsbDojRkZGRkZGO30KCS5zdDB7b3Bh
+        Y2l0eTowLjU7fQoJLnN0MXtvcGFjaXR5OjAuNzU7fQo8L3N0eWxlPg0KICA8ZyBpZD0iSW1hZ2VJbXBv
+        cnQiPg0KICAgIDxwYXRoIGQ9Ik0yNCwyNkgyVjhoMTQuOGMwLjMtMC43LDAuNy0xLjQsMS4yLTJIMUMw
+        LjUsNiwwLDYuNSwwLDd2MjBjMCwwLjUsMC41LDEsMSwxaDI0YzAuNSwwLDEtMC41LDEtMVYxNGgtMlYy
+        NnoiIGNsYXNzPSJCbGFjayIgLz4NCiAgICA8cGF0aCBkPSJNMzIsNmwtNi02djRjLTQuNCwwLTgsMy42
+        LTgsOGMwLDAuNCwwLDAuOCwwLjEsMS4xQzE4LjYsMTAuMiwyMiw4LDI2LDh2NEwzMiw2eiIgY2xhc3M9
+        IkJsdWUiIC8+DQogICAgPHBvbHlnb24gcG9pbnRzPSIxOCwyNCA4LDE0IDQsMTggNCwyNCAgIiBjbGFz
+        cz0iR3JlZW4iIC8+DQogICAgPGcgY2xhc3M9InN0MCI+DQogICAgICA8cG9seWdvbiBwb2ludHM9IjIy
+        LDIyIDE4LDE4IDE2LDIwIDIwLDI0IDIyLDI0ICAgIiBjbGFzcz0iR3JlZW4iIC8+DQogICAgPC9nPg0K
+        ICA8L2c+DQo8L3N2Zz4L
 </value>
   </data>
   <data name="WindowsUIButtonImageOptions7.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v20.1" mimetype="application/x-microsoft.net.object.bytearray.base64">

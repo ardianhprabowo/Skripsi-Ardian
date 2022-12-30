@@ -8,10 +8,39 @@ Imports DevExpress.XtraBars.Navigation
 Public Class MainForm
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles Me.Load
-        AccordAccount.Text = userid
+        
         OverlayFormShow.Instance.ShowFormOverlay(FrmLogin)
         Dim frm As FrmLogin = New FrmLogin()
         frm.ShowDialog()
+        AccordAccount.Text = userid
+        If DivUser = "1" Then 'Divisi Produksi
+            AccordMarketing.Enabled = False
+            AccordDesain.Enabled = False
+            AccordPrinting.Enabled = False
+            AccordProduksi.Enabled = True
+        ElseIf DivUser = "5" Then ' Divisi Marketing
+            AccordMarketing.Enabled = True
+            AccordDesain.Enabled = False
+            AccordPrinting.Enabled = False
+            AccordProduksi.Enabled = False
+        ElseIf DivUser = "9" Then ' Divisi Printing
+            AccordMarketing.Enabled = False
+            AccordDesain.Enabled = False
+            AccordPrinting.Enabled = True
+            AccordProduksi.Enabled = False
+        ElseIf DivUser = "10" Then ' Divisi Design
+            AccordMarketing.Enabled = False
+            AccordDesain.Enabled = True
+            AccordPrinting.Enabled = False
+            AccordProduksi.Enabled = False
+        ElseIf DivUser = "0" Then 'SuperUser'
+            AccordMarketing.Enabled = True
+            AccordDesain.Enabled = True
+            AccordPrinting.Enabled = True
+            AccordProduksi.Enabled = True
+        Else
+
+        End If
     End Sub
     Private Sub AccordionControl1_CustomDrawElement(ByVal sender As Object, ByVal e As CustomDrawElementEventArgs)
         If e.Element.Style = ElementStyle.Group Then
@@ -64,7 +93,9 @@ Public Class MainForm
     End Sub
 
     Private Sub Produksi_AlokasiManpower_Click(sender As Object, e As EventArgs) Handles Produksi_AlokasiManpower.Click
-
+        Me.FluentDesignFormContainer1.Controls.Add(New HistoryDO() With {
+      .Dock = DockStyle.Fill
+       })
     End Sub
 
     Private Sub Produksi_InternalPO_Click(sender As Object, e As EventArgs) Handles Produksi_InternalPO.Click
@@ -96,4 +127,11 @@ Public Class MainForm
    .Dock = DockStyle.Fill
     })
     End Sub
+
+    Private Sub Desain_SimulasiOrder_Click(sender As Object, e As EventArgs) Handles Desain_SimulasiOrder.Click
+        Me.FluentDesignFormContainer1.Controls.Add(New SimulasiOrder() With {
+  .Dock = DockStyle.Fill
+   })
+    End Sub
+
 End Class

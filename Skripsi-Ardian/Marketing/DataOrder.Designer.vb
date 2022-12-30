@@ -178,7 +178,7 @@ Partial Public Class DataOrder
         Me.gridBand4.MinWidth = 59
         Me.gridBand4.Name = "gridBand4"
         Me.gridBand4.VisibleIndex = 0
-        Me.gridBand4.Width = 284
+        Me.gridBand4.Width = 332
         '
         'GridColumn29
         '
@@ -187,7 +187,7 @@ Partial Public Class DataOrder
         Me.GridColumn29.MinWidth = 25
         Me.GridColumn29.Name = "GridColumn29"
         Me.GridColumn29.Visible = True
-        Me.GridColumn29.Width = 130
+        Me.GridColumn29.Width = 211
         '
         'GridColumn30
         '
@@ -196,7 +196,7 @@ Partial Public Class DataOrder
         Me.GridColumn30.MinWidth = 25
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.Width = 154
+        Me.GridColumn30.Width = 121
         '
         'DETAIL
         '
@@ -229,7 +229,7 @@ Partial Public Class DataOrder
         Me.DETAIL.MinWidth = 11
         Me.DETAIL.Name = "DETAIL"
         Me.DETAIL.VisibleIndex = 1
-        Me.DETAIL.Width = 434
+        Me.DETAIL.Width = 694
         '
         'GridColumn1
         '
@@ -246,7 +246,7 @@ Partial Public Class DataOrder
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsEditForm.Caption = "NO ORDER"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.Width = 95
+        Me.GridColumn3.Width = 133
         '
         'GridColumn4
         '
@@ -255,7 +255,7 @@ Partial Public Class DataOrder
         Me.GridColumn4.MinWidth = 25
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.Width = 131
+        Me.GridColumn4.Width = 179
         '
         'GridColumn7
         '
@@ -264,7 +264,7 @@ Partial Public Class DataOrder
         Me.GridColumn7.MinWidth = 25
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.Width = 90
+        Me.GridColumn7.Width = 288
         '
         'GridColumn31
         '
@@ -273,7 +273,7 @@ Partial Public Class DataOrder
         Me.GridColumn31.MinWidth = 25
         Me.GridColumn31.Name = "GridColumn31"
         Me.GridColumn31.Visible = True
-        Me.GridColumn31.Width = 118
+        Me.GridColumn31.Width = 94
         '
         'GridColumn2
         '
@@ -445,7 +445,7 @@ Partial Public Class DataOrder
         Me.gridBand5.MinWidth = 11
         Me.gridBand5.Name = "gridBand5"
         Me.gridBand5.VisibleIndex = 2
-        Me.gridBand5.Width = 431
+        Me.gridBand5.Width = 200
         '
         'GridColumn12
         '
@@ -454,7 +454,7 @@ Partial Public Class DataOrder
         Me.GridColumn12.MinWidth = 25
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.Width = 107
+        Me.GridColumn12.Width = 200
         '
         'GridColumn16
         '
@@ -462,7 +462,6 @@ Partial Public Class DataOrder
         Me.GridColumn16.FieldName = "deadline_printing"
         Me.GridColumn16.MinWidth = 25
         Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
         Me.GridColumn16.Width = 128
         '
         'GridColumn14
@@ -471,7 +470,6 @@ Partial Public Class DataOrder
         Me.GridColumn14.FieldName = "deadline_design"
         Me.GridColumn14.MinWidth = 25
         Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
         Me.GridColumn14.Width = 118
         '
         'GridColumn18
@@ -480,7 +478,6 @@ Partial Public Class DataOrder
         Me.GridColumn18.FieldName = "deadline_produksi"
         Me.GridColumn18.MinWidth = 25
         Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.Visible = True
         Me.GridColumn18.Width = 78
         '
         'layoutControlGroup
@@ -559,14 +556,15 @@ Partial Public Class DataOrder
         Me.windowsUIButtonPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(63, Byte), Integer), CType(CType(63, Byte), Integer), CType(CType(63, Byte), Integer))
         WindowsUIButtonImageOptions1.ImageUri.Uri = "New;Size32x32;GrayScaled"
         WindowsUIButtonImageOptions2.ImageUri.Uri = "Edit;Size32x32;GrayScaled"
-        WindowsUIButtonImageOptions3.ImageUri.Uri = "Edit/Delete;Size32x32;GrayScaled"
-        WindowsUIButtonImageOptions4.ImageUri.Uri = "Refresh;Size32x32;GrayScaled"
-        WindowsUIButtonImageOptions5.ImageUri.Uri = "Preview;Size32x32;GrayScaled"
+        WindowsUIButtonImageOptions3.ImageUri.Uri = "Refresh;Size32x32;GrayScaled"
+        WindowsUIButtonImageOptions4.ImageUri.Uri = "Preview;Size32x32;GrayScaled"
+        WindowsUIButtonImageOptions5.SvgImage = CType(resources.GetObject("WindowsUIButtonImageOptions5.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        WindowsUIButtonImageOptions5.SvgImageSize = New System.Drawing.Size(26, 26)
         WindowsUIButtonImageOptions6.SvgImage = CType(resources.GetObject("WindowsUIButtonImageOptions6.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         WindowsUIButtonImageOptions6.SvgImageSize = New System.Drawing.Size(26, 26)
         WindowsUIButtonImageOptions7.SvgImage = CType(resources.GetObject("WindowsUIButtonImageOptions7.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         WindowsUIButtonImageOptions7.SvgImageSize = New System.Drawing.Size(26, 26)
-        Me.windowsUIButtonPanel.Buttons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraBars.Docking2010.WindowsUIButton("New", True, WindowsUIButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False), New DevExpress.XtraBars.Docking2010.WindowsUIButton("Edit", True, WindowsUIButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False), New DevExpress.XtraBars.Docking2010.WindowsUIButton("Delete", True, WindowsUIButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False), New DevExpress.XtraBars.Docking2010.WindowsUIButton("Refresh", True, WindowsUIButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False), New DevExpress.XtraBars.Docking2010.WindowsUISeparator(), New DevExpress.XtraBars.Docking2010.WindowsUIButton("Print", True, WindowsUIButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False), New DevExpress.XtraBars.Docking2010.WindowsUISeparator(), New DevExpress.XtraBars.Docking2010.WindowsUIButton("Detail Toko", True, WindowsUIButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False), New DevExpress.XtraBars.Docking2010.WindowsUIButton("Keluar", True, WindowsUIButtonImageOptions7, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False)})
+        Me.windowsUIButtonPanel.Buttons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraBars.Docking2010.WindowsUIButton("New", True, WindowsUIButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False), New DevExpress.XtraBars.Docking2010.WindowsUIButton("Edit", True, WindowsUIButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False), New DevExpress.XtraBars.Docking2010.WindowsUIButton("Refresh", True, WindowsUIButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False), New DevExpress.XtraBars.Docking2010.WindowsUISeparator(), New DevExpress.XtraBars.Docking2010.WindowsUIButton("Print", True, WindowsUIButtonImageOptions4, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False), New DevExpress.XtraBars.Docking2010.WindowsUISeparator(), New DevExpress.XtraBars.Docking2010.WindowsUIButton("Detail Toko", True, WindowsUIButtonImageOptions5, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False), New DevExpress.XtraBars.Docking2010.WindowsUIButton("Kirim Simulasi", True, WindowsUIButtonImageOptions6, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False), New DevExpress.XtraBars.Docking2010.WindowsUIButton("Keluar", True, WindowsUIButtonImageOptions7, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False)})
         Me.windowsUIButtonPanel.Controls.Add(Me.TidDtOrder)
         Me.windowsUIButtonPanel.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.windowsUIButtonPanel.EnableImageTransparency = True

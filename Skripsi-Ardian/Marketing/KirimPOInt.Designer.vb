@@ -36,7 +36,6 @@ Partial Class KirimPOInt
         Me.BtnKeluarPO = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSimpanPO = New DevExpress.XtraEditors.SimpleButton()
         Me.TidPO = New System.Windows.Forms.TextBox()
-        Me.RbBelum = New System.Windows.Forms.RadioButton()
         Me.Bar1 = New DevExpress.XtraBars.Bar()
         Me.BtnProsesPO = New DevExpress.XtraBars.BarButtonItem()
         Me.BtnRefresh = New DevExpress.XtraBars.BarButtonItem()
@@ -55,21 +54,26 @@ Partial Class KirimPOInt
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.RbAda = New System.Windows.Forms.RadioButton()
         Me.Label2 = New System.Windows.Forms.Label()
-        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainer2.Panel1.SuspendLayout()
-        Me.SplitContainer2.Panel2.SuspendLayout()
-        Me.SplitContainer2.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
-        Me.Panel1.SuspendLayout()
-        Me.Panel2.SuspendLayout()
-        CType(Me.barManager1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainer1.Panel1.SuspendLayout()
-        Me.SplitContainer1.Panel2.SuspendLayout()
-        Me.SplitContainer1.SuspendLayout()
-        Me.Panel3.SuspendLayout()
-        Me.SuspendLayout()
+        Me.PanelAlasan = New System.Windows.Forms.GroupBox()
+        Me.BatalRevisi = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAlasan = New DevExpress.XtraEditors.SimpleButton()
+        Me.TAlasan = New System.Windows.Forms.TextBox()
+        CType(Me.SplitContainer2,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.SplitContainer2.Panel1.SuspendLayout
+        Me.SplitContainer2.Panel2.SuspendLayout
+        Me.SplitContainer2.SuspendLayout
+        Me.GroupBox1.SuspendLayout
+        Me.GroupBox2.SuspendLayout
+        Me.Panel1.SuspendLayout
+        Me.Panel2.SuspendLayout
+        CType(Me.barManager1,System.ComponentModel.ISupportInitialize).BeginInit
+        CType(Me.SplitContainer1,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.SplitContainer1.Panel1.SuspendLayout
+        Me.SplitContainer1.Panel2.SuspendLayout
+        Me.SplitContainer1.SuspendLayout
+        Me.Panel3.SuspendLayout
+        Me.PanelAlasan.SuspendLayout
+        Me.SuspendLayout
         '
         'bar2
         '
@@ -78,21 +82,22 @@ Partial Class KirimPOInt
         Me.bar2.DockCol = 0
         Me.bar2.DockRow = 0
         Me.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.bar2.OptionsBar.AllowQuickCustomization = False
-        Me.bar2.OptionsBar.DrawBorder = False
-        Me.bar2.OptionsBar.MultiLine = True
-        Me.bar2.OptionsBar.UseWholeRow = True
+        Me.bar2.OptionsBar.AllowQuickCustomization = false
+        Me.bar2.OptionsBar.DrawBorder = false
+        Me.bar2.OptionsBar.MultiLine = true
+        Me.bar2.OptionsBar.UseWholeRow = true
         Me.bar2.Text = "Main menu"
         '
         'DTTanggal
         '
-        Me.DTTanggal.Enabled = False
-        Me.DTTanggal.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DTTanggal.Enabled = false
+        Me.DTTanggal.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
         Me.DTTanggal.Location = New System.Drawing.Point(524, 5)
         Me.DTTanggal.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DTTanggal.Name = "DTTanggal"
         Me.DTTanggal.Size = New System.Drawing.Size(179, 23)
         Me.DTTanggal.TabIndex = 124
+        Me.DTTanggal.Visible = false
         '
         'SplitContainer2
         '
@@ -124,19 +129,19 @@ Partial Class KirimPOInt
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox1.Size = New System.Drawing.Size(1315, 181)
         Me.GroupBox1.TabIndex = 2
-        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.TabStop = false
         Me.GroupBox1.Text = "PO. Produksi"
         '
         'ListPOPrd
         '
         Me.ListPOPrd.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ListPOPrd.HideSelection = False
+        Me.ListPOPrd.HideSelection = false
         Me.ListPOPrd.Location = New System.Drawing.Point(4, 25)
         Me.ListPOPrd.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ListPOPrd.Name = "ListPOPrd"
         Me.ListPOPrd.Size = New System.Drawing.Size(1307, 151)
         Me.ListPOPrd.TabIndex = 1
-        Me.ListPOPrd.UseCompatibleStateImageBehavior = False
+        Me.ListPOPrd.UseCompatibleStateImageBehavior = false
         '
         'GroupBox2
         '
@@ -148,28 +153,30 @@ Partial Class KirimPOInt
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.GroupBox2.Size = New System.Drawing.Size(1315, 158)
         Me.GroupBox2.TabIndex = 3
-        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.TabStop = false
         Me.GroupBox2.Text = "PO. Detail"
         '
         'ListPODsn
         '
         Me.ListPODsn.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ListPODsn.HideSelection = False
+        Me.ListPODsn.HideSelection = false
         Me.ListPODsn.Location = New System.Drawing.Point(4, 25)
         Me.ListPODsn.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ListPODsn.Name = "ListPODsn"
         Me.ListPODsn.Size = New System.Drawing.Size(1307, 128)
         Me.ListPODsn.TabIndex = 1
-        Me.ListPODsn.UseCompatibleStateImageBehavior = False
+        Me.ListPODsn.UseCompatibleStateImageBehavior = false
         '
         'Panel1
         '
+        Me.Panel1.BackColor = System.Drawing.Color.Silver
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Panel1.Controls.Add(Me.PanelEditPO)
         Me.Panel1.Controls.Add(Me.Panel2)
-        Me.Panel1.Location = New System.Drawing.Point(112, 20)
+        Me.Panel1.Location = New System.Drawing.Point(131, 86)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1067, 483)
+        Me.Panel1.Size = New System.Drawing.Size(1083, 360)
         Me.Panel1.TabIndex = 12
         Me.Panel1.Visible = False
         '
@@ -179,7 +186,7 @@ Partial Class KirimPOInt
         Me.PanelEditPO.Location = New System.Drawing.Point(0, 0)
         Me.PanelEditPO.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.PanelEditPO.Name = "PanelEditPO"
-        Me.PanelEditPO.Size = New System.Drawing.Size(1067, 420)
+        Me.PanelEditPO.Size = New System.Drawing.Size(1079, 293)
         Me.PanelEditPO.TabIndex = 1
         '
         'Panel2
@@ -189,10 +196,10 @@ Partial Class KirimPOInt
         Me.Panel2.Controls.Add(Me.BtnKeluarPO)
         Me.Panel2.Controls.Add(Me.BtnSimpanPO)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel2.Location = New System.Drawing.Point(0, 420)
+        Me.Panel2.Location = New System.Drawing.Point(0, 293)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1067, 63)
+        Me.Panel2.Size = New System.Drawing.Size(1079, 63)
         Me.Panel2.TabIndex = 0
         '
         'BtnKembaliRev
@@ -246,17 +253,6 @@ Partial Class KirimPOInt
         Me.TidPO.TabIndex = 125
         Me.TidPO.Visible = False
         '
-        'RbBelum
-        '
-        Me.RbBelum.AutoSize = True
-        Me.RbBelum.Location = New System.Drawing.Point(303, 8)
-        Me.RbBelum.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.RbBelum.Name = "RbBelum"
-        Me.RbBelum.Size = New System.Drawing.Size(132, 24)
-        Me.RbBelum.TabIndex = 3
-        Me.RbBelum.Text = "BELUM ADA PE"
-        Me.RbBelum.UseVisualStyleBackColor = True
-        '
         'Bar1
         '
         Me.Bar1.BarItemVertIndent = 9
@@ -306,6 +302,7 @@ Partial Class KirimPOInt
         Me.BtnEdit.ImageOptions.LargeImage = CType(resources.GetObject("BtnEdit.ImageOptions.LargeImage"), System.Drawing.Image)
         Me.BtnEdit.Name = "BtnEdit"
         Me.BtnEdit.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
+        Me.BtnEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         '
         'BtnPrint
         '
@@ -421,7 +418,6 @@ Partial Class KirimPOInt
         '
         Me.Panel3.Controls.Add(Me.TidPO)
         Me.Panel3.Controls.Add(Me.DTTanggal)
-        Me.Panel3.Controls.Add(Me.RbBelum)
         Me.Panel3.Controls.Add(Me.RbAda)
         Me.Panel3.Controls.Add(Me.Label2)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
@@ -455,10 +451,54 @@ Partial Class KirimPOInt
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Data Order"
         '
+        'PanelAlasan
+        '
+        Me.PanelAlasan.BackColor = System.Drawing.Color.Crimson
+        Me.PanelAlasan.Controls.Add(Me.BatalRevisi)
+        Me.PanelAlasan.Controls.Add(Me.BtnAlasan)
+        Me.PanelAlasan.Controls.Add(Me.TAlasan)
+        Me.PanelAlasan.Location = New System.Drawing.Point(409, 88)
+        Me.PanelAlasan.Name = "PanelAlasan"
+        Me.PanelAlasan.Size = New System.Drawing.Size(425, 182)
+        Me.PanelAlasan.TabIndex = 1
+        Me.PanelAlasan.TabStop = false
+        Me.PanelAlasan.Text = "ALASAN REVISI"
+        Me.PanelAlasan.Visible = false
+        '
+        'BatalRevisi
+        '
+        Me.BatalRevisi.ImageOptions.Image = CType(resources.GetObject("BatalRevisi.ImageOptions.Image"),System.Drawing.Image)
+        Me.BatalRevisi.Location = New System.Drawing.Point(177, 126)
+        Me.BatalRevisi.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.BatalRevisi.Name = "BatalRevisi"
+        Me.BatalRevisi.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light
+        Me.BatalRevisi.Size = New System.Drawing.Size(101, 41)
+        Me.BatalRevisi.TabIndex = 3
+        Me.BatalRevisi.Text = "KELUAR"
+        '
+        'BtnAlasan
+        '
+        Me.BtnAlasan.ImageOptions.Image = CType(resources.GetObject("BtnAlasan.ImageOptions.Image"),System.Drawing.Image)
+        Me.BtnAlasan.Location = New System.Drawing.Point(292, 126)
+        Me.BtnAlasan.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.BtnAlasan.Name = "BtnAlasan"
+        Me.BtnAlasan.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light
+        Me.BtnAlasan.Size = New System.Drawing.Size(112, 38)
+        Me.BtnAlasan.TabIndex = 2
+        Me.BtnAlasan.Text = "SIMPAN"
+        '
+        'TAlasan
+        '
+        Me.TAlasan.Location = New System.Drawing.Point(17, 55)
+        Me.TAlasan.Name = "TAlasan"
+        Me.TAlasan.Size = New System.Drawing.Size(385, 27)
+        Me.TAlasan.TabIndex = 0
+        '
         'KirimPOInt
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8!, 20!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.PanelAlasan)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.barDockControlLeft)
@@ -467,25 +507,27 @@ Partial Class KirimPOInt
         Me.Controls.Add(Me.barDockControlTop)
         Me.Name = "KirimPOInt"
         Me.Size = New System.Drawing.Size(1315, 623)
-        Me.SplitContainer2.Panel1.ResumeLayout(False)
-        Me.SplitContainer2.Panel2.ResumeLayout(False)
-        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer2.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox2.ResumeLayout(False)
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel2.ResumeLayout(False)
-        CType(Me.barManager1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer1.Panel1.ResumeLayout(False)
-        Me.SplitContainer1.Panel2.ResumeLayout(False)
-        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SplitContainer1.ResumeLayout(False)
-        Me.Panel3.ResumeLayout(False)
-        Me.Panel3.PerformLayout()
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        Me.SplitContainer2.Panel1.ResumeLayout(false)
+        Me.SplitContainer2.Panel2.ResumeLayout(false)
+        CType(Me.SplitContainer2,System.ComponentModel.ISupportInitialize).EndInit
+        Me.SplitContainer2.ResumeLayout(false)
+        Me.GroupBox1.ResumeLayout(false)
+        Me.GroupBox2.ResumeLayout(false)
+        Me.Panel1.ResumeLayout(false)
+        Me.Panel2.ResumeLayout(false)
+        CType(Me.barManager1,System.ComponentModel.ISupportInitialize).EndInit
+        Me.SplitContainer1.Panel1.ResumeLayout(false)
+        Me.SplitContainer1.Panel2.ResumeLayout(false)
+        CType(Me.SplitContainer1,System.ComponentModel.ISupportInitialize).EndInit
+        Me.SplitContainer1.ResumeLayout(false)
+        Me.Panel3.ResumeLayout(false)
+        Me.Panel3.PerformLayout
+        Me.PanelAlasan.ResumeLayout(false)
+        Me.PanelAlasan.PerformLayout
+        Me.ResumeLayout(false)
+        Me.PerformLayout
 
-    End Sub
+End Sub
     Friend WithEvents bar2 As DevExpress.XtraBars.Bar
     Friend WithEvents DTTanggal As System.Windows.Forms.DateTimePicker
     Friend WithEvents SplitContainer2 As System.Windows.Forms.SplitContainer
@@ -501,7 +543,6 @@ Partial Class KirimPOInt
     Friend WithEvents BtnKeluarPO As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnSimpanPO As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TidPO As System.Windows.Forms.TextBox
-    Friend WithEvents RbBelum As System.Windows.Forms.RadioButton
     Friend WithEvents Bar1 As DevExpress.XtraBars.Bar
     Friend WithEvents BtnProsesPO As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BtnRefresh As DevExpress.XtraBars.BarButtonItem
@@ -520,5 +561,9 @@ Partial Class KirimPOInt
     Friend WithEvents Panel3 As System.Windows.Forms.Panel
     Friend WithEvents RbAda As System.Windows.Forms.RadioButton
     Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents PanelAlasan As System.Windows.Forms.GroupBox
+    Friend WithEvents BatalRevisi As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAlasan As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TAlasan As System.Windows.Forms.TextBox
 
 End Class

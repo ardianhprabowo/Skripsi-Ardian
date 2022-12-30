@@ -118,23 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="DevExpress.Data.v20.1" name="DevExpress.Data.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="BtnTampilGambar.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v20.1" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="PAddMaterials.CaptionImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v20.1" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFlEZXZFeHByZXNzLkRhdGEudjIwLjEsIFZlcnNpb249MjAuMS42
         LjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjg4ZDE3NTRkNzAwZTQ5YQUBAAAAHURl
-        dkV4cHJlc3MuVXRpbHMuU3ZnLlN2Z0ltYWdlAQAAAAREYXRhBwICAAAACQMAAAAPAwAAANECAAAC77u/
+        dkV4cHJlc3MuVXRpbHMuU3ZnLlN2Z0ltYWdlAQAAAAREYXRhBwICAAAACQMAAAAPAwAAAPYDAAAC77u/
         PD94bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0nVVRGLTgnPz4NCjxzdmcgeD0iMHB4IiB5PSIwcHgi
         IHZpZXdCb3g9IjAgMCAzMiAzMiIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
         MjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3Bh
-        Y2U9InByZXNlcnZlIiBpZD0iUGljdHVyZSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAg
-        MzIgMzIiPg0KICA8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLkJsYWNre2ZpbGw6IzcyNzI3Mjt9Cgku
-        R3JlZW57ZmlsbDojMDM5QzIzO30KCS5ZZWxsb3d7ZmlsbDojRkZCMTE1O30KCS5zdDB7b3BhY2l0eTow
-        LjU7fQo8L3N0eWxlPg0KICA8cGF0aCBkPSJNMjksNEgzQzIuNSw0LDIsNC41LDIsNXYyMmMwLDAuNSww
-        LjUsMSwxLDFoMjZjMC41LDAsMS0wLjUsMS0xVjVDMzAsNC41LDI5LjUsNCwyOSw0eiBNMjgsMjZINFY2
-        aDI0VjI2eiIgY2xhc3M9IkJsYWNrIiAvPg0KICA8Y2lyY2xlIGN4PSIyMSIgY3k9IjExIiByPSIzIiBj
-        bGFzcz0iWWVsbG93IiAvPg0KICA8cG9seWdvbiBwb2ludHM9IjIwLDI0IDEwLDE0IDYsMTggNiwyNCAi
-        IGNsYXNzPSJHcmVlbiIgLz4NCiAgPGcgY2xhc3M9InN0MCI+DQogICAgPHBvbHlnb24gcG9pbnRzPSIy
-        MiwyNCAxOCwyMCAyMCwxOCAyNiwyNCAgIiBjbGFzcz0iR3JlZW4iIC8+DQogIDwvZz4NCjwvc3ZnPgs=
+        Y2U9InByZXNlcnZlIiBpZD0iSHlwZXJsaW5rXzFfIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3
+        IDAgMCAzMiAzMiI+DQogIDxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+CgkuQmxhY2t7ZmlsbDojNzI3Mjcy
+        O30KPC9zdHlsZT4NCiAgPHBhdGggZD0iTTE2LjgsMThjMS4zLDEuOSwxLjEsNC42LTAuNiw2LjNsLTQu
+        Miw0LjJjLTIsMi01LjEsMi03LjEsMGwtMS40LTEuNGMtMi0yLTItNS4xLDAtNy4xICBsNC4yLTQuMmMx
+        LjctMS43LDQuMy0xLjksNi4zLTAuNmwtMS41LDEuNWMtMS4xLTAuNS0yLjUtMC4zLTMuNCwwLjZsLTQu
+        Miw0LjJjLTEuMiwxLjItMS4yLDMuMSwwLDQuMmwxLjQsMS40ICBjMS4yLDEuMiwzLjEsMS4yLDQuMiww
+        bDQuMi00LjJjMC45LTAuOSwxLjEtMi4zLDAuNi0zLjRMMTYuOCwxOHogTTI4LjUsNC45bC0xLjQtMS40
+        Yy0yLTItNS4xLTItNy4xLDBsLTQuMiw0LjIgIGMtMS43LDEuNy0xLjksNC4zLTAuNiw2LjNsMS41LTEu
+        NWMtMC41LTEuMS0wLjMtMi41LDAuNi0zLjRsNC4yLTQuMmMxLjItMS4yLDMuMS0xLjIsNC4yLDBsMS40
+        LDEuNGMxLjIsMS4yLDEuMiwzLjEsMCw0LjJsLTQuMiw0LjIgIGMtMC45LDAuOS0yLjMsMS4xLTMuNCww
+        LjZMMTgsMTYuOGMxLjksMS4zLDQuNiwxLjEsNi4zLTAuNmw0LjItNC4yQzMwLjUsMTAsMzAuNSw2Ljgs
+        MjguNSw0Ljl6IE0yMS43LDExLjdjMC40LTAuNCwwLjQtMSwwLTEuNGwwLDAgIGMtMC40LTAuNC0xLTAu
+        NC0xLjQsMGwtMTAsMTBjLTAuNCwwLjQtMC40LDEsMCwxLjRsMCwwYzAuNCwwLjQsMSwwLjQsMS40LDBM
+        MjEuNywxMS43eiIgaWQ9Ikh5cGVybGluayIgY2xhc3M9IkJsYWNrIiAvPg0KPC9zdmc+Cw==
 </value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
@@ -337,4 +342,7 @@
         Zz4NCjwvc3ZnPgs=
 </value>
   </data>
+  <metadata name="ContextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>161, 17</value>
+  </metadata>
 </root>

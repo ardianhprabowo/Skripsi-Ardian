@@ -55,6 +55,18 @@ Partial Class DetailToko
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.ListToko = New System.Windows.Forms.ListView()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.TLPrd = New System.Windows.Forms.TextBox()
         Me.TPPrd = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -68,18 +80,6 @@ Partial Class DetailToko
         Me.TidTrans = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TBarangPrd = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.Label20 = New System.Windows.Forms.Label()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,7 +90,7 @@ Partial Class DetailToko
         '
         'BtnClose
         '
-        Me.BtnClose.Caption = "TUTUP"
+        Me.BtnClose.Caption = "BATAL"
         Me.BtnClose.Id = 4
         Me.BtnClose.ImageOptions.SvgImage = CType(resources.GetObject("BtnClose.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.BtnClose.ItemAppearance.Hovered.BackColor = System.Drawing.Color.Red
@@ -140,13 +140,14 @@ Partial Class DetailToko
         Me.CDeadKirim.AutoSize = True
         Me.CDeadKirim.Enabled = False
         Me.CDeadKirim.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.CDeadKirim.Location = New System.Drawing.Point(12, 248)
+        Me.CDeadKirim.Location = New System.Drawing.Point(16, 248)
         Me.CDeadKirim.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.CDeadKirim.Name = "CDeadKirim"
         Me.CDeadKirim.Size = New System.Drawing.Size(130, 23)
         Me.CDeadKirim.TabIndex = 92
         Me.CDeadKirim.Text = "Deadline Kirim"
         Me.CDeadKirim.UseVisualStyleBackColor = True
+        Me.CDeadKirim.Visible = False
         '
         'DTDeadlineKirimTK
         '
@@ -156,6 +157,7 @@ Partial Class DetailToko
         Me.DTDeadlineKirimTK.Name = "DTDeadlineKirimTK"
         Me.DTDeadlineKirimTK.Size = New System.Drawing.Size(153, 27)
         Me.DTDeadlineKirimTK.TabIndex = 86
+        Me.DTDeadlineKirimTK.Visible = False
         '
         'DTRealImpleTK
         '
@@ -213,6 +215,7 @@ Partial Class DetailToko
         'CSurvei
         '
         Me.CSurvei.AutoSize = True
+        Me.CSurvei.Enabled = False
         Me.CSurvei.Font = New System.Drawing.Font("Segoe UI", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CSurvei.Location = New System.Drawing.Point(10, 177)
         Me.CSurvei.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
@@ -246,7 +249,7 @@ Partial Class DetailToko
         Me.Label21.AutoSize = True
         Me.Label21.Font = New System.Drawing.Font("Segoe UI", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label21.ForeColor = System.Drawing.Color.Black
-        Me.Label21.Location = New System.Drawing.Point(8, 215)
+        Me.Label21.Location = New System.Drawing.Point(12, 215)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(162, 19)
         Me.Label21.TabIndex = 73
@@ -380,6 +383,7 @@ Partial Class DetailToko
         '
         'TQtyPrd
         '
+        Me.TQtyPrd.Enabled = False
         Me.TQtyPrd.Location = New System.Drawing.Point(712, 138)
         Me.TQtyPrd.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TQtyPrd.Name = "TQtyPrd"
@@ -490,6 +494,139 @@ Partial Class DetailToko
         Me.GroupControl2.Size = New System.Drawing.Size(980, 353)
         Me.GroupControl2.TabIndex = 6
         Me.GroupControl2.Text = "DETAIL TOKO :"
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label20.ForeColor = System.Drawing.Color.Black
+        Me.Label20.Location = New System.Drawing.Point(200, 215)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(13, 20)
+        Me.Label20.TabIndex = 105
+        Me.Label20.Text = ":"
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label18.ForeColor = System.Drawing.Color.Black
+        Me.Label18.Location = New System.Drawing.Point(200, 251)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(13, 20)
+        Me.Label18.TabIndex = 104
+        Me.Label18.Text = ":"
+        Me.Label18.Visible = False
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label14.ForeColor = System.Drawing.Color.Black
+        Me.Label14.Location = New System.Drawing.Point(200, 282)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(13, 20)
+        Me.Label14.TabIndex = 103
+        Me.Label14.Text = ":"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label12.ForeColor = System.Drawing.Color.Black
+        Me.Label12.Location = New System.Drawing.Point(200, 309)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(13, 20)
+        Me.Label12.TabIndex = 102
+        Me.Label12.Text = ":"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label9.ForeColor = System.Drawing.Color.Black
+        Me.Label9.Location = New System.Drawing.Point(448, 37)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(13, 20)
+        Me.Label9.TabIndex = 101
+        Me.Label9.Text = ":"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label8.ForeColor = System.Drawing.Color.Black
+        Me.Label8.Location = New System.Drawing.Point(120, 37)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(13, 20)
+        Me.Label8.TabIndex = 100
+        Me.Label8.Text = ":"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label7.ForeColor = System.Drawing.Color.Black
+        Me.Label7.Location = New System.Drawing.Point(694, 140)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(13, 20)
+        Me.Label7.TabIndex = 99
+        Me.Label7.Text = ":"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label6.ForeColor = System.Drawing.Color.Black
+        Me.Label6.Location = New System.Drawing.Point(584, 141)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(13, 20)
+        Me.Label6.TabIndex = 98
+        Me.Label6.Text = ":"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label5.ForeColor = System.Drawing.Color.Black
+        Me.Label5.Location = New System.Drawing.Point(478, 141)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(13, 20)
+        Me.Label5.TabIndex = 97
+        Me.Label5.Text = ":"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.Location = New System.Drawing.Point(340, 142)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(13, 20)
+        Me.Label3.TabIndex = 96
+        Me.Label3.Text = ":"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label2.ForeColor = System.Drawing.Color.Black
+        Me.Label2.Location = New System.Drawing.Point(200, 143)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(13, 20)
+        Me.Label2.TabIndex = 95
+        Me.Label2.Text = ":"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.Label1.ForeColor = System.Drawing.Color.Black
+        Me.Label1.Location = New System.Drawing.Point(200, 110)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(13, 20)
+        Me.Label1.TabIndex = 94
+        Me.Label1.Text = ":"
         '
         'TLPrd
         '
@@ -616,138 +753,6 @@ Partial Class DetailToko
         Me.TBarangPrd.Name = "TBarangPrd"
         Me.TBarangPrd.Size = New System.Drawing.Size(481, 27)
         Me.TBarangPrd.TabIndex = 48
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(200, 110)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(13, 20)
-        Me.Label1.TabIndex = 94
-        Me.Label1.Text = ":"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(200, 143)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(13, 20)
-        Me.Label2.TabIndex = 95
-        Me.Label2.Text = ":"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(340, 142)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(13, 20)
-        Me.Label3.TabIndex = 96
-        Me.Label3.Text = ":"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(478, 141)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(13, 20)
-        Me.Label5.TabIndex = 97
-        Me.Label5.Text = ":"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Label6.ForeColor = System.Drawing.Color.Black
-        Me.Label6.Location = New System.Drawing.Point(584, 141)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(13, 20)
-        Me.Label6.TabIndex = 98
-        Me.Label6.Text = ":"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Label7.ForeColor = System.Drawing.Color.Black
-        Me.Label7.Location = New System.Drawing.Point(694, 140)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(13, 20)
-        Me.Label7.TabIndex = 99
-        Me.Label7.Text = ":"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Label8.ForeColor = System.Drawing.Color.Black
-        Me.Label8.Location = New System.Drawing.Point(120, 37)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(13, 20)
-        Me.Label8.TabIndex = 100
-        Me.Label8.Text = ":"
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Label9.ForeColor = System.Drawing.Color.Black
-        Me.Label9.Location = New System.Drawing.Point(448, 37)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(13, 20)
-        Me.Label9.TabIndex = 101
-        Me.Label9.Text = ":"
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Label12.ForeColor = System.Drawing.Color.Black
-        Me.Label12.Location = New System.Drawing.Point(200, 309)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(13, 20)
-        Me.Label12.TabIndex = 102
-        Me.Label12.Text = ":"
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Label14.ForeColor = System.Drawing.Color.Black
-        Me.Label14.Location = New System.Drawing.Point(200, 282)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(13, 20)
-        Me.Label14.TabIndex = 103
-        Me.Label14.Text = ":"
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Label18.ForeColor = System.Drawing.Color.Black
-        Me.Label18.Location = New System.Drawing.Point(200, 251)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(13, 20)
-        Me.Label18.TabIndex = 104
-        Me.Label18.Text = ":"
-        '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.Label20.ForeColor = System.Drawing.Color.Black
-        Me.Label20.Location = New System.Drawing.Point(200, 215)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(13, 20)
-        Me.Label20.TabIndex = 105
-        Me.Label20.Text = ":"
         '
         'DetailToko
         '

@@ -1,4 +1,5 @@
 ﻿Imports System.Data.Odbc
+Imports DevExpress.Utils
 
 Public Class DetailToko
     Dim s As String
@@ -23,7 +24,7 @@ Public Class DetailToko
         LoadDetailForm()
     End Sub
     Private Sub DetailToko_Load(sender As Object, e As EventArgs) Handles Me.Load
-       
+
     End Sub
 #Region "Function"
     Private Sub ClearDetailTK()
@@ -39,11 +40,11 @@ Public Class DetailToko
         TSPrd.Text = "1"
         TKetTK.Text = ""
         TQtyPrd.Text = "1"
-        CDeadKirim.Enabled = True
+        CDeadKirim.Enabled = False
         CDeadKirim.Checked = False
-        CSurvei.Enabled = True
-        CSurvei.Checked = False
-        CRealImple.Enabled = True
+        'CSurvei.Enabled = True
+        'CSurvei.Checked = False
+        CRealImple.Enabled = False
         CRealImple.Checked = False
 
 
@@ -115,21 +116,14 @@ Public Class DetailToko
         ListBarang.Columns.Add("QTY", 50, HorizontalAlignment.Left)
         ListBarang.Columns.Add("KET.", 100, HorizontalAlignment.Left)
         ListBarang.Columns.Add("Deadline Implementasi", 100, HorizontalAlignment.Left)
-        ListBarang.Columns.Add("Realisasi Implementasi", 100, HorizontalAlignment.Left)
-        ListBarang.Columns.Add("Deadline Kirim", 100, HorizontalAlignment.Left)
-        ListBarang.Columns.Add("IDTrans", 1, HorizontalAlignment.Left)
-        ListBarang.Columns.Add("IDBarang", 1, HorizontalAlignment.Left)
+        ListBarang.Columns.Add("IDTrans", 0, HorizontalAlignment.Left)
+        ListBarang.Columns.Add("IDBarang", 0, HorizontalAlignment.Left)
     End Sub
     Private Sub TampilBarangPerToko()
         GGVM_conn()
         s = ""
-        s = s & " select b.barang, c.panjang_prd, c.lebar_prd, c.tinggi_prd,c.sisi_prd,c.qty_prd, c.keterangan_detail,"
-        s = s & "  c.deadline_implementasi, c.realisasi_implementasi, c.deadline_kirim, "
-        s = s & " c.idtrans, b.idbarang_pe"
-        s = s & " from prd_dataorder a,barang_penawaran b , prd_trans_detaildo_kirim c "
-        s = s & "  where a.iddtorder = c.iddtorder And "
-        s = s & " b.idbarang_pe = c.idbarang_pe and c.idkirim = '" & TIdKirimTK.Text & "' "
-        s = s & " and c.isdelete ='N' "
+        s = s & " select * from view_barangpertoko "
+        s = s & "where idkirim = '" & TIdKirimTK.Text & "' "
         da = New OdbcDataAdapter(s, conn)
         'ds.Clear()
         tbl = New DataTable
@@ -145,12 +139,10 @@ Public Class DetailToko
                     .Add(tbl.Rows(i)("tinggi_prd"))
                     .Add(tbl.Rows(i)("sisi_prd"))
                     .Add(tbl.Rows(i)("qty_prd"))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("keterangan_detail")), "-", tbl.Rows(i)("keterangan_detail")))
+                    .Add(IIf(IsDBNull(tbl.Rows(i)("keterangan")), "-", tbl.Rows(i)("keterangan")))
                     .Add(IIf(IsDBNull(tbl.Rows(i)("deadline_implementasi")), "", tbl.Rows(i)("deadline_implementasi")))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("realisasi_implementasi")), "", tbl.Rows(i)("realisasi_implementasi")))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("deadline_kirim")), "", tbl.Rows(i)("deadline_kirim")))
                     .Add(tbl.Rows(i)("idtrans"))
-                    .Add(tbl.Rows(i)("idbarang_pe"))
+                    .Add(tbl.Rows(i)("idbarang"))
                 End With
             End With
         Next
@@ -254,7 +246,7 @@ Public Class DetailToko
         GGVM_conn_close()
     End Sub
 #End Region
-   
+
 
     Private Sub BtnInsertDetail_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BtnInsertDetail.ItemClick
         ProsesDetail = "EntryDetail"
@@ -263,25 +255,24 @@ Public Class DetailToko
         BtnClose.Caption = "BATAL"
         ListToko.Enabled = True
         EditModeTK()
+        If CSurvei.Checked = True Then
+            DTDeadlineImpleTK.Enabled = True
+            DTDeadlineImpleTK.Format = DateTimePickerFormat.Custom
+            DTDeadlineImpleTK.CustomFormat = "dd/MM/yyyy"
+        Else
+            DTDeadlineImpleTK.Enabled = False
+            DTDeadlineImpleTK.Format = DateTimePickerFormat.Custom
+            DTDeadlineImpleTK.CustomFormat = "dd/MM/yyyy"
+        End If
         For Each check As ListViewItem In ListBarang.CheckedItems
             check.Checked = False
         Next
         'BtnHapusBarang.Enabled = True
     End Sub
 
-    
+
     Private Sub CSurvei_CheckedChanged(sender As Object, e As EventArgs) Handles CSurvei.CheckedChanged
-        If CSurvei.Checked = True Then
-
-            DTDeadlineImpleTK.Enabled = True
-            DTDeadlineImpleTK.Format = DateTimePickerFormat.Custom
-            DTDeadlineImpleTK.CustomFormat = "dd/MM/yyyy"
-        Else
-
-            DTDeadlineImpleTK.Enabled = False
-            DTDeadlineImpleTK.Format = DateTimePickerFormat.Custom
-            DTDeadlineImpleTK.CustomFormat = "dd/MM/yyyy"
-        End If
+       
     End Sub
 
     Private Sub CDeadKirim_CheckedChanged(sender As Object, e As EventArgs) Handles CDeadKirim.CheckedChanged
@@ -330,7 +321,7 @@ Public Class DetailToko
             TLPrd.Enabled = False
             TTPrd.Enabled = False
             TSPrd.Enabled = False
-            TQtyPrd.Enabled = True
+            TQtyPrd.Enabled = False
         End If
         TampilBarangPerToko()
         ListBarang.Enabled = True
@@ -342,18 +333,20 @@ Public Class DetailToko
 
     Private Sub BtnClose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BtnClose.ItemClick
         If BtnClose.Caption = "BATAL" Then
-            BtnClose.Caption = "TUTUP"
+            'BtnClose.Caption = "TUTUP"
             LoadDetailForm()
             ListToko.Enabled = True
             ListBarang.Items.Clear()
             ListToko.Items.Clear()
             BtnHapusBarang.Enabled = False
             TampilToko()
-        Else
-            Me.Enabled = False
-            Me.Dispose()
-            TIDOrder.Text = ""
-            ListToko.Enabled = False
+            'ElseIf BtnClose.Caption = "TUTUP" Then
+
+            '    Me.Enabled = False
+            '    Me.Dispose()
+            '    TIDOrder.Text = ""
+            '    ListToko.Enabled = False
+            '    BtnClose.Visibility = False
         End If
     End Sub
 
@@ -452,7 +445,7 @@ Public Class DetailToko
                 c = "update prd_dataorder set "
                 c = c & " user_koreksi ='" & userid & "',time_koreksi=now()"
                 c = c & " where iddtorder = '" & TIDOrder.Text & "'"
-                cmd = New Odbc.OdbcCommand(c, conn)
+                cmd = New System.Data.Odbc.OdbcCommand(c, conn)
                 cmd.ExecuteNonQuery()
 
                 MsgBox("Data Berhasil diUpdate !! ", MsgBoxStyle.Information, "Pemberitahuan !!")
@@ -497,10 +490,10 @@ Public Class DetailToko
         TQtyPrd.Text = ListBarang.Items(brsbrg).SubItems(5).Text
         TKetTK.Text = ListBarang.Items(brsbrg).SubItems(6).Text
         DTDeadlineImpleTK.Text = ListBarang.Items(brsbrg).SubItems(7).Text
-        DTRealImpleTK.Text = ListBarang.Items(brsbrg).SubItems(8).Text
-        DTDeadlineKirimTK.Text = ListBarang.Items(brsbrg).SubItems(9).Text
-        TidTrans.Text = ListBarang.Items(brsbrg).SubItems(10).Text
-        TidBarangPrd.Text = ListBarang.Items(brsbrg).SubItems(11).Text
+        'DTRealImpleTK.Text = ListBarang.Items(brsbrg).SubItems(8).Text
+        'DTDeadlineKirimTK.Text = ListBarang.Items(brsbrg).SubItems(8).Text
+        TidTrans.Text = ListBarang.Items(brsbrg).SubItems(8).Text
+        TidBarangPrd.Text = ListBarang.Items(brsbrg).SubItems(9).Text
 
         Me.Cursor = Cursors.Default
     End Sub
@@ -536,29 +529,29 @@ Public Class DetailToko
                 MsgBox("Pilih Barangnya Dulu", MsgBoxStyle.Information)
                 Exit Sub
             End If
-                For Each item As ListViewItem In ListBarang.CheckedItems
-                    GGVM_conn()
-                    Dim sql2 As String
+            For Each item As ListViewItem In ListBarang.CheckedItems
+                GGVM_conn()
+                Dim sql2 As String
 
-                    sql2 = "UPDATE prd_trans_detaildo_kirim set isdelete='Y' WHERE idtrans = ?"
-                    cmd = New OdbcCommand
-                    With cmd
-                        .CommandText = (sql2)
-                        .Parameters.Add("@idtrans", OdbcType.BigInt).Value = Convert.ToInt32(item.SubItems(10).Text)
-                        .Connection = conn
-                    End With
-                    dr = cmd.ExecuteReader
-                    Console.WriteLine(cmd.CommandText.ToString)
-                    While dr.Read
-                        Console.WriteLine(dr(0))
-                        Console.WriteLine()
-                    End While
-                    Console.ReadLine()
-                    conn.Close()
-                    dr = Nothing
-                    cmd = Nothing
-                Next
-                BtnHapusBarang.Enabled = False
+                sql2 = "UPDATE prd_trans_detaildo_kirim set isdelete='Y' WHERE idtrans = ?"
+                cmd = New OdbcCommand
+                With cmd
+                    .CommandText = (sql2)
+                    .Parameters.Add("@idtrans", OdbcType.BigInt).Value = Convert.ToInt32(item.SubItems(10).Text)
+                    .Connection = conn
+                End With
+                dr = cmd.ExecuteReader
+                Console.WriteLine(cmd.CommandText.ToString)
+                While dr.Read
+                    Console.WriteLine(dr(0))
+                    Console.WriteLine()
+                End While
+                Console.ReadLine()
+                conn.Close()
+                dr = Nothing
+                cmd = Nothing
+            Next
+            BtnHapusBarang.Enabled = False
         Next I
         MsgBox("Barang Berhasil diHapus")
         Call TampilBarangPerToko()

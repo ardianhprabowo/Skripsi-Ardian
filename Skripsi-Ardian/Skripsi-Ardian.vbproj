@@ -16,6 +16,21 @@
     <OptionStrict>Off</OptionStrict>
     <OptionInfer>On</OptionInfer>
     <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -48,23 +63,32 @@
     <Reference Include="Accessibility" />
     <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.36, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.BonusSkins.v20.1" />
+    <Reference Include="DevExpress.Charts.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.CodeParser.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.v20.1" />
     <Reference Include="DevExpress.Data.Desktop.v20.1" />
     <Reference Include="DevExpress.DataAccess.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Images.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Office.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v20.1.Export, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v20.1" />
     <Reference Include="DevExpress.Sparkline.v20.1.Core" />
+    <Reference Include="DevExpress.Utils.v20.1.UI, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Xpo.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v20.1" />
     <Reference Include="DevExpress.Printing.v20.1.Core" />
+    <Reference Include="DevExpress.XtraGauges.v20.1.Core, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraNavBar.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v20.1, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v20.1.Extensions, Version=20.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -97,6 +121,30 @@
     <Import Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cetak\ReportPenawaranP2P-GG.designer.vb">
+      <DependentUpon>ReportPenawaranP2P-GG.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Cetak\ReportPenawaranP2P-GG.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Cetak\ReportPenawaranP2P.Designer.vb">
+      <DependentUpon>ReportPenawaranP2P.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Cetak\ReportPenawaranP2P.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Cetak\ReportPOInternalDesain.designer.vb">
+      <DependentUpon>ReportPOInternalDesain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Cetak\ReportPOInternalDesain.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Cetak\ReportPOInternalP2P.designer.vb">
+      <DependentUpon>ReportPOInternalP2P.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Cetak\ReportPOInternalP2P.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Class\CMD5.vb" />
     <Compile Include="Class\Conectionggvm.vb" />
     <Compile Include="Class\Fungsi.vb" />
@@ -106,7 +154,12 @@
     <Compile Include="Design\POInternalDesign.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Design\XtraReport.vb" />
+    <Compile Include="Design\SimulasiOrder.Designer.vb">
+      <DependentUpon>SimulasiOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Design\SimulasiOrder.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="MainForm.Designer.vb">
       <DependentUpon>MainForm.vb</DependentUpon>
     </Compile>
@@ -136,6 +189,18 @@
       <DependentUpon>EntryDO.vb</DependentUpon>
     </Compile>
     <Compile Include="Marketing\EntryDO.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Marketing\EntryKirimPO.designer.vb">
+      <DependentUpon>EntryKirimPO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Marketing\EntryKirimPO.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Marketing\HistoryDO.Designer.vb">
+      <DependentUpon>HistoryDO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Marketing\HistoryDO.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Marketing\KirimPOInt.Designer.vb">
@@ -192,8 +257,23 @@
     <Compile Include="UserControl\UserRegistration.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <EmbeddedResource Include="Cetak\ReportPenawaranP2P-GG.resx">
+      <DependentUpon>ReportPenawaranP2P-GG.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cetak\ReportPenawaranP2P.resx">
+      <DependentUpon>ReportPenawaranP2P.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cetak\ReportPOInternalDesain.resx">
+      <DependentUpon>ReportPOInternalDesain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cetak\ReportPOInternalP2P.resx">
+      <DependentUpon>ReportPOInternalP2P.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Design\POInternalDesign.resx">
       <DependentUpon>POInternalDesign.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Design\SimulasiOrder.resx">
+      <DependentUpon>SimulasiOrder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.vb</DependentUpon>
@@ -209,6 +289,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Marketing\EntryDO.resx">
       <DependentUpon>EntryDO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Marketing\EntryKirimPO.resx">
+      <DependentUpon>EntryKirimPO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Marketing\HistoryDO.resx">
+      <DependentUpon>HistoryDO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Marketing\KirimPOInt.resx">
       <DependentUpon>KirimPOInt.vb</DependentUpon>
@@ -264,7 +350,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Cetak\" />
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\message.png" />

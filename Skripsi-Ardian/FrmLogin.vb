@@ -35,10 +35,15 @@ Public Class FrmLogin
             LevelUser = dr.Item("level")
             DivUser = dr.Item("iddivisi")
             Usermenu = dr.Item("menu")
-
-            MainForm.AccordAccount.Text = userid
-            OverlayFormShow.Instance.CloseProgressPanel()
-            Me.Close()
+            If DivUser = "1" Or DivUser = "5" Or DivUser = "9" Or DivUser = "10" Or DivUser = "0" Then
+                MainForm.AccordAccount.Text = userid
+                OverlayFormShow.Instance.CloseProgressPanel()
+                Me.Close()
+            Else
+                MessageBox.Show("Your login details are valid. but not to use this Apps", "P2P System: Error!", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+            
         End If
         
     End Sub

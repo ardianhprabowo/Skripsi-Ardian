@@ -7,6 +7,7 @@ Imports System.Windows.Forms.AxHost
 Imports System.Runtime.CompilerServices
 Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Views.Base
+Imports System.Data.Odbc
 
 Partial Public Class DataOrder
     Friend Shared Event GetTextBoxText(ByVal myString As String)
@@ -35,6 +36,7 @@ Partial Public Class DataOrder
             FlyoutPanelControl1.Controls.Add(New EntryDO() With {
             .Dock = DockStyle.Fill
              })
+            FlyoutPanel1.Height = 529
             FlyoutPanel1.ShowPopup()
 
         ElseIf e.Button.Properties.Caption = "Edit" Then
@@ -48,6 +50,7 @@ Partial Public Class DataOrder
             FlyoutPanelControl1.Controls.Add(New EntryDO() With {
             .Dock = DockStyle.Fill
              })
+            FlyoutPanel1.Height = 529
             RaiseEvent GetTextBoxText(TidDtOrder.Text)
             RaiseEvent GetNoDo(nodo)
             RaiseEvent GetProyek(proyek)
@@ -57,8 +60,24 @@ Partial Public Class DataOrder
             'RaiseEvent GetDivIDSurvei(idivisi_survei)
             RaiseEvent GetDivSurvei(survei)
             FlyoutPanel1.ShowPopup()
-        ElseIf e.Button.Properties.Caption = "Delete" Then
+        ElseIf e.Button.Properties.Caption = "Kirim Simulasi" Then
+            GGVM_conn()
+            Dim c, s As String
+            c = ""
+            c = c & " update prd_dataorder set "
+            c = c & " idstatus_proyek = '6', "
+            c = c & " user_koreksi ='" & userid & "',time_koreksi=now() "
+            c = c & " where iddtorder = '" & TidDtOrder.Text & "'"
+            cmd = New OdbcCommand(c, conn)
+            cmd.ExecuteNonQuery()
 
+            s = ""
+            s = s & " insert prd_history_dataorder (iddtorder,idstatusproyek,waktu,userid) values "
+            s = s & " ('" & TidDtOrder.Text & "','6',now(),'" & userid & "')"
+            cmd = New OdbcCommand(c, conn)
+            cmd.ExecuteNonQuery()
+            GGVM_conn_close()
+            MsgBox("Data sudah di-Kirim Ke Design !!...", MsgBoxStyle.Information, "Information")
         ElseIf e.Button.Properties.Caption = "Refresh" Then
             SqlDataSource1.FillAsync()
         ElseIf e.Button.Properties.Caption = "Detail Toko" Then
@@ -71,7 +90,7 @@ Partial Public Class DataOrder
             FlyoutPanelControl1.Controls.Add(New DetailToko() With {
             .Dock = DockStyle.Fill
              })
-            FlyoutPanel1.Height = Height
+            FlyoutPanel1.Height = 720
             RaiseEvent GetTextBoxText(TidDtOrder.Text)
             FlyoutPanel1.ShowPopup()
         ElseIf e.Button.Properties.Caption = "Keluar" Then
@@ -84,7 +103,7 @@ Partial Public Class DataOrder
 
     End Sub
 
-    Private Sub FlyoutPanel1_ButtonClick(sender As Object, e As DevExpress.Utils.FlyoutPanelButtonClickEventArgs) Handles FlyoutPanel1.ButtonClick
+    Public Sub FlyoutPanel1_ButtonClick(sender As Object, e As DevExpress.Utils.FlyoutPanelButtonClickEventArgs) Handles FlyoutPanel1.ButtonClick
         Dim tag As String = e.Button.Tag.ToString()
         Select Case tag
             Case "accept"
@@ -101,16 +120,6 @@ Partial Public Class DataOrder
                 'EntryDO.Dispose()
                 TryCast(sender, FlyoutPanel).HidePopup()
         End Select
-    End Sub
-
-    Private Sub gridControl_Click(sender As Object, e As EventArgs) Handles gridControl.Click
-
-    End Sub
-
-
-
-    Private Sub gridControl_DoubleClick(sender As Object, e As EventArgs) Handles gridControl.DoubleClick
-
     End Sub
 
     Private Sub AdvBandedGridView1_RowCellClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs) Handles AdvBandedGridView1.RowCellClick
@@ -177,4 +186,11 @@ Partial Public Class DataOrder
 
     End Sub
 
+    Private Sub gridControl_Click(sender As Object, e As EventArgs) Handles gridControl.Click
+
+    End Sub
+
+    Private Sub FlyoutPanel1_Load(sender As Object, e As EventArgs) Handles FlyoutPanel1.Load
+
+    End Sub
 End Class

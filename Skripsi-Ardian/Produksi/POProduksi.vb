@@ -1,9 +1,13 @@
 ﻿Imports System.Data.Odbc
+Imports DevExpress.XtraEditors
+Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.XtraGrid.Columns
 
 Public Class POProduksi
     Private Panel1Captured As Boolean
     Private Panel1Grabbed As Point
-    Dim IdPOprd As Integer
+    Dim lbbrs, pbrs, lpbrs As Integer
+    Dim aktifitasdetail As String = ""
     Sub New()
 
         InitializeComponent()
@@ -21,7 +25,6 @@ Public Class POProduksi
         ListBarang.Items.Clear()
         ListBarang.Columns.Add("TOKO/BARANG", 190, HorizontalAlignment.Left)
         ListBarang.Columns.Add("KOTA", 120, HorizontalAlignment.Left)
-        ListBarang.Columns.Add("DETAIL ITEM", 250, HorizontalAlignment.Left)
         ListBarang.Columns.Add("MATERIAL", 250, HorizontalAlignment.Left)
         ListBarang.Columns.Add("PANJANG", 80, HorizontalAlignment.Left)
         ListBarang.Columns.Add("LEBAR", 80, HorizontalAlignment.Left)
@@ -33,6 +36,7 @@ Public Class POProduksi
         ListBarang.Columns.Add("idtoko", 0, HorizontalAlignment.Left)
         ListBarang.Columns.Add("idtrans", 0, HorizontalAlignment.Left)
         ListBarang.Columns.Add("idbarangdet", 0, HorizontalAlignment.Left)
+        ListBarang.Columns.Add("Manpower", 75, HorizontalAlignment.Left)
     End Sub
     Private Sub TampilDetail()
         Dim s As String
@@ -42,10 +46,11 @@ Public Class POProduksi
         GGVM_conn()
         ListBarang.Items.Clear()
         s = ""
-        s = s & " SELECT a.*,  IF	( isnull( c.barang ), '-', c.barang ) AS `barangdet` , IF	( isnull( c.idbarang ), '0', c.idbarang ) AS `idbarangdet` FROM view_detail_poprd a "
-        s = s & " LEFT JOIN prd_trans_detailpo_produksi b on a.iddetail_prd = b.iddetail_prd "
-        s = s & " LEFT JOIN barang c on c.idbarang = b.idbarang_detail "
-        s = s & " where a.idpo_prd='" & IdPOprd & "'"
+        s = s & " SELECT c.* ,GROUP_CONCAT(b.material SEPARATOR ', ') as material FROM prd_transmaterial a "
+        s = s & " INNER JOIN prd_material b on b.idmaterial = a.idmaterial "
+        s = s & " left join view_detailpo_produksi c on c.iditem_prd = a.IDBARANG_INT"
+        s = s & " where c.idpo_prd='" & TidPOprd.Text & "'"
+        s = s & " GROUP BY c.iditem_prd "
         cmd = New OdbcCommand(s, conn)
         dr = cmd.ExecuteReader
 
@@ -59,7 +64,6 @@ Public Class POProduksi
                 If ListBarang.Groups.Item(toko).Header = toko Then
                     lvitem.Group = ListBarang.Groups(toko)
                     lvitem.SubItems.Add(dr.Item("kota"))
-                    lvitem.SubItems.Add(dr.Item("barangdet"))
                     lvitem.SubItems.Add(dr.Item("material"))
                     lvitem.SubItems.Add(dr.Item("panjang_prd"))
                     lvitem.SubItems.Add(dr.Item("tinggi_prd"))
@@ -67,17 +71,16 @@ Public Class POProduksi
                     lvitem.SubItems.Add(dr.Item("sisi_prd").ToString)
                     lvitem.SubItems.Add(dr.Item("qty_prd"))
                     lvitem.SubItems.Add(dr.Item("iddetail_prd"))
-                    lvitem.SubItems.Add(dr.Item("iditem_prd"))
+                    lvitem.SubItems.Add(dr.Item("idbarang"))
                     lvitem.SubItems.Add(dr.Item("idtoko"))
                     lvitem.SubItems.Add(dr.Item("idtrans"))
-                    lvitem.SubItems.Add(dr.Item("idbarangdet"))
+                    lvitem.SubItems.Add(dr.Item("pekerja"))
                     ListBarang.Items.Add(lvitem)
                 End If
             Catch
                 ListBarang.Groups.Add(New ListViewGroup(toko, toko))
                 lvitem.Group = ListBarang.Groups(toko)
                 lvitem.SubItems.Add(dr.Item("kota"))
-                lvitem.SubItems.Add(dr.Item("barangdet"))
                 lvitem.SubItems.Add(dr.Item("material"))
                 lvitem.SubItems.Add(dr.Item("panjang_prd"))
                 lvitem.SubItems.Add(dr.Item("tinggi_prd"))
@@ -85,10 +88,10 @@ Public Class POProduksi
                 lvitem.SubItems.Add(dr.Item("sisi_prd").ToString)
                 lvitem.SubItems.Add(dr.Item("qty_prd"))
                 lvitem.SubItems.Add(dr.Item("iddetail_prd"))
-                lvitem.SubItems.Add(dr.Item("iditem_prd"))
+                lvitem.SubItems.Add(dr.Item("idbarang"))
                 lvitem.SubItems.Add(dr.Item("idtoko"))
                 lvitem.SubItems.Add(dr.Item("idtrans"))
-                lvitem.SubItems.Add(dr.Item("idbarangdet"))
+                lvitem.SubItems.Add(dr.Item("pekerja"))
                 ListBarang.Items.Add(lvitem)
             End Try
         End While
@@ -112,7 +115,7 @@ Public Class POProduksi
         GGVM_conn()
         ListManpower.Items.Clear()
         s = ""
-        s = s & " select nama_ktp,nik from view_karyawanprd "
+        s = s & " select nama_ktp,nik from karyawan "
         da = New OdbcDataAdapter(s, conn)
         'ds.Clear()
         tbl = New DataTable
@@ -131,7 +134,138 @@ Public Class POProduksi
         End If
         GGVM_conn_close()
     End Sub
+    Private Sub HeaderDetailPekerja()
+        ListPekerja.FullRowSelect = True
+        ListPekerja.MultiSelect = True
+        ListPekerja.View = System.Windows.Forms.View.Details
+        ListPekerja.CheckBoxes = True
+        ListPekerja.Columns.Clear()
+        ListPekerja.Items.Clear()
+        ListPekerja.Columns.Add("NAMA", 250, HorizontalAlignment.Left)
+        ListPekerja.Columns.Add("TUGAS", 150, HorizontalAlignment.Left)
+        ListPekerja.Columns.Add("NO.PO", 100, HorizontalAlignment.Left)
+        ListPekerja.Columns.Add("TOKO", 120, HorizontalAlignment.Left)
+        ListPekerja.Columns.Add("BARANG", 225, HorizontalAlignment.Left)
+        ListPekerja.Columns.Add("TANGGAL MULAI", 130, HorizontalAlignment.Left)
+        ListPekerja.Columns.Add("nik", 0, HorizontalAlignment.Left)
+        ListPekerja.Columns.Add("idbarang", 0, HorizontalAlignment.Left)
+        ListPekerja.Columns.Add("idpo_prd", 0, HorizontalAlignment.Left)
+        ListPekerja.Columns.Add("idact_poprd", 0, HorizontalAlignment.Left)
+        ListPekerja.Columns.Add("idtransmanpower", 0, HorizontalAlignment.Left)
+        ListPekerja.Columns.Add("TANGGAL SELESAI", 130, HorizontalAlignment.Left)
 
+    End Sub
+    Private Sub TampilDetailPekerja()
+        Dim s As String
+        Dim i As Integer
+        Dim tbl As New DataTable
+
+        GGVM_conn()
+        ListPekerja.Items.Clear()
+        'ListBarang.Items.Clear()
+        s = ""
+        s = s & "select * from view_prdjobassign where idpo_prd ='" & TidPOprd.Text & "' "
+        da = New OdbcDataAdapter(s, conn)
+        'ds.Clear()
+        tbl = New DataTable
+        tbl.Clear()
+        da.Fill(tbl)
+        For i = 0 To tbl.Rows.Count - 1
+            Dim statuspekerjaan As String = ""
+            'If tbl.Rows(i)("done") = "1" Then
+            '    statuspekerjaan = "Selesai"
+            'ElseIf tbl.Rows(i)("done") = "2" And IsDBNull(tbl.Rows(i)("nik_pengganti")) Then
+            '    statuspekerjaan = "Ganti Manpower"
+            'ElseIf IIf(IsDBNull(tbl.Rows(i)("time_end")), "", tbl.Rows(i)("time_end")) <> "" AndAlso tbl.Rows(i)("time_temp") = "" Then
+            '    statuspekerjaan = "Berhenti Sementara"
+            'ElseIf IIf(IsDBNull(tbl.Rows(i)("time_start")), "", tbl.Rows(i)("time_start")) <> "" Or IIf(IsDBNull(tbl.Rows(i)("time_temp")), "", tbl.Rows(i)("time_temp")) <> "" Then
+            '    statuspekerjaan = "Progress"
+            'Else
+            '    statuspekerjaan = "Belum Mulai"
+            'End If
+            With ListPekerja
+                .Items.Add(tbl.Rows(i)("nama_ktp"))
+                With .Items(.Items.Count - 1).SubItems
+                    .Add(IIf(IsDBNull(tbl.Rows(i)("jenis_aktifitas")), "", tbl.Rows(i)("jenis_aktifitas")))
+                    .Add(tbl.Rows(i)("nopo"))
+                    .Add(tbl.Rows(i)("toko"))
+                    .Add(tbl.Rows(i)("barang"))
+                    .Add(tbl.Rows(i)("tanggal_mulai"))
+                    .Add(tbl.Rows(i)("nik"))
+                    .Add(tbl.Rows(i)("idbarang"))
+                    .Add(tbl.Rows(i)("idpo_prd"))
+                    .Add(tbl.Rows(i)("idact_poprd"))
+                    .Add(tbl.Rows(i)("idtrans_manpower"))
+                    .Add(tbl.Rows(i)("tanggal_selesai"))
+                    '.Add(statuspekerjaan)
+                    '.Add(tbl.Rows(i)("time_start"))
+                    '.Add(tbl.Rows(i)("time_end"))
+                    'Dim dFrom As DateTime
+                    'Dim dTo As DateTime
+                    'Dim sDateFrom As String = tbl.Rows(i)("time_start")
+                    'Dim sDateTo As String = tbl.Rows(i)("time_end")
+                    'If DateTime.TryParse(sDateFrom, dFrom) AndAlso DateTime.TryParse(sDateTo, dTo) Then
+                    '    Dim TS As TimeSpan = dTo - dFrom
+                    '    Dim hour As Integer = TS.Hours
+                    '    Dim mins As Integer = TS.Minutes
+                    '    Dim secs As Integer = TS.Seconds
+                    '    'Dim msec As Integer = TS.Milliseconds
+                    '    Dim timeDiff As String = ((hour.ToString("00") & " JAM ") + mins.ToString("00") & " MENIT ") + secs.ToString("00") + " DETIK"
+                    '    .Add(timeDiff)
+                    'End If
+                End With
+            End With
+        Next
+
+        GGVM_conn_close()
+    End Sub
+    Private Sub HeaderMaterial()
+        ListPacking.FullRowSelect = True
+        ListPacking.MultiSelect = True
+        ListPacking.View = System.Windows.Forms.View.Details
+        ListPacking.CheckBoxes = True
+        ListPacking.Columns.Clear()
+        ListPacking.Items.Clear()
+        ListPacking.Columns.Add("MATERIAL", 200, HorizontalAlignment.Left)
+        ListPacking.Columns.Add("idbarang", 0, HorizontalAlignment.Left)
+        ListPacking.Columns.Add("isselected", 0, HorizontalAlignment.Left)
+    End Sub
+    Private Sub TampilMaterial()
+        Dim i As Integer
+        Dim tbl As New DataTable
+        GGVM_conn()
+        ListPacking.Items.Clear()
+        sql = ""
+        sql = sql & " select a.barang_int as items,a.idbarang_int as idbarang,"
+        sql = sql & " (CASE WHEN a.idbarang_int = b.idbarang_packing and b.idbarang_pe='" & ListBarang.Items(lbbrs).SubItems(10).Text & "'  THEN 'True' "
+        sql = sql & "  ELSE 'False' END) as isselected "
+        sql = sql & " FROM barang a "
+        sql = sql & " LEFT JOIN prd_packing b ON a.idbarang_int = b.idbarang_packing "
+        sql = sql & " WHERE a.idsubkel='21' and a.KETERANGAN_BRGINT = 'Packing'"
+        sql = sql & "  GROUP BY a.BARANG_INT   "
+        da = New OdbcDataAdapter(sql, conn)
+        'ds.Clear()
+        tbl = New DataTable
+        tbl.Clear()
+        da.Fill(tbl)
+
+        ListPacking.BeginUpdate()
+        If tbl.Rows.Count > 0 Then
+            For i = 0 To tbl.Rows.Count - 1
+                With ListPacking
+                    .Items.Add(tbl.Rows(i)("items"))
+                    With .Items(.Items.Count - 1).SubItems
+                        .Add(tbl.Rows(i)("idbarang"))
+                        .Add(tbl.Rows(i)("isselected"))
+                    End With
+                End With
+
+            Next
+        End If
+
+        ListPacking.EndUpdate()
+        GGVM_conn_close()
+    End Sub
     Private Sub BtnAddWorker_Click(sender As Object, e As EventArgs) Handles BtnAddWorker.Click
         If BtnAddWorker.Text = "SIMPAN" Then
             GGVM_conn()
@@ -184,6 +318,7 @@ Public Class POProduksi
             ListManpower.Enabled = True
             'TampilPO()
             TampilPekerja()
+            TampilDetail()
             BtnAddWorker.Text = "SIMPAN"
             BtnExit.Text = "BATAL"
         End If
@@ -211,7 +346,7 @@ Public Class POProduksi
         ListPekerja.Items.Clear()
         ListManpower.Items.Clear()
         BtnAddWorker.Enabled = False
-        IdPOprd = ""
+        TampilDetail()
     End Sub
 
     Private Sub GroupConfirm_MouseDown(sender As Object, e As MouseEventArgs) Handles GroupConfirm.MouseDown
@@ -231,90 +366,697 @@ Public Class POProduksi
         GroupConfirm.Location = New Point(ClientSize.Width / 2 - GroupConfirm.Size.Width / 2, ClientSize.Height / 2 - GroupConfirm.Size.Height / 2)
         GroupConfirm.Anchor = AnchorStyles.None
     End Sub
-
-    Private Sub CheckActivitas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CheckActivitas.SelectedIndexChanged
+    Private Sub CheckActivitas_SelectedValueChanged(sender As Object, e As EventArgs) Handles CheckActivitas.SelectedValueChanged
 
     End Sub
-    Private Sub TampilDetailPekerja()
-        Dim s As String
-        Dim i As Integer
-        Dim tbl As New DataTable
+    Private Sub CheckActivitas_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles CheckActivitas.ItemCheck
+      
+    End Sub
 
-        GGVM_conn()
-        ListPekerja.Items.Clear()
-        'ListBarang.Items.Clear()
-        s = ""
-        s = s & "select * from view_prdjobassign where idpo_prd ='" & IdPOprd & "' and status='1'"
-        da = New OdbcDataAdapter(s, conn)
-        'ds.Clear()
-        tbl = New DataTable
-        tbl.Clear()
-        da.Fill(tbl)
-        For i = 0 To tbl.Rows.Count - 1
-            Dim statuspekerjaan As String = ""
-            If tbl.Rows(i)("done") = "1" Then
-                statuspekerjaan = "Selesai"
-            ElseIf tbl.Rows(i)("done") = "2" And IsDBNull(tbl.Rows(i)("nik_pengganti")) Then
-                statuspekerjaan = "Ganti Manpower"
-            ElseIf IIf(IsDBNull(tbl.Rows(i)("time_end")), "", tbl.Rows(i)("time_end")) <> "" AndAlso tbl.Rows(i)("time_temp") = "" Then
-                statuspekerjaan = "Berhenti Sementara"
-            ElseIf IIf(IsDBNull(tbl.Rows(i)("time_start")), "", tbl.Rows(i)("time_start")) <> "" Or IIf(IsDBNull(tbl.Rows(i)("time_temp")), "", tbl.Rows(i)("time_temp")) <> "" Then
-                statuspekerjaan = "Progress"
-            Else
-                statuspekerjaan = "Belum Mulai"
-            End If
-            With ListPekerja
-                .Items.Add(tbl.Rows(i)("nama_ktp"))
-                With .Items(.Items.Count - 1).SubItems
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("jenis_aktifitas")), "", tbl.Rows(i)("jenis_aktifitas")))
-                    .Add(tbl.Rows(i)("nopo"))
-                    .Add(tbl.Rows(i)("toko"))
-                    .Add(tbl.Rows(i)("barang"))
-                    .Add(tbl.Rows(i)("tanggal_mulai"))
-                    .Add(tbl.Rows(i)("nik"))
-                    .Add(tbl.Rows(i)("idbarang"))
-                    .Add(tbl.Rows(i)("idpo_prd"))
-                    .Add(tbl.Rows(i)("idact_poprd"))
-                    .Add(tbl.Rows(i)("idtrans_manpower"))
-                    .Add(statuspekerjaan)
-                    .Add(tbl.Rows(i)("time_start"))
-                    .Add(tbl.Rows(i)("time_end"))
-                    Dim dFrom As DateTime
-                    Dim dTo As DateTime
-                    Dim sDateFrom As String = tbl.Rows(i)("time_start")
-                    Dim sDateTo As String = tbl.Rows(i)("time_end")
-                    If DateTime.TryParse(sDateFrom, dFrom) AndAlso DateTime.TryParse(sDateTo, dTo) Then
-                        Dim TS As TimeSpan = dTo - dFrom
-                        Dim hour As Integer = TS.Hours
-                        Dim mins As Integer = TS.Minutes
-                        Dim secs As Integer = TS.Seconds
-                        'Dim msec As Integer = TS.Milliseconds
-                        Dim timeDiff As String = ((hour.ToString("00") & " JAM ") + mins.ToString("00") & " MENIT ") + secs.ToString("00") + " DETIK"
-                        .Add(timeDiff)
-                    End If
-                End With
-            End With
+    Private Sub CheckActivitas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CheckActivitas.SelectedIndexChanged
+        'Packing Activity
+        For Each item As Object In CheckActivitas.CheckedItems
+            Dim drowV As DataRowView = TryCast(item, DataRowView)
+            aktifitasdetail = drowV("jenis_aktifitas")
         Next
-
-        GGVM_conn_close()
+        If aktifitasdetail = "Packing" Then
+            GroupPacking.Visible = True
+            HeaderMaterial()
+            TampilMaterial()
+        Else
+            GroupPacking.Visible = False
+        End If
+        For Each item2 As ListViewItem In Me.ListPacking.Items
+            If item2.SubItems.Item(2).Text = "True" Then
+                item2.Checked = True
+            End If
+        Next
     End Sub
     Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles SimpleButton2.Click
         TampilDetailPekerja()
     End Sub
 
     Private Sub GridView1_RowCellClick(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs) Handles GridView1.RowCellClick
-        IdPOprd = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "idpo_prd").ToString()
+  
     End Sub
 
     Private Sub GridView1_SelectionChanged(sender As Object, e As DevExpress.Data.SelectionChangedEventArgs) Handles GridView1.SelectionChanged
-        IdPOprd = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "idpo_prd").ToString()
+        TidDtorder.Text = ""
+        TidPOprd.Text = ""
+        TidDtorder.Text = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "IDDTORDER")
+        TidPOprd.Text = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "IDPO_PRD")
+        TampilDetail()
+        TampilDetailPekerja()
     End Sub
 
     Private Sub BtnDaftar_Click(sender As Object, e As EventArgs) Handles BtnDaftar.Click
-
+        If TidPOprd.Text = "" Then
+            MsgBox("Tidak ada data yang akan di Proses, Pilih dulu data PO-Nya!!...", MsgBoxStyle.Information, "Information")
+            Exit Sub
+        Else
+            tabbedControlGroup1.SelectedTabPage = LayoutControlGroup2
+            LayoutControlGroup2.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        End If
     End Sub
 
     Private Sub BtnExit_Click(sender As Object, e As EventArgs) Handles BtnExit.Click
         Me.Dispose()
+    End Sub
+
+    Private Sub GridControl1_Click(sender As Object, e As EventArgs) Handles GridControl1.Click
+
+    End Sub
+
+
+    Private Sub ComboBoxEdit1_SelectedIndexChanged(sender As Object, e As EventArgs)
+        Dim Edit As RadioGroup = CType(sender, RadioGroup)
+       
+    End Sub
+
+    Private Sub BtnAcc_Click(sender As Object, e As EventArgs) Handles BtnAcc.Click
+        Dim tbl As New DataTable
+        Dim c As String
+        If TidPOprd.Text = "" Then
+            MsgBox("Tidak ada data yang akan di status TERIMA PO.INTERNAL PRODUKSI , Pilih dulu datanya!!...", MsgBoxStyle.Information, "Information")
+            Exit Sub
+        Else
+            GGVM_conn()
+            If RBSelesai.Checked = True Then
+                    c = ""
+                    c = c & " update prd_dataorder set"
+                c = c & " idstatus_proyek=27,time_closing=now() "
+                    c = c & " where iddtorder = '" & TidDtorder.Text & "'"
+                    cmd = New OdbcCommand(c, conn)
+                    cmd.ExecuteNonQuery()
+
+                sql = ""
+                sql = sql & " update po_produksi set "
+                sql = sql & " selesai_produksi = now(),time_closhing = now() "
+                    sql = sql & " where idpo_prd = '" & TidPOprd.Text & "'"
+                    cmd = New OdbcCommand(sql, conn)
+                    cmd.ExecuteNonQuery()
+                MsgBox("PO Sudah Di Selesaikan !!...", MsgBoxStyle.Information, "Information")
+            Else
+                sql = ""
+                sql = sql & " update po_produksi set "
+                If RBTerima.Checked = True Then
+                    sql = sql & " terima_po = now() "
+                End If
+                If RBProses.Checked = True Then
+                    sql = sql & " proses_po=now()"
+                End If
+                sql = sql & " where idpo_prd = '" & TidPOprd.Text & "'"
+                cmd = New OdbcCommand(sql, conn)
+                cmd.ExecuteNonQuery()
+
+                c = ""
+                c = c & " update prd_dataorder set"
+                If RBTerima.Checked = True Then
+                    c = c & " idstatus_proyek = '25' "
+                End If
+                If RBProses.Checked = True Then
+                    c = c & " idstatus_proyek = '26' "
+                End If
+                c = c & " where iddtorder = '" & TidDtorder.Text & "'"
+                cmd = New OdbcCommand(c, conn)
+                cmd.ExecuteNonQuery()
+
+
+            End If
+            c = ""
+            c = c & " insert prd_history_dataorder (iddtorder,idstatusproyek,waktu,userid) values "
+            c = c & " ('" & TidDtorder.Text & "',"
+            If RBTerima.Checked = True Then
+                c = c & "'25',"
+            End If
+            If RBProses.Checked = True Then
+                c = c & "'26',"
+            End If
+            If RBSelesai.Checked = True Then
+                c = c & "'27',"
+            End If
+            c = c & " now(),'" & userid & "')"
+            cmd = New OdbcCommand(c, conn)
+            cmd.ExecuteNonQuery()
+
+            If RBTerima.Checked = True Then
+                MsgBox("PO SUDAH DITERIMA, PILIH CENTANG PROSES UNTUK MELANJUTKAN!!...", MsgBoxStyle.Information, "Information")
+            ElseIf RBProses.Checked = True Then
+                MsgBox("PO SUDAH DIPROSES, PILIH CENTANG SELESAI UNTUK MENYELESAIKAN PEKERJAAN!!...", MsgBoxStyle.Information, "Information")
+            ElseIf RBSelesai.Checked = True Then
+                MsgBox("PO SUDAH SELESAI, PEKERJAAN YANG MEMUASKAN!!...", MsgBoxStyle.Information, "Information")
+            End If
+
+        End If
+        SqlDataSource1.FillAsync()
+        GGVM_conn_close()
+    End Sub
+    Private Sub BtnKeluar_Click(sender As Object, e As EventArgs) Handles BtnKeluar.Click
+        Me.Dispose()
+    End Sub
+
+    Private Sub POProduksi_Load(sender As Object, e As EventArgs) Handles Me.Load
+        HeaderDetail()
+        HeaderPekerja()
+        HeaderDetailPekerja()
+    End Sub
+
+    Private Sub ListBarang_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBarang.SelectedIndexChanged
+        Me.Cursor = Cursors.WaitCursor
+        With Me.ListBarang
+
+            For Each item As ListViewItem In ListBarang.SelectedItems
+                lbbrs = item.Index
+                'Label11.Text = ListBarang.Items(lbbrs).SubItems(9).Text
+            Next
+            'id_detailpo = lbbrs
+            ' CAktifitas.Enabled = True
+            ' CManpower.Enabled = True
+            BtnAddWorker.Enabled = True
+            'TampilDetail()
+        End With
+
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnKonfirmasi_Click(sender As Object, e As EventArgs) Handles BtnKonfirmasi.Click
+        'Tambah Simpan ID Utama , di field baru , jika tidak ada Detail
+        GGVM_conn()
+        Dim jmldt As Integer = 0
+        Dim sql1, c, s As String
+        Dim tblX, tblmp, tblid_actprd, tbl As New DataTable
+        'Cek Pilih PO
+        If TidPOprd.Text = "" Then
+            MsgBox("Tidak ada data yang akan di Proses, Pilih dulu datanya!!...", MsgBoxStyle.Information, "Information")
+
+            Exit Sub
+        End If
+        ListBarang.BeginUpdate()
+
+        Dim i As Integer
+        If ListBarang.CheckedIndices.Count > 0 Then
+            For i = 0 To ListBarang.CheckedIndices.Count - 1
+                GGVM_conn()
+                c = ""
+                ' tambah cek ukuran sebelum input act po_produksi
+                c = c & "select a.idact_poprd as id, b.idpo_prd, b.panjang_prd, b.tinggi_prd,b.lebar_prd from prd_act_poproduksi a "
+                c = c & " inner join view_detailpo_produksi b on a.idpo_prd = b.idpo_prd "
+                c = c & " where a.idpo_prd ='" & TidPOprd.Text & "' and a.idtoko='" & ListBarang.Items(ListBarang.CheckedIndices(i)).SubItems(10).Text & "' and a.idbarang='" & ListBarang.Items(ListBarang.CheckedIndices(i)).SubItems(9).Text & "' and b.panjang_prd='" & ListBarang.Items(ListBarang.CheckedIndices(i)).SubItems(3).Text & "' "
+                c = c & " and b.tinggi_prd='" & ListBarang.Items(ListBarang.CheckedIndices(i)).SubItems(4).Text & "' and b.lebar_prd = '" & ListBarang.Items(ListBarang.CheckedIndices(i)).SubItems(5).Text & "' "
+                cmd = New OdbcCommand(c, conn)
+                dr = cmd.ExecuteReader
+                dr.Read()
+                If Not dr.HasRows Then
+                    sql1 = "insert into prd_act_poproduksi (idpo_prd,qty_mp,idtoko,idbarang,timeinput_act,userinput_act,tanggal_mulai) values (?,?,?,?,?,?,?) "
+                    cmd = New OdbcCommand
+                    With cmd
+                        .CommandText = (sql1)
+                        .Parameters.Add("@idpo_prd", OdbcType.BigInt).Value = Convert.ToInt32(TidPOprd.Text)
+                        .Parameters.Add("@qty_mp", OdbcType.Int).Value = Convert.ToInt32("1")
+                        .Parameters.Add("@idtoko", OdbcType.Int).Value = Convert.ToInt32(ListBarang.Items(ListBarang.CheckedIndices(i)).SubItems(10).Text)
+                        .Parameters.Add("@idbarang", OdbcType.BigInt).Value = Convert.ToInt32(ListBarang.Items(ListBarang.CheckedIndices(i)).SubItems(9).Text)
+                        .Parameters.Add("@timeinput", OdbcType.DateTime).Value = Now()
+                        .Parameters.Add("@userinput", OdbcType.VarChar).Value = userid
+                        .Parameters.Add("@tanggal_mulai", OdbcType.DateTime).Value = Format(DTStart.Value, "yyyy/MM/dd")
+                        .Connection = conn
+                    End With
+                    dr = cmd.ExecuteReader
+                    Console.WriteLine(cmd.CommandText.ToString)
+                    While dr.Read
+                        Console.WriteLine(dr(0))
+                        Console.WriteLine()
+                    End While
+                    Console.ReadLine()
+
+                    'Ambil id Aktifitas
+                    s = ""
+                    s = s & " select max(idact_poprd)as idactprd from prd_act_poproduksi"
+                    da = New OdbcDataAdapter(s, conn)
+                    'ds.Clear()
+                    tblid_actprd = New DataTable
+                    tblid_actprd.Clear()
+                    da.Fill(tblid_actprd)
+                    TidAct_po.Text = tblid_actprd.Rows(0)("idactprd")
+
+
+                    ListManpower.BeginUpdate()
+                    Dim j As Integer
+                    If ListManpower.CheckedIndices.Count > 0 Then
+                        For j = 0 To ListManpower.CheckedIndices.Count - 1
+                            For Each item As Object In CheckActivitas.CheckedItems
+                                Dim drowV As DataRowView = TryCast(item, DataRowView)
+                                c = ""
+                                c = c & " select * from prd_trans_manpower where idact_poprd='" & TidAct_po.Text & "' and nik='" & ListManpower.Items(ListManpower.CheckedIndices(j)).SubItems(1).Text & "' and idaktifitas='" & drowV("idaktifitas") & "' "
+                                da = New OdbcDataAdapter(c, conn)
+                                'ds.Clear()
+                                tblmp = New DataTable
+                                tblmp.Clear()
+                                da.Fill(tblmp)
+                                If tblmp.Rows.Count > 0 Then
+                                    MsgBox("DATA SUDAH ADA ")
+                                    'Exit Sub
+                                Else
+                                    sql = ""
+                                    sql = sql & " insert into prd_trans_manpower (NIK,idact_poprd,idaktifitas,tanggal_manpower,tanggal_selesai) values ( "
+                                    sql = sql & " '" & ListManpower.Items(ListManpower.CheckedIndices(j)).SubItems(1).Text & "', '" & TidAct_po.Text & "','" & drowV("idaktifitas") & "','" & Format(DTStart.Value, "yyyy/MM/dd") & "' ,'" & Format(DTEnd.Value, "yyyy/MM/dd") & "') "
+                                    cmd = New OdbcCommand(sql, conn)
+                                    cmd.ExecuteNonQuery()
+                                End If
+                            Next
+                            c = ""
+                            c = c & " SELECT count(nik) as qtymp FROM prd_trans_manpower WHERE idact_poprd ='" & TidAct_po.Text & "' and status_manpower='1'"
+                            da = New OdbcDataAdapter(c, conn)
+                            tbl = New DataTable
+                            tbl.Clear()
+                            da.Fill(tbl)
+
+                            s = ""
+                            s = s & " update prd_act_poproduksi set qty_mp='" & tbl.Rows(0)("qtymp") & "'"
+                            s = s & " where idact_poprd = '" & TidAct_po.Text & "' "
+                            cmd = New OdbcCommand(s, conn)
+                            cmd.ExecuteNonQuery()
+
+                            If ListPacking.CheckedIndices.Count > 0 Then
+                                For p = 0 To ListPacking.CheckedIndices.Count - 1
+                                    c = ""
+                                    c = "select idbarang as iditem from prd_packing where idbarang ='" & ListBarang.Items(ListBarang.CheckedIndices(i)).SubItems(9).Text & "' and idbarang_packing ='" & ListPacking.Items(ListPacking.CheckedIndices(p)).SubItems(1).Text & "'"
+                                    da = New OdbcDataAdapter(c, conn)
+                                    tblX = New DataTable
+                                    tblX.Clear()
+                                    da.Fill(tblX)
+                                    If tblX.Rows.Count > 0 Then
+                                    Else
+                                        sql = "insert into prd_packing (idbarang,idbarang_packing,idaktifitas) values (?,?,?)"
+                                        cmd = New OdbcCommand
+                                        With cmd
+                                            .CommandText = (sql)
+                                            .Parameters.Add("@idbarang", OdbcType.BigInt).Value = Convert.ToInt32(ListBarang.Items(ListBarang.CheckedIndices(i)).SubItems(9).Text)
+                                            .Parameters.Add("@idbarang_packing", OdbcType.BigInt).Value = Convert.ToInt32(ListPacking.Items(ListPacking.CheckedIndices(p)).SubItems(1).Text)
+                                            .Parameters.Add("@idaktifitas", OdbcType.BigInt).Value = Convert.ToInt32("11")
+                                            '.Parameters.Add("@idact_poprd", OdbcType.BigInt).Value = Convert.ToInt32(dr.Item("id"))
+                                            .Connection = conn
+                                        End With
+                                        cmd.ExecuteNonQuery()
+                                        'conn.Close()
+                                    End If
+                                Next
+                            End If
+                        Next
+                    Else
+                        MsgBox("Checklist Data Yang Akan Di Aktifkan ")
+                    End If
+                    ListManpower.EndUpdate()
+
+                Else
+                    ListManpower.BeginUpdate()
+                    GGVM_conn()
+                    Dim j As Integer
+                    If ListManpower.CheckedIndices.Count > 0 Then
+                        For j = 0 To ListManpower.CheckedIndices.Count - 1
+                            For Each item As Object In CheckActivitas.CheckedItems
+                                Dim drowV As DataRowView = TryCast(item, DataRowView)
+                                'c = ""
+                                'c = c & " select * from prd_trans_manpower where idact_poprd='" & dr.Item("id") & "' and nik='" & ListManpower.Items(ListManpower.CheckedIndices(j)).SubItems(1).Text & "' and idaktifitas='" & drowV("idaktifitas") & "' and idpo_prd='" & TidPOprd.Text & "' "
+                                'da = New OdbcDataAdapter(c, conn)
+                                ''ds.Clear()
+                                'tblmp = New DataTable
+                                'tblmp.Clear()
+                                'da.Fill(tblmp)
+                                'If tblmp.Rows.Count > 0 Then
+                                '    MsgBox("DATA SUDAH ADA ")
+                                '    ' Exit Sub
+                                'Else
+                                sql = ""
+                                sql = sql & " insert into prd_trans_manpower (NIK,idact_poprd,idaktifitas,tanggal_manpower,idpo_prd,tanggal_selesai) values ( "
+                                sql = sql & " '" & ListManpower.Items(ListManpower.CheckedIndices(j)).SubItems(1).Text & "', '" & dr.Item("id") & "','" & drowV("idaktifitas") & "','" & Format(DTStart.Value, "yyyy/MM/dd") & "','" & TidPOprd.Text & "' ,'" & Format(DTEnd.Value, "yyyy/MM/dd") & "' ) "
+                                cmd = New OdbcCommand(sql, conn)
+                                cmd.ExecuteNonQuery()
+                                'End If
+                            Next
+                            c = ""
+                            c = c & " SELECT count(nik) as qtymp FROM prd_trans_manpower WHERE idact_poprd ='" & dr.Item("id") & "' and idpo_prd='" & TidPOprd.Text & "' and status_manpower='1'"
+                            da = New OdbcDataAdapter(c, conn)
+                            tbl = New DataTable
+                            tbl.Clear()
+                            da.Fill(tbl)
+
+                            s = ""
+                            s = s & " update prd_act_poproduksi set qty_mp='" & tbl.Rows(0)("qtymp") & "'"
+                            s = s & " where idact_poprd = '" & dr.Item("id") & "' "
+                            cmd = New OdbcCommand(s, conn)
+                            cmd.ExecuteNonQuery()
+
+                            'Packing
+                            If ListPacking.CheckedIndices.Count > 0 Then
+                                For p = 0 To ListPacking.CheckedIndices.Count - 1
+                                    c = ""
+                                    c = "select idbarang as iditem from prd_packing where idbarang ='" & ListBarang.Items(ListBarang.CheckedIndices(i)).SubItems(10).Text & "' and idbarang_packing ='" & ListPacking.Items(ListPacking.CheckedIndices(p)).SubItems(1).Text & "'"
+                                    da = New OdbcDataAdapter(c, conn)
+                                    tblX = New DataTable
+                                    tblX.Clear()
+                                    da.Fill(tblX)
+                                    If tblX.Rows.Count > 0 Then
+
+                                    Else
+                                        'GGVM_conn()
+                                        sql = "insert into prd_packing (idbarang,idbarang_packing,idaktifitas) values (?,?,?)"
+                                        cmd = New OdbcCommand
+                                        With cmd
+                                            .CommandText = (sql)
+                                            .Parameters.Add("@idbarang", OdbcType.BigInt).Value = Convert.ToInt32(ListBarang.Items(ListBarang.CheckedIndices(i)).SubItems(10).Text)
+                                            .Parameters.Add("@idbarang_packing", OdbcType.BigInt).Value = Convert.ToInt32(ListPacking.Items(ListPacking.CheckedIndices(p)).SubItems(1).Text)
+                                            .Parameters.Add("@idaktifitas", OdbcType.BigInt).Value = Convert.ToInt32("11")
+                                            ' .Parameters.Add("@idact_poprd", OdbcType.BigInt).Value = Convert.ToInt32(dr.Item("id"))
+                                            .Connection = conn
+                                        End With
+                                        cmd.ExecuteNonQuery()
+                                        'conn.Close()
+                                    End If
+                                Next
+                            End If
+                        Next
+                    Else
+                        MsgBox("Checklist Data Yang Akan Di Aktifkan ")
+                    End If
+                    ListManpower.EndUpdate()
+
+
+                End If
+
+            Next
+            MsgBox("Data sudah diSIMPAN !!..." + "", MsgBoxStyle.Information, "Information")
+            GridView1.ClearSelection()
+        Else
+            MsgBox("Checklist Data Yang Akan Di Aktifkan ")
+        End If
+        ListBarang.EndUpdate()
+        GroupConfirm.Visible = False
+        GroupPacking.Visible = False
+        CheckActivitas.DataSource = Nothing
+        CheckActivitas.DisplayMember = ""
+        CheckActivitas.ValueMember = ""
+        BtnAddWorker.Text = "TAMBAH PEKERJA"
+        BtnExit.Text = "KELUAR"
+        ListBarang.Items.Clear()
+        ListManpower.Items.Clear()
+        ListBarang.Enabled = False
+        ListManpower.Enabled = False
+        SqlDataSource1.FillAsync()
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        GroupConfirm.Visible = False
+    End Sub
+
+    Private Sub RBProses_CheckedChanged(sender As Object, e As EventArgs) Handles RBProses.CheckedChanged
+        If RBProses.Checked = True Then
+            Dim view As ColumnView = GridView1
+            view.ActiveFilter.Add(view.Columns("IDSTATUS_PROYEK"),
+            New ColumnFilterInfo("[IDSTATUS_PROYEK] in ('25')", ""))
+            SqlDataSource1.FillAsync()
+            GridView1.RefreshData()
+            BtnAddWorker.Enabled = False
+            RBSelesai.Checked = False
+            RBTerima.Checked = False
+            BtnAcc.Text = "PROSES"
+            BtnDaftar.Enabled = False
+        End If
+    End Sub
+
+    Private Sub RBSelesai_CheckedChanged(sender As Object, e As EventArgs) Handles RBSelesai.CheckedChanged
+        If RBSelesai.Checked = True Then
+            Dim view As ColumnView = GridView1
+            view.ActiveFilter.Add(view.Columns("IDSTATUS_PROYEK"),
+            New ColumnFilterInfo("[IDSTATUS_PROYEK] in ('26')", ""))
+            SqlDataSource1.FillAsync()
+            GridView1.RefreshData()
+            BtnAddWorker.Enabled = True
+            RBProses.Checked = False
+            RBTerima.Checked = False
+            BtnAcc.Text = "SELESAI"
+            BtnDaftar.Enabled = True
+        End If
+    End Sub
+
+    Private Sub RBTerima_CheckedChanged(sender As Object, e As EventArgs) Handles RBTerima.CheckedChanged
+        If RBTerima.Checked = True Then
+            Dim view As ColumnView = GridView1
+            view.ActiveFilter.Add(view.Columns("IDSTATUS_PROYEK"),
+            New ColumnFilterInfo("[IDSTATUS_PROYEK] in ('18','19','20')", ""))
+            SqlDataSource1.FillAsync()
+            GridView1.RefreshData()
+            BtnAddWorker.Enabled = False
+            RBProses.Checked = False
+            RBSelesai.Checked = False
+            BtnAcc.Text = "TERIMA"
+            BtnDaftar.Enabled = False
+        End If
+    End Sub
+
+    Private Sub BtnEdit_Click(sender As Object, e As EventArgs) Handles BtnEdit.Click
+        Dim ada As Boolean
+        Dim jmldt, brs As Integer
+        ada = False
+        jmldt = 0
+        For i = 0 To ListPekerja.Items.Count - 1
+            If ListPekerja.Items(i).Checked = True Then
+                ada = True
+                brs = i
+                jmldt = jmldt + 1
+            End If
+        Next
+        If ada = False Then
+            MsgBox("Tidak ada data yang akan di Proses, Pilih dulu datanya!!...", MsgBoxStyle.Information, "Information")
+            ListBarang.Focus()
+            Exit Sub
+        End If
+        If jmldt > 1 Then
+            MsgBox("Hanya 1(satu) data yg bisa di-Proses !!...", MsgBoxStyle.Information, "Information")
+            ListBarang.Focus()
+            Exit Sub
+        End If
+            GroupEdit.Visible = True
+            Call LoadAktifitasEdit()
+            Call LoadKaryawan()
+            CManpower.Text = ListPekerja.Items(lpbrs).SubItems(0).Text
+            CAktifitas.Text = ListPekerja.Items(lpbrs).SubItems(1).Text
+        DateEditStart.Text = ListPekerja.Items(lpbrs).SubItems(5).Text
+        TidPOprd.Text = ListPekerja.Items(lpbrs).SubItems(8).Text
+        TidAct_po.Text = ListPekerja.Items(lpbrs).SubItems(9).Text
+        TNIK.Text = ListPekerja.Items(lpbrs).SubItems(6).Text
+        CManpower.Enabled = True
+        CAktifitas.Enabled = False
+        DateEditStart.Enabled = True
+    End Sub
+
+    Private Sub ListPekerja_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListPekerja.SelectedIndexChanged
+        Me.Cursor = Cursors.WaitCursor
+        With Me.ListPekerja
+
+            For Each item As ListViewItem In ListPekerja.SelectedItems
+                lpbrs = item.Index
+            Next
+        End With
+
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnTutupEdit_Click(sender As Object, e As EventArgs) Handles BtnTutupEdit.Click
+        GroupEdit.Visible = False
+        DateEditStart.Format = DateTimePickerFormat.Custom
+        DateEditStart.CustomFormat = "dd/MM/yyyy"
+        DateEditStart.Value = Now()
+        'ListBarang.Items.Clear()
+        'ListPekerja.Items.Clear()
+        CAktifitas.Text = ""
+        TidAct_po.Text = ""
+        TNIK.Text = ""
+        CManpower.Text = ""
+        TidAktifitas.Text = ""
+        'TidPO.Text = ""
+        CAktifitas.Enabled = False
+        CManpower.Enabled = False
+        Call TampilDetailPekerja()
+    End Sub
+
+    Private Sub BtnSimpanEdit_Click(sender As Object, e As EventArgs) Handles BtnSimpanEdit.Click
+        Dim c, s As String
+        Dim tbl As New DataTable
+        GGVM_conn()
+        s = ""
+        s = s & " update prd_act_poproduksi set timeupdate_act=now(), "
+        s = s & " userupdate_act='" & userid & "'"
+        s = s & " where idact_poprd = '" & TidAct_po.Text & "' "
+        cmd = New OdbcCommand(s, conn)
+        cmd.ExecuteNonQuery()
+
+        sql = ""
+        sql = sql & "update prd_trans_manpower set  status_manpower='0' , nik_pengganti='" & TNIK.Text & "', nama_penggant='" & CManpower.Text & "' "
+        sql = sql & " where idact_poprd='" & TidAct_po.Text & "' and nik='" & ListPekerja.Items(lpbrs).SubItems(6).Text & "' and idtrans_manpower='" & ListPekerja.Items(lpbrs).SubItems(10).Text & "' "
+        cmd = New OdbcCommand(sql, conn)
+        cmd.ExecuteNonQuery()
+
+        c = ""
+        c = c & " insert into prd_trans_manpower (NIK,idact_poprd,idaktifitas,tanggal_manpower,tanggal_selesai) values ( "
+        c = c & " '" & TNIK.Text & "', '" & TidAct_po.Text & "', '" & TidAktifitas.Text & "','" & Format(DateEditStart.Value, "yyyy/MM/dd") & "','" & Format(DateEditEnd.Value, "yyyy/MM/dd") & "') "
+        cmd = New OdbcCommand(c, conn)
+        cmd.ExecuteNonQuery()
+
+        c = ""
+        c = c & " SELECT count(nik) as qtymp FROM `prd_trans_manpower` WHERE idact_poprd ='" & TidAct_po.Text & "' and status_manpower='1'"
+        da = New OdbcDataAdapter(c, conn)
+        tbl = New DataTable
+        tbl.Clear()
+        da.Fill(tbl)
+
+        s = ""
+        s = s & " update prd_act_poproduksi set qty_mp='" & tbl.Rows(0)("qtymp") & "'"
+        s = s & " where idact_poprd = '" & TidAct_po.Text & "' "
+        cmd = New OdbcCommand(s, conn)
+        cmd.ExecuteNonQuery()
+
+        MsgBox("Manpower Sudah di Ganti !!..." + "", MsgBoxStyle.Information, "Information")
+        DateEditStart.Format = DateTimePickerFormat.Custom
+        DateEditStart.CustomFormat = "dd/MM/yyyy"
+        DateEditStart.Value = Now()
+        CAktifitas.Text = ""
+        TidAct_po.Text = ""
+        TNIK.Text = ""
+        CManpower.Text = ""
+        TidAktifitas.Text = ""
+        Call TampilDetailPekerja()
+        CAktifitas.Enabled = False
+        CManpower.Enabled = False
+        GroupEdit.Visible = False
+    End Sub
+    Private Sub LoadAktifitasEdit()
+        CAktifitas.Items.Clear()
+        GGVM_conn()
+        Dim s As String
+        Dim tbl As New DataTable
+        s = ""
+        s = s & "select * from prd_aktifitas"
+        da = New OdbcDataAdapter(s, conn)
+        'ds.Clear()
+        tbl = New DataTable
+        tbl.Clear()
+        da.Fill(tbl)
+
+        For i = 0 To tbl.Rows.Count - 1
+            With CAktifitas
+                .Items.Add(tbl.Rows(i)("jenis_aktifitas"))
+            End With
+        Next
+        GGVM_conn_close()
+    End Sub
+    Private Sub LoadKaryawan()
+        CManpower.Items.Clear()
+        GGVM_conn()
+        Dim s As String
+        Dim tbl As New DataTable
+        s = ""
+        s = s & "select nama_ktp from karyawan"
+        da = New OdbcDataAdapter(s, conn)
+        'ds.Clear()
+        tbl = New DataTable
+        tbl.Clear()
+        da.Fill(tbl)
+
+        For i = 0 To tbl.Rows.Count - 1
+            With CManpower
+                .Items.Add(tbl.Rows(i)("nama_ktp"))
+            End With
+        Next
+        GGVM_conn_close()
+    End Sub
+    Private Sub CManpower_SelectedValueChanged(sender As Object, e As EventArgs) Handles CManpower.SelectedValueChanged
+        Dim s As String
+        GGVM_conn()
+        s = "select nik from karyawan where nama_ktp= '" & CManpower.Text & "'"
+        cmd = New OdbcCommand(s, conn)
+        dr = cmd.ExecuteReader
+        dr.Read()
+        If Not dr.HasRows Then
+            TNIK.Text = ""
+        Else
+            TNIK.Text = dr.Item("nik")
+        End If
+        GGVM_conn_close()
+    End Sub
+    Private Sub CAktifitas_SelectedValueChanged(sender As Object, e As EventArgs) Handles CAktifitas.SelectedValueChanged
+        GGVM_conn()
+        Dim s As String
+        s = "select idaktifitas from prd_aktifitas where jenis_aktifitas= '" & CAktifitas.Text & "'"
+        cmd = New OdbcCommand(s, conn)
+        dr = cmd.ExecuteReader
+        dr.Read()
+        If Not dr.HasRows Then
+            TidAktifitas.Text = ""
+        Else
+            TidAktifitas.Text = dr.Item("idaktifitas")
+        End If
+        GGVM_conn_close()
+    End Sub
+
+    Private Sub BtnHapus_Click(sender As Object, e As EventArgs) Handles BtnHapus.Click
+        Dim ada As Boolean
+        Dim jmldt, brs As Integer
+        Dim c, s As String
+        Dim tbl As New DataTable
+        ada = False
+        jmldt = 0
+        For i = 0 To ListPekerja.Items.Count - 1
+            If ListPekerja.Items(i).Checked = True Then
+                ada = True
+                brs = i
+                jmldt = jmldt + 1
+            End If
+        Next
+        If ada = False Then
+            MsgBox("Tidak ada data yang akan di Proses, Pilih dulu datanya!!...", MsgBoxStyle.Information, "Information")
+            ListBarang.Focus()
+            Exit Sub
+        End If
+        If jmldt > 1 Then
+            MsgBox("Hanya 1(satu) data yg bisa di-Proses !!...", MsgBoxStyle.Information, "Information")
+            ListBarang.Focus()
+            Exit Sub
+        End If
+        If ListPekerja.CheckedIndices.Count > 0 Then
+            For j = 0 To ListPekerja.CheckedIndices.Count - 1
+                    GGVM_conn()
+                    sql = ""
+                sql = sql & " update prd_trans_manpower set status_manpower= '0'"
+                sql = sql & " where idtrans_manpower = '" & ListPekerja.Items(ListPekerja.CheckedIndices(j)).SubItems(10).Text & "' "
+                    cmd = New OdbcCommand(sql, conn)
+                    cmd.ExecuteNonQuery()
+
+                    c = ""
+                c = c & " SELECT count(nik) as qtymp FROM `prd_trans_manpower` WHERE idact_poprd ='" & ListPekerja.Items(ListPekerja.CheckedIndices(j)).SubItems(6).Text & "'  and status_manpower='1'"
+                    da = New OdbcDataAdapter(c, conn)
+                    tbl = New DataTable
+                    tbl.Clear()
+                    da.Fill(tbl)
+
+                    s = ""
+                    s = s & " update prd_act_poproduksi set qty_mp='" & tbl.Rows(0)("qtymp") & "'"
+                s = s & " where idact_poprd = '" & ListPekerja.Items(ListPekerja.CheckedIndices(j)).SubItems(6).Text & "' "
+                    cmd = New OdbcCommand(s, conn)
+                    cmd.ExecuteNonQuery()
+                    MsgBox("Data sudah diHapus !!..." + "", MsgBoxStyle.Information, "Information")
+                    Call TampilDetailPekerja()
+                    'GGVM_conn_close()
+            Next
+        End If
+    End Sub
+
+    
+    Private Sub tabbedControlGroup1_SelectedPageChanged(sender As Object, e As DevExpress.XtraLayout.LayoutTabPageChangedEventArgs) Handles tabbedControlGroup1.SelectedPageChanged
+        If tabbedControlGroup1.SelectedTabPageIndex = 0 Or tabbedControlGroup1.SelectedTabPageIndex = 1 Then
+            LayoutControlGroup2.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        Else
+            LayoutControlGroup2.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        End If
+
     End Sub
 End Class

@@ -33,19 +33,20 @@ Partial Class MainForm
         Me.Marketing_DataOrder = New DevExpress.XtraBars.Navigation.AccordionControlElement()
         Me.AccordionControlSeparator1 = New DevExpress.XtraBars.Navigation.AccordionControlSeparator()
         Me.Marketing_DetailDO = New DevExpress.XtraBars.Navigation.AccordionControlElement()
+        Me.Marketing_Penawaran = New DevExpress.XtraBars.Navigation.AccordionControlElement()
+        Me.Marketing_POInternal = New DevExpress.XtraBars.Navigation.AccordionControlElement()
+        Me.Produksi_AlokasiManpower = New DevExpress.XtraBars.Navigation.AccordionControlElement()
         Me.AccordDesain = New DevExpress.XtraBars.Navigation.AccordionControlElement()
         Me.Desain_InternalPO = New DevExpress.XtraBars.Navigation.AccordionControlElement()
+        Me.Desain_SimulasiOrder = New DevExpress.XtraBars.Navigation.AccordionControlElement()
         Me.AccordPrinting = New DevExpress.XtraBars.Navigation.AccordionControlElement()
         Me.Printing_InternalPO = New DevExpress.XtraBars.Navigation.AccordionControlElement()
         Me.AccordProduksi = New DevExpress.XtraBars.Navigation.AccordionControlElement()
         Me.Produksi_InternalPO = New DevExpress.XtraBars.Navigation.AccordionControlElement()
-        Me.Produksi_AlokasiManpower = New DevExpress.XtraBars.Navigation.AccordionControlElement()
         Me.Produksi_ListPOSelesai = New DevExpress.XtraBars.Navigation.AccordionControlElement()
         Me.AccordionControlElement1 = New DevExpress.XtraBars.Navigation.AccordionControlElement()
         Me.FluentDesignFormControl1 = New DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl()
         Me.FluentFormDefaultManager1 = New DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(Me.components)
-        Me.Marketing_Penawaran = New DevExpress.XtraBars.Navigation.AccordionControlElement()
-        Me.Marketing_POInternal = New DevExpress.XtraBars.Navigation.AccordionControlElement()
         CType(Me.AccordionControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FluentDesignFormControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FluentFormDefaultManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -105,8 +106,8 @@ Partial Class MainForm
         '
         'AccordMarketing
         '
-        Me.AccordMarketing.Elements.AddRange(New DevExpress.XtraBars.Navigation.AccordionControlElement() {Me.Marketing_DataOrder, Me.AccordionControlSeparator1, Me.Marketing_DetailDO, Me.Marketing_Penawaran, Me.Marketing_POInternal})
-        Me.AccordMarketing.Expanded = True
+        Me.AccordMarketing.Elements.AddRange(New DevExpress.XtraBars.Navigation.AccordionControlElement() {Me.Marketing_DataOrder, Me.AccordionControlSeparator1, Me.Marketing_DetailDO, Me.Marketing_Penawaran, Me.Marketing_POInternal, Me.Produksi_AlokasiManpower})
+        Me.AccordMarketing.Enabled = False
         Me.AccordMarketing.HeaderTemplate.AddRange(New DevExpress.XtraBars.Navigation.HeaderElementInfo() {New DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Image), New DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Text), New DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.ContextButtons), New DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.HeaderControl)})
         Me.AccordMarketing.ImageOptions.Image = CType(resources.GetObject("AccordMarketing.ImageOptions.Image"), System.Drawing.Image)
         Me.AccordMarketing.Name = "AccordMarketing"
@@ -130,9 +131,33 @@ Partial Class MainForm
         Me.Marketing_DetailDO.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
         Me.Marketing_DetailDO.Text = "DETAIL DATA ORDER"
         '
+        'Marketing_Penawaran
+        '
+        Me.Marketing_Penawaran.HeaderTemplate.AddRange(New DevExpress.XtraBars.Navigation.HeaderElementInfo() {New DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Image), New DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Text), New DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.ContextButtons), New DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.HeaderControl)})
+        Me.Marketing_Penawaran.ImageOptions.Image = CType(resources.GetObject("Marketing_Penawaran.ImageOptions.Image"), System.Drawing.Image)
+        Me.Marketing_Penawaran.Name = "Marketing_Penawaran"
+        Me.Marketing_Penawaran.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
+        Me.Marketing_Penawaran.Text = "PENAWARAN"
+        '
+        'Marketing_POInternal
+        '
+        Me.Marketing_POInternal.ImageOptions.Image = CType(resources.GetObject("Marketing_POInternal.ImageOptions.Image"), System.Drawing.Image)
+        Me.Marketing_POInternal.Name = "Marketing_POInternal"
+        Me.Marketing_POInternal.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
+        Me.Marketing_POInternal.Text = "KIRIM P.O INTERNAL"
+        '
+        'Produksi_AlokasiManpower
+        '
+        Me.Produksi_AlokasiManpower.ImageOptions.SvgImage = CType(resources.GetObject("Produksi_AlokasiManpower.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.Produksi_AlokasiManpower.ImageOptions.SvgImageSize = New System.Drawing.Size(16, 16)
+        Me.Produksi_AlokasiManpower.Name = "Produksi_AlokasiManpower"
+        Me.Produksi_AlokasiManpower.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
+        Me.Produksi_AlokasiManpower.Text = "HISTORY DATA ORDER"
+        '
         'AccordDesain
         '
-        Me.AccordDesain.Elements.AddRange(New DevExpress.XtraBars.Navigation.AccordionControlElement() {Me.Desain_InternalPO})
+        Me.AccordDesain.Elements.AddRange(New DevExpress.XtraBars.Navigation.AccordionControlElement() {Me.Desain_InternalPO, Me.Desain_SimulasiOrder})
+        Me.AccordDesain.Enabled = False
         Me.AccordDesain.ImageOptions.Image = CType(resources.GetObject("AccordDesain.ImageOptions.Image"), System.Drawing.Image)
         Me.AccordDesain.Name = "AccordDesain"
         Me.AccordDesain.Text = "DESAIN"
@@ -144,9 +169,17 @@ Partial Class MainForm
         Me.Desain_InternalPO.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
         Me.Desain_InternalPO.Text = "TERIMA P.O INTERNAL"
         '
+        'Desain_SimulasiOrder
+        '
+        Me.Desain_SimulasiOrder.ImageOptions.Image = CType(resources.GetObject("Desain_SimulasiOrder.ImageOptions.Image"), System.Drawing.Image)
+        Me.Desain_SimulasiOrder.Name = "Desain_SimulasiOrder"
+        Me.Desain_SimulasiOrder.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
+        Me.Desain_SimulasiOrder.Text = "SIMULASI ORDER"
+        '
         'AccordPrinting
         '
         Me.AccordPrinting.Elements.AddRange(New DevExpress.XtraBars.Navigation.AccordionControlElement() {Me.Printing_InternalPO})
+        Me.AccordPrinting.Enabled = False
         Me.AccordPrinting.ImageOptions.Image = CType(resources.GetObject("AccordPrinting.ImageOptions.Image"), System.Drawing.Image)
         Me.AccordPrinting.Name = "AccordPrinting"
         Me.AccordPrinting.Text = "PRINTING"
@@ -160,7 +193,8 @@ Partial Class MainForm
         '
         'AccordProduksi
         '
-        Me.AccordProduksi.Elements.AddRange(New DevExpress.XtraBars.Navigation.AccordionControlElement() {Me.Produksi_InternalPO, Me.Produksi_AlokasiManpower, Me.Produksi_ListPOSelesai})
+        Me.AccordProduksi.Elements.AddRange(New DevExpress.XtraBars.Navigation.AccordionControlElement() {Me.Produksi_InternalPO, Me.Produksi_ListPOSelesai})
+        Me.AccordProduksi.Enabled = False
         Me.AccordProduksi.ImageOptions.Image = CType(resources.GetObject("AccordProduksi.ImageOptions.Image"), System.Drawing.Image)
         Me.AccordProduksi.Name = "AccordProduksi"
         Me.AccordProduksi.Text = "PRODUKSI"
@@ -171,14 +205,6 @@ Partial Class MainForm
         Me.Produksi_InternalPO.Name = "Produksi_InternalPO"
         Me.Produksi_InternalPO.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
         Me.Produksi_InternalPO.Text = "TERIMA P.O INTERNAL"
-        '
-        'Produksi_AlokasiManpower
-        '
-        Me.Produksi_AlokasiManpower.ImageOptions.SvgImage = CType(resources.GetObject("Produksi_AlokasiManpower.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
-        Me.Produksi_AlokasiManpower.ImageOptions.SvgImageSize = New System.Drawing.Size(16, 16)
-        Me.Produksi_AlokasiManpower.Name = "Produksi_AlokasiManpower"
-        Me.Produksi_AlokasiManpower.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
-        Me.Produksi_AlokasiManpower.Text = "DAFTAR ALOKASI PEKERJAAN"
         '
         'Produksi_ListPOSelesai
         '
@@ -211,21 +237,6 @@ Partial Class MainForm
         Me.FluentFormDefaultManager1.Form = Me
         Me.FluentFormDefaultManager1.MaxItemId = 1
         '
-        'Marketing_Penawaran
-        '
-        Me.Marketing_Penawaran.HeaderTemplate.AddRange(New DevExpress.XtraBars.Navigation.HeaderElementInfo() {New DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Image), New DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Text), New DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.ContextButtons), New DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.HeaderControl)})
-        Me.Marketing_Penawaran.ImageOptions.Image = CType(resources.GetObject("AccordionControlElement2.ImageOptions.Image"), System.Drawing.Image)
-        Me.Marketing_Penawaran.Name = "Marketing_Penawaran"
-        Me.Marketing_Penawaran.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
-        Me.Marketing_Penawaran.Text = "PENAWARAN"
-        '
-        'Marketing_POInternal
-        '
-        Me.Marketing_POInternal.ImageOptions.Image = CType(resources.GetObject("AccordionControlElement3.ImageOptions.Image"), System.Drawing.Image)
-        Me.Marketing_POInternal.Name = "Marketing_POInternal"
-        Me.Marketing_POInternal.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item
-        Me.Marketing_POInternal.Text = "KIRIM P.O INTERNAL"
-        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
@@ -241,7 +252,7 @@ Partial Class MainForm
         Me.Name = "MainForm"
         Me.NavigationControl = Me.AccordionControl1
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "PROGRAM P2P "
+        Me.Text = "PROGRAM PRODUKSI - PT GEO GIVEN VISI MANDIRI"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.AccordionControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.FluentDesignFormControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -271,4 +282,5 @@ Partial Class MainForm
     Friend WithEvents Produksi_ListPOSelesai As DevExpress.XtraBars.Navigation.AccordionControlElement
     Friend WithEvents Marketing_Penawaran As DevExpress.XtraBars.Navigation.AccordionControlElement
     Friend WithEvents Marketing_POInternal As DevExpress.XtraBars.Navigation.AccordionControlElement
+    Friend WithEvents Desain_SimulasiOrder As DevExpress.XtraBars.Navigation.AccordionControlElement
 End Class

@@ -51,10 +51,10 @@ Public Class PenawaranP2P
                     .Add(IIf(IsDBNull(tbl.Rows(i)("material")), "", tbl.Rows(i)("material")))
                     .Add(tbl.Rows(i)("keterangan"))
                     .Add(tbl.Rows(i)("qty_TOKO"))
-                    .Add(tbl.Rows(i)("idbarang"))
-                    .Add(IIf(IsDBNull(tbl.Rows(i)("idmaterial")), "", tbl.Rows(i)("idmaterial")))
+                    '.Add(tbl.Rows(i)("idbarang"))
+                    '.Add(IIf(IsDBNull(tbl.Rows(i)("idmaterial")), "", tbl.Rows(i)("idmaterial")))
                     .Add(tbl.Rows(i)("iddetailpe"))
-                    .Add(tbl.Rows(i)("SATUAN"))
+                    '.Add(tbl.Rows(i)("SATUAN"))
                 End With
             End With
         Next
@@ -82,9 +82,9 @@ Public Class PenawaranP2P
         ListDetailDO.Columns.Add("MATERIAL", 100, HorizontalAlignment.Left)
         ListDetailDO.Columns.Add("KETERANGAN", 200, HorizontalAlignment.Left)
         ListDetailDO.Columns.Add("QTY-TK", 80, HorizontalAlignment.Right)
-        ListDetailDO.Columns.Add("idbarang", 10, HorizontalAlignment.Left)
-        ListDetailDO.Columns.Add("idmaterial", 10, HorizontalAlignment.Left)
-        ListDetailDO.Columns.Add("iddetaildo", 10, HorizontalAlignment.Left)
+        'ListDetailDO.Columns.Add("idbarang", 10, HorizontalAlignment.Left)
+        'ListDetailDO.Columns.Add("idmaterial", 10, HorizontalAlignment.Left)
+        ListDetailDO.Columns.Add("iddetaildo", 0, HorizontalAlignment.Left)
         ' ListDetailDO.Columns.Add("NOKONTRAK", 100, HorizontalAlignment.Left)
         'ListDetailDO.Columns.Add("UNIT", 70, HorizontalAlignment.Left)
 
@@ -103,7 +103,6 @@ Public Class PenawaranP2P
         ListDO.Columns.Add("BRAND", 100, HorizontalAlignment.Left)
         ListDO.Columns.Add("NAMA PROYEK", 350, HorizontalAlignment.Left)
         ListDO.Columns.Add("SURVEI", 80, HorizontalAlignment.Left)
-        ListDO.Columns.Add("STATUS", 150, HorizontalAlignment.Left)
         ListDO.Columns.Add("DEADLINE", 150, HorizontalAlignment.Left)
         ListDO.Columns.Add("iddtorder", 0, HorizontalAlignment.Left)
         ListDO.Columns.Add("iddivisi", 0, HorizontalAlignment.Left)
@@ -120,7 +119,6 @@ Public Class PenawaranP2P
         ListPE.Columns.Clear()
         ListPE.Items.Clear()
         ListPE.Columns.Add("NO.PE", 100, HorizontalAlignment.Left)
-        ListPE.Columns.Add("DIVISI", 120, HorizontalAlignment.Left)
         ListPE.Columns.Add("KLIEN", 200, HorizontalAlignment.Left)
         ListPE.Columns.Add("BRAND", 125, HorizontalAlignment.Left)
         ListPE.Columns.Add("TANGGAL", 100, HorizontalAlignment.Left)
@@ -130,7 +128,6 @@ Public Class PenawaranP2P
         ListPE.Columns.Add("GRANDTTL", 150, HorizontalAlignment.Right)
         ListPE.Columns.Add("idpe", 1, HorizontalAlignment.Left)
         ListPE.Columns.Add("iddtorder", 1, HorizontalAlignment.Left)
-        ListPE.Columns.Add("iddivisi", 1, HorizontalAlignment.Left)
         ListPE.Columns.Add("idklien", 1, HorizontalAlignment.Left)
         ListPE.Columns.Add("idbrand", 1, HorizontalAlignment.Left)
         ListPE.Columns.Add("KETERANGAN", 200, HorizontalAlignment.Left)
@@ -151,7 +148,7 @@ Public Class PenawaranP2P
         ListDO.Items.Clear()
         GGVM_conn()
         s = ""
-        s = s & " select * from view_datado where idstatus_proyek < '11' "
+        s = s & " select * from view_datado where idstatus_proyek = '11'"
         da = New OdbcDataAdapter(s, conn)
         'ds.Clear()
         tbl = New DataTable
@@ -214,8 +211,10 @@ Public Class PenawaranP2P
                     .Add(tbl.Rows(i)("idklien"))
                     .Add(tbl.Rows(i)("idbrand"))
                     .Add(Fungsi.replaceNewLine(tbl.Rows(i)("ket"), False))
-                    .Add(tbl.Rows(i)("pembuatpe"))
-                    .Add(tbl.Rows(i)("jabatanpe"))
+                    .Add(tbl.Rows(i)("pembuat"))
+                    .Add(tbl.Rows(i)("jabatanp"))
+                    .Add(IIf(IsDBNull(tbl.Rows(i)("setujupe")), "", tbl.Rows(i)("setujupe")))
+                    .Add(IIf(IsDBNull(tbl.Rows(i)("jabatansetujupe")), "", tbl.Rows(i)("jabatansetujupe")))
                 End With
             End With
         Next
@@ -235,7 +234,7 @@ Public Class PenawaranP2P
                 item.Checked = True
                 brs = item.Index
             Next
-
+            BtnAccPE.Enabled = True
         End With
         TIdPE.Text = ListPE.Items(brs).SubItems(8).Text
         TidDO.Text = ListPE.Items(brs).SubItems(9).Text
@@ -249,6 +248,8 @@ Public Class PenawaranP2P
         TKeterangan.Text = ListPE.Items(brs).SubItems(12).Text
         TPembuat.Text = ListPE.Items(brs).SubItems(13).Text
         TJabatanP.Text = ListPE.Items(brs).SubItems(14).Text
+        TSetuju.Text = ListPE.Items(brs).SubItems(15).Text
+        TJabatanS.Text = ListPE.Items(brs).SubItems(16).Text
         GGVM_conn()
         s = " SELECT if( nope like '%GGVM%','1',nope) as nope1 FROM proyek where idpe = '" & TIdPE.Text & "' "
         da = New OdbcDataAdapter(s, conn)
@@ -258,8 +259,6 @@ Public Class PenawaranP2P
         da.Fill(tbl)
         If tbl.Rows(0)("nope1") = "1" Then
             RbGG.Checked = True
-        Else
-            RbBIG.Checked = True
         End If
         TampilDetailDo()
         'GGVM_conn_close()
@@ -351,9 +350,6 @@ Public Class PenawaranP2P
         urutpe = Microsoft.VisualBasic.Trim(ListDO.Items(brs).SubItems(0).Text)
         bln = bulan(DTTanggal.Text)
         thn = Microsoft.VisualBasic.Right(DTTanggal.Text, 4)
-        If RbBIG.Checked = True Then
-            urutpe = urutpe + "/BIG/" + divisiid + "/" + bln + "/" + thn
-        End If
         If RbGG.Checked = True Then
             urutpe = urutpe + "/GGVM/" + divisiid + "/" + bln + "/" + thn
         End If
@@ -383,20 +379,20 @@ Public Class PenawaranP2P
         c = ""
         c = c & " update prd_detail_penawaran set "
         c = c & " idpe ='" & tbl.Rows(0)("id") & "'"
-        c = c & " where iddtorder = '" & ListDO.Items(brs).SubItems(10).Text & "'"
-        cmd = New Odbc.OdbcCommand(c, conn)
+        c = c & " where iddtorder = '" & ListDO.Items(brs).SubItems(8).Text & "'"
+        cmd = New OdbcCommand(c, conn)
         cmd.ExecuteNonQuery()
 
         c = ""
         c = c & " update prd_dataorder set"
-        c = c & " idstatus_proyek ='11'"
-        c = c & " where iddtorder = '" & ListDO.Items(brs).SubItems(10).Text & "'"
+        c = c & " idstatus_proyek ='12'"
+        c = c & " where iddtorder = '" & ListDO.Items(brs).SubItems(8).Text & "'"
         cmd = New Odbc.OdbcCommand(c, conn)
         cmd.ExecuteNonQuery()
 
         c = ""
-        c = c & " insert prd_history_dataorder (iddtorder,idstatusproyek,waktu,userid) values "
-        c = c & " ('" & ListDO.Items(brs).SubItems(10).Text & "','11',now(),'" & userid & "')"
+        c = c & " insert prd_history_dataorder (iddtorder,idpe,idstatusproyek,waktu,userid) values "
+        c = c & " ('" & ListDO.Items(brs).SubItems(8).Text & "','" & tbl.Rows(0)("id") & "','12',now(),'" & userid & "')"
         cmd = New Odbc.OdbcCommand(c, conn)
         cmd.ExecuteNonQuery()
         Me.Cursor = Cursors.Default
@@ -445,7 +441,6 @@ Public Class PenawaranP2P
             THal.ReadOnly = False
             TKeterangan.ReadOnly = False
             RbGG.Enabled = False
-            RbBIG.Enabled = False
             TPembuat.ReadOnly = False
             TJabatanP.ReadOnly = False
             THal.Focus()
@@ -466,10 +461,10 @@ Public Class PenawaranP2P
             c = c & " pembuat = '" & TPembuat.Text & "',"
             c = c & " jabatanP = '" & TJabatanP.Text & "' ,"
             c = c & "nominal = '" & subttl & "', "
-            c = c & "ppn = '10' , "
-            c = c & " nominal_ppn ='" & ppn & "',grandtotal ='" & grand & "'"
+            c = c & "ppn = '11' , "
+            c = c & " nominal_ppn ='" & ppn & "',grandtotal ='" & grand & "' , time_update_pe = now(), userupdate='" & userid & "'"
             c = c & " where idpe = '" & TIdPE.Text & "'"
-            cmd = New Odbc.OdbcCommand(c, conn)
+            cmd = New OdbcCommand(c, conn)
             cmd.ExecuteNonQuery()
             GGVM_conn_close()
 
@@ -484,7 +479,6 @@ Public Class PenawaranP2P
             TJabatanP.ReadOnly = True
             TSetuju.ReadOnly = True
             TJabatanS.ReadOnly = True
-            RbBIG.Enabled = True
             RbGG.Enabled = True
             RbGG.Checked = True
             ClearData()
@@ -589,7 +583,6 @@ Public Class PenawaranP2P
         TSetuju.ReadOnly = False
         TJabatanS.Enabled = True
         TJabatanS.ReadOnly = False
-        RbBIG.Enabled = True
         RbGG.Enabled = True
         RbGG.Checked = True
         HitungNominal()
@@ -597,17 +590,42 @@ Public Class PenawaranP2P
         Me.Cursor = Cursors.Default
     End Sub
 
-    Private Sub RbBIG_CheckedChanged(sender As Object, e As EventArgs) Handles RbBIG.CheckedChanged
-        If RbBIG.Checked = True Then
-            RbGG.Checked = False
-            'urutpe = ""
-        End If
-    End Sub
+    Private Sub BtnAccPE_Click(sender As Object, e As EventArgs) Handles BtnAccPE.Click
+        TSetuju.ReadOnly = False
+        TJabatanS.ReadOnly = False
+        Dim c, s As String
+        If TSetuju.Text = "" AndAlso TJabatanS.Text = "" Then
+            MsgBox("Masukkan Nama dan Jabatan Klien !!...", MsgBoxStyle.Information, "Information")
+            Exit Sub
+        Else
+            GGVM_conn()
+            s = ""
+            s = s & " update proyek set time_update_pe = now(), userupdate='" & userid & "', accklien = '" & TSetuju.Text & "', jabatanklien='" & TJabatanS.Text & "'"
+            cmd = New OdbcCommand(s, conn)
+            cmd.ExecuteNonQuery()
 
-    Private Sub RbGG_CheckedChanged(sender As Object, e As EventArgs) Handles RbGG.CheckedChanged
-        If RbGG.Checked = True Then
-            RbBIG.Checked = False
-            'urutpe = ""
+            c = ""
+            c = c & " update prd_dataorder set"
+            c = c & " idstatus_proyek = '15' "
+            c = c & " where iddtorder = '" & TidDO.Text & "'"
+            cmd = New OdbcCommand(c, conn)
+            cmd.ExecuteNonQuery()
+
+            c = ""
+            c = c & " insert prd_history_dataorder (iddtorder,idpe,idstatusproyek,waktu,userid) values "
+            c = c & " ('" & TidDO.Text & "','" & TIdPE.Text & "','15',now(),'" & userid & "')"
+            cmd = New OdbcCommand(c, conn)
+            cmd.ExecuteNonQuery()
+
+
+
+            TampilPE()
+            MsgBox("Penawaran Sudah di Status Approval !!...", MsgBoxStyle.Information, "Information")
+            TSetuju.ReadOnly = True
+            TJabatanS.ReadOnly = True
         End If
+
+        GGVM_conn_close()
+       
     End Sub
 End Class

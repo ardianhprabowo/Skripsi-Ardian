@@ -2,6 +2,8 @@
 
 Public Class StatusSurvei
     Dim GrandTotal, Harga As Decimal
+    Private Panel1Captured As Boolean
+    Private Panel1Grabbed As Point
     Public Sub New()
         AddHandler DetailDataOrder.GetDataOrder, AddressOf SetLabelText
         ' This call is required by the designer.
@@ -26,6 +28,7 @@ Public Class StatusSurvei
         BtnHitungPE.Visible = True
         BtnKeluar.Caption = "BATAL"
         CBarangPE.Enabled = True
+        TMaterialPE.Text = TMaterialPRD.Text
         TPanjangPE.Text = TPanjangPRD.Text
         TPanjangPE.ReadOnly = False
         TLebarPE.Text = TLebarPRD.Text
@@ -46,7 +49,7 @@ Public Class StatusSurvei
         TSizePE.Text = "0"
         TMeasurePE.Text = "0"
         TJmlTK.Text = "0"
-        TIdTrans.Text = ""
+        'TIdTrans.Text = ""
         Proses = "entryPE"
         AutoBarangPE()
     End Sub
@@ -160,7 +163,7 @@ Public Class StatusSurvei
         For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
             MaterialPRD.Add(ds.Tables(0).Rows(i)("material").ToString())
         Next
-        With TMaterialPRD
+        With AddMaterials
             .AutoCompleteSource = AutoCompleteSource.CustomSource
             .AutoCompleteCustomSource = MaterialPRD
             .AutoCompleteMode = AutoCompleteMode.Suggest
@@ -191,10 +194,8 @@ Public Class StatusSurvei
         ListDetailDO.Columns.Add("MATERIAL", 100, HorizontalAlignment.Left)
         ListDetailDO.Columns.Add("KETERANGAN", 100, HorizontalAlignment.Left)
         ListDetailDO.Columns.Add("QTY-TK", 80, HorizontalAlignment.Right)
-        ListDetailDO.Columns.Add("idbarang", 1, HorizontalAlignment.Left)
-        ListDetailDO.Columns.Add("idmaterial", 1, HorizontalAlignment.Left)
-        ListDetailDO.Columns.Add("iddetaildo", 1, HorizontalAlignment.Left)
-        ListDetailDO.Columns.Add("SATUAN", 1, HorizontalAlignment.Left)
+        ListDetailDO.Columns.Add("idbarang", 0, HorizontalAlignment.Left)
+        ListDetailDO.Columns.Add("iddetaildo", 0, HorizontalAlignment.Left)
     End Sub
     Private Sub ListHeaderDist()
         ListDist.FullRowSelect = True
@@ -212,11 +213,10 @@ Public Class StatusSurvei
         ListDist.Columns.Add("LEBAR", 100, HorizontalAlignment.Right)
         ListDist.Columns.Add("SISI", 100, HorizontalAlignment.Right)
         ListDist.Columns.Add("QTY", 100, HorizontalAlignment.Left)
-        ListDist.Columns.Add("MATERIAL", 100, HorizontalAlignment.Left)
         ListDist.Columns.Add("idkirim", 0, HorizontalAlignment.Left)
-        ListDist.Columns.Add("idmaterial", 0, HorizontalAlignment.Left)
         ListDist.Columns.Add("idbarangprd", 0, HorizontalAlignment.Left)
         ListDist.Columns.Add("idtrans", 0, HorizontalAlignment.Left)
+        ListDist.Columns.Add("MATERIAL", 100, HorizontalAlignment.Left)
         ListDist.Columns.Add("KETERANGAN", 200, HorizontalAlignment.Left)
     End Sub
     Private Sub TampilDetailDo()
@@ -252,7 +252,6 @@ Public Class StatusSurvei
                     .Add(IIf(IsDBNull(dt.Rows(i)("material")), "", dt.Rows(i)("material")))
                     .Add(dt.Rows(i)("keterangan"))
                     .Add(IIf(IsDBNull(dt.Rows(i)("qty_toko")), "", dt.Rows(i)("qty_toko")))
-                    .Add(IIf(IsDBNull(dt.Rows(i)("idmaterial")), "", dt.Rows(i)("idmaterial")))
                     .Add(dt.Rows(i)("iddetailpe"))
                 End With
             End With
@@ -268,12 +267,15 @@ Public Class StatusSurvei
         Me.Cursor = Cursors.WaitCursor
         GGVM_conn()
         s = ""
-        s = s & " select * from view_tampilkirim "
-        s = s & " where iddtorder= '" & TIDDtOrder.Text & "' "
+        s = s & " SELECT c.* ,GROUP_CONCAT(b.material SEPARATOR ', ') as material FROM prd_transmaterial a "
+        s = s & " INNER JOIN prd_material b on b.idmaterial = a.idmaterial "
+        s = s & " LEFT JOIN view_tampilkirim c on c.idbarang_prd = a.IDBARANG_INT "
+        s = s & " where c.iddtorder= '" & TIDDtOrder.Text & "' "
         'If TIdDetailPE.Text <> "" Then
         '    s = s & " and iddetailpe='" & TIdDetailPE.Text & "'"
         'End If
-        s = s & " order by toko"
+        s = s & " GROUP BY c.idbarang_prd "
+        s = s & " order by c.toko"
         da = New OdbcDataAdapter(s, conn)
         'ds.Clear()
         dt = New DataTable
@@ -291,11 +293,10 @@ Public Class StatusSurvei
                     .Add(dt.Rows(i)("lebar_prd"))
                     .Add(dt.Rows(i)("sisi_prd"))
                     .Add(dt.Rows(i)("qty_prd"))
-                    .Add(IIf(IsDBNull(dt.Rows(i)("material")), "", dt.Rows(i)("material")))
                     .Add(dt.Rows(i)("idkirim"))
-                    .Add(IIf(IsDBNull(dt.Rows(i)("idmaterial")), "", dt.Rows(i)("idmaterial")))
                     .Add(IIf(IsDBNull(dt.Rows(i)("idbarang_prd")), "", dt.Rows(i)("idbarang_prd")))
                     .Add(dt.Rows(i)("idtrans"))
+                    .Add(dt.Rows(i)("material"))
                     .Add(dt.Rows(i)("keterangan"))
                 End With
             End With
@@ -326,14 +327,14 @@ Public Class StatusSurvei
         dt.Clear()
         da.Fill(dt)
 
+        
+        TIDDtOrder.Text = dt.Rows(0)("iddtorder")
+        TidKlien.Text = dt.Rows(0)("idklien")
         LabelControl2.Text = dt.Rows(0)("noorder")
         LabelControl3.Text = dt.Rows(0)("nmklien")
         LabelControl5.Text = dt.Rows(0)("brand")
         nmproyek = replaceNewLine(dt.Rows(0)("namaorder"), False)
         LabelControl7.Text = dt.Rows(0)("namaorder")
-        TIDDtOrder.Text = dt.Rows(0)("iddtorder")
-        TidKlien.Text = dt.Rows(0)("idklien")
-
         GGVM_conn_close()
         Me.Cursor = Cursors.Default
     End Sub
@@ -387,25 +388,8 @@ Public Class StatusSurvei
                             End If
                         End If
 
-                        If TIDMaterialPE.Text = "" Then
 
-                            c = ""
-                            c = c & "insert prd_material (material,status)"
-                            c = c & "values ('" & TMaterialPE.Text & "', '1') "
-                            cmd = New OdbcCommand(c, conn)
-                            cmd.ExecuteNonQuery()
-
-                            c = ""
-                            c = c & " Select max(idmaterial) As id from prd_material "
-                            da = New OdbcDataAdapter(c, conn)
-                            dt = New DataTable
-                            da.Fill(dt)
-                            If dt.Rows.Count > 0 Then
-                                TIDMaterialPE.Text = dt.Rows(0)("id")
-                            End If
-                        End If
-
-                        If TIDMaterialPE.Text = "" AndAlso TMeasurePE.Text <> "0" Then
+                        If TMeasurePE.Text <> "0" Then
                             MsgBox("Input Data Material Dulu", MsgBoxStyle.Information, "Informasi")
                             BtnHitungPE.Enabled = True
                             BtnHitungPE.Visible = True
@@ -449,17 +433,11 @@ Public Class StatusSurvei
 
                 c = ""
                 c = c & " insert into prd_detail_penawaran ( iddtorder,barangpe,keterangan_proyek,"
-                If TIDMaterialPE.Text <> "" Then
-                    c = c & " idmaterial, "
-                End If
                 c = c & " panjang_pe, lebar_pe, tinggi_pe,"
-                c = c & " size_pe,sisi_pe,measure_pe,qty_pe,harga_barang,harga_penawaran) values "
+                c = c & " size_pe,sisi_pe,measure_pe,qty_pe,harga_barang,harga_penawaran,material) values "
                 c = c & " ('" & TIDDtOrder.Text & "','" & TBarangPE.Text & "','" & TKeterangan.Text & "',"
-                If TIDMaterialPE.Text <> "" Then
-                    c = c & "'" & TIDMaterialPE.Text & "',"
-                End If
                 c = c & "'" & TPanjangPE.Text & "','" & TLebarPE.Text & "','" & TTinggiPE.Text & "',"
-                c = c & " '" & TSizePE.Text & "','" & TSisiPE.Text & "','" & TMeasurePE.Text & "','" & TJmlPE.Text & "','" & Harga & "','" & GrandTotal & "')"
+                c = c & " '" & TSizePE.Text & "','" & TSisiPE.Text & "','" & TMeasurePE.Text & "','" & TJmlPE.Text & "','" & Harga & "','" & GrandTotal & "','" & TMaterialPE.Text & "')"
                 cmd = New OdbcCommand(c, conn)
                 cmd.ExecuteNonQuery()
 
@@ -475,9 +453,9 @@ Public Class StatusSurvei
 
                 sql = ""
                 sql = sql & " update prd_trans_detaildo_kirim set "
-                sql = sql & " iddetailpe ='" & TIdDetailPE.Text & "'"
-                sql = sql & " where idtrans in (" & TextBox1.Text & ") "
-                'sql = sql & " where idtrans ='" & TIdTrans.Text & "'"
+                sql = sql & " iddetailpe ='" & TIdDetailPE.Text & "', "
+                sql = sql & " idbarang_pe ='" & TIdBarangPE.Text & "'"
+                sql = sql & " where idtrans ='" & TIdTrans.Text & "'"
                 cmd = New OdbcCommand(sql, conn)
                 cmd.ExecuteNonQuery()
 
@@ -487,29 +465,13 @@ Public Class StatusSurvei
                 MsgBox("Detail Penawaran sudah di-SIMPAN !!..", MsgBoxStyle.Information, "Information")
 
             Case "editPE"
-                If TIDMaterialPE.Text = "" Then
-
-                    c = ""
-                    c = c & "insert prd_material(material,status)"
-                    c = c & "values ('" & TMaterialPE.Text & "', '1') "
-                    cmd = New OdbcCommand(c, conn)
-                    cmd.ExecuteNonQuery()
-
-                    c = ""
-                    c = c & " Select max(idmaterial) As id from prd_material "
-                    da = New OdbcDataAdapter(c, conn)
-                    dt = New DataTable
-                    da.Fill(dt)
-                    If dt.Rows.Count > 0 Then
-                        TMaterialPE.Text = dt.Rows(0)("id")
-                    End If
-                End If
+                
                 c = ""
                 c = c & " update prd_detail_penawaran set"
                 'c = c & " idbarang = '" & TIdBarangPE.Text & "',"
                 c = c & " barangpe = '" & TBarangPE.Text & "',"
                 c = c & " keterangan ='" & TKeterangan.Text & "',"
-                c = c & " idmaterial ='" & TIDMaterialPE.Text & "',"
+                c = c & " material ='" & TMaterialPE.Text & "',"
                 c = c & " panjang_pe= " & TPanjangPE.Text & ","
                 c = c & " lebar_pe = " & TLebarPE.Text & ","
                 c = c & " tinggi_pe = " & TTinggiPE.Text & ","
@@ -643,25 +605,6 @@ Public Class StatusSurvei
         Select Case Proses
             Case "entryPRD"
                 GGVM_conn()
-                If TIdMaterialPRD.Text = "" Then
-
-                    c = ""
-                    c = c & "insert prd_material (material,status)"
-                    c = c & "values ('" & TMaterialPRD.Text & "', '1') "
-                    cmd = New OdbcCommand(c, conn)
-                    cmd.ExecuteNonQuery()
-
-                    c = ""
-                    c = c & " Select max(idmaterial) As id from prd_material"
-                    da = New OdbcDataAdapter(c, conn)
-                    dt = New DataTable
-                    da.Fill(dt)
-                    If dt.Rows.Count > 0 Then
-                        TIdMaterialPRD.Text = dt.Rows(0)("id")
-                    End If
-                    Me.Cursor = Cursors.Default
-                End If
-
                 If CDetailBarang.Checked = True Then
                     s = ""
                     s = s & " insert into prd_trans_detaildo_kirim (idkirim,iddtorder,idbarang_int,panjang_prd,lebar_prd, "
@@ -674,7 +617,7 @@ Public Class StatusSurvei
                     s = s & " update prd_trans_detaildo_kirim set "
                     s = s & " panjang_prd = '" & TPanjangPRD.Text & "', "
                     s = s & " lebar_prd = '" & TLebarPRD.Text & "',tinggi_prd = '" & TTinggiPRD.Text & "', sisi_prd = '" & TSisiPRD.Text & "',  "
-                    s = s & " idmaterial = '" & TIdMaterialPRD.Text & "', qty_prd = '" & TQty2.Text & "', keterangan = '" & TKet2.Text & "'"
+                    s = s & "  qty_prd = '" & TQty2.Text & "', keterangan = '" & TKet2.Text & "'"
                     s = s & " where idtrans = '" & TIdTrans.Text & "' "
                     cmd = New OdbcCommand(s, conn)
                     cmd.ExecuteNonQuery()
@@ -689,31 +632,12 @@ Public Class StatusSurvei
             Case "editPRD"
                 GGVM_conn()
 
-                If TIdMaterialPRD.Text = "" Then
-
-                    c = ""
-                    c = c & "insert prd_material(material,status)"
-                    c = c & "values ('" & TMaterialPRD.Text & "', '1') "
-                    cmd = New OdbcCommand(c, conn)
-                    cmd.ExecuteNonQuery()
-
-                    c = ""
-                    c = c & " Select max(idmaterial) As id from prd_material "
-                    da = New OdbcDataAdapter(c, conn)
-                    dt = New DataTable
-                    da.Fill(dt)
-                    If dt.Rows.Count > 0 Then
-                        TIdMaterialPRD.Text = dt.Rows(0)("id")
-                    End If
-                    Me.Cursor = Cursors.Default
-                End If
-
                 c = ""
                 c = c & "  update prd_trans_detaildo_kirim set "
                 c = c & " idkirim = '" & TIdKirim.Text & "',"
                 c = c & " iddtorder = '" & TIDDtOrder.Text & "',"
                 c = c & " idbarang_int = '" & TIdBarangPRD.Text & "',"
-                c = c & " idmaterial = '" & TIdMaterialPRD.Text & "',"
+                'c = c & " idmaterial = '" & TIdMaterialPRD.Text & "',"
                 c = c & " panjang_prd='" & TPanjangPRD.Text & "', "
                 c = c & " lebar_prd = '" & TLebarPRD.Text & "', "
                 c = c & " tinggi_prd = '" & TTinggiPRD.Text & "', "
@@ -784,21 +708,23 @@ Public Class StatusSurvei
             MsgBox("Pilih Salah Satu Barang Untuk Melanjutkan !!..", MsgBoxStyle.Information, "Information")
             Exit Sub
         Else
-            'GGVM_conn()
-            sql = ""
-            sql = sql & "select idmaterial from prd_trans_detaildo_kirim "
-            sql = sql & " where iddtorder ='" & TIDDtOrder.Text & "'"
-            da = New OdbcDataAdapter(sql, conn)
-            'ds.Clear()
-            dt = New DataTable
-            dt.Clear()
-            da.Fill(dt)
-            For Each rs As DataRow In dt.Rows
-                If IsDBNull(rs("idmaterial")) Then ' Null check
-                    MsgBox("Masukkan Material Barang Survei, Dahulu !!..", MsgBoxStyle.Information, "Information")
-                    Exit Sub
-                End If
-            Next
+            ''GGVM_conn()
+            'sql = ""
+            'sql = sql & "select idmaterial from prd_trans_detaildo_kirim "
+            'sql = sql & " where iddtorder ='" & TIDDtOrder.Text & "'"
+            'da = New OdbcDataAdapter(sql, conn)
+            ''ds.Clear()
+            'dt = New DataTable
+            'dt.Clear()
+            'da.Fill(dt)
+            'For Each rs As DataRow In dt.Rows
+            '    If IsDBNull(rs("idmaterial")) Then ' Null check
+            '        MsgBox("Masukkan Material Barang Survei, Dahulu !!..", MsgBoxStyle.Information, "Information")
+            '        Exit Sub
+            '    End If
+            'Next
+
+
             Entry()
         End If
     End Sub
@@ -867,7 +793,6 @@ Public Class StatusSurvei
         AutoMaterialPRD()
         TMaterialPRD.ReadOnly = False
         TMaterialPRD.Text = TMaterialPE.Text
-        TIdMaterialPRD.Text = TIDMaterialPE.Text
         TPanjangPRD.Text = TPanjangPE.Text
         TPanjangPRD.ReadOnly = False
         TTinggiPRD.Text = TTinggiPE.Text
@@ -941,19 +866,19 @@ Public Class StatusSurvei
     End Sub
 
     Private Sub ListDist_ItemChecked(sender As Object, e As ItemCheckedEventArgs) Handles ListDist.ItemChecked
-        If ListDist.CheckedIndices.Count > 0 Then
-            Dim temp As String = ""
-            TextBox1.Text = ""
-            For Each item As ListViewItem In ListDist.CheckedItems
-                TextBox1.Text += "'" + item.SubItems(12).Text + "'" + ","
-                If item.Checked = False Then
-                    TextBox1.Text = ""
-                End If
-                'TextBox1.Text = item.SubItems(10).Text & temp
+        'If ListDist.CheckedIndices.Count > 0 Then
+        '    Dim temp As String = ""
+        '    TextBox1.Text = ""
+        '    For Each item As ListViewItem In ListDist.CheckedItems
+        '        TextBox1.Text += "" + item.SubItems(12).Text + "" + ","
+        '        If item.Checked = False Then
+        '            TextBox1.Text = ""
+        '        End If
+        '        'TextBox1.Text = item.SubItems(10).Text & temp
 
-            Next
-            TextBox1.Text = TextBox1.Text.TrimEnd(CChar(","))
-        End If
+        '    Next
+        '    TextBox1.Text = TextBox1.Text.TrimEnd(CChar(","))
+        'End If
     End Sub
 
     Private Sub ListDist_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListDist.SelectedIndexChanged
@@ -969,6 +894,7 @@ Public Class StatusSurvei
                 brs = item.Index
             Next
         End With
+
         TBarangPRD.Text = ListDist.Items(brs).SubItems(0).Text
         TToko.Text = ListDist.Items(brs).SubItems(1).Text
         TPanjangPRD.Text = ListDist.Items(brs).SubItems(3).Text
@@ -976,12 +902,11 @@ Public Class StatusSurvei
         TLebarPRD.Text = ListDist.Items(brs).SubItems(5).Text
         TSisiPRD.Text = ListDist.Items(brs).SubItems(6).Text
         TQty2.Text = ListDist.Items(brs).SubItems(7).Text
-        TMaterialPRD.Text = ListDist.Items(brs).SubItems(8).Text
-        TIdKirim.Text = ListDist.Items(brs).SubItems(9).Text
-        TIdMaterialPRD.Text = ListDist.Items(brs).SubItems(10).Text
-        TIdBarangPRD.Text = ListDist.Items(brs).SubItems(11).Text
-        TIdTrans.Text = ListDist.Items(brs).SubItems(12).Text
-        TKet2.Text = ListDist.Items(brs).SubItems(13).Text
+        TIdKirim.Text = ListDist.Items(brs).SubItems(8).Text
+        TIdBarangPRD.Text = ListDist.Items(brs).SubItems(9).Text
+        TIdTrans.Text = ListDist.Items(brs).SubItems(10).Text
+        TMaterialPRD.Text = ListDist.Items(brs).SubItems(11).Text
+        TKet2.Text = ListDist.Items(brs).SubItems(12).Text
         Me.Cursor = Cursors.Default
         BtnEditS.Enabled = True
         BtnKeluar.Caption = "BATAL"
@@ -1011,14 +936,121 @@ Public Class StatusSurvei
         TMaterialPE.Text = ListDetailDO.Items(brs).SubItems(12).Text
         TKeterangan.Text = ListDetailDO.Items(brs).SubItems(13).Text
         TJmlTK.Text = ListDetailDO.Items(brs).SubItems(14).Text
-        TIDMaterialPE.Text = ListDetailDO.Items(brs).SubItems(15).Text
-        TIdDetailPE.Text = ListDetailDO.Items(brs).SubItems(16).Text
+        TIdDetailPE.Text = ListDetailDO.Items(brs).SubItems(15).Text
         Me.Cursor = Cursors.Default
         TampilKirim()
         'BarangPE.Checked = True
         'TBarangPE.ReadOnly = True
         BtnEdit.Enabled = True
         BtnKeluar.Caption = "BATAL"
+    End Sub
+
+    Private Sub HapusMaterials_Click(sender As Object, e As EventArgs) Handles HapusMaterial.Click
+        LBMaterials.Items.Remove(LBMaterials.SelectedItem)
+        AddMaterials.Clear()
+        AddMaterials.Focus()
+    End Sub
+    Private Sub BAddMaterials_Click(sender As Object, e As EventArgs) Handles BAddMaterials.Click
+        TMaterialPRD.Text = String.Join(",", LBMaterials.Items.Cast(Of String).ToArray())
+        PAddMaterials.Visible = False
+        AddMaterials.Text = ""
+        LBMaterials.Items.Clear()
+    End Sub
+    Private Sub AddMaterials_KeyPress(sender As Object, e As KeyPressEventArgs) Handles AddMaterials.KeyPress
+        If (e.KeyChar = Chr(13)) Then
+            LBMaterials.Items.Add(AddMaterials.Text)
+            AddMaterials.Clear()
+            AddMaterials.Focus()
+        End If
+    End Sub
+    Private Sub PAddMaterials_MouseDown(sender As Object, e As MouseEventArgs) Handles PAddMaterials.MouseDown
+        Panel1Captured = True
+        Panel1Grabbed = e.Location
+    End Sub
+    Private Sub PAddMaterials_MouseMove(sender As Object, e As MouseEventArgs) Handles PAddMaterials.MouseMove
+        If (Panel1Captured) Then PAddMaterials.Location = PAddMaterials.Location + e.Location - Panel1Grabbed
+    End Sub
+    Private Sub PAddMaterials_MouseUp(sender As Object, e As MouseEventArgs) Handles PAddMaterials.MouseUp
+        Panel1Captured = False
+    End Sub
+
+    Private Sub TMaterialPRD_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TMaterialPRD.KeyPress
+        PAddMaterials.Visible = True
+        AddMaterials.Focus()
+    End Sub
+
+    Private Sub BtnAddMaterial_Click(sender As Object, e As EventArgs) Handles BtnAddMaterial.Click
+        Dim c As String
+        GGVM_conn()
+
+        If TIdMaterialPRD.Text = "" Then
+
+            c = ""
+            c = c & "insert prd_material (material,status)"
+            c = c & "values ('" & TMaterialPRD.Text & "', '1') "
+            cmd = New OdbcCommand(c, conn)
+            cmd.ExecuteNonQuery()
+
+            c = ""
+            c = c & " Select max(idmaterial) As id from prd_material"
+            da = New OdbcDataAdapter(c, conn)
+            dt = New DataTable
+            da.Fill(dt)
+            If dt.Rows.Count > 0 Then
+                TIdMaterialPRD.Text = dt.Rows(0)("id")
+            End If
+        End If
+
+        c = ""
+        c = c & "insert prd_transmaterial (idtrans,idmaterial,idbarang_int,qty_material)"
+        c = c & "values ('" & TIdTrans.Text & "','" & TIdMaterialPRD.Text & "','" & TIdBarangPRD.Text & "','" & TQtyMaterial.Text & "') "
+        cmd = New OdbcCommand(c, conn)
+        cmd.ExecuteNonQuery()
+        GGVM_conn_close()
+        Me.LBMaterials.Items.Add(Me.AddMaterials.Text)
+        Me.AddMaterials.Text = ""
+    End Sub
+
+    Private Sub BtnKeluar_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BtnKeluar.ItemClick
+        ClearPE()
+        ClearPRD()
+        BtnEntry.Enabled = True
+        BtnEntryS.Enabled = False
+        BtnEdit.Enabled = True
+        BtnEditS.Enabled = True
+        BtnSimpanS.Enabled = False
+        BtnHitungPE.Visible = True
+        BtnHitungPE.Enabled = False
+        BtnSimpanPE.Visible = True
+        BtnSimpanPE.Enabled = False
+        ' BtnKeluar.Caption = "KELUAR"
+    End Sub
+
+    Private Sub AddMaterials_TextChanged(sender As Object, e As EventArgs) Handles AddMaterials.TextChanged
+        Dim s As String
+        GGVM_conn()
+        s = "select idmaterial from prd_material where material= '" & AddMaterials.Text & "'"
+        cmd = New OdbcCommand(s, conn)
+        dr = cmd.ExecuteReader
+        dr.Read()
+        If Not dr.HasRows Then
+            TIdMaterialPRD.Text = ""
+        Else
+            TIdMaterialPRD.Text = dr.Item("idmaterial")
+        End If
+        GGVM_conn_close()
+    End Sub
+
+    Private Sub TMaterialPRD_MouseClick(sender As Object, e As MouseEventArgs) Handles TMaterialPRD.MouseClick
+        If TMaterialPRD.Enabled = True Then
+            PAddMaterials.Visible = True
+            AddMaterials.Focus()
+        End If
+        
+    End Sub
+
+    Private Sub TMaterialPRD_MouseEnter(sender As Object, e As EventArgs) Handles TMaterialPRD.MouseEnter
+      
     End Sub
 
 End Class

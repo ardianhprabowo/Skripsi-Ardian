@@ -199,6 +199,7 @@ Partial Class EntryDO
         Me.BtnSimpan.ImageOptions.Image = CType(resources.GetObject("BtnSimpan.ImageOptions.Image"), System.Drawing.Image)
         Me.BtnSimpan.Location = New System.Drawing.Point(413, 25)
         Me.BtnSimpan.Name = "BtnSimpan"
+        Me.BtnSimpan.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light
         Me.BtnSimpan.Size = New System.Drawing.Size(153, 52)
         Me.BtnSimpan.TabIndex = 0
         Me.BtnSimpan.Text = "SIMPAN D.O"
@@ -409,12 +410,14 @@ Partial Class EntryDO
         Me.TPenerima.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
         Me.TPenerima.Name = "TPenerima"
         Me.TPenerima.ReadOnly = True
-        Me.TPenerima.Size = New System.Drawing.Size(407, 23)
+        Me.TPenerima.Size = New System.Drawing.Size(375, 23)
         Me.TPenerima.TabIndex = 112
         '
         'CToko
         '
         Me.CToko.AutoSize = True
+        Me.CToko.Checked = True
+        Me.CToko.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CToko.Enabled = False
         Me.CToko.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CToko.Location = New System.Drawing.Point(248, 20)
@@ -424,6 +427,7 @@ Partial Class EntryDO
         Me.CToko.TabIndex = 114
         Me.CToko.Text = "CARI TOKO"
         Me.CToko.UseVisualStyleBackColor = True
+        Me.CToko.Visible = False
         '
         'CDist
         '
@@ -439,6 +443,7 @@ Partial Class EntryDO
         Me.CDist.TabIndex = 113
         Me.CDist.Text = "CARI DISTRIBUTOR"
         Me.CDist.UseVisualStyleBackColor = True
+        Me.CDist.Visible = False
         '
         'Panel2
         '
@@ -461,6 +466,7 @@ Partial Class EntryDO
         Me.BtnHapusPenerima.Location = New System.Drawing.Point(37, 25)
         Me.BtnHapusPenerima.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
         Me.BtnHapusPenerima.Name = "BtnHapusPenerima"
+        Me.BtnHapusPenerima.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light
         Me.BtnHapusPenerima.Size = New System.Drawing.Size(123, 46)
         Me.BtnHapusPenerima.TabIndex = 116
         Me.BtnHapusPenerima.Text = "HAPUS" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "PENERIMA"
@@ -483,6 +489,7 @@ Partial Class EntryDO
         Me.BtnSimpanToko.Location = New System.Drawing.Point(257, 25)
         Me.BtnSimpanToko.Margin = New System.Windows.Forms.Padding(3, 5, 3, 5)
         Me.BtnSimpanToko.Name = "BtnSimpanToko"
+        Me.BtnSimpanToko.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light
         Me.BtnSimpanToko.Size = New System.Drawing.Size(123, 46)
         Me.BtnSimpanToko.TabIndex = 115
         Me.BtnSimpanToko.Text = "SIMPAN" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "PENERIMA"

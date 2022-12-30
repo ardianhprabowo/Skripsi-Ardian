@@ -25,7 +25,6 @@ Partial Class PenawaranP2P
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.ListDO = New System.Windows.Forms.ListView()
         Me.RbGG = New System.Windows.Forms.RadioButton()
-        Me.RbBIG = New System.Windows.Forms.RadioButton()
         Me.TidDO = New System.Windows.Forms.TextBox()
         Me.TJabatanS = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -50,6 +49,7 @@ Partial Class PenawaranP2P
         Me.Label4 = New System.Windows.Forms.Label()
         Me.BtnProsesPE = New DevExpress.XtraEditors.SimpleButton()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.BtnAccPE = New DevExpress.XtraEditors.SimpleButton()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.DTTanggal = New System.Windows.Forms.DateTimePicker()
         Me.TGrandTotal = New System.Windows.Forms.TextBox()
@@ -137,7 +137,7 @@ Partial Class PenawaranP2P
         Me.RbGG.AutoSize = True
         Me.RbGG.Checked = True
         Me.RbGG.Font = New System.Drawing.Font("Segoe UI", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RbGG.Location = New System.Drawing.Point(264, 28)
+        Me.RbGG.Location = New System.Drawing.Point(141, 25)
         Me.RbGG.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.RbGG.Name = "RbGG"
         Me.RbGG.Size = New System.Drawing.Size(80, 23)
@@ -145,19 +145,6 @@ Partial Class PenawaranP2P
         Me.RbGG.TabStop = True
         Me.RbGG.Text = "P2P GG"
         Me.RbGG.UseVisualStyleBackColor = True
-        '
-        'RbBIG
-        '
-        Me.RbBIG.AutoSize = True
-        Me.RbBIG.Font = New System.Drawing.Font("Segoe UI", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RbBIG.Location = New System.Drawing.Point(129, 28)
-        Me.RbBIG.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.RbBIG.Name = "RbBIG"
-        Me.RbBIG.Size = New System.Drawing.Size(83, 23)
-        Me.RbBIG.TabIndex = 126
-        Me.RbBIG.TabStop = True
-        Me.RbBIG.Text = "P2P BIG"
-        Me.RbBIG.UseVisualStyleBackColor = True
         '
         'TidDO
         '
@@ -219,6 +206,7 @@ Partial Class PenawaranP2P
         Me.BtnRefresh.Location = New System.Drawing.Point(35, 122)
         Me.BtnRefresh.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnRefresh.Name = "BtnRefresh"
+        Me.BtnRefresh.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light
         Me.BtnRefresh.Size = New System.Drawing.Size(173, 80)
         Me.BtnRefresh.TabIndex = 117
         Me.BtnRefresh.Text = "REFRESH"
@@ -231,6 +219,7 @@ Partial Class PenawaranP2P
         Me.BtnKeluar.Location = New System.Drawing.Point(35, 685)
         Me.BtnKeluar.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnKeluar.Name = "BtnKeluar"
+        Me.BtnKeluar.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light
         Me.BtnKeluar.Size = New System.Drawing.Size(173, 80)
         Me.BtnKeluar.TabIndex = 116
         Me.BtnKeluar.Text = "TUTUP"
@@ -243,9 +232,11 @@ Partial Class PenawaranP2P
         Me.BtnCetak.Location = New System.Drawing.Point(35, 586)
         Me.BtnCetak.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnCetak.Name = "BtnCetak"
+        Me.BtnCetak.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light
         Me.BtnCetak.Size = New System.Drawing.Size(173, 80)
         Me.BtnCetak.TabIndex = 115
         Me.BtnCetak.Text = "CETAK PE"
+        Me.BtnCetak.Visible = False
         '
         'Label11
         '
@@ -325,6 +316,7 @@ Partial Class PenawaranP2P
         Me.BtnEditPE.Location = New System.Drawing.Point(35, 477)
         Me.BtnEditPE.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnEditPE.Name = "BtnEditPE"
+        Me.BtnEditPE.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light
         Me.BtnEditPE.Size = New System.Drawing.Size(173, 80)
         Me.BtnEditPE.TabIndex = 114
         Me.BtnEditPE.Text = "EDIT PE"
@@ -364,19 +356,19 @@ Partial Class PenawaranP2P
         'TKeterangan
         '
         Me.TKeterangan.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TKeterangan.Location = New System.Drawing.Point(141, 271)
+        Me.TKeterangan.Location = New System.Drawing.Point(141, 286)
         Me.TKeterangan.Margin = New System.Windows.Forms.Padding(5, 8, 5, 8)
         Me.TKeterangan.Multiline = True
         Me.TKeterangan.Name = "TKeterangan"
         Me.TKeterangan.ReadOnly = True
-        Me.TKeterangan.Size = New System.Drawing.Size(401, 115)
+        Me.TKeterangan.Size = New System.Drawing.Size(401, 100)
         Me.TKeterangan.TabIndex = 113
         '
         'Label6
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(9, 271)
+        Me.Label6.Location = New System.Drawing.Point(8, 286)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(113, 17)
@@ -413,13 +405,15 @@ Partial Class PenawaranP2P
         Me.BtnProsesPE.Location = New System.Drawing.Point(35, 374)
         Me.BtnProsesPE.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BtnProsesPE.Name = "BtnProsesPE"
+        Me.BtnProsesPE.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light
         Me.BtnProsesPE.Size = New System.Drawing.Size(173, 80)
         Me.BtnProsesPE.TabIndex = 113
         Me.BtnProsesPE.Text = "PROSES PE"
         '
         'Panel2
         '
-        Me.Panel2.BackColor = System.Drawing.Color.DarkTurquoise
+        Me.Panel2.BackColor = System.Drawing.Color.GreenYellow
+        Me.Panel2.Controls.Add(Me.BtnAccPE)
         Me.Panel2.Controls.Add(Me.BtnRefresh)
         Me.Panel2.Controls.Add(Me.BtnKeluar)
         Me.Panel2.Controls.Add(Me.BtnProsesPE)
@@ -433,6 +427,20 @@ Partial Class PenawaranP2P
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(233, 872)
         Me.Panel2.TabIndex = 123
+        '
+        'BtnAccPE
+        '
+        Me.BtnAccPE.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BtnAccPE.Appearance.Options.UseFont = True
+        Me.BtnAccPE.Enabled = False
+        Me.BtnAccPE.ImageOptions.SvgImage = CType(resources.GetObject("BtnAccPE.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.BtnAccPE.Location = New System.Drawing.Point(35, 258)
+        Me.BtnAccPE.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BtnAccPE.Name = "BtnAccPE"
+        Me.BtnAccPE.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light
+        Me.BtnAccPE.Size = New System.Drawing.Size(173, 80)
+        Me.BtnAccPE.TabIndex = 118
+        Me.BtnAccPE.Text = "ACC P.E"
         '
         'Label7
         '
@@ -593,7 +601,6 @@ Partial Class PenawaranP2P
         '
         Me.Panel1.BackColor = System.Drawing.Color.SteelBlue
         Me.Panel1.Controls.Add(Me.RbGG)
-        Me.Panel1.Controls.Add(Me.RbBIG)
         Me.Panel1.Controls.Add(Me.TidDO)
         Me.Panel1.Controls.Add(Me.TJabatanS)
         Me.Panel1.Controls.Add(Me.Label12)
@@ -656,7 +663,6 @@ Partial Class PenawaranP2P
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents ListDO As System.Windows.Forms.ListView
     Friend WithEvents RbGG As System.Windows.Forms.RadioButton
-    Friend WithEvents RbBIG As System.Windows.Forms.RadioButton
     Friend WithEvents TidDO As System.Windows.Forms.TextBox
     Friend WithEvents TJabatanS As System.Windows.Forms.TextBox
     Friend WithEvents Label12 As System.Windows.Forms.Label
@@ -694,5 +700,6 @@ Partial Class PenawaranP2P
     Friend WithEvents Label17 As System.Windows.Forms.Label
     Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents BtnAccPE As DevExpress.XtraEditors.SimpleButton
 
 End Class

@@ -21,7 +21,7 @@ Partial Class POInternalDesign
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(POInternalDesign))
-        Dim ButtonImageOptions1 As DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions = New DevExpress.XtraEditors.ButtonsPanelControl.ButtonImageOptions()
+        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem("")
         Dim CustomSqlQuery1 As DevExpress.DataAccess.Sql.CustomSqlQuery = New DevExpress.DataAccess.Sql.CustomSqlQuery()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.Bar1 = New DevExpress.XtraBars.Bar()
@@ -58,30 +58,12 @@ Partial Class POInternalDesign
         Me.BarButtonItem7 = New DevExpress.XtraBars.BarButtonItem()
         Me.BarDockControl4 = New DevExpress.XtraBars.BarDockControl()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.CbOnprogress = New System.Windows.Forms.CheckBox()
+        Me.FilterPekerjaan = New System.Windows.Forms.CheckBox()
+        Me.ListPODsn = New System.Windows.Forms.ListView()
         Me.SqlDataSource1 = New DevExpress.DataAccess.Sql.SqlDataSource(Me.components)
-        Me.GridPODsn = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.colidpo_dsn = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colnopo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colidklien = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colidkota = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.coltanggal = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.collokasi = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colbrand = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colnope = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.coldeadline_desain = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colselesai_desain = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.coldeadline_ki = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.coltime_closhing = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colkirim_po = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colterima_po = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colkirim_ppic = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colklien = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.coliddtorder = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colidpo_prd = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colPO_Produksi = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.TidPoDsn = New System.Windows.Forms.TextBox()
         Me.TidPE = New System.Windows.Forms.TextBox()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.Label30 = New System.Windows.Forms.Label()
@@ -121,18 +103,8 @@ Partial Class POInternalDesign
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Tt2 = New DevExpress.XtraEditors.TextEdit()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.PanelC = New System.Windows.Forms.Panel()
-        Me.Tp3 = New DevExpress.XtraEditors.TextEdit()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.Tl3 = New DevExpress.XtraEditors.TextEdit()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.Tt3 = New DevExpress.XtraEditors.TextEdit()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.Tj3 = New DevExpress.XtraEditors.TextEdit()
         Me.CSubKerjaan = New System.Windows.Forms.CheckBox()
         Me.CPrinting = New System.Windows.Forms.CheckBox()
-        Me.CCutting = New System.Windows.Forms.CheckBox()
         Me.TBarang2 = New System.Windows.Forms.TextBox()
         Me.CMal = New System.Windows.Forms.CheckBox()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -146,7 +118,7 @@ Partial Class POInternalDesign
         Me.TIdToko = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.TIdpoprd = New System.Windows.Forms.TextBox()
+        Me.TidPO = New System.Windows.Forms.TextBox()
         Me.Tl1 = New DevExpress.XtraEditors.TextEdit()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -175,8 +147,6 @@ Partial Class POInternalDesign
         Me.XtraTabPage1.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridPODsn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         CType(Me.TKota.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelAlasan.SuspendLayout()
@@ -190,11 +160,6 @@ Partial Class POInternalDesign
         CType(Me.Tp2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Tl2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Tt2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelC.SuspendLayout()
-        CType(Me.Tp3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Tl3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Tt3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Tj3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TToko.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TBarang1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Tp1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -559,10 +524,9 @@ Partial Class POInternalDesign
         '
         'GroupControl3
         '
-        Me.GroupControl3.Controls.Add(Me.GridControl1)
-        ButtonImageOptions1.SvgImage = CType(resources.GetObject("ButtonImageOptions1.SvgImage"), DevExpress.Utils.Svg.SvgImage)
-        ButtonImageOptions1.SvgImageSize = New System.Drawing.Size(16, 16)
-        Me.GroupControl3.CustomHeaderButtons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraEditors.ButtonsPanelControl.GroupBoxButton("Tampil Pekerjaan Selesai", True, ButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.CheckButton, "", -1, True, Nothing, True, False, True, Nothing, -1)})
+        Me.GroupControl3.Controls.Add(Me.CbOnprogress)
+        Me.GroupControl3.Controls.Add(Me.FilterPekerjaan)
+        Me.GroupControl3.Controls.Add(Me.ListPODsn)
         Me.GroupControl3.CustomHeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GroupControl3.Location = New System.Drawing.Point(0, 367)
@@ -572,215 +536,55 @@ Partial Class POInternalDesign
         Me.GroupControl3.TabIndex = 0
         Me.GroupControl3.Text = "P.O INTERNAL DESAIN"
         '
-        'GridControl1
+        'CbOnprogress
         '
-        Me.GridControl1.DataMember = "Query"
-        Me.GridControl1.DataSource = Me.SqlDataSource1
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.GridControl1.Location = New System.Drawing.Point(2, 33)
-        Me.GridControl1.MainView = Me.GridPODsn
-        Me.GridControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.GridControl1.MenuManager = Me.BarManager1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(1221, 406)
-        Me.GridControl1.TabIndex = 0
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridPODsn})
+        Me.CbOnprogress.AutoSize = True
+        Me.CbOnprogress.BackColor = System.Drawing.Color.Transparent
+        Me.CbOnprogress.Location = New System.Drawing.Point(902, 2)
+        Me.CbOnprogress.Name = "CbOnprogress"
+        Me.CbOnprogress.Size = New System.Drawing.Size(128, 24)
+        Me.CbOnprogress.TabIndex = 8
+        Me.CbOnprogress.Text = "ON PROGRESS"
+        Me.CbOnprogress.UseVisualStyleBackColor = False
+        '
+        'FilterPekerjaan
+        '
+        Me.FilterPekerjaan.AutoSize = True
+        Me.FilterPekerjaan.BackColor = System.Drawing.Color.Transparent
+        Me.FilterPekerjaan.Location = New System.Drawing.Point(1045, 2)
+        Me.FilterPekerjaan.Name = "FilterPekerjaan"
+        Me.FilterPekerjaan.Size = New System.Drawing.Size(131, 24)
+        Me.FilterPekerjaan.TabIndex = 7
+        Me.FilterPekerjaan.Text = "TAMPIL ALL PO"
+        Me.FilterPekerjaan.UseVisualStyleBackColor = False
+        '
+        'ListPODsn
+        '
+        Me.ListPODsn.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ListPODsn.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.ListPODsn.HideSelection = False
+        Me.ListPODsn.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1})
+        Me.ListPODsn.Location = New System.Drawing.Point(2, 29)
+        Me.ListPODsn.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.ListPODsn.Name = "ListPODsn"
+        Me.ListPODsn.Size = New System.Drawing.Size(1221, 410)
+        Me.ListPODsn.TabIndex = 6
+        Me.ListPODsn.UseCompatibleStateImageBehavior = False
         '
         'SqlDataSource1
         '
-        Me.SqlDataSource1.ConnectionName = "localhost_geogiven_vm_Connection-Kantor"
+        Me.SqlDataSource1.ConnectionName = "127.0.0.1_skripsi_Connection"
         Me.SqlDataSource1.Name = "SqlDataSource1"
         CustomSqlQuery1.Name = "Query"
-        CustomSqlQuery1.Sql = "select * from view_tampilpo_dsn" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "ORDER BY kirim_po DESC "
+        CustomSqlQuery1.Sql = "select * from view_podesain" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "ORDER BY kirim_po_dsn DESC "
         Me.SqlDataSource1.Queries.AddRange(New DevExpress.DataAccess.Sql.SqlQuery() {CustomSqlQuery1})
         Me.SqlDataSource1.ResultSchemaSerializable = resources.GetString("SqlDataSource1.ResultSchemaSerializable")
-        '
-        'GridPODsn
-        '
-        Me.GridPODsn.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colidpo_dsn, Me.colnopo, Me.colidklien, Me.colidkota, Me.coltanggal, Me.collokasi, Me.colbrand, Me.colnope, Me.coldeadline_desain, Me.colselesai_desain, Me.coldeadline_ki, Me.coltime_closhing, Me.colkirim_po, Me.colterima_po, Me.colkirim_ppic, Me.colklien, Me.coliddtorder, Me.colidpo_prd, Me.colPO_Produksi, Me.colStatus})
-        Me.GridPODsn.DetailHeight = 467
-        Me.GridPODsn.FixedLineWidth = 3
-        Me.GridPODsn.GridControl = Me.GridControl1
-        Me.GridPODsn.Name = "GridPODsn"
-        Me.GridPODsn.OptionsFilter.AllowAutoFilterConditionChange = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridPODsn.OptionsFilter.AllowFilterEditor = False
-        Me.GridPODsn.OptionsSelection.MultiSelect = True
-        Me.GridPODsn.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect
-        Me.GridPODsn.OptionsSelection.ResetSelectionClickOutsideCheckboxSelector = True
-        Me.GridPODsn.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridPODsn.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never
-        '
-        'colidpo_dsn
-        '
-        Me.colidpo_dsn.FieldName = "idpo_dsn"
-        Me.colidpo_dsn.MinWidth = 23
-        Me.colidpo_dsn.Name = "colidpo_dsn"
-        Me.colidpo_dsn.Width = 86
-        '
-        'colnopo
-        '
-        Me.colnopo.Caption = "No. P.O"
-        Me.colnopo.FieldName = "nopo"
-        Me.colnopo.MinWidth = 23
-        Me.colnopo.Name = "colnopo"
-        Me.colnopo.Visible = True
-        Me.colnopo.VisibleIndex = 1
-        Me.colnopo.Width = 86
-        '
-        'colidklien
-        '
-        Me.colidklien.FieldName = "idklien"
-        Me.colidklien.MinWidth = 23
-        Me.colidklien.Name = "colidklien"
-        Me.colidklien.Width = 86
-        '
-        'colidkota
-        '
-        Me.colidkota.FieldName = "idkota"
-        Me.colidkota.MinWidth = 23
-        Me.colidkota.Name = "colidkota"
-        Me.colidkota.Width = 86
-        '
-        'coltanggal
-        '
-        Me.coltanggal.Caption = "Tanggal"
-        Me.coltanggal.FieldName = "tanggal"
-        Me.coltanggal.MinWidth = 23
-        Me.coltanggal.Name = "coltanggal"
-        Me.coltanggal.Visible = True
-        Me.coltanggal.VisibleIndex = 3
-        Me.coltanggal.Width = 86
-        '
-        'collokasi
-        '
-        Me.collokasi.FieldName = "lokasi"
-        Me.collokasi.MinWidth = 23
-        Me.collokasi.Name = "collokasi"
-        Me.collokasi.Width = 86
-        '
-        'colbrand
-        '
-        Me.colbrand.Caption = "Brand"
-        Me.colbrand.FieldName = "brand"
-        Me.colbrand.MinWidth = 23
-        Me.colbrand.Name = "colbrand"
-        Me.colbrand.Visible = True
-        Me.colbrand.VisibleIndex = 4
-        Me.colbrand.Width = 86
-        '
-        'colnope
-        '
-        Me.colnope.Caption = "No. PE"
-        Me.colnope.FieldName = "nope"
-        Me.colnope.MinWidth = 23
-        Me.colnope.Name = "colnope"
-        Me.colnope.Visible = True
-        Me.colnope.VisibleIndex = 5
-        Me.colnope.Width = 86
-        '
-        'coldeadline_desain
-        '
-        Me.coldeadline_desain.Caption = "Deadline Desain"
-        Me.coldeadline_desain.FieldName = "deadline_desain"
-        Me.coldeadline_desain.MinWidth = 23
-        Me.coldeadline_desain.Name = "coldeadline_desain"
-        Me.coldeadline_desain.Visible = True
-        Me.coldeadline_desain.VisibleIndex = 6
-        Me.coldeadline_desain.Width = 86
-        '
-        'colselesai_desain
-        '
-        Me.colselesai_desain.FieldName = "selesai_desain"
-        Me.colselesai_desain.MinWidth = 23
-        Me.colselesai_desain.Name = "colselesai_desain"
-        Me.colselesai_desain.Width = 86
-        '
-        'coldeadline_ki
-        '
-        Me.coldeadline_ki.Caption = "Deadline Kirim"
-        Me.coldeadline_ki.FieldName = "deadline_ki"
-        Me.coldeadline_ki.MinWidth = 23
-        Me.coldeadline_ki.Name = "coldeadline_ki"
-        Me.coldeadline_ki.Visible = True
-        Me.coldeadline_ki.VisibleIndex = 7
-        Me.coldeadline_ki.Width = 86
-        '
-        'coltime_closhing
-        '
-        Me.coltime_closhing.FieldName = "time_closhing"
-        Me.coltime_closhing.MinWidth = 23
-        Me.coltime_closhing.Name = "coltime_closhing"
-        Me.coltime_closhing.Width = 86
-        '
-        'colkirim_po
-        '
-        Me.colkirim_po.FieldName = "kirim_po"
-        Me.colkirim_po.MinWidth = 23
-        Me.colkirim_po.Name = "colkirim_po"
-        Me.colkirim_po.Width = 86
-        '
-        'colterima_po
-        '
-        Me.colterima_po.FieldName = "terima_po"
-        Me.colterima_po.MinWidth = 23
-        Me.colterima_po.Name = "colterima_po"
-        Me.colterima_po.Width = 86
-        '
-        'colkirim_ppic
-        '
-        Me.colkirim_ppic.FieldName = "kirim_ppic"
-        Me.colkirim_ppic.MinWidth = 23
-        Me.colkirim_ppic.Name = "colkirim_ppic"
-        Me.colkirim_ppic.Width = 86
-        '
-        'colklien
-        '
-        Me.colklien.Caption = "Klien"
-        Me.colklien.FieldName = "klien"
-        Me.colklien.MinWidth = 23
-        Me.colklien.Name = "colklien"
-        Me.colklien.Visible = True
-        Me.colklien.VisibleIndex = 2
-        Me.colklien.Width = 86
-        '
-        'coliddtorder
-        '
-        Me.coliddtorder.FieldName = "iddtorder"
-        Me.coliddtorder.MinWidth = 23
-        Me.coliddtorder.Name = "coliddtorder"
-        Me.coliddtorder.Width = 86
-        '
-        'colidpo_prd
-        '
-        Me.colidpo_prd.FieldName = "idpo_prd"
-        Me.colidpo_prd.MinWidth = 23
-        Me.colidpo_prd.Name = "colidpo_prd"
-        Me.colidpo_prd.Width = 86
-        '
-        'colPO_Produksi
-        '
-        Me.colPO_Produksi.FieldName = "PO_Produksi"
-        Me.colPO_Produksi.MinWidth = 23
-        Me.colPO_Produksi.Name = "colPO_Produksi"
-        Me.colPO_Produksi.Visible = True
-        Me.colPO_Produksi.VisibleIndex = 8
-        Me.colPO_Produksi.Width = 86
-        '
-        'colStatus
-        '
-        Me.colStatus.Caption = "Status"
-        Me.colStatus.FieldName = "Status"
-        Me.colStatus.MinWidth = 23
-        Me.colStatus.Name = "colStatus"
-        Me.colStatus.Visible = True
-        Me.colStatus.VisibleIndex = 9
-        Me.colStatus.Width = 86
         '
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.Tomato
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Panel2.Controls.Add(Me.TidPoDsn)
         Me.Panel2.Controls.Add(Me.TidPE)
         Me.Panel2.Controls.Add(Me.Label29)
         Me.Panel2.Controls.Add(Me.Label30)
@@ -800,7 +604,7 @@ Partial Class POInternalDesign
         Me.Panel2.Controls.Add(Me.TIdToko)
         Me.Panel2.Controls.Add(Me.Label8)
         Me.Panel2.Controls.Add(Me.Label9)
-        Me.Panel2.Controls.Add(Me.TIdpoprd)
+        Me.Panel2.Controls.Add(Me.TidPO)
         Me.Panel2.Controls.Add(Me.Tl1)
         Me.Panel2.Controls.Add(Me.Label1)
         Me.Panel2.Controls.Add(Me.Label6)
@@ -817,9 +621,17 @@ Partial Class POInternalDesign
         Me.Panel2.Location = New System.Drawing.Point(192, 104)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(845, 600)
+        Me.Panel2.Size = New System.Drawing.Size(822, 529)
         Me.Panel2.TabIndex = 10
         Me.Panel2.Visible = False
+        '
+        'TidPoDsn
+        '
+        Me.TidPoDsn.Location = New System.Drawing.Point(691, 125)
+        Me.TidPoDsn.Name = "TidPoDsn"
+        Me.TidPoDsn.Size = New System.Drawing.Size(100, 27)
+        Me.TidPoDsn.TabIndex = 179
+        Me.TidPoDsn.Visible = False
         '
         'TidPE
         '
@@ -957,7 +769,7 @@ Partial Class POInternalDesign
         'SplitContainer1
         '
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.SplitContainer1.Location = New System.Drawing.Point(0, 544)
+        Me.SplitContainer1.Location = New System.Drawing.Point(0, 473)
         Me.SplitContainer1.Name = "SplitContainer1"
         '
         'SplitContainer1.Panel1
@@ -967,8 +779,8 @@ Partial Class POInternalDesign
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.BtnClose)
-        Me.SplitContainer1.Size = New System.Drawing.Size(841, 52)
-        Me.SplitContainer1.SplitterDistance = 446
+        Me.SplitContainer1.Size = New System.Drawing.Size(818, 52)
+        Me.SplitContainer1.SplitterDistance = 431
         Me.SplitContainer1.SplitterWidth = 3
         Me.SplitContainer1.TabIndex = 167
         '
@@ -981,7 +793,7 @@ Partial Class POInternalDesign
         Me.BtnSimpanDetail.Location = New System.Drawing.Point(0, 0)
         Me.BtnSimpanDetail.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.BtnSimpanDetail.Name = "BtnSimpanDetail"
-        Me.BtnSimpanDetail.Size = New System.Drawing.Size(446, 52)
+        Me.BtnSimpanDetail.Size = New System.Drawing.Size(431, 52)
         Me.BtnSimpanDetail.TabIndex = 29
         Me.BtnSimpanDetail.Text = "SIMPAN"
         '
@@ -994,7 +806,7 @@ Partial Class POInternalDesign
         Me.BtnClose.Location = New System.Drawing.Point(0, 0)
         Me.BtnClose.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.BtnClose.Name = "BtnClose"
-        Me.BtnClose.Size = New System.Drawing.Size(392, 52)
+        Me.BtnClose.Size = New System.Drawing.Size(384, 52)
         Me.BtnClose.TabIndex = 0
         Me.BtnClose.Text = "Tutup"
         '
@@ -1016,10 +828,8 @@ Partial Class POInternalDesign
         Me.Panel3.Controls.Add(Me.Label26)
         Me.Panel3.Controls.Add(Me.TidDetailPoPrt)
         Me.Panel3.Controls.Add(Me.PanelP)
-        Me.Panel3.Controls.Add(Me.PanelC)
         Me.Panel3.Controls.Add(Me.CSubKerjaan)
         Me.Panel3.Controls.Add(Me.CPrinting)
-        Me.Panel3.Controls.Add(Me.CCutting)
         Me.Panel3.Controls.Add(Me.TBarang2)
         Me.Panel3.Controls.Add(Me.CMal)
         Me.Panel3.Controls.Add(Me.Label12)
@@ -1028,14 +838,14 @@ Partial Class POInternalDesign
         Me.Panel3.Location = New System.Drawing.Point(62, 221)
         Me.Panel3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(729, 277)
+        Me.Panel3.Size = New System.Drawing.Size(729, 228)
         Me.Panel3.TabIndex = 159
         '
         'idrevisi
         '
         Me.idrevisi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.idrevisi.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.idrevisi.Location = New System.Drawing.Point(622, 220)
+        Me.idrevisi.Location = New System.Drawing.Point(630, 171)
         Me.idrevisi.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.idrevisi.Name = "idrevisi"
         Me.idrevisi.Size = New System.Drawing.Size(23, 26)
@@ -1068,7 +878,7 @@ Partial Class POInternalDesign
         '
         Me.TidFinishing.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TidFinishing.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.TidFinishing.Location = New System.Drawing.Point(559, 231)
+        Me.TidFinishing.Location = New System.Drawing.Point(567, 182)
         Me.TidFinishing.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TidFinishing.Name = "TidFinishing"
         Me.TidFinishing.Size = New System.Drawing.Size(23, 26)
@@ -1090,7 +900,7 @@ Partial Class POInternalDesign
         '
         Me.TidBahan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TidBahan.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.TidBahan.Location = New System.Drawing.Point(474, 187)
+        Me.TidBahan.Location = New System.Drawing.Point(482, 138)
         Me.TidBahan.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TidBahan.Name = "TidBahan"
         Me.TidBahan.Size = New System.Drawing.Size(23, 26)
@@ -1100,7 +910,7 @@ Partial Class POInternalDesign
         'CBahan
         '
         Me.CBahan.FormattingEnabled = True
-        Me.CBahan.Location = New System.Drawing.Point(182, 187)
+        Me.CBahan.Location = New System.Drawing.Point(190, 138)
         Me.CBahan.Name = "CBahan"
         Me.CBahan.Size = New System.Drawing.Size(283, 28)
         Me.CBahan.TabIndex = 54
@@ -1109,7 +919,7 @@ Partial Class POInternalDesign
         '
         Me.Label27.AutoSize = True
         Me.Label27.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label27.Location = New System.Drawing.Point(161, 188)
+        Me.Label27.Location = New System.Drawing.Point(169, 139)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(13, 19)
         Me.Label27.TabIndex = 53
@@ -1119,7 +929,7 @@ Partial Class POInternalDesign
         '
         Me.Label28.AutoSize = True
         Me.Label28.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label28.Location = New System.Drawing.Point(25, 188)
+        Me.Label28.Location = New System.Drawing.Point(33, 139)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(60, 19)
         Me.Label28.TabIndex = 52
@@ -1140,7 +950,7 @@ Partial Class POInternalDesign
         '
         Me.TFinishing.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TFinishing.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.TFinishing.Location = New System.Drawing.Point(182, 228)
+        Me.TFinishing.Location = New System.Drawing.Point(190, 179)
         Me.TFinishing.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.TFinishing.Name = "TFinishing"
         Me.TFinishing.Size = New System.Drawing.Size(371, 26)
@@ -1150,7 +960,7 @@ Partial Class POInternalDesign
         '
         Me.Label22.AutoSize = True
         Me.Label22.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label22.Location = New System.Drawing.Point(161, 232)
+        Me.Label22.Location = New System.Drawing.Point(169, 183)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(13, 19)
         Me.Label22.TabIndex = 50
@@ -1160,7 +970,7 @@ Partial Class POInternalDesign
         '
         Me.Label26.AutoSize = True
         Me.Label26.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label26.Location = New System.Drawing.Point(25, 232)
+        Me.Label26.Location = New System.Drawing.Point(33, 183)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(79, 19)
         Me.Label26.TabIndex = 49
@@ -1273,102 +1083,6 @@ Partial Class POInternalDesign
         Me.Label14.TabIndex = 25
         Me.Label14.Text = "JUMLAH"
         '
-        'PanelC
-        '
-        Me.PanelC.Controls.Add(Me.Tp3)
-        Me.PanelC.Controls.Add(Me.Label21)
-        Me.PanelC.Controls.Add(Me.Label20)
-        Me.PanelC.Controls.Add(Me.Tl3)
-        Me.PanelC.Controls.Add(Me.Label19)
-        Me.PanelC.Controls.Add(Me.Tt3)
-        Me.PanelC.Controls.Add(Me.Label18)
-        Me.PanelC.Controls.Add(Me.Tj3)
-        Me.PanelC.Location = New System.Drawing.Point(182, 119)
-        Me.PanelC.Name = "PanelC"
-        Me.PanelC.Size = New System.Drawing.Size(379, 59)
-        Me.PanelC.TabIndex = 47
-        Me.PanelC.Visible = False
-        '
-        'Tp3
-        '
-        Me.Tp3.EditValue = "0"
-        Me.Tp3.Location = New System.Drawing.Point(1, 27)
-        Me.Tp3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Tp3.Name = "Tp3"
-        Me.Tp3.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Tp3.Size = New System.Drawing.Size(88, 26)
-        Me.Tp3.TabIndex = 31
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label21.Location = New System.Drawing.Point(96, 7)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(51, 19)
-        Me.Label21.TabIndex = 32
-        Me.Label21.Text = "LEBAR"
-        '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label20.Location = New System.Drawing.Point(1, 7)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(75, 19)
-        Me.Label20.TabIndex = 30
-        Me.Label20.Text = "PANJANG"
-        '
-        'Tl3
-        '
-        Me.Tl3.EditValue = "0"
-        Me.Tl3.Location = New System.Drawing.Point(96, 27)
-        Me.Tl3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Tl3.Name = "Tl3"
-        Me.Tl3.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Tl3.Size = New System.Drawing.Size(88, 26)
-        Me.Tl3.TabIndex = 33
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label19.Location = New System.Drawing.Point(191, 7)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(56, 19)
-        Me.Label19.TabIndex = 34
-        Me.Label19.Text = "TINGGI"
-        '
-        'Tt3
-        '
-        Me.Tt3.EditValue = "0"
-        Me.Tt3.Location = New System.Drawing.Point(191, 27)
-        Me.Tt3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Tt3.Name = "Tt3"
-        Me.Tt3.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Tt3.Size = New System.Drawing.Size(88, 26)
-        Me.Tt3.TabIndex = 35
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label18.Location = New System.Drawing.Point(286, 7)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(66, 19)
-        Me.Label18.TabIndex = 36
-        Me.Label18.Text = "JUMLAH"
-        '
-        'Tj3
-        '
-        Me.Tj3.EditValue = "0"
-        Me.Tj3.Location = New System.Drawing.Point(286, 27)
-        Me.Tj3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Tj3.Name = "Tj3"
-        Me.Tj3.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.Tj3.Size = New System.Drawing.Size(88, 26)
-        Me.Tj3.TabIndex = 37
-        '
         'CSubKerjaan
         '
         Me.CSubKerjaan.AutoSize = True
@@ -1380,6 +1094,7 @@ Partial Class POInternalDesign
         Me.CSubKerjaan.TabIndex = 40
         Me.CSubKerjaan.Text = "SUB PEKERJAAN"
         Me.CSubKerjaan.UseVisualStyleBackColor = True
+        Me.CSubKerjaan.Visible = False
         '
         'CPrinting
         '
@@ -1393,19 +1108,6 @@ Partial Class POInternalDesign
         Me.CPrinting.TabIndex = 39
         Me.CPrinting.Text = "PRINTING :"
         Me.CPrinting.UseVisualStyleBackColor = True
-        '
-        'CCutting
-        '
-        Me.CCutting.AutoSize = True
-        Me.CCutting.Enabled = False
-        Me.CCutting.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.CCutting.Location = New System.Drawing.Point(74, 140)
-        Me.CCutting.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.CCutting.Name = "CCutting"
-        Me.CCutting.Size = New System.Drawing.Size(107, 23)
-        Me.CCutting.TabIndex = 38
-        Me.CCutting.Text = "CUTTING   :"
-        Me.CCutting.UseVisualStyleBackColor = True
         '
         'TBarang2
         '
@@ -1539,16 +1241,16 @@ Partial Class POInternalDesign
         Me.Label9.TabIndex = 151
         Me.Label9.Text = "PANJANG"
         '
-        'TIdpoprd
+        'TidPO
         '
-        Me.TIdpoprd.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TIdpoprd.Location = New System.Drawing.Point(560, 137)
-        Me.TIdpoprd.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.TIdpoprd.Name = "TIdpoprd"
-        Me.TIdpoprd.ReadOnly = True
-        Me.TIdpoprd.Size = New System.Drawing.Size(54, 23)
-        Me.TIdpoprd.TabIndex = 162
-        Me.TIdpoprd.Visible = False
+        Me.TidPO.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TidPO.Location = New System.Drawing.Point(560, 137)
+        Me.TidPO.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.TidPO.Name = "TidPO"
+        Me.TidPO.ReadOnly = True
+        Me.TidPO.Size = New System.Drawing.Size(54, 23)
+        Me.TidPO.TabIndex = 162
+        Me.TidPO.Visible = False
         '
         'Tl1
         '
@@ -1716,43 +1418,36 @@ Partial Class POInternalDesign
         Me.TabControl1.ResumeLayout(False)
         Me.XtraTabPage1.ResumeLayout(False)
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl3.ResumeLayout(false)
-        CType(Me.GridControl1,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.GridPODsn,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Panel2.ResumeLayout(false)
-        Me.Panel2.PerformLayout
-        CType(Me.TKota.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        Me.PanelAlasan.ResumeLayout(false)
-        Me.PanelAlasan.PerformLayout
-        Me.SplitContainer1.Panel1.ResumeLayout(false)
-        Me.SplitContainer1.Panel2.ResumeLayout(false)
-        CType(Me.SplitContainer1,System.ComponentModel.ISupportInitialize).EndInit
-        Me.SplitContainer1.ResumeLayout(false)
-        Me.Panel3.ResumeLayout(false)
-        Me.Panel3.PerformLayout
-        Me.PanelP.ResumeLayout(false)
-        Me.PanelP.PerformLayout
-        CType(Me.Tj2.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.Tp2.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.Tl2.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.Tt2.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        Me.PanelC.ResumeLayout(false)
-        Me.PanelC.PerformLayout
-        CType(Me.Tp3.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.Tl3.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.Tt3.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.Tj3.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.TToko.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.TBarang1.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.Tp1.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.Tl1.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.Tt1.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.Tj1.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.TBrand.Properties,System.ComponentModel.ISupportInitialize).EndInit
-        Me.ResumeLayout(false)
-        Me.PerformLayout
+        Me.GroupControl3.ResumeLayout(False)
+        Me.GroupControl3.PerformLayout()
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
+        CType(Me.TKota.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelAlasan.ResumeLayout(False)
+        Me.PanelAlasan.PerformLayout()
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
+        Me.PanelP.ResumeLayout(False)
+        Me.PanelP.PerformLayout()
+        CType(Me.Tj2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Tp2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Tl2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Tt2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TToko.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TBarang1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Tp1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Tl1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Tt1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Tj1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TBrand.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
 
-End Sub
+    End Sub
     Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
     Friend WithEvents Bar1 As DevExpress.XtraBars.Bar
     Friend WithEvents BtnEntryDsn As DevExpress.XtraBars.BarButtonItem
@@ -1775,7 +1470,6 @@ End Sub
     Friend WithEvents RbTerima As System.Windows.Forms.RadioButton
     Friend WithEvents SplitContainerControl2 As DevExpress.XtraEditors.SplitContainerControl
     Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents ListDetailPODsn As System.Windows.Forms.ListView
     Friend WithEvents TabControl1 As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents ListPOPrint As System.Windows.Forms.ListView
@@ -1788,29 +1482,7 @@ End Sub
     Friend WithEvents BarButtonItem5 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BarButtonItem6 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BarButtonItem7 As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridPODsn As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents SqlDataSource1 As DevExpress.DataAccess.Sql.SqlDataSource
-    Friend WithEvents colidpo_dsn As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colnopo As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colidklien As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colidkota As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents coltanggal As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents collokasi As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colbrand As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colnope As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents coldeadline_desain As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colselesai_desain As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents coldeadline_ki As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents coltime_closhing As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colkirim_po As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colterima_po As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colkirim_ppic As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colklien As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents coliddtorder As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colidpo_prd As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colPO_Produksi As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents Label29 As System.Windows.Forms.Label
     Friend WithEvents Label30 As System.Windows.Forms.Label
@@ -1850,18 +1522,8 @@ End Sub
     Friend WithEvents Label15 As System.Windows.Forms.Label
     Friend WithEvents Tt2 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label14 As System.Windows.Forms.Label
-    Friend WithEvents PanelC As System.Windows.Forms.Panel
-    Friend WithEvents Tp3 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents Label21 As System.Windows.Forms.Label
-    Friend WithEvents Label20 As System.Windows.Forms.Label
-    Friend WithEvents Tl3 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents Label19 As System.Windows.Forms.Label
-    Friend WithEvents Tt3 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents Label18 As System.Windows.Forms.Label
-    Friend WithEvents Tj3 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents CSubKerjaan As System.Windows.Forms.CheckBox
     Friend WithEvents CPrinting As System.Windows.Forms.CheckBox
-    Friend WithEvents CCutting As System.Windows.Forms.CheckBox
     Friend WithEvents TBarang2 As System.Windows.Forms.TextBox
     Friend WithEvents CMal As System.Windows.Forms.CheckBox
     Friend WithEvents Label12 As System.Windows.Forms.Label
@@ -1875,7 +1537,7 @@ End Sub
     Friend WithEvents TIdToko As System.Windows.Forms.TextBox
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label
-    Friend WithEvents TIdpoprd As System.Windows.Forms.TextBox
+    Friend WithEvents TidPO As System.Windows.Forms.TextBox
     Friend WithEvents Tl1 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
@@ -1890,5 +1552,10 @@ End Sub
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents TBrand As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TidPE As System.Windows.Forms.TextBox
+    Friend WithEvents ListPODsn As System.Windows.Forms.ListView
+    Friend WithEvents FilterPekerjaan As System.Windows.Forms.CheckBox
+    Friend WithEvents CbOnprogress As System.Windows.Forms.CheckBox
+    Friend WithEvents TidPoDsn As System.Windows.Forms.TextBox
+    Friend WithEvents ListDetailPODsn As System.Windows.Forms.ListView
 
 End Class

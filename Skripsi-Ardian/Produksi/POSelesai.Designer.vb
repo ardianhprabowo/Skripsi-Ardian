@@ -36,7 +36,6 @@ Partial Class POSelesai
         Me.colKlien = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colidpo_prd = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.coliddtorder = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colidpe = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colidstatus_proyek = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.coltime_closhing = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colProduksiSelesai = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -50,18 +49,16 @@ Partial Class POSelesai
         Me.GridControl1.DataMember = "Query"
         Me.GridControl1.DataSource = Me.SqlDataSource1
         Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.GridControl1.Location = New System.Drawing.Point(0, 0)
         Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(847, 265)
+        Me.GridControl1.Size = New System.Drawing.Size(968, 354)
         Me.GridControl1.TabIndex = 2
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'SqlDataSource1
         '
-        Me.SqlDataSource1.ConnectionName = "localhost_geogiven_vm_Connection-Kantor"
+        Me.SqlDataSource1.ConnectionName = "127.0.0.1_skripsi_Connection"
         Me.SqlDataSource1.Name = "SqlDataSource1"
         CustomSqlQuery1.Name = "Query"
         CustomSqlQuery1.Sql = resources.GetString("CustomSqlQuery1.Sql")
@@ -70,108 +67,102 @@ Partial Class POSelesai
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.colHAL, Me.colBrand, Me.colDeadlineProduksi, Me.colKlien, Me.colidpo_prd, Me.coliddtorder, Me.colidpe, Me.colidstatus_proyek, Me.coltime_closhing, Me.colProduksiSelesai})
-        Me.GridView1.DetailHeight = 268
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.colHAL, Me.colBrand, Me.colDeadlineProduksi, Me.colKlien, Me.colidpo_prd, Me.coliddtorder, Me.colidstatus_proyek, Me.coltime_closhing, Me.colProduksiSelesai})
+        Me.GridView1.DetailHeight = 357
+        Me.GridView1.FixedLineWidth = 3
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
         '
         'GridColumn1
         '
-        Me.GridColumn1.FieldName = "NO. PE"
-        Me.GridColumn1.MinWidth = 21
+        Me.GridColumn1.FieldName = "NOPE"
+        Me.GridColumn1.MinWidth = 24
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 81
+        Me.GridColumn1.Width = 157
         '
         'GridColumn2
         '
-        Me.GridColumn2.FieldName = "NO. PO"
-        Me.GridColumn2.MinWidth = 21
+        Me.GridColumn2.FieldName = "NOPO"
+        Me.GridColumn2.MinWidth = 24
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 81
+        Me.GridColumn2.Width = 157
         '
         'colHAL
         '
         Me.colHAL.FieldName = "HAL"
-        Me.colHAL.MinWidth = 21
+        Me.colHAL.MinWidth = 24
         Me.colHAL.Name = "colHAL"
         Me.colHAL.Visible = True
         Me.colHAL.VisibleIndex = 2
-        Me.colHAL.Width = 81
+        Me.colHAL.Width = 157
         '
         'colBrand
         '
-        Me.colBrand.FieldName = "Brand"
-        Me.colBrand.MinWidth = 21
+        Me.colBrand.FieldName = "BRAND"
+        Me.colBrand.MinWidth = 24
         Me.colBrand.Name = "colBrand"
         Me.colBrand.Visible = True
         Me.colBrand.VisibleIndex = 3
-        Me.colBrand.Width = 81
+        Me.colBrand.Width = 157
         '
         'colDeadlineProduksi
         '
-        Me.colDeadlineProduksi.FieldName = "Deadline Produksi"
-        Me.colDeadlineProduksi.MinWidth = 21
+        Me.colDeadlineProduksi.FieldName = "DEADLINE_PRODUKSI"
+        Me.colDeadlineProduksi.MinWidth = 24
         Me.colDeadlineProduksi.Name = "colDeadlineProduksi"
         Me.colDeadlineProduksi.Visible = True
         Me.colDeadlineProduksi.VisibleIndex = 4
-        Me.colDeadlineProduksi.Width = 81
+        Me.colDeadlineProduksi.Width = 178
         '
         'colKlien
         '
-        Me.colKlien.FieldName = "Klien"
-        Me.colKlien.MinWidth = 21
+        Me.colKlien.FieldName = "KLIEN"
+        Me.colKlien.MinWidth = 24
         Me.colKlien.Name = "colKlien"
         Me.colKlien.Visible = True
         Me.colKlien.VisibleIndex = 5
-        Me.colKlien.Width = 81
+        Me.colKlien.Width = 72
         '
         'colidpo_prd
         '
-        Me.colidpo_prd.FieldName = "idpo_prd"
-        Me.colidpo_prd.MinWidth = 21
+        Me.colidpo_prd.FieldName = "IDPO_PRD"
+        Me.colidpo_prd.MinWidth = 24
         Me.colidpo_prd.Name = "colidpo_prd"
-        Me.colidpo_prd.Width = 81
+        Me.colidpo_prd.Width = 93
         '
         'coliddtorder
         '
-        Me.coliddtorder.FieldName = "iddtorder"
-        Me.coliddtorder.MinWidth = 21
+        Me.coliddtorder.FieldName = "IDDTORDER"
+        Me.coliddtorder.MinWidth = 24
         Me.coliddtorder.Name = "coliddtorder"
-        Me.coliddtorder.Width = 81
-        '
-        'colidpe
-        '
-        Me.colidpe.FieldName = "idpe"
-        Me.colidpe.MinWidth = 21
-        Me.colidpe.Name = "colidpe"
-        Me.colidpe.Width = 81
+        Me.coliddtorder.Width = 93
         '
         'colidstatus_proyek
         '
-        Me.colidstatus_proyek.FieldName = "idstatus_proyek"
-        Me.colidstatus_proyek.MinWidth = 21
+        Me.colidstatus_proyek.FieldName = "IDSTATUS_PROYEK"
+        Me.colidstatus_proyek.MinWidth = 24
         Me.colidstatus_proyek.Name = "colidstatus_proyek"
-        Me.colidstatus_proyek.Width = 81
+        Me.colidstatus_proyek.Width = 93
         '
         'coltime_closhing
         '
-        Me.coltime_closhing.FieldName = "time_closhing"
-        Me.coltime_closhing.MinWidth = 21
+        Me.coltime_closhing.FieldName = "TIME_CLOSHING"
+        Me.coltime_closhing.MinWidth = 24
         Me.coltime_closhing.Name = "coltime_closhing"
-        Me.coltime_closhing.Width = 81
+        Me.coltime_closhing.Width = 93
         '
         'colProduksiSelesai
         '
-        Me.colProduksiSelesai.FieldName = "Produksi Selesai"
-        Me.colProduksiSelesai.MinWidth = 21
+        Me.colProduksiSelesai.FieldName = "SELESAI PRODUKSi"
+        Me.colProduksiSelesai.MinWidth = 24
         Me.colProduksiSelesai.Name = "colProduksiSelesai"
         Me.colProduksiSelesai.Visible = True
         Me.colProduksiSelesai.VisibleIndex = 6
-        Me.colProduksiSelesai.Width = 81
+        Me.colProduksiSelesai.Width = 222
         '
         'WindowsUIButtonPanel1
         '
@@ -180,20 +171,22 @@ Partial Class POSelesai
         WindowsUIButtonImageOptions3.Image = CType(resources.GetObject("WindowsUIButtonImageOptions3.Image"), System.Drawing.Image)
         Me.WindowsUIButtonPanel1.Buttons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraBars.Docking2010.WindowsUIButton("REFRESH", True, WindowsUIButtonImageOptions1, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False), New DevExpress.XtraBars.Docking2010.WindowsUIButton("CETAK", True, WindowsUIButtonImageOptions2, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False), New DevExpress.XtraBars.Docking2010.WindowsUISeparator(), New DevExpress.XtraBars.Docking2010.WindowsUIButton("EXIT", True, WindowsUIButtonImageOptions3, DevExpress.XtraBars.Docking2010.ButtonStyle.PushButton, "", -1, True, Nothing, True, False, True, Nothing, -1, False)})
         Me.WindowsUIButtonPanel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.WindowsUIButtonPanel1.Location = New System.Drawing.Point(0, 265)
+        Me.WindowsUIButtonPanel1.Location = New System.Drawing.Point(0, 354)
+        Me.WindowsUIButtonPanel1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.WindowsUIButtonPanel1.Name = "WindowsUIButtonPanel1"
-        Me.WindowsUIButtonPanel1.Size = New System.Drawing.Size(847, 73)
+        Me.WindowsUIButtonPanel1.Size = New System.Drawing.Size(968, 97)
         Me.WindowsUIButtonPanel1.TabIndex = 3
         Me.WindowsUIButtonPanel1.Text = "WindowsUIButtonPanel1"
         '
         'POSelesai
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.GridControl1)
         Me.Controls.Add(Me.WindowsUIButtonPanel1)
+        Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "POSelesai"
-        Me.Size = New System.Drawing.Size(847, 338)
+        Me.Size = New System.Drawing.Size(968, 451)
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -209,7 +202,6 @@ Partial Class POSelesai
     Friend WithEvents colKlien As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colidpo_prd As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents coliddtorder As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colidpe As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colidstatus_proyek As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents coltime_closhing As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colProduksiSelesai As DevExpress.XtraGrid.Columns.GridColumn
