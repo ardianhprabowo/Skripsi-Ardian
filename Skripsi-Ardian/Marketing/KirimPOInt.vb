@@ -420,7 +420,7 @@ Public Class KirimPOInt
         GGVM_conn()
 
         s = ""
-        s = s & " select if (lokasi is null,'', lokasi)as lks from po_produksi"
+        s = s & " select if (kirim_po is null,'', kirim_po)as lks from po_produksi"
         s = s & " where idpo_prd='" & ListPOPrd.Items(brske).SubItems(5).Text & "'"
         da = New OdbcDataAdapter(s, conn)
         'ds.Clear()

@@ -244,6 +244,7 @@ Partial Class StatusSurvei
         Me.TQtyMaterial.Name = "TQtyMaterial"
         Me.TQtyMaterial.Size = New System.Drawing.Size(64, 27)
         Me.TQtyMaterial.TabIndex = 4
+        Me.TQtyMaterial.Text = "1"
         '
         'BtnAddMaterial
         '
@@ -707,13 +708,14 @@ Partial Class StatusSurvei
         Me.BtnSimpanPE.Appearance.Options.UseFont = True
         Me.BtnSimpanPE.Enabled = False
         Me.BtnSimpanPE.ImageOptions.SvgImage = CType(resources.GetObject("BtnSimpanPE.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
-        Me.BtnSimpanPE.Location = New System.Drawing.Point(435, 341)
+        Me.BtnSimpanPE.Location = New System.Drawing.Point(462, 341)
         Me.BtnSimpanPE.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.BtnSimpanPE.MaximumSize = New System.Drawing.Size(143, 60)
         Me.BtnSimpanPE.Name = "BtnSimpanPE"
         Me.BtnSimpanPE.Size = New System.Drawing.Size(143, 60)
         Me.BtnSimpanPE.TabIndex = 182
         Me.BtnSimpanPE.Text = "SIMPAN" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "PENAWARAN"
+        Me.BtnSimpanPE.Visible = False
         '
         'BtnHitungPE
         '
@@ -730,7 +732,6 @@ Partial Class StatusSurvei
         Me.BtnHitungPE.Text = "HITUNG"
         Me.BtnHitungPE.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
         Me.BtnHitungPE.UseVisualStyleBackColor = True
-        Me.BtnHitungPE.Visible = False
         '
         'TJmlTK
         '

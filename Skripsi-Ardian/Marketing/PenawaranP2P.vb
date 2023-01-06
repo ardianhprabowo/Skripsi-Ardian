@@ -250,6 +250,11 @@ Public Class PenawaranP2P
         TJabatanP.Text = ListPE.Items(brs).SubItems(14).Text
         TSetuju.Text = ListPE.Items(brs).SubItems(15).Text
         TJabatanS.Text = ListPE.Items(brs).SubItems(16).Text
+        If TIdPE.Text <> "" Then
+            BtnCetak.Enabled = True
+        Else
+            BtnCetak.Enabled = False
+        End If
         GGVM_conn()
         s = " SELECT if( nope like '%GGVM%','1',nope) as nope1 FROM proyek where idpe = '" & TIdPE.Text & "' "
         da = New OdbcDataAdapter(s, conn)
@@ -294,7 +299,7 @@ Public Class PenawaranP2P
         Dim ada As Boolean
         Dim brs, jmldt As Integer
         Dim c, s As String
-        Dim tbl As DataTable
+        Dim tbl As New DataTable
 
         ada = False
         jmldt = 0
@@ -376,11 +381,11 @@ Public Class PenawaranP2P
         tbl.Clear()
         da.Fill(tbl)
 
-        c = ""
-        c = c & " update prd_detail_penawaran set "
-        c = c & " idpe ='" & tbl.Rows(0)("id") & "'"
-        c = c & " where iddtorder = '" & ListDO.Items(brs).SubItems(8).Text & "'"
-        cmd = New OdbcCommand(c, conn)
+        sql = ""
+        sql = sql & " update prd_detail_penawaran set "
+        sql = sql & " idpe ='" & tbl.Rows(0)("id") & "'"
+        sql = sql & " where iddtorder = '" & ListDO.Items(brs).SubItems(8).Text & "'"
+        cmd = New OdbcCommand(sql, conn)
         cmd.ExecuteNonQuery()
 
         c = ""
@@ -506,41 +511,41 @@ Public Class PenawaranP2P
     Private Sub BtnCetak_Click(sender As Object, e As EventArgs) Handles BtnCetak.Click
         'Dim f As New FrmCetak
         'Dim cmd As New OdbcCommand
-        'Dim ada As Boolean
-        'Dim brs, jmldt As Integer
+        Dim ada As Boolean
+        Dim brs, jmldt As Integer
 
-        'ada = False
-        'jmldt = 0
-        'For i = 0 To ListPE.Items.Count - 1
-        '    If ListPE.Items(i).Checked = True Then
-        '        ada = True
-        '        brs = i
-        '        jmldt = jmldt + 1
-        '    End If
-        'Next
+        ada = False
+        jmldt = 0
+        For i = 0 To ListPE.Items.Count - 1
+            If ListPE.Items(i).Checked = True Then
+                ada = True
+                brs = i
+                jmldt = jmldt + 1
+            End If
+        Next
 
-        'If ada = False Then
-        '    MsgBox("Tidak ada data Penawaran yang akan di Cetak, Pilih dulu datanya!!...", MsgBoxStyle.Information, "Information")
-        '    Exit Sub
-        'End If
+        If ada = False Then
+            MsgBox("Tidak ada data Penawaran yang akan di Cetak, Pilih dulu datanya!!...", MsgBoxStyle.Information, "Information")
+            Exit Sub
+        End If
 
-        'If jmldt > 1 Then
-        '    MsgBox("Hanya 1(satu) data PENAWARAN yang bisa Cetak !!...", MsgBoxStyle.Information, "Information")
-        '    Exit Sub
-        'End If
-        'Dim report As New XtraReport
+        If jmldt > 1 Then
+            MsgBox("Hanya 1(satu) data PENAWARAN yang bisa Cetak !!...", MsgBoxStyle.Information, "Information")
+            Exit Sub
+        End If
+        Dim report As New XtraReport
         'If RbGG.Checked = True Then
-        '    report = New PenawaranGG()
+        report = New PenawaranGG()
         'ElseIf RbBIG.Checked = True Then
         '    report = New ReportPenawaranP2P()
         'End If
 
         '' Obtain a parameter and set its value.
-        'report.Parameters("idpe").Value = ListPE.Items(brs).SubItems(9).Text
+        report.Parameters("idpe").Value = ListPE.Items(brs).SubItems(8).Text
 
         '' Hide the Parameters' UI from end-users (if you did not hide it at design time).
-        ''report.Parameters("idpe").Visible = False
-        'report.ShowPreview()
+        report.Parameters("idpe").Visible = False
+        report.ShowPreview()
     End Sub
 
     Private Sub BtnKeluar_Click(sender As Object, e As EventArgs) Handles BtnKeluar.Click
@@ -625,7 +630,7 @@ Public Class PenawaranP2P
             TJabatanS.ReadOnly = True
         End If
 
-        GGVM_conn_close()
-       
+
+
     End Sub
 End Class

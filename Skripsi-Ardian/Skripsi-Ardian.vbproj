@@ -127,12 +127,6 @@
     <Compile Include="Cetak\ReportPenawaranP2P-GG.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Cetak\ReportPenawaranP2P.Designer.vb">
-      <DependentUpon>ReportPenawaranP2P.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Cetak\ReportPenawaranP2P.vb">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Cetak\ReportPOInternalDesain.designer.vb">
       <DependentUpon>ReportPOInternalDesain.vb</DependentUpon>
     </Compile>
@@ -259,9 +253,6 @@
     </Compile>
     <EmbeddedResource Include="Cetak\ReportPenawaranP2P-GG.resx">
       <DependentUpon>ReportPenawaranP2P-GG.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Cetak\ReportPenawaranP2P.resx">
-      <DependentUpon>ReportPenawaranP2P.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Cetak\ReportPOInternalDesain.resx">
       <DependentUpon>ReportPOInternalDesain.vb</DependentUpon>

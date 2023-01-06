@@ -140,7 +140,7 @@ Partial Class DetailToko
         Me.CDeadKirim.AutoSize = True
         Me.CDeadKirim.Enabled = False
         Me.CDeadKirim.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.CDeadKirim.Location = New System.Drawing.Point(16, 248)
+        Me.CDeadKirim.Location = New System.Drawing.Point(13, 248)
         Me.CDeadKirim.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.CDeadKirim.Name = "CDeadKirim"
         Me.CDeadKirim.Size = New System.Drawing.Size(130, 23)
@@ -224,6 +224,7 @@ Partial Class DetailToko
         Me.CSurvei.TabIndex = 81
         Me.CSurvei.Text = "ADA SURVEI"
         Me.CSurvei.UseVisualStyleBackColor = True
+        Me.CSurvei.Visible = False
         '
         'Label25
         '
@@ -267,6 +268,7 @@ Partial Class DetailToko
         Me.BtnCetakFrm.ItemAppearance.Hovered.Options.UseForeColor = True
         Me.BtnCetakFrm.Name = "BtnCetakFrm"
         Me.BtnCetakFrm.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
+        Me.BtnCetakFrm.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         '
         'Bar1
         '
@@ -342,11 +344,11 @@ Partial Class DetailToko
         '
         Me.GroupBox1.Controls.Add(Me.ListBarang)
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox1.Location = New System.Drawing.Point(243, 353)
+        Me.GroupBox1.Location = New System.Drawing.Point(400, 353)
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.GroupBox1.Size = New System.Drawing.Size(980, 172)
+        Me.GroupBox1.Size = New System.Drawing.Size(823, 172)
         Me.GroupBox1.TabIndex = 4
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "DAFTAR BARANG"
@@ -357,7 +359,7 @@ Partial Class DetailToko
         Me.ListBarang.Location = New System.Drawing.Point(3, 24)
         Me.ListBarang.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ListBarang.Name = "ListBarang"
-        Me.ListBarang.Size = New System.Drawing.Size(974, 144)
+        Me.ListBarang.Size = New System.Drawing.Size(817, 144)
         Me.ListBarang.TabIndex = 1
         Me.ListBarang.UseCompatibleStateImageBehavior = False
         '
@@ -429,7 +431,7 @@ Partial Class DetailToko
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(243, 525)
+        Me.GroupControl1.Size = New System.Drawing.Size(400, 525)
         Me.GroupControl1.TabIndex = 5
         Me.GroupControl1.Text = "PILIH TOKO :"
         '
@@ -439,7 +441,7 @@ Partial Class DetailToko
         Me.ListToko.Location = New System.Drawing.Point(2, 29)
         Me.ListToko.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.ListToko.Name = "ListToko"
-        Me.ListToko.Size = New System.Drawing.Size(239, 494)
+        Me.ListToko.Size = New System.Drawing.Size(396, 494)
         Me.ListToko.TabIndex = 1
         Me.ListToko.UseCompatibleStateImageBehavior = False
         '
@@ -488,10 +490,10 @@ Partial Class DetailToko
         Me.GroupControl2.Controls.Add(Me.Label4)
         Me.GroupControl2.Controls.Add(Me.TBarangPrd)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl2.Location = New System.Drawing.Point(243, 0)
+        Me.GroupControl2.Location = New System.Drawing.Point(400, 0)
         Me.GroupControl2.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(980, 353)
+        Me.GroupControl2.Size = New System.Drawing.Size(823, 353)
         Me.GroupControl2.TabIndex = 6
         Me.GroupControl2.Text = "DETAIL TOKO :"
         '

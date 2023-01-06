@@ -26,8 +26,6 @@ Partial Public Class ReportPOInternalP2P
         Dim CustomSqlQuery1 As DevExpress.DataAccess.Sql.CustomSqlQuery = New DevExpress.DataAccess.Sql.CustomSqlQuery()
         Dim QueryParameter1 As DevExpress.DataAccess.Sql.QueryParameter = New DevExpress.DataAccess.Sql.QueryParameter()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReportPOInternalP2P))
-        Dim CustomSqlQuery2 As DevExpress.DataAccess.Sql.CustomSqlQuery = New DevExpress.DataAccess.Sql.CustomSqlQuery()
-        Dim QueryParameter2 As DevExpress.DataAccess.Sql.QueryParameter = New DevExpress.DataAccess.Sql.QueryParameter()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.detailTable = New DevExpress.XtraReports.UI.XRTable()
         Me.detailTableRow = New DevExpress.XtraReports.UI.XRTableRow()
@@ -238,7 +236,7 @@ Partial Public Class ReportPOInternalP2P
         '
         'productDescription
         '
-        Me.productDescription.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[keterangan]")})
+        Me.productDescription.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[KETERANGAN_DETAIL]")})
         Me.productDescription.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold)
         Me.productDescription.Name = "productDescription"
         Me.productDescription.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 5, 5, 100.0!)
@@ -680,7 +678,7 @@ Partial Public Class ReportPOInternalP2P
         '
         'XrTableCell11
         '
-        Me.XrTableCell11.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[tanggal]")})
+        Me.XrTableCell11.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[TANGGAL_PO]")})
         Me.XrTableCell11.Multiline = True
         Me.XrTableCell11.Name = "XrTableCell11"
         Me.XrTableCell11.StylePriority.UseFont = False
@@ -941,15 +939,7 @@ Partial Public Class ReportPOInternalP2P
         QueryParameter1.Value = New DevExpress.DataAccess.Expression("?idpo_prd", GetType(Integer))
         CustomSqlQuery1.Parameters.Add(QueryParameter1)
         CustomSqlQuery1.Sql = resources.GetString("CustomSqlQuery1.Sql")
-        CustomSqlQuery2.Name = "po_klien"
-        QueryParameter2.Name = "idpo_prd"
-        QueryParameter2.Type = GetType(DevExpress.DataAccess.Expression)
-        QueryParameter2.Value = New DevExpress.DataAccess.Expression("?idpo_prd", GetType(Integer))
-        CustomSqlQuery2.Parameters.Add(QueryParameter2)
-        CustomSqlQuery2.Sql = "Select GROUP_CONCAT(b.nopo) as nopo from proyek a " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "INNER JOIN po_klien b on b.id" & _
-    "pe = a.idpe" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "INNER JOIN po_produksi c on c.idpe = a.Idpe" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "where c.idpo_prd = ?id" & _
-    "po_prd" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        Me.SqlDataSource1.Queries.AddRange(New DevExpress.DataAccess.Sql.SqlQuery() {CustomSqlQuery1, CustomSqlQuery2})
+        Me.SqlDataSource1.Queries.AddRange(New DevExpress.DataAccess.Sql.SqlQuery() {CustomSqlQuery1})
         Me.SqlDataSource1.ResultSchemaSerializable = resources.GetString("SqlDataSource1.ResultSchemaSerializable")
         '
         'baseControlStyle
@@ -1175,7 +1165,7 @@ Partial Public Class ReportPOInternalP2P
         '
         'XrTableCell25
         '
-        Me.XrTableCell25.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[deadline_ki]")})
+        Me.XrTableCell25.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DEADLINE_KIRIM]")})
         Me.XrTableCell25.Multiline = True
         Me.XrTableCell25.Name = "XrTableCell25"
         Me.XrTableCell25.StylePriority.UseFont = False
@@ -1366,7 +1356,6 @@ Partial Public Class ReportPOInternalP2P
     Friend WithEvents XrTableCell10 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell31 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrTableCell11 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableRow2 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell12 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell32 As DevExpress.XtraReports.UI.XRTableCell
@@ -1424,4 +1413,5 @@ Partial Public Class ReportPOInternalP2P
     Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrTableCell56 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell11 As DevExpress.XtraReports.UI.XRTableCell
 End Class

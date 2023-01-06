@@ -228,6 +228,7 @@ Partial Class PenawaranP2P
         '
         Me.BtnCetak.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
         Me.BtnCetak.Appearance.Options.UseFont = True
+        Me.BtnCetak.Enabled = False
         Me.BtnCetak.ImageOptions.SvgImage = CType(resources.GetObject("BtnCetak.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.BtnCetak.Location = New System.Drawing.Point(35, 586)
         Me.BtnCetak.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
@@ -236,7 +237,6 @@ Partial Class PenawaranP2P
         Me.BtnCetak.Size = New System.Drawing.Size(173, 80)
         Me.BtnCetak.TabIndex = 115
         Me.BtnCetak.Text = "CETAK PE"
-        Me.BtnCetak.Visible = False
         '
         'Label11
         '

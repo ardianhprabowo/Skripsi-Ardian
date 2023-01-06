@@ -20,14 +20,18 @@ Partial Public Class PenawaranGG
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PenawaranGG))
         Dim XrSummary1 As DevExpress.XtraReports.UI.XRSummary = New DevExpress.XtraReports.UI.XRSummary()
         Dim XrGroupSortingSummary1 As DevExpress.XtraReports.UI.XRGroupSortingSummary = New DevExpress.XtraReports.UI.XRGroupSortingSummary()
+        Dim CustomSqlQuery1 As DevExpress.DataAccess.Sql.CustomSqlQuery = New DevExpress.DataAccess.Sql.CustomSqlQuery()
+        Dim QueryParameter1 As DevExpress.DataAccess.Sql.QueryParameter = New DevExpress.DataAccess.Sql.QueryParameter()
         Dim SelectQuery1 As DevExpress.DataAccess.Sql.SelectQuery = New DevExpress.DataAccess.Sql.SelectQuery()
         Dim Column1 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
         Dim ColumnExpression1 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
         Dim Table1 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
         Dim Column2 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
         Dim ColumnExpression2 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
+        Dim Table2 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
         Dim Column3 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
         Dim ColumnExpression3 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
         Dim Column4 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
@@ -42,111 +46,33 @@ Partial Public Class PenawaranGG
         Dim ColumnExpression8 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
         Dim Column9 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
         Dim ColumnExpression9 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
+        Dim Table3 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
         Dim Column10 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
         Dim ColumnExpression10 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Table2 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
-        Dim Column11 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression11 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Table3 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
-        Dim Column12 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression12 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Column13 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression13 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Column14 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression14 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Column15 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression15 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Column16 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression16 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Column17 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression17 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Column18 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression18 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Column19 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression19 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Column20 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression20 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Table4 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
-        Dim Column21 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression21 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Column22 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression22 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Column23 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression23 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Column24 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression24 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Table5 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
-        Dim Column25 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression25 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Table6 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
-        Dim Column26 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression26 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim QueryParameter1 As DevExpress.DataAccess.Sql.QueryParameter = New DevExpress.DataAccess.Sql.QueryParameter()
+        Dim QueryParameter2 As DevExpress.DataAccess.Sql.QueryParameter = New DevExpress.DataAccess.Sql.QueryParameter()
         Dim Join1 As DevExpress.DataAccess.Sql.Join = New DevExpress.DataAccess.Sql.Join()
         Dim RelationColumnInfo1 As DevExpress.DataAccess.Sql.RelationColumnInfo = New DevExpress.DataAccess.Sql.RelationColumnInfo()
         Dim Join2 As DevExpress.DataAccess.Sql.Join = New DevExpress.DataAccess.Sql.Join()
         Dim RelationColumnInfo2 As DevExpress.DataAccess.Sql.RelationColumnInfo = New DevExpress.DataAccess.Sql.RelationColumnInfo()
+        Dim Table4 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
         Dim Join3 As DevExpress.DataAccess.Sql.Join = New DevExpress.DataAccess.Sql.Join()
         Dim RelationColumnInfo3 As DevExpress.DataAccess.Sql.RelationColumnInfo = New DevExpress.DataAccess.Sql.RelationColumnInfo()
+        Dim SelectQuery2 As DevExpress.DataAccess.Sql.SelectQuery = New DevExpress.DataAccess.Sql.SelectQuery()
+        Dim Column11 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
+        Dim ColumnExpression11 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
+        Dim Table5 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
+        Dim Group1 As DevExpress.DataAccess.Sql.Group = New DevExpress.DataAccess.Sql.Group()
+        Dim ColumnExpression12 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
+        Dim QueryParameter3 As DevExpress.DataAccess.Sql.QueryParameter = New DevExpress.DataAccess.Sql.QueryParameter()
         Dim Join4 As DevExpress.DataAccess.Sql.Join = New DevExpress.DataAccess.Sql.Join()
         Dim RelationColumnInfo4 As DevExpress.DataAccess.Sql.RelationColumnInfo = New DevExpress.DataAccess.Sql.RelationColumnInfo()
+        Dim Table6 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
+        Dim Table7 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
         Dim Join5 As DevExpress.DataAccess.Sql.Join = New DevExpress.DataAccess.Sql.Join()
         Dim RelationColumnInfo5 As DevExpress.DataAccess.Sql.RelationColumnInfo = New DevExpress.DataAccess.Sql.RelationColumnInfo()
-        Dim Table7 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
-        Dim Table8 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
         Dim Join6 As DevExpress.DataAccess.Sql.Join = New DevExpress.DataAccess.Sql.Join()
         Dim RelationColumnInfo6 As DevExpress.DataAccess.Sql.RelationColumnInfo = New DevExpress.DataAccess.Sql.RelationColumnInfo()
-        Dim Join7 As DevExpress.DataAccess.Sql.Join = New DevExpress.DataAccess.Sql.Join()
-        Dim RelationColumnInfo7 As DevExpress.DataAccess.Sql.RelationColumnInfo = New DevExpress.DataAccess.Sql.RelationColumnInfo()
-        Dim SelectQuery2 As DevExpress.DataAccess.Sql.SelectQuery = New DevExpress.DataAccess.Sql.SelectQuery()
-        Dim Column27 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression27 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Table9 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
-        Dim Column28 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression28 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Table10 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
-        Dim Column29 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression29 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Column30 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression30 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Column31 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression31 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Column32 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression32 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Column33 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression33 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Column34 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression34 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Column35 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression35 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Table11 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
-        Dim Column36 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression36 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim QueryParameter2 As DevExpress.DataAccess.Sql.QueryParameter = New DevExpress.DataAccess.Sql.QueryParameter()
-        Dim Join8 As DevExpress.DataAccess.Sql.Join = New DevExpress.DataAccess.Sql.Join()
-        Dim RelationColumnInfo8 As DevExpress.DataAccess.Sql.RelationColumnInfo = New DevExpress.DataAccess.Sql.RelationColumnInfo()
-        Dim Join9 As DevExpress.DataAccess.Sql.Join = New DevExpress.DataAccess.Sql.Join()
-        Dim RelationColumnInfo9 As DevExpress.DataAccess.Sql.RelationColumnInfo = New DevExpress.DataAccess.Sql.RelationColumnInfo()
-        Dim Table12 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
-        Dim Join10 As DevExpress.DataAccess.Sql.Join = New DevExpress.DataAccess.Sql.Join()
-        Dim RelationColumnInfo10 As DevExpress.DataAccess.Sql.RelationColumnInfo = New DevExpress.DataAccess.Sql.RelationColumnInfo()
-        Dim SelectQuery3 As DevExpress.DataAccess.Sql.SelectQuery = New DevExpress.DataAccess.Sql.SelectQuery()
-        Dim Column37 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
-        Dim ColumnExpression37 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim Table13 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
-        Dim Group1 As DevExpress.DataAccess.Sql.Group = New DevExpress.DataAccess.Sql.Group()
-        Dim ColumnExpression38 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
-        Dim QueryParameter3 As DevExpress.DataAccess.Sql.QueryParameter = New DevExpress.DataAccess.Sql.QueryParameter()
-        Dim Join11 As DevExpress.DataAccess.Sql.Join = New DevExpress.DataAccess.Sql.Join()
-        Dim RelationColumnInfo11 As DevExpress.DataAccess.Sql.RelationColumnInfo = New DevExpress.DataAccess.Sql.RelationColumnInfo()
-        Dim Table14 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
-        Dim Table15 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
-        Dim Join12 As DevExpress.DataAccess.Sql.Join = New DevExpress.DataAccess.Sql.Join()
-        Dim RelationColumnInfo12 As DevExpress.DataAccess.Sql.RelationColumnInfo = New DevExpress.DataAccess.Sql.RelationColumnInfo()
-        Dim Join13 As DevExpress.DataAccess.Sql.Join = New DevExpress.DataAccess.Sql.Join()
-        Dim RelationColumnInfo13 As DevExpress.DataAccess.Sql.RelationColumnInfo = New DevExpress.DataAccess.Sql.RelationColumnInfo()
-        Dim Table16 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PenawaranGG))
+        Dim Table8 As DevExpress.DataAccess.Sql.Table = New DevExpress.DataAccess.Sql.Table()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
@@ -219,6 +145,7 @@ Partial Public Class PenawaranGG
         Me.XrTableCell44 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell45 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
+        Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel23 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel24 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel25 = New DevExpress.XtraReports.UI.XRLabel()
@@ -254,25 +181,30 @@ Partial Public Class PenawaranGG
         Me.DetailData3_Odd = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.PageInfo = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.idpe = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.ImageCollection1 = New DevExpress.Utils.ImageCollection(Me.components)
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ImageCollection1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'TopMargin
         '
         Me.TopMargin.BackColor = System.Drawing.Color.White
+        Me.TopMargin.BorderColor = System.Drawing.Color.Black
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPictureBox1})
-        Me.TopMargin.HeightF = 97.92929!
+        Me.TopMargin.HeightF = 120.0!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.StylePriority.UseBackColor = False
+        Me.TopMargin.StylePriority.UseBorderColor = False
         '
         'XrPictureBox1
         '
+        Me.XrPictureBox1.ImageSource = New DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("XrPictureBox1.ImageSource"))
         Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
         Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(100.0!, 100.0!)
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(1167.958!, 120.0!)
         '
         'BottomMargin
         '
@@ -502,8 +434,8 @@ Partial Public Class PenawaranGG
         Me.XrLabel33.Multiline = True
         Me.XrLabel33.Name = "XrLabel33"
         Me.XrLabel33.SizeF = New System.Drawing.SizeF(516.1073!, 36.45834!)
-        Me.XrLabel33.Text = "[keterangan] , Kami dari PT. Geo Given Visi Mandiri" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "mengajukan penawaran sebagai" & _
-    " berikut :"
+        Me.XrLabel33.Text = "[keterangan_PE] , Kami dari PT. Geo Given Visi Mandiri" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "mengajukan penawaran seba" & _
+    "gai berikut :"
         '
         'XrLabel4
         '
@@ -516,7 +448,7 @@ Partial Public Class PenawaranGG
         '
         'XrLabel5
         '
-        Me.XrLabel5.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[nama]")})
+        Me.XrLabel5.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[klien]")})
         Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(20.57676!, 102.3333!)
         Me.XrLabel5.Multiline = True
         Me.XrLabel5.Name = "XrLabel5"
@@ -682,7 +614,7 @@ Partial Public Class PenawaranGG
         '
         Me.XrLabel11.BackColor = System.Drawing.Color.Transparent
         Me.XrLabel11.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel11.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[barang]")})
+        Me.XrLabel11.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[BARANGPE]")})
         Me.XrLabel11.Font = New System.Drawing.Font("Arial", 7.77!)
         Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
         Me.XrLabel11.Multiline = True
@@ -1037,7 +969,7 @@ Partial Public Class PenawaranGG
         '
         Me.XrLabel20.BackColor = System.Drawing.Color.Transparent
         Me.XrLabel20.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel20.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[harga_pe]")})
+        Me.XrLabel20.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[harga_penawaran]")})
         Me.XrLabel20.Font = New System.Drawing.Font("Arial", 7.77!)
         Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(1.041687!, 0.0!)
         Me.XrLabel20.Multiline = True
@@ -1260,11 +1192,23 @@ Partial Public Class PenawaranGG
         '
         'ReportFooter
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel23, Me.XrLabel24, Me.XrLabel25, Me.XrLabel26, Me.XrLabel27, Me.XrLabel28, Me.XrTable3})
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel10, Me.XrLabel23, Me.XrLabel24, Me.XrLabel25, Me.XrLabel26, Me.XrLabel27, Me.XrLabel28, Me.XrTable3})
         Me.ReportFooter.HeightF = 313.3439!
         Me.ReportFooter.KeepTogether = True
         Me.ReportFooter.Name = "ReportFooter"
         Me.ReportFooter.PageBreak = DevExpress.XtraReports.UI.PageBreak.AfterBand
+        '
+        'XrLabel10
+        '
+        Me.XrLabel10.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ACCKLIEN]")})
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(351.5394!, 253.0418!)
+        Me.XrLabel10.Multiline = True
+        Me.XrLabel10.Name = "XrLabel10"
+        Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel10.SizeF = New System.Drawing.SizeF(217.7083!, 23.00002!)
+        Me.XrLabel10.StylePriority.UseTextAlignment = False
+        Me.XrLabel10.Text = "XrLabel10"
+        Me.XrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
         '
         'XrLabel23
         '
@@ -1358,7 +1302,7 @@ Partial Public Class PenawaranGG
         Me.XrLabel28.BackColor = System.Drawing.Color.Transparent
         Me.XrLabel28.BorderColor = System.Drawing.Color.Black
         Me.XrLabel28.Borders = DevExpress.XtraPrinting.BorderSide.Top
-        Me.XrLabel28.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[nama]")})
+        Me.XrLabel28.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[JABATANKLIEN]")})
         Me.XrLabel28.ForeColor = System.Drawing.Color.Black
         Me.XrLabel28.LocationFloat = New DevExpress.Utils.PointFloat(351.5394!, 276.0418!)
         Me.XrLabel28.Multiline = True
@@ -1596,96 +1540,48 @@ Partial Public Class PenawaranGG
         '
         Me.SqlDataSource1.ConnectionName = "127.0.0.1_skripsi_Connection"
         Me.SqlDataSource1.Name = "SqlDataSource1"
+        CustomSqlQuery1.Name = "proyek_1"
+        QueryParameter1.Name = "idpe"
+        QueryParameter1.Type = GetType(DevExpress.DataAccess.Expression)
+        QueryParameter1.Value = New DevExpress.DataAccess.Expression("?idpe", GetType(Integer))
+        CustomSqlQuery1.Parameters.Add(QueryParameter1)
+        CustomSqlQuery1.Sql = resources.GetString("CustomSqlQuery1.Sql")
         ColumnExpression1.ColumnName = "nope"
-        Table1.MetaSerializable = "<Meta X=""30"" Y=""30"" Width=""125"" Height=""503"" />"
+        Table1.MetaSerializable = "<Meta X=""30"" Y=""30"" Width=""125"" Height=""505"" />"
         Table1.Name = "proyek"
         ColumnExpression1.Table = Table1
         Column1.Expression = ColumnExpression1
-        ColumnExpression2.ColumnName = "tanggal"
-        ColumnExpression2.Table = Table1
+        ColumnExpression2.ColumnName = "barang"
+        Table2.MetaSerializable = "<Meta X=""185"" Y=""30"" Width=""125"" Height=""405"" />"
+        Table2.Name = "prd_detail_penawaran"
+        ColumnExpression2.Table = Table2
         Column2.Expression = ColumnExpression2
-        ColumnExpression3.ColumnName = "hal"
-        ColumnExpression3.Table = Table1
+        ColumnExpression3.ColumnName = "panjang_pe"
+        ColumnExpression3.Table = Table2
         Column3.Expression = ColumnExpression3
-        ColumnExpression4.ColumnName = "keterangan"
-        ColumnExpression4.Table = Table1
+        ColumnExpression4.ColumnName = "tinggi_pe"
+        ColumnExpression4.Table = Table2
         Column4.Expression = ColumnExpression4
-        ColumnExpression5.ColumnName = "nominal"
-        ColumnExpression5.Table = Table1
+        ColumnExpression5.ColumnName = "size_pe"
+        ColumnExpression5.Table = Table2
         Column5.Expression = ColumnExpression5
-        ColumnExpression6.ColumnName = "nominal_ppn"
-        ColumnExpression6.Table = Table1
+        ColumnExpression6.ColumnName = "sisi_pe"
+        ColumnExpression6.Table = Table2
         Column6.Expression = ColumnExpression6
-        ColumnExpression7.ColumnName = "grandtotal"
-        ColumnExpression7.Table = Table1
+        ColumnExpression7.ColumnName = "qty_pe"
+        ColumnExpression7.Table = Table2
         Column7.Expression = ColumnExpression7
-        ColumnExpression8.ColumnName = "pembuat"
-        ColumnExpression8.Table = Table1
+        ColumnExpression8.ColumnName = "qty_toko"
+        ColumnExpression8.Table = Table2
         Column8.Expression = ColumnExpression8
-        ColumnExpression9.ColumnName = "jabatanp"
-        ColumnExpression9.Table = Table1
+        ColumnExpression9.ColumnName = "material"
+        Table3.MetaSerializable = "<Meta X=""495"" Y=""30"" Width=""125"" Height=""125"" />"
+        Table3.Name = "prd_material_kontrak"
+        ColumnExpression9.Table = Table3
         Column9.Expression = ColumnExpression9
-        ColumnExpression10.ColumnName = "brand"
-        Table2.MetaSerializable = "<Meta X=""180"" Y=""180"" Width=""125"" Height=""143"" />"
-        Table2.Name = "brand"
+        ColumnExpression10.ColumnName = "lebar_pe"
         ColumnExpression10.Table = Table2
         Column10.Expression = ColumnExpression10
-        ColumnExpression11.ColumnName = "barang"
-        Table3.MetaSerializable = "<Meta X=""495"" Y=""30"" Width=""125"" Height=""403"" />"
-        Table3.Name = "prd_detail_penawaran"
-        ColumnExpression11.Table = Table3
-        Column11.Expression = ColumnExpression11
-        ColumnExpression12.ColumnName = "panjang_pe"
-        ColumnExpression12.Table = Table3
-        Column12.Expression = ColumnExpression12
-        ColumnExpression13.ColumnName = "tinggi_pe"
-        ColumnExpression13.Table = Table3
-        Column13.Expression = ColumnExpression13
-        ColumnExpression14.ColumnName = "lebar_pe"
-        ColumnExpression14.Table = Table3
-        Column14.Expression = ColumnExpression14
-        ColumnExpression15.ColumnName = "size_pe"
-        ColumnExpression15.Table = Table3
-        Column15.Expression = ColumnExpression15
-        ColumnExpression16.ColumnName = "sisi_pe"
-        ColumnExpression16.Table = Table3
-        Column16.Expression = ColumnExpression16
-        ColumnExpression17.ColumnName = "measure_pe"
-        ColumnExpression17.Table = Table3
-        Column17.Expression = ColumnExpression17
-        ColumnExpression18.ColumnName = "harga_barang"
-        ColumnExpression18.Table = Table3
-        Column18.Expression = ColumnExpression18
-        ColumnExpression19.ColumnName = "harga_pe"
-        ColumnExpression19.Table = Table3
-        Column19.Expression = ColumnExpression19
-        ColumnExpression20.ColumnName = "material"
-        Table4.MetaSerializable = "<Meta X=""670"" Y=""190"" Width=""125"" Height=""123"" />"
-        Table4.Name = "prd_material_kontrak"
-        ColumnExpression20.Table = Table4
-        Column20.Expression = ColumnExpression20
-        ColumnExpression21.ColumnName = "Idpe"
-        ColumnExpression21.Table = Table1
-        Column21.Expression = ColumnExpression21
-        ColumnExpression22.ColumnName = "qty_pe"
-        ColumnExpression22.Table = Table3
-        Column22.Expression = ColumnExpression22
-        ColumnExpression23.ColumnName = "qty_toko"
-        ColumnExpression23.Table = Table3
-        Column23.Expression = ColumnExpression23
-        ColumnExpression24.ColumnName = "nama"
-        Table5.MetaSerializable = "<Meta X=""340"" Y=""150"" Width=""125"" Height=""503"" />"
-        Table5.Name = "klien"
-        ColumnExpression24.Table = Table5
-        Column24.Expression = ColumnExpression24
-        ColumnExpression25.ColumnName = "toko"
-        Table6.MetaSerializable = "<Meta X=""1135"" Y=""30"" Width=""125"" Height=""223"" />"
-        Table6.Name = "prd_toko"
-        ColumnExpression25.Table = Table6
-        Column25.Expression = ColumnExpression25
-        ColumnExpression26.ColumnName = "alamat"
-        ColumnExpression26.Table = Table5
-        Column26.Expression = ColumnExpression26
         SelectQuery1.Columns.Add(Column1)
         SelectQuery1.Columns.Add(Column2)
         SelectQuery1.Columns.Add(Column3)
@@ -1696,209 +1592,83 @@ Partial Public Class PenawaranGG
         SelectQuery1.Columns.Add(Column8)
         SelectQuery1.Columns.Add(Column9)
         SelectQuery1.Columns.Add(Column10)
-        SelectQuery1.Columns.Add(Column11)
-        SelectQuery1.Columns.Add(Column12)
-        SelectQuery1.Columns.Add(Column13)
-        SelectQuery1.Columns.Add(Column14)
-        SelectQuery1.Columns.Add(Column15)
-        SelectQuery1.Columns.Add(Column16)
-        SelectQuery1.Columns.Add(Column17)
-        SelectQuery1.Columns.Add(Column18)
-        SelectQuery1.Columns.Add(Column19)
-        SelectQuery1.Columns.Add(Column20)
-        SelectQuery1.Columns.Add(Column21)
-        SelectQuery1.Columns.Add(Column22)
-        SelectQuery1.Columns.Add(Column23)
-        SelectQuery1.Columns.Add(Column24)
-        SelectQuery1.Columns.Add(Column25)
-        SelectQuery1.Columns.Add(Column26)
         SelectQuery1.FilterString = "[proyek.Idpe] = ?idpe"
         SelectQuery1.GroupFilterString = ""
-        SelectQuery1.Name = "proyek_1"
-        QueryParameter1.Name = "idpe"
-        QueryParameter1.Type = GetType(DevExpress.DataAccess.Expression)
-        QueryParameter1.Value = New DevExpress.DataAccess.Expression("?idpe", GetType(Integer))
-        SelectQuery1.Parameters.Add(QueryParameter1)
-        RelationColumnInfo1.NestedKeyColumn = "idbrand"
-        RelationColumnInfo1.ParentKeyColumn = "idbrand"
-        Join1.KeyColumns.Add(RelationColumnInfo1)
-        Join1.Nested = Table2
-        Join1.Parent = Table1
-        RelationColumnInfo2.NestedKeyColumn = "idpe"
-        RelationColumnInfo2.ParentKeyColumn = "Idpe"
-        Join2.KeyColumns.Add(RelationColumnInfo2)
-        Join2.Nested = Table3
-        Join2.Parent = Table1
-        RelationColumnInfo3.NestedKeyColumn = "idmaterial"
-        RelationColumnInfo3.ParentKeyColumn = "idmaterial"
-        Join3.KeyColumns.Add(RelationColumnInfo3)
-        Join3.Nested = Table4
-        Join3.Parent = Table3
-        RelationColumnInfo4.NestedKeyColumn = "id"
-        RelationColumnInfo4.ParentKeyColumn = "idklien"
-        Join4.KeyColumns.Add(RelationColumnInfo4)
-        Join4.Nested = Table5
-        Join4.Parent = Table1
-        RelationColumnInfo5.NestedKeyColumn = "idkirim"
-        RelationColumnInfo5.ParentKeyColumn = "idkirim"
-        Join5.KeyColumns.Add(RelationColumnInfo5)
-        Table7.MetaSerializable = "<Meta X=""980"" Y=""30"" Width=""125"" Height=""143"" />"
-        Table7.Name = "prd_kirim_dataorder"
-        Join5.Nested = Table7
-        Table8.MetaSerializable = "<Meta X=""825"" Y=""30"" Width=""125"" Height=""823"" />"
-        Table8.Name = "prd_trans_detaildo_kirim"
-        Join5.Parent = Table8
-        Join5.Type = DevExpress.Xpo.DB.JoinType.LeftOuter
-        RelationColumnInfo6.NestedKeyColumn = "iddetailpe"
-        RelationColumnInfo6.ParentKeyColumn = "iddetailpe"
-        Join6.KeyColumns.Add(RelationColumnInfo6)
-        Join6.Nested = Table8
-        Join6.Parent = Table3
-        Join6.Type = DevExpress.Xpo.DB.JoinType.LeftOuter
-        RelationColumnInfo7.NestedKeyColumn = "idtoko"
-        RelationColumnInfo7.ParentKeyColumn = "idtoko"
-        Join7.KeyColumns.Add(RelationColumnInfo7)
-        Join7.Nested = Table6
-        Join7.Parent = Table7
-        Join7.Type = DevExpress.Xpo.DB.JoinType.LeftOuter
-        SelectQuery1.Relations.Add(Join1)
-        SelectQuery1.Relations.Add(Join2)
-        SelectQuery1.Relations.Add(Join3)
-        SelectQuery1.Relations.Add(Join4)
-        SelectQuery1.Relations.Add(Join5)
-        SelectQuery1.Relations.Add(Join6)
-        SelectQuery1.Relations.Add(Join7)
-        SelectQuery1.Tables.Add(Table1)
-        SelectQuery1.Tables.Add(Table2)
-        SelectQuery1.Tables.Add(Table3)
-        SelectQuery1.Tables.Add(Table4)
-        SelectQuery1.Tables.Add(Table5)
-        SelectQuery1.Tables.Add(Table8)
-        SelectQuery1.Tables.Add(Table7)
-        SelectQuery1.Tables.Add(Table6)
-        ColumnExpression27.ColumnName = "nope"
-        Table9.MetaSerializable = "<Meta X=""30"" Y=""30"" Width=""125"" Height=""505"" />"
-        Table9.Name = "proyek"
-        ColumnExpression27.Table = Table9
-        Column27.Expression = ColumnExpression27
-        ColumnExpression28.ColumnName = "barang"
-        Table10.MetaSerializable = "<Meta X=""185"" Y=""30"" Width=""125"" Height=""405"" />"
-        Table10.Name = "prd_detail_penawaran"
-        ColumnExpression28.Table = Table10
-        Column28.Expression = ColumnExpression28
-        ColumnExpression29.ColumnName = "panjang_pe"
-        ColumnExpression29.Table = Table10
-        Column29.Expression = ColumnExpression29
-        ColumnExpression30.ColumnName = "tinggi_pe"
-        ColumnExpression30.Table = Table10
-        Column30.Expression = ColumnExpression30
-        ColumnExpression31.ColumnName = "size_pe"
-        ColumnExpression31.Table = Table10
-        Column31.Expression = ColumnExpression31
-        ColumnExpression32.ColumnName = "sisi_pe"
-        ColumnExpression32.Table = Table10
-        Column32.Expression = ColumnExpression32
-        ColumnExpression33.ColumnName = "qty_pe"
-        ColumnExpression33.Table = Table10
-        Column33.Expression = ColumnExpression33
-        ColumnExpression34.ColumnName = "qty_toko"
-        ColumnExpression34.Table = Table10
-        Column34.Expression = ColumnExpression34
-        ColumnExpression35.ColumnName = "material"
-        Table11.MetaSerializable = "<Meta X=""495"" Y=""30"" Width=""125"" Height=""125"" />"
-        Table11.Name = "prd_material_kontrak"
-        ColumnExpression35.Table = Table11
-        Column35.Expression = ColumnExpression35
-        ColumnExpression36.ColumnName = "lebar_pe"
-        ColumnExpression36.Table = Table10
-        Column36.Expression = ColumnExpression36
-        SelectQuery2.Columns.Add(Column27)
-        SelectQuery2.Columns.Add(Column28)
-        SelectQuery2.Columns.Add(Column29)
-        SelectQuery2.Columns.Add(Column30)
-        SelectQuery2.Columns.Add(Column31)
-        SelectQuery2.Columns.Add(Column32)
-        SelectQuery2.Columns.Add(Column33)
-        SelectQuery2.Columns.Add(Column34)
-        SelectQuery2.Columns.Add(Column35)
-        SelectQuery2.Columns.Add(Column36)
-        SelectQuery2.FilterString = "[proyek.Idpe] = ?idpe"
-        SelectQuery2.GroupFilterString = ""
-        SelectQuery2.Name = "Detail PE"
+        SelectQuery1.Name = "Detail PE"
         QueryParameter2.Name = "idpe"
         QueryParameter2.Type = GetType(DevExpress.DataAccess.Expression)
         QueryParameter2.Value = New DevExpress.DataAccess.Expression("?idpe", GetType(Integer))
-        SelectQuery2.Parameters.Add(QueryParameter2)
-        RelationColumnInfo8.NestedKeyColumn = "idpe"
-        RelationColumnInfo8.ParentKeyColumn = "Idpe"
-        Join8.KeyColumns.Add(RelationColumnInfo8)
-        Join8.Nested = Table10
-        Join8.Parent = Table9
-        RelationColumnInfo9.NestedKeyColumn = "idbarang"
-        RelationColumnInfo9.ParentKeyColumn = "idbarang"
-        Join9.KeyColumns.Add(RelationColumnInfo9)
-        Table12.MetaSerializable = "<Meta X=""340"" Y=""30"" Width=""125"" Height=""485"" />"
-        Table12.Name = "barang"
-        Join9.Nested = Table12
-        Join9.Parent = Table10
-        RelationColumnInfo10.NestedKeyColumn = "idmaterial"
-        RelationColumnInfo10.ParentKeyColumn = "idmaterial"
-        Join10.KeyColumns.Add(RelationColumnInfo10)
-        Join10.Nested = Table11
-        Join10.Parent = Table10
-        SelectQuery2.Relations.Add(Join8)
-        SelectQuery2.Relations.Add(Join9)
-        SelectQuery2.Relations.Add(Join10)
-        SelectQuery2.Tables.Add(Table9)
-        SelectQuery2.Tables.Add(Table10)
-        SelectQuery2.Tables.Add(Table12)
-        SelectQuery2.Tables.Add(Table11)
-        ColumnExpression37.ColumnName = "toko"
-        Table13.MetaSerializable = "<Meta X=""410"" Y=""30"" Width=""125"" Height=""225"" />"
-        Table13.Name = "prd_toko"
-        ColumnExpression37.Table = Table13
-        Column37.Expression = ColumnExpression37
-        SelectQuery3.Columns.Add(Column37)
-        SelectQuery3.FilterString = "[prd_detail_penawaran.idpe] = ?idpe"
-        SelectQuery3.GroupFilterString = ""
-        ColumnExpression38.ColumnName = "toko"
-        ColumnExpression38.Table = Table13
-        Group1.Expression = ColumnExpression38
-        SelectQuery3.Groups.Add(Group1)
-        SelectQuery3.Name = "prd_trans_detaildo_kirim"
+        SelectQuery1.Parameters.Add(QueryParameter2)
+        RelationColumnInfo1.NestedKeyColumn = "idpe"
+        RelationColumnInfo1.ParentKeyColumn = "Idpe"
+        Join1.KeyColumns.Add(RelationColumnInfo1)
+        Join1.Nested = Table2
+        Join1.Parent = Table1
+        RelationColumnInfo2.NestedKeyColumn = "idbarang"
+        RelationColumnInfo2.ParentKeyColumn = "idbarang"
+        Join2.KeyColumns.Add(RelationColumnInfo2)
+        Table4.MetaSerializable = "<Meta X=""340"" Y=""30"" Width=""125"" Height=""485"" />"
+        Table4.Name = "barang"
+        Join2.Nested = Table4
+        Join2.Parent = Table2
+        RelationColumnInfo3.NestedKeyColumn = "idmaterial"
+        RelationColumnInfo3.ParentKeyColumn = "idmaterial"
+        Join3.KeyColumns.Add(RelationColumnInfo3)
+        Join3.Nested = Table3
+        Join3.Parent = Table2
+        SelectQuery1.Relations.Add(Join1)
+        SelectQuery1.Relations.Add(Join2)
+        SelectQuery1.Relations.Add(Join3)
+        SelectQuery1.Tables.Add(Table1)
+        SelectQuery1.Tables.Add(Table2)
+        SelectQuery1.Tables.Add(Table4)
+        SelectQuery1.Tables.Add(Table3)
+        ColumnExpression11.ColumnName = "toko"
+        Table5.MetaSerializable = "<Meta X=""410"" Y=""30"" Width=""125"" Height=""225"" />"
+        Table5.Name = "prd_toko"
+        ColumnExpression11.Table = Table5
+        Column11.Expression = ColumnExpression11
+        SelectQuery2.Columns.Add(Column11)
+        SelectQuery2.FilterString = "[prd_detail_penawaran.idpe] = ?idpe"
+        SelectQuery2.GroupFilterString = ""
+        ColumnExpression12.ColumnName = "toko"
+        ColumnExpression12.Table = Table5
+        Group1.Expression = ColumnExpression12
+        SelectQuery2.Groups.Add(Group1)
+        SelectQuery2.Name = "prd_trans_detaildo_kirim"
         QueryParameter3.Name = "idpe"
         QueryParameter3.Type = GetType(DevExpress.DataAccess.Expression)
         QueryParameter3.Value = New DevExpress.DataAccess.Expression("?idpe", GetType(Integer))
-        SelectQuery3.Parameters.Add(QueryParameter3)
-        RelationColumnInfo11.NestedKeyColumn = "idkirim"
-        RelationColumnInfo11.ParentKeyColumn = "idkirim"
-        Join11.KeyColumns.Add(RelationColumnInfo11)
-        Table14.MetaSerializable = "<Meta X=""255"" Y=""30"" Width=""125"" Height=""145"" />"
-        Table14.Name = "prd_kirim_dataorder"
-        Join11.Nested = Table14
-        Table15.MetaSerializable = "<Meta X=""100"" Y=""40"" Width=""125"" Height=""465"" />"
-        Table15.Name = "prd_trans_detaildo_kirim"
-        Join11.Parent = Table15
-        RelationColumnInfo12.NestedKeyColumn = "idtoko"
-        RelationColumnInfo12.ParentKeyColumn = "idtoko"
-        Join12.KeyColumns.Add(RelationColumnInfo12)
-        Join12.Nested = Table13
-        Join12.Parent = Table14
-        RelationColumnInfo13.NestedKeyColumn = "iddetailpe"
-        RelationColumnInfo13.ParentKeyColumn = "iddetailpe"
-        Join13.KeyColumns.Add(RelationColumnInfo13)
-        Table16.MetaSerializable = "<Meta X=""565"" Y=""30"" Width=""125"" Height=""405"" />"
-        Table16.Name = "prd_detail_penawaran"
-        Join13.Nested = Table16
-        Join13.Parent = Table15
-        SelectQuery3.Relations.Add(Join11)
-        SelectQuery3.Relations.Add(Join12)
-        SelectQuery3.Relations.Add(Join13)
-        SelectQuery3.Tables.Add(Table15)
-        SelectQuery3.Tables.Add(Table14)
-        SelectQuery3.Tables.Add(Table13)
-        SelectQuery3.Tables.Add(Table16)
-        Me.SqlDataSource1.Queries.AddRange(New DevExpress.DataAccess.Sql.SqlQuery() {SelectQuery1, SelectQuery2, SelectQuery3})
+        SelectQuery2.Parameters.Add(QueryParameter3)
+        RelationColumnInfo4.NestedKeyColumn = "idkirim"
+        RelationColumnInfo4.ParentKeyColumn = "idkirim"
+        Join4.KeyColumns.Add(RelationColumnInfo4)
+        Table6.MetaSerializable = "<Meta X=""255"" Y=""30"" Width=""125"" Height=""145"" />"
+        Table6.Name = "prd_kirim_dataorder"
+        Join4.Nested = Table6
+        Table7.MetaSerializable = "<Meta X=""100"" Y=""40"" Width=""125"" Height=""465"" />"
+        Table7.Name = "prd_trans_detaildo_kirim"
+        Join4.Parent = Table7
+        RelationColumnInfo5.NestedKeyColumn = "idtoko"
+        RelationColumnInfo5.ParentKeyColumn = "idtoko"
+        Join5.KeyColumns.Add(RelationColumnInfo5)
+        Join5.Nested = Table5
+        Join5.Parent = Table6
+        RelationColumnInfo6.NestedKeyColumn = "iddetailpe"
+        RelationColumnInfo6.ParentKeyColumn = "iddetailpe"
+        Join6.KeyColumns.Add(RelationColumnInfo6)
+        Table8.MetaSerializable = "<Meta X=""565"" Y=""30"" Width=""125"" Height=""405"" />"
+        Table8.Name = "prd_detail_penawaran"
+        Join6.Nested = Table8
+        Join6.Parent = Table7
+        SelectQuery2.Relations.Add(Join4)
+        SelectQuery2.Relations.Add(Join5)
+        SelectQuery2.Relations.Add(Join6)
+        SelectQuery2.Tables.Add(Table7)
+        SelectQuery2.Tables.Add(Table6)
+        SelectQuery2.Tables.Add(Table5)
+        SelectQuery2.Tables.Add(Table8)
+        Me.SqlDataSource1.Queries.AddRange(New DevExpress.DataAccess.Sql.SqlQuery() {CustomSqlQuery1, SelectQuery1, SelectQuery2})
         Me.SqlDataSource1.ResultSchemaSerializable = resources.GetString("SqlDataSource1.ResultSchemaSerializable")
         '
         'Title
@@ -1996,6 +1766,10 @@ Partial Public Class PenawaranGG
         Me.idpe.ValueInfo = "0"
         Me.idpe.Visible = False
         '
+        'ImageCollection1
+        '
+        Me.ImageCollection1.ImageStream = CType(resources.GetObject("ImageCollection1.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        '
         'PenawaranGG
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.Detail, Me.GroupHeader3, Me.ReportFooter})
@@ -2004,7 +1778,7 @@ Partial Public Class PenawaranGG
         Me.DataSource = Me.SqlDataSource1
         Me.Font = New System.Drawing.Font("Times New Roman", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Landscape = True
-        Me.Margins = New System.Drawing.Printing.Margins(0, 0, 98, 0)
+        Me.Margins = New System.Drawing.Printing.Margins(0, 0, 120, 0)
         Me.PageHeight = 827
         Me.PageWidth = 1169
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
@@ -2020,11 +1794,11 @@ Partial Public Class PenawaranGG
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ImageCollection1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
     Friend WithEvents TopMargin As DevExpress.XtraReports.UI.TopMarginBand
-    Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
     Friend WithEvents BottomMargin As DevExpress.XtraReports.UI.BottomMarginBand
     Friend WithEvents ReportHeader As DevExpress.XtraReports.UI.ReportHeaderBand
     Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
@@ -2130,4 +1904,7 @@ Partial Public Class PenawaranGG
     Friend WithEvents XrLabel26 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel27 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel28 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrPictureBox1 As DevExpress.XtraReports.UI.XRPictureBox
+    Friend WithEvents ImageCollection1 As DevExpress.Utils.ImageCollection
 End Class

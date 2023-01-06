@@ -439,6 +439,7 @@ Partial Class KirimPOInt
         Me.RbAda.TabStop = True
         Me.RbAda.Text = "SUDAH ADA PE"
         Me.RbAda.UseVisualStyleBackColor = True
+        Me.RbAda.Visible = False
         '
         'Label2
         '

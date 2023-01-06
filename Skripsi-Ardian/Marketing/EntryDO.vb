@@ -263,7 +263,7 @@ Public Class EntryDO
 
                 s = ""
                 s = s & " select max(iddtorder)as id from prd_dataorder "
-                da = New System.Data.Odbc.OdbcDataAdapter(s, conn)
+                da = New OdbcDataAdapter(s, conn)
                 tbl = New DataTable
                 tbl.Clear()
                 da.Fill(tbl)

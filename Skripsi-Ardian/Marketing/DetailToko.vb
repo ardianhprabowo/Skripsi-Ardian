@@ -63,12 +63,13 @@ Public Class DetailToko
         ListToko.CheckBoxes = True
         ListToko.Columns.Clear()
         ListToko.Items.Clear()
-        ListToko.Columns.Add("TOKO", 120, HorizontalAlignment.Left)
+        ListToko.Columns.Add("TOKO", 200, HorizontalAlignment.Left)
         ListToko.Columns.Add("KOTA", 150, HorizontalAlignment.Left)
         ListToko.Columns.Add("IDToko", 1, HorizontalAlignment.Left)
         ListToko.Columns.Add("IDKirim", 1, HorizontalAlignment.Left)
         ListToko.Columns.Add("IDDtorder", 1, HorizontalAlignment.Left)
         ListToko.Columns.Add("Survei", 1, HorizontalAlignment.Left)
+        ListToko.Columns.Add("DEADLINEKI", 1, HorizontalAlignment.Left)
     End Sub
     Private Sub TampilToko()
 
@@ -95,6 +96,7 @@ Public Class DetailToko
                     .Add(tbl.Rows(i)("idkirim"))
                     .Add(tbl.Rows(i)("iddtorder"))
                     .Add(tbl.Rows(i)("survei"))
+                    .Add(tbl.Rows(i)("DEADLINE_KI"))
                 End With
             End With
         Next
@@ -164,7 +166,6 @@ Public Class DetailToko
         TSPrd.Text = "1"
         TKetTK.Text = ""
         TQtyPrd.Text = "1"
-
         TNamaTK.Enabled = False
         TKotaTK.Enabled = False
         TBarangPrd.Enabled = False
@@ -176,6 +177,7 @@ Public Class DetailToko
         TQtyPrd.Enabled = False
 
 
+        DTDeadlineImpleTK.Enabled = False
         CDeadKirim.Enabled = False
         CDeadKirim.Checked = False
         CRealImple.Enabled = False
@@ -207,6 +209,8 @@ Public Class DetailToko
         TSPrd.Text = "1"
         TKetTK.Text = ""
         TQtyPrd.Text = "1"
+        CDeadKirim.Checked = False
+        CDeadKirim.Enabled = False
         DTDeadlineImpleTK.Format = DateTimePickerFormat.Custom
         DTDeadlineImpleTK.CustomFormat = "dd/MM/yyyy"
         DTRealImpleTK.Format = DateTimePickerFormat.Custom
@@ -222,6 +226,8 @@ Public Class DetailToko
         TSPrd.Enabled = True
         TQtyPrd.Enabled = True
         TKetTK.Enabled = True
+        DTDeadlineImpleTK.Enabled = True
+        CDeadKirim.Enabled = True
         BtnSimpanDetailTK.Enabled = True
         BtnInsertDetail.Enabled = False
         BtnUpdateDetailTK.Enabled = False
@@ -255,15 +261,15 @@ Public Class DetailToko
         BtnClose.Caption = "BATAL"
         ListToko.Enabled = True
         EditModeTK()
-        If CSurvei.Checked = True Then
-            DTDeadlineImpleTK.Enabled = True
-            DTDeadlineImpleTK.Format = DateTimePickerFormat.Custom
-            DTDeadlineImpleTK.CustomFormat = "dd/MM/yyyy"
-        Else
-            DTDeadlineImpleTK.Enabled = False
-            DTDeadlineImpleTK.Format = DateTimePickerFormat.Custom
-            DTDeadlineImpleTK.CustomFormat = "dd/MM/yyyy"
-        End If
+        'If CSurvei.Checked = True Then
+        '    DTDeadlineImpleTK.Enabled = True
+        '    DTDeadlineImpleTK.Format = DateTimePickerFormat.Custom
+        '    DTDeadlineImpleTK.CustomFormat = "dd/MM/yyyy"
+        'Else
+        '    DTDeadlineImpleTK.Enabled = False
+        '    DTDeadlineImpleTK.Format = DateTimePickerFormat.Custom
+        '    DTDeadlineImpleTK.CustomFormat = "dd/MM/yyyy"
+        'End If
         For Each check As ListViewItem In ListBarang.CheckedItems
             check.Checked = False
         Next
@@ -300,10 +306,8 @@ Public Class DetailToko
                 item.Checked = True
                 tbrs = item.Index
                 If item.Checked = True Then
-
                     BtnInsertDetail.Enabled = True
                 Else
-
                     BtnInsertDetail.Enabled = False
                 End If
             Next
@@ -312,7 +316,8 @@ Public Class DetailToko
         TidToko.Text = ListToko.Items(tbrs).SubItems(2).Text
         TKotaTK.Text = ListToko.Items(tbrs).SubItems(1).Text
         TIdKirimTK.Text = ListToko.Items(tbrs).SubItems(3).Text
-
+        DTDeadlineKirimTK.Text = ListToko.Items(tbrs).SubItems(6).Text
+        CDeadKirim.Checked = True
         If ListToko.Items(tbrs).SubItems(5).Text = "N" Then
             CSurvei.Checked = False
         Else
@@ -329,6 +334,7 @@ Public Class DetailToko
         ListToko.Enabled = False
         'BtnSimpanDetailTK.Enabled = True
         BtnClose.Caption = "BATAL"
+        BtnClose.Enabled = True
     End Sub
 
     Private Sub BtnClose_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BtnClose.ItemClick
@@ -340,6 +346,7 @@ Public Class DetailToko
             ListToko.Items.Clear()
             BtnHapusBarang.Enabled = False
             TampilToko()
+            BtnClose.Enabled = False
             'ElseIf BtnClose.Caption = "TUTUP" Then
 
             '    Me.Enabled = False
@@ -385,9 +392,7 @@ Public Class DetailToko
                 s = ""
                 s = s & " insert into prd_trans_detaildo_kirim (idkirim,iddtorder,idbarang_int,panjang_prd,lebar_prd, "
                 s = s & " tinggi_prd, sisi_prd, qty_prd,"
-                If CSurvei.Checked = True Then
-                    s = s & " deadline_implementasi, "
-                End If
+                s = s & " deadline_implementasi, "
                 If CDeadKirim.Checked = True Then
                     s = s & " deadline_kirim, "
                 End If
@@ -397,9 +402,7 @@ Public Class DetailToko
                 s = s & "  keterangan_detail ) "
                 s = s & " values ( '" & TIdKirimTK.Text & "' , '" & TIDOrder.Text & "', '" & TidBarangPrd.Text & "', '" & TPPrd.Text & "', "
                 s = s & " '" & TLPrd.Text & "', '" & TTPrd.Text & "', '" & TSPrd.Text & "', '" & TQtyPrd.Text & "', "
-                If CSurvei.Checked = True Then
-                    s = s & "'" & Format(DTDeadlineImpleTK.Value, "yyyy/MM/dd") & "',  "
-                End If
+                s = s & "'" & Format(DTDeadlineImpleTK.Value, "yyyy/MM/dd") & "',  "
                 If CDeadKirim.Checked = True Then
                     s = s & "'" & Format(DTDeadlineKirimTK.Value, "yyyy/MM/dd") & "', "
                 End If

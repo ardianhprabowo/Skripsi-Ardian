@@ -121,39 +121,56 @@
     <value>17, 17</value>
   </metadata>
   <data name="CustomSqlQuery1.Sql" xml:space="preserve">
-    <value>select `report_po`.`barang`,
-       `report_po`.`keterangan`,
-       `report_po`.`panjang_prd`,
-       `report_po`.`lebar_prd`,
-       `report_po`.`tinggi_prd`,
-       `report_po`.`qty_prd`,
-       `report_po`.`idpo_prd`, `report_po`.`nopo`,
-       `report_po`.`idklien`,
-       `report_po`.`idkota`,
-       `report_po`.`tanggal`,
-       `report_po`.`lokasi`, `report_po`.`brand`,
-       `report_po`.`nope`,
-       `report_po`.`deadline_produksi`,
-       `report_po`.`selesai_produksi`,
-       `report_po`.`deadline_desain`,
-       `report_po`.`selesai_desain`,
-       `report_po`.`deadline_printing`,
-       `report_po`.`selesai_printing`,
-       `report_po`.`deadline_ki`,
-       `report_po`.`time_closhing`,
-       `report_po`.`kirim_po`,
-       `report_po`.`proses_po`,
-       `report_po`.`terima_po`,
-       `report_po`.`kirim_ppic`,
-       `report_po`.`idpe`, `report_po`.`iddivisi`,
-       `report_po`.`klien`,       `report_po`.`toko`,
-	  report_po.material,
-	  report_po.region,
-		report_po.kota
-  from `report_po` `report_po`
-where idpo_prd = ?idpo_prd</value>
+    <value>SELECT x.*,group_concat( `xx`.`material` SEPARATOR ', ' ) AS `material`,bo.DEADLINE_KI  FROM  
+(
+SELECT `b`.`idpo_prd` AS `idpo_prd`,
+				`b`.`IDTRANS` AS `IDTRANS`,
+				`b`.`IDKIRIM` AS `IDKIRIM`,
+				`b`.`IDBARANG_INT` AS `IDBARANG_INT`,
+				`b`.`IDBARANG_PE` AS `IDBARANG_PE`,
+				`b`.`IDDTORDER` AS `IDDTORDER`,
+				`b`.`IDDETAILPE` AS `IDDETAILPE`,
+				`b`.`PANJANG_PRD` AS `PANJANG_PRD`,
+				`b`.`DEADLINE_IMPLEMENTASI` AS `DEADLINE_IMPLEMENTASI`,
+				`b`.`REALISASI_IMPLEMENTASI` AS `REALISASI_IMPLEMENTASI`,
+				`b`.`LEBAR_PRD` AS `LEBAR_PRD`,
+				`b`.`TINGGI_PRD` AS `TINGGI_PRD`,
+				`b`.`SISI_PRD` AS `SISI_PRD`,
+				`b`.`QTY_PRD` AS `QTY_PRD`,
+				`b`.`KETERANGAN_DETAIL` AS `KETERANGAN_DETAIL`,
+				`b`.`DEADLINE_KIRIM` AS `DEADLINE_KIRIM`,
+				`b`.`USERUPDATE` AS `USERUPDATE`,
+				`b`.`TIMEUPDATE` AS `TIMEUPDATE`,
+				`b`.`ISDELETE` AS `ISDELETE`,
+				`b`.`barang` AS `barang`,
+				`b`.`TOKO` AS `TOKO`,
+				`a`.`NOPO` AS `nopo`,
+				`a`.`TANGGAL_PO` AS `TANGGAL_PO`,
+				`a`.`DEADLINE_DESAIN` AS `DEADLINE_DESAIN`,
+				`a`.`DEADLINE_PRINTING` AS `DEADLINE_PRINTING`,
+				`a`.`DEADLINE_PRODUKSI` AS `DEADLINE_PRODUKSI`,
+				`a`.`REGION` AS `REGION`,
+				`a`.`KLIEN` AS `KLIEN`,
+				`a`.`BRAND` AS `BRAND`,
+				`a`.`NOPE` AS `NOPE`,
+				`a`.`LOKASI` AS `LOKASI`  FROM `view_poproduksi` a
+INNER JOIN view_detailpo_kirim b on a.IDPO_PRD = b.IDPO_PRD
+) x 
+LEFT JOIN (
+		SELECT
+			`aa`.`idbarang_int` AS `IDBARANG_INT`,
+			`bb`.`material` AS `material` 
+		FROM
+				prd_transmaterial aa
+				LEFT JOIN prd_material bb ON 
+						bb.idmaterial = aa.idmaterial
+			) xx ON xx.IDBARANG_INT = x.IDBARANG_INT
+INNER JOIN prd_dataorder bo on bo.IDDTORDER = x.IDDTORDER
+where x.idpo_prd = ?idpo_prd
+GROUP BY
+	`x`.`IDTRANS`</value>
   </data>
   <data name="SqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
-    <value>PERhdGFTZXQgTmFtZT0iU3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9InJlcG9ydF9wbyI+PEZpZWxkIE5hbWU9ImJhcmFuZyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJrZXRlcmFuZ2FuIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InBhbmphbmdfcHJkIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJsZWJhcl9wcmQiIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9InRpbmdnaV9wcmQiIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9InF0eV9wcmQiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJpZHBvX3ByZCIgVHlwZT0iSW50NjQiIC8+PEZpZWxkIE5hbWU9Im5vcG8iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iaWRrbGllbiIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9Imlka290YSIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9InRhbmdnYWwiIFR5cGU9IkRhdGVUaW1lIiAvPjxGaWVsZCBOYW1lPSJsb2thc2kiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iYnJhbmQiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0ibm9wZSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJkZWFkbGluZV9wcm9kdWtzaSIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9InNlbGVzYWlfcHJvZHVrc2kiIFR5cGU9IkRhdGVUaW1lIiAvPjxGaWVsZCBOYW1lPSJkZWFkbGluZV9kZXNhaW4iIFR5cGU9IkRhdGVUaW1lIiAvPjxGaWVsZCBOYW1lPSJzZWxlc2FpX2Rlc2FpbiIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9ImRlYWRsaW5lX3ByaW50aW5nIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0ic2VsZXNhaV9wcmludGluZyIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9ImRlYWRsaW5lX2tpIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0idGltZV9jbG9zaGluZyIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9ImtpcmltX3BvIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0icHJvc2VzX3BvIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0idGVyaW1hX3BvIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0ia2lyaW1fcHBpYyIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9ImlkcGUiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJpZGRpdmlzaSIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9ImtsaWVuIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InRva28iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0ibWF0ZXJpYWwiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0icmVnaW9uIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9ImtvdGEiIFR5cGU9IlN0cmluZyIgLz48L1ZpZXc+PFZpZXcgTmFtZT0icG9fa2xpZW4iPjxGaWVsZCBOYW1lPSJub3BvIiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjwvRGF0YVNldD4=</value>
+    <value>PERhdGFTZXQgTmFtZT0iU3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9InJlcG9ydF9wbyI+PEZpZWxkIE5hbWU9ImlkcG9fcHJkIiBUeXBlPSJJbnQzMiIgLz48RmllbGQgTmFtZT0iSURUUkFOUyIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IklES0lSSU0iIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJJREJBUkFOR19JTlQiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJJREJBUkFOR19QRSIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IklERFRPUkRFUiIgVHlwZT0iSW50MzIiIC8+PEZpZWxkIE5hbWU9IklEREVUQUlMUEUiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJQQU5KQU5HX1BSRCIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iREVBRExJTkVfSU1QTEVNRU5UQVNJIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0iUkVBTElTQVNJX0lNUExFTUVOVEFTSSIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9IkxFQkFSX1BSRCIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iVElOR0dJX1BSRCIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iU0lTSV9QUkQiIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9IlFUWV9QUkQiIFR5cGU9IkRlY2ltYWwiIC8+PEZpZWxkIE5hbWU9IktFVEVSQU5HQU5fREVUQUlMIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkRFQURMSU5FX0tJUklNIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0iVVNFUlVQREFURSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJUSU1FVVBEQVRFIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0iSVNERUxFVEUiIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0iYmFyYW5nIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IlRPS08iIFR5cGU9IlN0cmluZyIgLz48RmllbGQgTmFtZT0ibm9wbyIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJUQU5HR0FMX1BPIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0iREVBRExJTkVfREVTQUlOIiBUeXBlPSJEYXRlVGltZSIgLz48RmllbGQgTmFtZT0iREVBRExJTkVfUFJJTlRJTkciIFR5cGU9IkRhdGVUaW1lIiAvPjxGaWVsZCBOYW1lPSJERUFETElORV9QUk9EVUtTSSIgVHlwZT0iRGF0ZVRpbWUiIC8+PEZpZWxkIE5hbWU9IlJFR0lPTiIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJLTElFTiIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJCUkFORCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJOT1BFIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9IkxPS0FTSSIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJtYXRlcmlhbCIgVHlwZT0iU3RyaW5nIiAvPjxGaWVsZCBOYW1lPSJERUFETElORV9LSSIgVHlwZT0iRGF0ZVRpbWUiIC8+PC9WaWV3PjwvRGF0YVNldD4=</value>
   </data>
 </root>

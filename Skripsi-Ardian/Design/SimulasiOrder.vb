@@ -250,4 +250,8 @@ Public Class SimulasiOrder
         End With
         Me.Cursor = Cursors.Default
     End Sub
+
+    Private Sub WindowsUIButtonPanel1_Click(sender As Object, e As EventArgs) Handles WindowsUIButtonPanel1.Click
+
+    End Sub
 End Class

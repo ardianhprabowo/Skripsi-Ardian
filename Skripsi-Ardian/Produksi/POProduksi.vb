@@ -172,17 +172,6 @@ Public Class POProduksi
         da.Fill(tbl)
         For i = 0 To tbl.Rows.Count - 1
             Dim statuspekerjaan As String = ""
-            'If tbl.Rows(i)("done") = "1" Then
-            '    statuspekerjaan = "Selesai"
-            'ElseIf tbl.Rows(i)("done") = "2" And IsDBNull(tbl.Rows(i)("nik_pengganti")) Then
-            '    statuspekerjaan = "Ganti Manpower"
-            'ElseIf IIf(IsDBNull(tbl.Rows(i)("time_end")), "", tbl.Rows(i)("time_end")) <> "" AndAlso tbl.Rows(i)("time_temp") = "" Then
-            '    statuspekerjaan = "Berhenti Sementara"
-            'ElseIf IIf(IsDBNull(tbl.Rows(i)("time_start")), "", tbl.Rows(i)("time_start")) <> "" Or IIf(IsDBNull(tbl.Rows(i)("time_temp")), "", tbl.Rows(i)("time_temp")) <> "" Then
-            '    statuspekerjaan = "Progress"
-            'Else
-            '    statuspekerjaan = "Belum Mulai"
-            'End If
             With ListPekerja
                 .Items.Add(tbl.Rows(i)("nama_ktp"))
                 With .Items(.Items.Count - 1).SubItems
@@ -197,22 +186,6 @@ Public Class POProduksi
                     .Add(tbl.Rows(i)("idact_poprd"))
                     .Add(tbl.Rows(i)("idtrans_manpower"))
                     .Add(tbl.Rows(i)("tanggal_selesai"))
-                    '.Add(statuspekerjaan)
-                    '.Add(tbl.Rows(i)("time_start"))
-                    '.Add(tbl.Rows(i)("time_end"))
-                    'Dim dFrom As DateTime
-                    'Dim dTo As DateTime
-                    'Dim sDateFrom As String = tbl.Rows(i)("time_start")
-                    'Dim sDateTo As String = tbl.Rows(i)("time_end")
-                    'If DateTime.TryParse(sDateFrom, dFrom) AndAlso DateTime.TryParse(sDateTo, dTo) Then
-                    '    Dim TS As TimeSpan = dTo - dFrom
-                    '    Dim hour As Integer = TS.Hours
-                    '    Dim mins As Integer = TS.Minutes
-                    '    Dim secs As Integer = TS.Seconds
-                    '    'Dim msec As Integer = TS.Milliseconds
-                    '    Dim timeDiff As String = ((hour.ToString("00") & " JAM ") + mins.ToString("00") & " MENIT ") + secs.ToString("00") + " DETIK"
-                    '    .Add(timeDiff)
-                    'End If
                 End With
             End With
         Next
@@ -891,7 +864,7 @@ Public Class POProduksi
         cmd.ExecuteNonQuery()
 
         sql = ""
-        sql = sql & "update prd_trans_manpower set  status_manpower='0' , nik_pengganti='" & TNIK.Text & "', nama_penggant='" & CManpower.Text & "' "
+        sql = sql & "update prd_trans_manpower set  status_manpower='0' , nik_pengganti='" & TNIK.Text & "', nama_pengganti='" & CManpower.Text & "' "
         sql = sql & " where idact_poprd='" & TidAct_po.Text & "' and nik='" & ListPekerja.Items(lpbrs).SubItems(6).Text & "' and idtrans_manpower='" & ListPekerja.Items(lpbrs).SubItems(10).Text & "' "
         cmd = New OdbcCommand(sql, conn)
         cmd.ExecuteNonQuery()

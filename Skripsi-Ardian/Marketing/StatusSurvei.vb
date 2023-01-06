@@ -267,15 +267,12 @@ Public Class StatusSurvei
         Me.Cursor = Cursors.WaitCursor
         GGVM_conn()
         s = ""
-        s = s & " SELECT c.* ,GROUP_CONCAT(b.material SEPARATOR ', ') as material FROM prd_transmaterial a "
-        s = s & " INNER JOIN prd_material b on b.idmaterial = a.idmaterial "
-        s = s & " LEFT JOIN view_tampilkirim c on c.idbarang_prd = a.IDBARANG_INT "
-        s = s & " where c.iddtorder= '" & TIDDtOrder.Text & "' "
+        s = s & " SELECT * from view_tampilkirim"
+        s = s & " where iddtorder= '" & TIDDtOrder.Text & "' "
         'If TIdDetailPE.Text <> "" Then
         '    s = s & " and iddetailpe='" & TIdDetailPE.Text & "'"
         'End If
-        s = s & " GROUP BY c.idbarang_prd "
-        s = s & " order by c.toko"
+        s = s & " order by toko"
         da = New OdbcDataAdapter(s, conn)
         'ds.Clear()
         dt = New DataTable
@@ -296,7 +293,7 @@ Public Class StatusSurvei
                     .Add(dt.Rows(i)("idkirim"))
                     .Add(IIf(IsDBNull(dt.Rows(i)("idbarang_prd")), "", dt.Rows(i)("idbarang_prd")))
                     .Add(dt.Rows(i)("idtrans"))
-                    .Add(dt.Rows(i)("material"))
+                    .Add(IIf(IsDBNull(dt.Rows(i)("material")), "", dt.Rows(i)("material")))
                     .Add(dt.Rows(i)("keterangan"))
                 End With
             End With
@@ -459,7 +456,7 @@ Public Class StatusSurvei
                 cmd = New OdbcCommand(sql, conn)
                 cmd.ExecuteNonQuery()
 
-
+                ClearPE()
 
                 Me.Cursor = Cursors.Default
                 MsgBox("Detail Penawaran sudah di-SIMPAN !!..", MsgBoxStyle.Information, "Information")
@@ -470,7 +467,7 @@ Public Class StatusSurvei
                 c = c & " update prd_detail_penawaran set"
                 'c = c & " idbarang = '" & TIdBarangPE.Text & "',"
                 c = c & " barangpe = '" & TBarangPE.Text & "',"
-                c = c & " keterangan ='" & TKeterangan.Text & "',"
+                c = c & " keterangan_proyek ='" & TKeterangan.Text & "',"
                 c = c & " material ='" & TMaterialPE.Text & "',"
                 c = c & " panjang_pe= " & TPanjangPE.Text & ","
                 c = c & " lebar_pe = " & TLebarPE.Text & ","
@@ -480,7 +477,7 @@ Public Class StatusSurvei
                 c = c & " measure_pe =" & TMeasurePE.Text & ","
                 c = c & " qty_pe = " & TJmlPE.Text & ","
                 c = c & " harga_barang =" & Harga & ","
-                c = c & " harga_pe = " & GrandTotal & ""
+                c = c & " harga_penawaran = " & GrandTotal & ""
                 c = c & " where iddetailpe ='" & TIdDetailPE.Text & "'"
                 cmd = New OdbcCommand(c, conn)
                 cmd.ExecuteNonQuery()
@@ -1000,7 +997,10 @@ Public Class StatusSurvei
                 TIdMaterialPRD.Text = dt.Rows(0)("id")
             End If
         End If
-
+        If TQtyMaterial.Text = "" Then
+            MsgBox("Harap Masukkan Qty Material !!..", MsgBoxStyle.Information, "Information")
+            Exit Sub
+        End If
         c = ""
         c = c & "insert prd_transmaterial (idtrans,idmaterial,idbarang_int,qty_material)"
         c = c & "values ('" & TIdTrans.Text & "','" & TIdMaterialPRD.Text & "','" & TIdBarangPRD.Text & "','" & TQtyMaterial.Text & "') "
